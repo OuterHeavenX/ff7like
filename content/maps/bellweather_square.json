@@ -344,6 +344,13 @@
    ],
    "w": 14,
    "h": 2
+  },
+  {
+   "t": "sign",
+   "at": [
+    24,
+    5
+   ]
   }
  ],
  "triggers": [
@@ -468,6 +475,15 @@
    "kind": "event",
    "event": "ev_toll",
    "cond": "quest:mq_sealed_fork>=2&!flag:toll_happened"
+  },
+  {
+   "at": [
+    24,
+    5
+   ],
+   "on": "interact",
+   "event": "ev_square_board",
+   "label": "Bounties"
   }
  ],
  "npcs": [

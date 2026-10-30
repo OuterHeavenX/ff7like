@@ -291,6 +291,13 @@
     5
    ],
    "y": 0.3
+  },
+  {
+   "t": "sign",
+   "at": [
+    22,
+    7
+   ]
   }
  ],
  "triggers": [
@@ -350,6 +357,15 @@
    "on": "interact",
    "event": "ev_rw_posters",
    "label": "Read"
+  },
+  {
+   "at": [
+    22,
+    7
+   ],
+   "on": "interact",
+   "event": "ev_rw_board",
+   "label": "Bounties"
   }
  ],
  "npcs": [

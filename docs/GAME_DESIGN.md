@@ -30,3 +30,11 @@ Active-time gauges; **Wait** (default) pauses the timeline while a command or ta
 
 ## Saves
 3 manual slots + 3 rotating autosaves (only after a real game has begun), metadata (location, chapter, party, level, playtime, timestamp, build, schema). Atomic write: temp file → read-back verification → previous file kept as `.bak` → rename. Versioned schema with migrations; unknown IDs are dropped gracefully; corrupted files fall back to the backup. Portable JSON export/import (browser download / file picker; native `user://exports` and `user://imports`). Device preferences live separately in `user://settings.cfg`.
+
+## Crafting (focused)
+`content/recipes.json`: consumables (any crafting spot: Tamsin's cache) and equipment upgrades (smithies: Dunmore, Hobb). Recipes list exact materials, crowns and station; crafting is atomic (all inputs checked before anything is consumed) and upgrades require unequipping the base item. Materials come from enemy drops shown in the Bestiary.
+
+## Repeatable activities
+1. **Bounty contracts** (`content/contracts.json`, boards in Lantern Square and Rainward Junction): accept → defeat N of a target anywhere (only defeats after acceptance count; summons never count) → turn in for crowns, items and JP to the active party → cooldown of N won battles → repeatable. Built.
+2. Challenge arena with ranked rule-variant fights — planned (Ch7 / postgame).
+3. Training grounds with high-JP rare spawns — planned (Ch7).

@@ -41,7 +41,7 @@ def table(name):
     return out
 
 
-T = {n: table(n) for n in ["characters", "jobs", "skills", "items", "enemies", "encounters", "quests", "shops", "statuses", "chapters", "npcs"]}
+T = {n: table(n) for n in ["characters", "jobs", "skills", "items", "enemies", "encounters", "quests", "shops", "statuses", "chapters", "npcs", "recipes", "contracts"]}
 events = {}
 for fname in load(os.path.join(C, "events", "index.json")) or []:
     for k, v in (load(os.path.join(C, "events", fname + ".json")) or {}).items():
@@ -98,6 +98,18 @@ for sh, s in T["shops"].items():
     for i in s["items"]:
         if i not in T["items"] or T["items"][i].get("price", 0) <= 0:
             err(f"shop {sh} item {i} missing or unpriced")
+
+
+for rid, r in T["recipes"].items():
+    for i in list(r["materials"]) + [r["result"]]:
+        if i not in T["items"]:
+            err(f"recipe {rid} item {i} missing")
+for cid, c in T["contracts"].items():
+    if c["enemy"] not in T["enemies"]:
+        err(f"contract {cid} enemy {c['enemy']} missing")
+    for i in c.get("reward", {}).get("items", {}):
+        if i not in T["items"]:
+            err(f"contract {cid} reward {i} missing")
 
 
 def walk_cmds(eid, cmds):

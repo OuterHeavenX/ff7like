@@ -135,3 +135,37 @@ func test_conditions() -> void:
 	t.ok(GameState.check("party:rowan"), "party")
 	t.ok(not GameState.check("roster:mira"), "roster")
 	t.ok(GameState.check("item:tonic>=3"), "item count")
+
+
+func test_crafting_atomic_and_gated() -> void:
+	GameState.new_game()
+	t.ok(GameState.craft_block_reason("r_honed_knife", "smith").begins_with("Unequip"), "equipped base item must be unequipped first")
+	GameState.equip("rowan", "weapon", "")
+	t.ok(GameState.craft_block_reason("r_honed_knife", "any") == "Needs a smithy.", "upgrade needs smithy")
+	t.ok(GameState.craft_block_reason("r_honed_knife", "smith").begins_with("Needs Brass"), "needs materials")
+	GameState.add_item("brass_scrap", 4)
+	var g0 := GameState.gold
+	t.ok(GameState.craft("r_honed_knife", "smith"), "craft upgrade")
+	t.eq(GameState.count_item("honed_knife"), 1, "result granted")
+	t.eq(GameState.count_item("courier_knife"), 0, "base consumed")
+	t.eq(GameState.count_item("brass_scrap"), 0, "materials consumed")
+	t.eq(g0 - GameState.gold, 80, "gold cost")
+	t.ok(not GameState.craft("r_honed_knife", "smith"), "cannot craft without inputs")
+
+
+func test_contracts_repeatable_with_cooldown() -> void:
+	GameState.new_game()
+	t.eq(GameState.contract_state("c_brass_rats"), "available", "available")
+	GameState.record_enemy("brass_rat", true)
+	t.ok(GameState.accept_contract("c_brass_rats"), "accept")
+	t.eq(GameState.contract_progress("c_brass_rats"), 0, "kills before accepting don't count")
+	for i in 6:
+		GameState.record_enemy("brass_rat", true)
+	t.eq(GameState.contract_state("c_brass_rats"), "ready", "ready after 6")
+	var g0 := GameState.gold
+	t.ok(GameState.turn_in_contract("c_brass_rats"), "turn in")
+	t.eq(GameState.gold - g0, 120, "reward once")
+	t.ok(not GameState.turn_in_contract("c_brass_rats"), "no double turn-in")
+	t.eq(GameState.contract_state("c_brass_rats"), "cooldown", "cooldown after completion")
+	GameState.battles_won += 3
+	t.eq(GameState.contract_state("c_brass_rats"), "available", "repeatable after cooldown")

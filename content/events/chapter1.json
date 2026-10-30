@@ -622,7 +622,28 @@
     "text": "Forge is open, festival or no. Blades, mauls, wrenches, coats."
    },
    {
-    "shop": "forge"
+    "choice": [
+     {
+      "text": "Buy / Sell",
+      "do": [
+       {
+        "shop": "forge"
+       }
+      ]
+     },
+     {
+      "text": "Craft & upgrade",
+      "do": [
+       {
+        "craft": "smith"
+       }
+      ]
+     },
+     {
+      "text": "Leave",
+      "do": []
+     }
+    ]
    }
   ]
  },
@@ -1129,7 +1150,28 @@
     "text": "Night-crew stores. I'll take crowns — I'm sentimental, not stupid."
    },
    {
-    "shop": "undercroft_cache"
+    "choice": [
+     {
+      "text": "Buy / Sell",
+      "do": [
+       {
+        "shop": "undercroft_cache"
+       }
+      ]
+     },
+     {
+      "text": "Craft consumables",
+      "do": [
+       {
+        "craft": "any"
+       }
+      ]
+     },
+     {
+      "text": "Leave",
+      "do": []
+     }
+    ]
    }
   ]
  },

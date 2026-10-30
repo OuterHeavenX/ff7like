@@ -4,7 +4,7 @@ extends Node
 ## and cached so the full campaign never needs to be resident at once.
 
 const TABLES := ["characters", "jobs", "skills", "items", "enemies", "encounters",
-	"quests", "shops", "statuses", "chapters", "recipes", "npcs"]
+	"quests", "shops", "statuses", "chapters", "recipes", "npcs", "contracts"]
 
 var tables: Dictionary = {}          # table name -> { id -> Dictionary }
 var _map_cache: Dictionary = {}

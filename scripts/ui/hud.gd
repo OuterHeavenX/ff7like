@@ -114,3 +114,14 @@ func open_save_menu() -> void:
 	get_parent().menu_open = true
 	await s.closed
 	get_parent().menu_open = false
+
+
+## Generic modal screen host for event-opened UIs (crafting, contracts).
+func open_screen(script_path: String, props: Dictionary) -> void:
+	var s: Control = load(script_path).new()
+	for k: String in props.keys():
+		s.set(k, props[k])
+	get_parent().menu_layer.add_child(s)
+	get_parent().menu_open = true
+	await s.closed
+	get_parent().menu_open = false

@@ -1,1 +1,118 @@
-[]
+[
+ {
+  "id": "r_hi_tonic",
+  "result": "hi_tonic",
+  "qty": 1,
+  "materials": {
+   "tonic": 2,
+   "moth_silk": 1
+  },
+  "gold": 0,
+  "station": "any",
+  "desc": "Two tonics bound with moth silk."
+ },
+ {
+  "id": "r_echo_salve",
+  "result": "echo_salve",
+  "qty": 1,
+  "materials": {
+   "echo_dust": 2,
+   "antidote": 1
+  },
+  "gold": 0,
+  "station": "any"
+ },
+ {
+  "id": "r_storm_jar",
+  "result": "storm_jar",
+  "qty": 1,
+  "materials": {
+   "brass_scrap": 2,
+   "echo_dust": 1
+  },
+  "gold": 20,
+  "station": "any"
+ },
+ {
+  "id": "r_frost_flask",
+  "result": "frost_flask",
+  "qty": 2,
+  "materials": {
+   "silt_shell": 1,
+   "clear_drop": 1
+  },
+  "gold": 10,
+  "station": "any"
+ },
+ {
+  "id": "r_smelling_salts",
+  "result": "smelling_salts",
+  "qty": 1,
+  "materials": {
+   "moth_silk": 1,
+   "echo_dust": 1
+  },
+  "gold": 40,
+  "station": "any"
+ },
+ {
+  "id": "r_honed_knife",
+  "result": "honed_knife",
+  "qty": 1,
+  "materials": {
+   "courier_knife": 1,
+   "brass_scrap": 4
+  },
+  "gold": 80,
+  "station": "smith",
+  "desc": "Upgrade: Courier's Knife (ATK 4) → Honed (ATK 8, SPD 1)."
+ },
+ {
+  "id": "r_spark_wrench",
+  "result": "spark_wrench",
+  "qty": 1,
+  "materials": {
+   "tinker_wrench": 1,
+   "brass_scrap": 3,
+   "storm_jar": 1
+  },
+  "gold": 80,
+  "station": "smith",
+  "desc": "Upgrade: Tinker Wrench → Spark Wrench (storm-element attacks)."
+ },
+ {
+  "id": "r_relined_greatcoat",
+  "result": "relined_greatcoat",
+  "qty": 1,
+  "materials": {
+   "warden_coat": 1,
+   "silt_shell": 3
+  },
+  "gold": 100,
+  "station": "smith",
+  "desc": "Upgrade: Warden's Greatcoat (DEF 6) → Relined (DEF 10, HP 25)."
+ },
+ {
+  "id": "r_reinforced_apron",
+  "result": "reinforced_apron",
+  "qty": 1,
+  "materials": {
+   "engineer_apron": 1,
+   "silt_shell": 2,
+   "moth_silk": 1
+  },
+  "gold": 90,
+  "station": "smith"
+ },
+ {
+  "id": "r_bright_lantern",
+  "result": "bright_lantern",
+  "qty": 1,
+  "materials": {
+   "lucky_lantern": 1,
+   "echo_dust": 3
+  },
+  "gold": 120,
+  "station": "smith"
+ }
+]

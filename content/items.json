@@ -752,5 +752,79 @@
   "name": "Brake Car Key",
   "type": "key",
   "desc": "Opens the freight's brake car."
+ },
+ {
+  "id": "honed_knife",
+  "name": "Honed Courier's Knife",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "blade",
+  "price": 0,
+  "sell": 60,
+  "stats": {
+   "atk": 8,
+   "spd": 1
+  },
+  "desc": "Rowan's knife, re-edged with brass fittings."
+ },
+ {
+  "id": "spark_wrench",
+  "name": "Spark Wrench",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "wrench",
+  "price": 0,
+  "sell": 80,
+  "stats": {
+   "atk": 5,
+   "mag": 8
+  },
+  "element": "storm",
+  "desc": "Mira's wrench with a storm coil. Attacks deal storm damage."
+ },
+ {
+  "id": "relined_greatcoat",
+  "name": "Relined Greatcoat",
+  "type": "equipment",
+  "slot": "armor",
+  "price": 0,
+  "sell": 90,
+  "stats": {
+   "def": 10,
+   "hp": 25,
+   "res": 2
+  },
+  "desc": "Garran's coat, plated with silt shell."
+ },
+ {
+  "id": "reinforced_apron",
+  "name": "Reinforced Apron",
+  "type": "equipment",
+  "slot": "armor",
+  "price": 0,
+  "sell": 90,
+  "stats": {
+   "def": 6,
+   "res": 6,
+   "mag": 2
+  },
+  "element_res": {
+   "storm": 0.35
+  },
+  "desc": "Storm damage -35%."
+ },
+ {
+  "id": "bright_lantern",
+  "name": "Bright Lantern",
+  "type": "equipment",
+  "slot": "accessory",
+  "price": 0,
+  "sell": 120,
+  "stats": {
+   "dex": 6,
+   "spd": 2,
+   "mag": 2
+  },
+  "desc": "The festival token, relit with echo dust."
  }
 ]

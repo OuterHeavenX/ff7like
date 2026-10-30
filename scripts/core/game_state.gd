@@ -9,7 +9,7 @@ signal flags_changed
 signal quest_updated(quest_id: String)
 signal notify(text: String)
 
-const SCHEMA_VERSION := 2
+const SCHEMA_VERSION := 3
 const MAX_PARTY := 4
 const MAX_LEVEL := 99
 const MAX_PASSIVES := 3
@@ -38,6 +38,8 @@ var steps: int = 0
 var tracked_quest: String = ""
 var shop_stock: Dictionary = {}     # shop id -> {item id -> remaining}
 var rng_seed: int = 0
+var contracts: Dictionary = {}      # contract id -> {accepted_at (defeat count), completions, ready_after_battle}
+var battles_won: int = 0
 
 
 func _ready() -> void:
@@ -66,6 +68,8 @@ func reset() -> void:
 	bestiary.clear()
 	discovered.clear()
 	shop_stock.clear()
+	contracts.clear()
+	battles_won = 0
 	map_id = ""
 	map_pos = Vector2i.ZERO
 	map_facing = 0
@@ -729,6 +733,93 @@ func _check_atom(s: String) -> bool:
 	return false
 
 
+# ---------------------------------------------------------------- crafting
+
+## Returns "" if craftable, else the reason. `station` is "smith" or "any".
+func craft_block_reason(rid: String, station: String) -> String:
+	var r: Dictionary = Content.get_entry("recipes", rid)
+	if r.is_empty():
+		return "Unknown recipe."
+	if str(r.get("station", "any")) == "smith" and station != "smith":
+		return "Needs a smithy."
+	for iid: String in r.get("materials", {}).keys():
+		var need := int(r.materials[iid])
+		var have := count_item(iid)
+		if have < need:
+			var equipped := 0
+			for cid: String in roster:
+				for slot: String in ["weapon", "armor", "accessory"]:
+					if str(members[cid].equip.get(slot, "")) == iid:
+						equipped += 1
+			if have + equipped >= need:
+				return "Unequip %s first." % Content.item(iid).get("name", iid)
+			return "Needs %s x%d (have %d)." % [Content.item(iid).get("name", iid), need, have]
+	if gold < int(r.get("gold", 0)):
+		return "Needs %d crowns." % int(r.gold)
+	return ""
+
+
+## Atomic: checks everything first, then consumes and grants.
+func craft(rid: String, station: String) -> bool:
+	if craft_block_reason(rid, station) != "":
+		return false
+	var r: Dictionary = Content.get_entry("recipes", rid)
+	for iid: String in r.get("materials", {}).keys():
+		remove_item(iid, int(r.materials[iid]))
+	spend_gold(int(r.get("gold", 0)))
+	add_item(str(r.result), int(r.get("qty", 1)))
+	return true
+
+
+# ---------------------------------------------------------------- contracts (repeatable)
+
+func contract_progress(cid: String) -> int:
+	var c: Dictionary = Content.get_entry("contracts", cid)
+	var st: Dictionary = contracts.get(cid, {})
+	if not st.has("accepted_at"):
+		return 0
+	var now := int(bestiary.get(str(c.enemy), {}).get("defeated", 0))
+	return clampi(now - int(st.accepted_at), 0, int(c.count))
+
+
+func contract_state(cid: String) -> String:
+	var st: Dictionary = contracts.get(cid, {})
+	if st.has("accepted_at"):
+		return "ready" if contract_progress(cid) >= int(Content.get_entry("contracts", cid).count) else "active"
+	if battles_won < int(st.get("ready_after", 0)):
+		return "cooldown"
+	return "available"
+
+
+func accept_contract(cid: String) -> bool:
+	if contract_state(cid) != "available":
+		return false
+	var c: Dictionary = Content.get_entry("contracts", cid)
+	var st: Dictionary = contracts.get(cid, {"completions": 0})
+	st["accepted_at"] = int(bestiary.get(str(c.enemy), {}).get("defeated", 0))
+	contracts[cid] = st
+	return true
+
+
+## Turn in: rewards once per completion; then cooldown measured in won battles.
+func turn_in_contract(cid: String) -> bool:
+	if contract_state(cid) != "ready":
+		return false
+	var c: Dictionary = Content.get_entry("contracts", cid)
+	var st: Dictionary = contracts[cid]
+	st.erase("accepted_at")
+	st["completions"] = int(st.get("completions", 0)) + 1
+	st["ready_after"] = battles_won + int(c.get("cooldown_battles", 3))
+	var rw: Dictionary = c.get("reward", {})
+	add_gold(int(rw.get("gold", 0)))
+	for iid: String in rw.get("items", {}).keys():
+		add_item(iid, int(rw.items[iid]))
+	if int(rw.get("jp", 0)) > 0:
+		for id: String in party:
+			grant_jp(id, int(rw.jp))
+	return true
+
+
 # ---------------------------------------------------------------- serialization
 
 func location_name() -> String:
@@ -747,6 +838,7 @@ func to_dict() -> Dictionary:
 		"map_pos": [map_pos.x, map_pos.y], "map_facing": map_facing, "chapter": chapter,
 		"playtime": playtime, "steps": steps, "tracked_quest": tracked_quest,
 		"shop_stock": shop_stock.duplicate(true), "rng_seed": rng_seed,
+		"contracts": contracts.duplicate(true), "battles_won": battles_won,
 	}
 
 
@@ -777,6 +869,8 @@ func from_dict(src: Dictionary) -> void:
 	tracked_quest = str(d.get("tracked_quest", ""))
 	shop_stock = d.get("shop_stock", {})
 	rng_seed = int(d.get("rng_seed", 0))
+	contracts = d.get("contracts", {})
+	battles_won = int(d.get("battles_won", 0))
 	# JSON numbers arrive as floats; normalize integer fields on members.
 	for id: String in members.keys():
 		var m: Dictionary = members[id]

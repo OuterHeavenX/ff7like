@@ -1084,6 +1084,7 @@ func _end_battle(outcome: String) -> void:
 				if not u.summoned:
 					GameState.record_enemy(u.source_id, true)
 			var rw := sim.take_rewards()
+			GameState.battles_won += 1
 			_write_back(true)
 			var alive: Array = []
 			for u: BattleUnit in sim.side_units(0):

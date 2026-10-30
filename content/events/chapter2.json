@@ -481,7 +481,28 @@
     "text": "Platform smithy. I make things out of railway scrap that the railway would prefer I didn't."
    },
    {
-    "shop": "junction_smith"
+    "choice": [
+     {
+      "text": "Buy / Sell",
+      "do": [
+       {
+        "shop": "junction_smith"
+       }
+      ]
+     },
+     {
+      "text": "Craft & upgrade",
+      "do": [
+       {
+        "craft": "smith"
+       }
+      ]
+     },
+     {
+      "text": "Leave",
+      "do": []
+     }
+    ]
    }
   ]
  },
@@ -1581,6 +1602,13 @@
      ]
     ],
     "speed": 5
+   }
+  ]
+ },
+ "ev_rw_board": {
+  "cmds": [
+   {
+    "contracts": "rainward"
    }
   ]
  }

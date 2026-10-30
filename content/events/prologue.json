@@ -980,5 +980,22 @@
     "inn": 40
    }
   ]
+ },
+ "ev_square_board": {
+  "cmds": [
+   {
+    "if": "flag:undercroft_entered",
+    "then": [
+     {
+      "contracts": "bellweather"
+     }
+    ],
+    "else": [
+     {
+      "narrate": "A bounty board. Today: 'LOST CAT (ginger, answers to Duke)'. Nothing a courier can help with — yet."
+     }
+    ]
+   }
+  ]
  }
 }

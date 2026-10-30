@@ -286,6 +286,12 @@ func _exec(c: Dictionary) -> void:
 	elif c.has("shop"):
 		if not skipping:
 			await world.hud.open_shop(str(c.shop))
+	elif c.has("craft"):
+		if not skipping:
+			await world.hud.open_screen("res://scripts/ui/craft_ui.gd", {"station": str(c.craft)})
+	elif c.has("contracts"):
+		if not skipping:
+			await world.hud.open_screen("res://scripts/ui/contracts_ui.gd", {"board": str(c.contracts)})
 	elif c.has("inn"):
 		if not skipping:
 			await _inn(int(c.inn))

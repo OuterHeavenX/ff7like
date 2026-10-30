@@ -1,0 +1,104 @@
+[
+ {
+  "id": "c_brass_rats",
+  "board": "bellweather",
+  "title": "Pest Control",
+  "enemy": "brass_rat",
+  "count": 6,
+  "reward": {
+   "gold": 120,
+   "jp": 20,
+   "items": {
+    "brass_scrap": 2
+   }
+  },
+  "cooldown_battles": 3,
+  "region": "Station Undercroft",
+  "danger": 1
+ },
+ {
+  "id": "c_silt_crabs",
+  "board": "bellweather",
+  "title": "Cracking Shells",
+  "enemy": "silt_crab",
+  "count": 4,
+  "reward": {
+   "gold": 180,
+   "jp": 30,
+   "items": {
+    "silt_shell": 2
+   }
+  },
+  "cooldown_battles": 3,
+  "region": "Station Undercroft",
+  "danger": 2
+ },
+ {
+  "id": "c_echoes",
+  "board": "bellweather",
+  "title": "Lost Things",
+  "enemy": "hollow_echo",
+  "count": 3,
+  "reward": {
+   "gold": 220,
+   "jp": 40,
+   "items": {
+    "echo_dust": 2
+   }
+  },
+  "cooldown_battles": 4,
+  "region": "Station Undercroft",
+  "danger": 2
+ },
+ {
+  "id": "c_hounds",
+  "board": "rainward",
+  "title": "Rust on the Line",
+  "enemy": "rust_hound",
+  "count": 6,
+  "reward": {
+   "gold": 380,
+   "jp": 60,
+   "items": {
+    "hi_tonic": 1
+   }
+  },
+  "cooldown_battles": 3,
+  "region": "Stalled Freight / Millbrook Cutting",
+  "danger": 3
+ },
+ {
+  "id": "c_toads",
+  "board": "rainward",
+  "title": "Spore Season",
+  "enemy": "spore_toad",
+  "count": 4,
+  "reward": {
+   "gold": 420,
+   "jp": 70,
+   "items": {
+    "echo_salve": 1
+   }
+  },
+  "cooldown_battles": 4,
+  "region": "Millbrook Cutting",
+  "danger": 3
+ },
+ {
+  "id": "c_leeches",
+  "board": "rainward",
+  "title": "Leech Purge",
+  "enemy": "memory_leech",
+  "count": 4,
+  "reward": {
+   "gold": 460,
+   "jp": 80,
+   "items": {
+    "clear_drop": 2
+   }
+  },
+  "cooldown_battles": 4,
+  "region": "Stalled Freight",
+  "danger": 4
+ }
+]

@@ -9,7 +9,7 @@ const TARGETS := ["self", "enemy", "enemies", "ally", "allies", "ally_ko", "ally
 const EVENT_KEYS := ["say", "party_say", "narrate", "choice", "if", "flag", "item", "gold", "join", "leave", "require_party",
 	"quest_start", "quest_stage", "quest_complete", "battle", "move", "face", "emote", "refresh_npcs", "refresh_map", "remove_npc",
 	"wait", "fade", "warp", "music", "sfx", "shake", "flash", "title_card", "shop", "inn", "save_menu", "heal", "unlock_job",
-	"learn", "set_chapter", "call", "autosave", "tutorial", "open_menu", "camera", "end_slice"]
+	"learn", "set_chapter", "call", "autosave", "tutorial", "open_menu", "camera", "end_slice", "craft", "contracts"]
 
 
 func test_no_load_errors() -> void:

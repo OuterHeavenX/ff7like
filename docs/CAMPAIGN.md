@@ -44,7 +44,7 @@ Prologue (Lanternwake) -> Ch1 Bellweather -> Ch2 Rainward Line -> Ch3 Glass Orch
 | Normal enemy types | 45 | 17 (+ summon) |
 | Bosses | 12 main + 4 optional | 2 main + 1 optional elite |
 | Jobs | 12 with 6 actives + 3 passives + mastery | 12 implemented & functional; 7 obtainable (Ranger added) |
-| Repeatable activities | 3 | 0 |
+| Repeatable activities | 3 | 1 (bounty contracts, 6 contracts on 2 boards) |
 
 ## Prologue + Chapter One route (built)
 1. Wick Street: Nessa, objective → Post Office (Hale: sealed fork) → Lantern Square → Bell Station (meet Wren; Mira refuses the flat fork; Sallow overrules).

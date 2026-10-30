@@ -202,6 +202,12 @@ func validate_and_migrate(data: Variant) -> Dictionary:
 						d.members[id].passives = []
 					if not d.members[id].has("affinity"):
 						d.members[id].affinity = {}
+			2:
+				# v2 -> v3: repeatable contracts and a won-battle counter.
+				if not d.has("contracts"):
+					d.contracts = {}
+				if not d.has("battles_won"):
+					d.battles_won = 0
 		schema += 1
 		d.schema = schema
 	for key: String in ["members", "roster", "party", "inventory", "flags", "quests", "map_id"]:

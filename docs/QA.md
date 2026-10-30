@@ -7,7 +7,7 @@ All results below were actually run in the development container (Linux x86_64, 
 |---|---|---|
 | Content validator | `python3 tools/validate_content.py` | OK — 8 characters, 12 jobs, 158 skills, 44 items, 11 enemies, 13 encounters, 7 quests, 92 events, 12 maps |
 | Script compile | `godot --headless -s res://tools/check_scripts.gd` | 0 failures |
-| Unit/integration tests | `godot --headless res://tests/test_runner.tscn` | 46 passed, 0 failed (battle rules, statuses, targeting, rewards, progression, inventory, quests, saves/migration/corruption/import, content integrity incl. map reachability, balance sims) |
+| Unit/integration tests | `godot --headless res://tests/test_runner.tscn` | 48 passed, 0 failed (battle rules, statuses, targeting, rewards, progression, inventory, quests, saves/migration/corruption/import, content integrity incl. map reachability, balance sims) |
 | Traversal harness | `godot --headless -- --smoke` | ROUTE OK — Prologue → Chapter One → Chapter Two end: all main/side/personal quests, optional elite, both bosses, Millbrook choice; real events, auto-battle, **simulated grinding (Lv10 before Ch1 boss, Lv13 before Ch2 freight)** |
 | Web export | `--export-release "Web"` | OK (PCK 2.6 MB, WASM 43.7 MB uncompressed) |
 | Linux export | `--export-release "Linux"` | OK; binary runs headless; only libc-level dynamic deps |
