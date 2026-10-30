@@ -1,5 +1,11 @@
 # Release Notes
 
+## 0.4.0 — Chapter Three: Glass Orchard
+- New region: Verrin's Glass, Hollin Ward, the Glasshouse Vaults (season valves switch winter/summer routes and encounters), the Engine Chamber.
+- Garran's backstory (personal stage 2), optional recruit Tavi via a song-collecting chain, Hexweaver and Cantor jobs.
+- 8 new enemy types and the Harvest Engine boss; retune/shut-down choice; party-aware persuasion in a branching side quest.
+- Crafting (consumables + equipment upgrades) and repeatable bounty contracts on three boards; save schema v3 (auto-migrates).
+
 ## 0.3.0 — Chapter Two: The Rainward Line
 - New region: Rainward Junction (rain), the Stalled Freight, Millbrook Cutting, Millbrook Halt. Barge travel back to Bellweather keeps Chapter One content reachable.
 - Nessa and Sera join (party of five with reserves); Ranger job unlocked.

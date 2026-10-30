@@ -146,3 +146,13 @@ func test_chapter_two_balance() -> void:
 	for lvl in [10, 11, 12, 13]:
 		var r2 := _simulate("boss_signal_warden", lvl, 8, false, ["nessa"])
 		print("    sim boss_signal_warden Lv%d wins %d/%d  actions %.1f" % [lvl, r2.wins, r2.seeds, r2.avg_actions])
+
+
+func test_chapter_three_balance() -> void:
+	for enc: String in ["gv_frost", "gv_ember", "gv_overseer", "gv_sprites", "go_slimes", "go_beetle_mender"]:
+		var r := _simulate(enc, 15, 6, false, ["nessa"])
+		print("    sim %-16s Lv15 wins %d/%d  actions %.1f" % [enc, r.wins, r.seeds, r.avg_actions])
+		t.ok(r.wins >= 5, "%s winnable at Lv15" % enc)
+	for lvl in [15, 16, 17, 18]:
+		var r2 := _simulate("boss_harvest_engine", lvl, 8, false, ["nessa"])
+		print("    sim boss_harvest_engine Lv%d wins %d/%d  actions %.1f" % [lvl, r2.wins, r2.seeds, r2.avg_actions])

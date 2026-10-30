@@ -401,5 +401,141 @@
    "paid": "You paid for the food. The clerk quietly added extra. The camp eats.",
    "seal": "You broke the seal at night. The camp eats — and wardens on the Line now look harder at couriers."
   }
+ },
+ {
+  "id": "mq_glass_orchard",
+  "type": "main",
+  "title": "Glass Orchard",
+  "giver": "—",
+  "location": "Verrin's Glass",
+  "chapter": "ch3",
+  "summary": "Verrin's Glass hasn't had a bad harvest in eleven years, thanks to its bell. Hollin Ward, an hour south, refused the toll — and Garran refused the order to make them accept it.",
+  "stages": [
+   {
+    "objective": "Speak with Coop Chair Leda Vane in Verrin's Glass.",
+    "recap": "The freight arrived at Verrin's Glass, a town of glasshouses."
+   },
+   {
+    "objective": "Walk south to Hollin Ward with Garran.",
+    "recap": "Leda praised the toll. Garran wants to see Hollin Ward."
+   },
+   {
+    "objective": "Return to Leda: something is wrong in the Glasshouse Vaults.",
+    "recap": "Hollin is poor and proud. Its elder says the Vaults' engine has started pulling from Hollin's bell too."
+   },
+   {
+    "objective": "Find the Harvest Engine in the Glasshouse Vaults. Use the season valves to change the vault's climate.",
+    "recap": "Leda gave you the Vaults key. Summer grows vine bridges; winter freezes the pools."
+   },
+   {
+    "objective": "Decide the Engine's future.",
+    "recap": "The Engine is quiet. Mira says she could retune it, or you could shut it down for good."
+   },
+   {
+    "objective": "Board the freight at Verrin's west platform.",
+    "recap": "Verrin and Hollin will live with your decision."
+   }
+  ],
+  "rewards": {
+   "xp": 800,
+   "gold": 1200
+  }
+ },
+ {
+  "id": "pq_garran_2",
+  "type": "personal",
+  "title": "Garran: What He Refused",
+  "giver": "Garran Holt",
+  "location": "Hollin Ward",
+  "summary": "Stage 2 of Garran's story: the order at Hollin Ward.",
+  "stages": [
+   {
+    "objective": "Visit Hollin Ward with Garran in the party.",
+    "recap": "Garran said he'd explain 'somewhere he can see the sky'."
+   },
+   {
+    "objective": "Stage 2 complete. His story continues later (not yet built).",
+    "recap": "The order was to break Hollin's bell by force. He wouldn't. The town lived — poor, free, and cut off."
+   }
+  ],
+  "rewards": {
+   "items": {
+    "orchard_maul": 1
+   }
+  }
+ },
+ {
+  "id": "pq_tavi_recruit",
+  "type": "personal",
+  "title": "Songs the Bells Took",
+  "giver": "Tavi Marr",
+  "location": "Verrin's Glass",
+  "summary": "Optional: a travelling performer collecting songs that the tolls erased. Help find three, and Tavi may join you.",
+  "stages": [
+   {
+    "objective": "Find three song fragments (0/3): a grower in Verrin, a child in Hollin, and something written in the Vaults.",
+    "recap": "Tavi asked for help finding lost songs."
+   },
+   {
+    "objective": "Find song fragments (1/3).",
+    "recap": ""
+   },
+   {
+    "objective": "Find song fragments (2/3).",
+    "recap": ""
+   },
+   {
+    "objective": "Bring the songs to Tavi in Verrin's Glass.",
+    "recap": "You have all three fragments."
+   },
+   {
+    "objective": "Tavi joined. (Further stages not yet built.)",
+    "recap": ""
+   }
+  ],
+  "rewards": {
+   "items": {
+    "vagrant_lute": 1
+   }
+  }
+ },
+ {
+  "id": "sq_bread_hollin",
+  "type": "side",
+  "title": "Bread for Hollin",
+  "giver": "Elder Aldwen",
+  "location": "Hollin Ward",
+  "branching": true,
+  "summary": "Hollin's winter stores are thin. Verrin's cooperative has surplus — at Verrin's prices.",
+  "stages": [
+   {
+    "objective": "Ask Leda's cooperative about grain for Hollin.",
+    "recap": "Hollin needs food for winter."
+   },
+   {
+    "objective": "Pay for the grain, or persuade Leda to send it.",
+    "recap": "Leda's price is high."
+   },
+   {
+    "objective": "Done.",
+    "recap": ""
+   }
+  ],
+  "outcome_rewards": {
+   "paid": {
+    "xp": 300,
+    "items": {
+     "pollen_veil": 1
+    }
+   },
+   "persuaded": {
+    "xp": 300,
+    "gold": 300
+   }
+  },
+  "outcomes": {
+   "paid": "You bought Hollin a winter. Aldwen gave you her old pollen veil.",
+   "persuaded": "Leda sent the grain herself, 'as a neighbour'. It's the first cart between the towns in three years."
+  }
  }
 ]

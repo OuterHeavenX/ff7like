@@ -122,6 +122,10 @@ CHARACTERS = {
                        pants="#3a3a3a", boots="#2a2420", accent="#d08040", acc="none", build="broad", weapon="none"),
     "captain": dict(skin="#c89070", hair="#2a2a2a", hair_style="hat", coat="#3a2a4a", coat2="#28203a",
                     pants="#2a2a34", boots="#1a1a20", accent="#c0a040", acc="none", build="tall", weapon="none"),
+    "grower": dict(skin="#d8a070", hair="#8a5a2a", hair_style="cap", coat="#5a8a4a", coat2="#3a6030",
+                   pants="#4a3a2a", boots="#3a2a1a", accent="#f0d070", acc="apron", build="normal", weapon="none"),
+    "overseer": dict(skin="#e8c8a8", hair="#2a2a2a", hair_style="slick", coat="#6a3a5a", coat2="#4a2440",
+                     pants="#2a2030", boots="#1a1a20", accent="#f0d070", acc="collar", build="tall", weapon="none"),
     "survivor": dict(skin="#e0b898", hair="#5a4030", hair_style="short", coat="#6a6a72", coat2="#4a4a52",
                      pants="#3a3a42", boots="#2a2a30", accent="#a0a0a8", acc="none", build="normal", weapon="none"),
 }
@@ -1026,6 +1030,142 @@ def en_signal_warden(frame):
     return outline(img)
 
 
+def en_glass_beetle(frame):
+    img, d = enemy_canvas(48, 36)
+    shell = rgb("#7ac8c0")
+    o = frame
+    d.ellipse([6, 6 + o, 42, 32], fill=rgb("#2a4a4a"))
+    d.ellipse([8, 4 + o, 40, 28], fill=shell)
+    d.line([(24, 4 + o), (24, 28)], fill=rgb("#c8f0ea"), width=1)
+    d.polygon([(12, 10 + o), (20, 8 + o), (16, 18 + o)], fill=rgb("#d8fff8"))
+    d.ellipse([38, 14, 46, 22], fill=rgb("#2a3a3a"))
+    for lx in (12, 20, 28, 36):
+        d.line([(lx, 28), (lx - 2, 35)], fill=rgb("#2a3a3a"), width=2)
+    eyes(d, 40, 16, rgb("#ffe080"), 4, 1)
+    return outline(img)
+
+
+def en_orchard_crow(frame):
+    img, d = enemy_canvas(44, 36)
+    c = rgb("#2a2a3a")
+    f = frame * 5
+    d.polygon([(22, 14), (2, 6 + f), (8, 20), (22, 22)], fill=c)
+    d.polygon([(22, 14), (42, 6 + f), (36, 20), (22, 22)], fill=c)
+    d.ellipse([14, 12, 30, 30], fill=rgb("#3a3a4a"))
+    d.polygon([(28, 18), (36, 20), (28, 22)], fill=rgb("#e0b040"))
+    d.point((26, 17), fill=rgb("#ff4040"))
+    d.line([(18, 30), (16, 35)], fill=rgb("#e0b040"))
+    d.line([(24, 30), (26, 35)], fill=rgb("#e0b040"))
+    return outline(img)
+
+
+def en_pollen_sprite(frame):
+    img, d = enemy_canvas(36, 40)
+    o = frame * 2
+    for (x, y, r) in ((8, 10 + o, 6), (28, 12 - o, 6), (18, 4, 5), (10, 26, 5), (26, 28, 5)):
+        d.ellipse([x - r, y - r, x + r, y + r], fill=rgb("#f0d860"))
+    d.ellipse([10, 12, 26, 28], fill=rgb("#f8f0b0"))
+    eyes(d, 14, 18, rgb("#3a2a10"), 6, 2)
+    d.arc([14, 20, 22, 26], 20, 160, fill=rgb("#a06020"))
+    return outline(img)
+
+
+def en_root_mender(frame):
+    img, d = enemy_canvas(40, 48)
+    bark = rgb("#6a4a2a")
+    o = frame
+    d.rectangle([14, 14, 26, 40], fill=bark)
+    for (x0, x1) in ((14, 4), (26, 36)):
+        d.line([(x0, 20), (x1, 12 - o)], fill=bark, width=3)
+    for x in (10, 16, 22, 28):
+        d.line([(x + 2, 40), (x, 47)], fill=rgb("#4a3018"), width=2)
+    d.ellipse([8, 0 + o, 32, 18 + o], fill=rgb("#5aa04a"))
+    d.ellipse([12, 4 + o, 20, 12 + o], fill=rgb("#8ad07a"))
+    eyes(d, 16, 24, rgb("#c8ff80"), 6, 2)
+    return outline(img)
+
+
+def en_sap_slime(frame):
+    img, d = enemy_canvas(44, 32)
+    c = rgb("#d09a3a")
+    o = frame * 2
+    d.ellipse([4, 8 + o, 40, 31], fill=c)
+    d.ellipse([10, 4 + o, 30, 20 + o], fill=c)
+    d.ellipse([12, 8 + o, 18, 14 + o], fill=rgb("#ffe0a0"))
+    eyes(d, 16, 16 + o, rgb("#3a2008"), 8, 3)
+    return outline(img)
+
+
+def en_frost_bloom(frame):
+    img, d = enemy_canvas(40, 44)
+    o = frame
+    d.line([(20, 24), (20, 43)], fill=rgb("#4a7a8a"), width=3)
+    for a in range(0, 360, 60):
+        import math as _m
+        r = _m.radians(a + o * 15)
+        d.polygon([(20, 14), (20 + 14 * _m.cos(r) - 3, 14 + 14 * _m.sin(r)), (20 + 14 * _m.cos(r) + 3, 14 + 14 * _m.sin(r))], fill=rgb("#b8e8ff"))
+    d.ellipse([14, 8, 26, 20], fill=rgb("#e8f8ff"))
+    eyes(d, 16, 12, rgb("#2a4a6a"), 6, 2)
+    return outline(img)
+
+
+def en_ember_bloom(frame):
+    img, d = enemy_canvas(40, 44)
+    o = frame
+    d.line([(20, 24), (20, 43)], fill=rgb("#4a6a2a"), width=3)
+    for i, a in enumerate(range(0, 360, 45)):
+        import math as _m
+        r = _m.radians(a - o * 20)
+        d.ellipse([20 + 11 * _m.cos(r) - 5, 14 + 11 * _m.sin(r) - 5, 20 + 11 * _m.cos(r) + 5, 14 + 11 * _m.sin(r) + 5], fill=rgb("#ff7a30") if i % 2 else rgb("#ffb040"))
+    d.ellipse([14, 8, 26, 20], fill=rgb("#fff0a0"))
+    eyes(d, 16, 12, rgb("#5a1a08"), 6, 2)
+    return outline(img)
+
+
+def en_overseer(frame):
+    p = dict(CHARACTERS["warden"])
+    p["coat"], p["coat2"], p["accent"], p["hair_style"] = "#6a3a5a", "#4a2440", "#f0d070", "slick"
+    base = draw_char_frame(p, "right", frame)
+    img = Image.new("RGBA", (40, 40), CLEAR)
+    big = base.resize((30, 40), Image.NEAREST)
+    img.paste(big, (5, 0), big)
+    d = ImageDraw.Draw(img)
+    d.rectangle([30, 14, 37, 22], fill=rgb("#e8e0c8"))
+    d.line([(31, 16), (36, 16)], fill=rgb("#6a6a6a"))
+    d.line([(31, 19), (36, 19)], fill=rgb("#6a6a6a"))
+    return outline(img)
+
+
+def en_harvest_engine(frame):
+    """Boss: the Harvest Engine, a resonator grown over with grafted vines."""
+    img, d = enemy_canvas(100, 96)
+    brass = rgb("#b08a40")
+    glass = rgb("#9ad8d0")
+    vine = rgb("#4a8a3a")
+    d.rectangle([30, 40, 70, 92], fill=rgb("#5a5048"))
+    d.ellipse([20, 6, 80, 56], fill=glass)
+    d.ellipse([28, 12, 72, 50], fill=rgb("#c8f0e8"))
+    d.ellipse([40, 22, 60, 42], fill=rgb("#ffd060") if frame == 0 else rgb("#80e0ff"))
+    d.rectangle([24, 52, 76, 60], fill=brass)
+    for i in range(6):
+        x = 10 + i * 16
+        d.line([(x, 95), (x + 8 * (1 if i % 2 else -1), 60 - (i % 3) * 10), (x + 4, 30 + frame * 4)], fill=vine, width=4)
+    for (x, y) in ((14, 40), (84, 36), (50, 70), (24, 80)):
+        d.ellipse([x - 4, y - 4, x + 4, y + 4], fill=rgb("#e05a8a"))
+    return outline(img)
+
+
+def en_vine_graft(frame):
+    img, d = enemy_canvas(32, 48)
+    vine = rgb("#3a7a2a")
+    o = frame * 2
+    d.line([(16, 47), (12 + o, 30), (18 - o, 16), (14, 4)], fill=vine, width=5)
+    for (x, y) in ((10, 24), (20, 12), (12, 36)):
+        d.ellipse([x - 4, y - 3, x + 4, y + 3], fill=rgb("#6ab05a"))
+    d.ellipse([10, 0, 20, 8], fill=rgb("#e05a8a"))
+    return outline(img)
+
+
 ENEMIES = {
     "warden": en_warden,
     "warden_sergeant": en_sergeant,
@@ -1047,6 +1187,16 @@ ENEMIES = {
     "memory_leech": en_memory_leech,
     "line_marksman": en_marksman,
     "signal_warden": en_signal_warden,
+    "glass_beetle": en_glass_beetle,
+    "orchard_crow": en_orchard_crow,
+    "pollen_sprite": en_pollen_sprite,
+    "root_mender": en_root_mender,
+    "sap_slime": en_sap_slime,
+    "frost_bloom": en_frost_bloom,
+    "ember_bloom": en_ember_bloom,
+    "orchard_overseer": en_overseer,
+    "harvest_engine": en_harvest_engine,
+    "vine_graft": en_vine_graft,
 }
 
 

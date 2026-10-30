@@ -1,0 +1,1288 @@
+{
+ "ev_ch3_arrival": {
+  "cmds": [
+   {
+    "music": "town_bellweather"
+   },
+   {
+    "narrate": "Verrin's Glass. Rows of glasshouses catch the low sun like a field of lanterns. The air smells of pears and warm brass."
+   },
+   {
+    "party_say": [
+     {
+      "who": "sera",
+      "text": "I've never seen children this well fed on the Line. Not once.",
+      "expr": ""
+     },
+     {
+      "who": "mira",
+      "text": "Every one of those glasshouses has a resonator under it. I'd know the hum anywhere.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "…Hollin Ward's an hour south of here. Thought I'd never walk this road again.",
+      "expr": "sad"
+     }
+    ]
+   },
+   {
+    "quest_start": "mq_glass_orchard"
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "The freight reached Verrin's Glass, a prosperous glasshouse town fed by extraction. Hollin Ward is an hour south.",
+  "skippable": true
+ },
+ "ev_leda": {
+  "cmds": [
+   {
+    "if": "flag:ch3_choice_made",
+    "then": [
+     {
+      "if": "flag:ch3_retune",
+      "then": [
+       {
+        "say": "leda",
+        "text": "The Engine hums at half its old pitch. The harvest will be smaller. It will also be ours, and only ours. Thank you."
+       }
+      ],
+      "else": [
+       {
+        "say": "leda",
+        "text": "We'll learn to farm like our grandparents did. I hope they were better at it than I am.",
+        "expr": "sad"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "!quest:mq_glass_orchard>=1",
+      "then": [
+       {
+        "say": "leda",
+        "text": "Travellers! Welcome to Verrin's Glass. Leda Vane, cooperative chair. You've come on a good year — every year is a good year here."
+       },
+       {
+        "say": "rowan",
+        "text": "Because of the toll?",
+        "expr": "neutral"
+       },
+       {
+        "say": "leda",
+        "text": "Because of the toll. Before it, one winter in three killed somebody's grandmother. Now our pears feed half the Line. I won't apologise for that."
+       },
+       {
+        "say": "leda",
+        "text": "I know what they say in the cities. Memories, stolen. We give a few old songs a season and get our children through winter. Ask any parent here what they'd trade."
+       },
+       {
+        "party_say": [
+         {
+          "who": "sera",
+          "text": "And the people the toll takes more from than songs?",
+          "expr": "angry"
+         }
+        ]
+       },
+       {
+        "say": "leda",
+        "text": "…There's always someone. I just try not to let it be us.",
+        "expr": "sad"
+       },
+       {
+        "quest_stage": [
+         "mq_glass_orchard",
+         1
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:mq_glass_orchard>=2&!quest:mq_glass_orchard>=3",
+        "then": [
+         {
+          "say": "leda",
+          "text": "You've been to Hollin. Then you'll have heard. The Engine in the Vaults has been… overgrowing. Grafting itself to new roots. The glass is cracking, and the harvest's going strange."
+         },
+         {
+          "say": "leda",
+          "text": "My engineers won't go down. I'll pay well for someone who will. Whatever's wrong, fix it — please."
+         },
+         {
+          "party_say": [
+           {
+            "who": "mira",
+            "text": "If it's grafting itself to Hollin's bell, 'fix it' might not mean what she thinks.",
+            "expr": ""
+           }
+          ]
+         },
+         {
+          "quest_stage": [
+           "mq_glass_orchard",
+           3
+          ]
+         },
+         {
+          "tutorial": "The Vaults have two season valves. Winter freezes the pools into ice you can walk on; summer grows a vine bridge across the chasm. Enemies change with the season too.",
+          "title": "Seasons"
+         }
+        ],
+        "else": [
+         {
+          "if": "quest:sq_bread_hollin&!quest_done:sq_bread_hollin",
+          "then": [
+           {
+            "call": "ev_bread_leda"
+           }
+          ],
+          "else": [
+           {
+            "say": "leda",
+            "text": "The Vaults are east, past the last glasshouse."
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_bread_leda": {
+  "cmds": [
+   {
+    "say": "leda",
+    "text": "Grain for Hollin? At cooperative prices: six hundred crowns. We don't give charity to a town that turned down the same bell that feeds us."
+   },
+   {
+    "quest_stage": [
+     "sq_bread_hollin",
+     1
+    ]
+   },
+   {
+    "choice": [
+     {
+      "text": "Pay 600 crowns",
+      "cond": "gold>=600",
+      "do": [
+       {
+        "gold": -600
+       },
+       {
+        "say": "leda",
+        "text": "…I'll have it carted by evening."
+       },
+       {
+        "quest_complete": "sq_bread_hollin",
+        "outcome": "paid"
+       }
+      ]
+     },
+     {
+      "text": "(Garran) \"I'm the reason they're alone. Not them.\"",
+      "cond": "party:garran",
+      "do": [
+       {
+        "say": "garran",
+        "text": "Hollin didn't refuse your bell. They refused mine. The Authority's. I was the one sent to change their minds."
+       },
+       {
+        "say": "leda",
+        "text": "…You're Holt. The captain who wouldn't."
+       },
+       {
+        "say": "leda",
+        "text": "My mother lived in Hollin before she married. I'll send the grain myself. As a neighbour.",
+        "expr": "sad"
+       },
+       {
+        "quest_complete": "sq_bread_hollin",
+        "outcome": "persuaded"
+       }
+      ]
+     },
+     {
+      "text": "(Sera) \"You said you try not to let it be you. Let it be no one.\"",
+      "cond": "party:sera",
+      "do": [
+       {
+        "say": "sera",
+        "text": "You said you try not to let it be you. I'm asking you to try not to let it be anyone."
+       },
+       {
+        "say": "leda",
+        "text": "…That's an unfair thing to say to a farmer. Fine. The grain goes south. As a neighbour."
+       },
+       {
+        "quest_complete": "sq_bread_hollin",
+        "outcome": "persuaded"
+       }
+      ]
+     },
+     {
+      "text": "Not now",
+      "do": []
+     }
+    ]
+   }
+  ]
+ },
+ "ev_vg_gate": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "The Vaults are locked. Let's see Hollin first — and Leda has the key.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "The Vaults gate is locked. Leda must have the key."
+    }
+   },
+   {
+    "move": "player",
+    "path": [
+     [
+      29,
+      6
+     ]
+    ],
+    "speed": 5
+   }
+  ]
+ },
+ "ev_vg_conductor": {
+  "cmds": [
+   {
+    "say": "brakeman",
+    "text": "Freight's laid over here. I can run you back up the Line if you need."
+   },
+   {
+    "choice": [
+     {
+      "text": "Ride to Rainward Junction",
+      "do": [
+       {
+        "fade": "out"
+       },
+       {
+        "warp": "rainward_junction",
+        "spawn": "east"
+       }
+      ]
+     },
+     {
+      "text": "Ride to Millbrook Halt",
+      "do": [
+       {
+        "fade": "out"
+       },
+       {
+        "warp": "millbrook_halt",
+        "spawn": "west"
+       }
+      ]
+     },
+     {
+      "text": "Stay",
+      "do": [
+       {
+        "move": "player",
+        "path": [
+         [
+          2,
+          6
+         ]
+        ],
+        "speed": 5
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_vg_board": {
+  "cmds": [
+   {
+    "contracts": "orchard"
+   }
+  ]
+ },
+ "ev_vg_glasshouse": {
+  "cmds": [
+   {
+    "narrate": "Inside the glass: pear trees in impossible bloom, months early. Under the floor, something hums a quarter-tone flat."
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "That's the pitch from the fork. The same flat note.",
+      "expr": "surprised"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_vg_inn": {
+  "cmds": [
+   {
+    "say": "innkeeper",
+    "text": "The Pear & Pane. Fifty crowns a bed, breakfast included, pears compulsory."
+   },
+   {
+    "inn": 50
+   }
+  ]
+ },
+ "ev_ivo": {
+  "cmds": [
+   {
+    "say": "ivo",
+    "text": "Glasswright. I can make you armour that rings like a bell when you're hit. People like that, for some reason."
+   },
+   {
+    "choice": [
+     {
+      "text": "Buy / Sell",
+      "do": [
+       {
+        "shop": "verrin_smith"
+       }
+      ]
+     },
+     {
+      "text": "Craft & upgrade",
+      "do": [
+       {
+        "craft": "smith"
+       }
+      ]
+     },
+     {
+      "text": "Leave",
+      "do": []
+     }
+    ]
+   }
+  ]
+ },
+ "ev_vg_market": {
+  "cmds": [
+   {
+    "say": "dell",
+    "text": "Cooperative market! Fair prices, if you're from here."
+   },
+   {
+    "shop": "verrin_market"
+   }
+  ]
+ },
+ "ev_vg_kid": {
+  "cmds": [
+   {
+    "say": "pim",
+    "text": "We've never had a bad winter. Mum says that's because of the bell. What's a bad winter like?",
+    "expr": "happy"
+   }
+  ]
+ },
+ "ev_sorrel": {
+  "cmds": [
+   {
+    "if": "flag:met_sorrel",
+    "then": [
+     {
+      "say": "sorrel",
+      "text": "Curses are just medicine pointed the other way, dear. Use them kindly."
+     }
+    ],
+    "else": [
+     {
+      "say": "sorrel",
+      "text": "Mother Sorrel. I keep the orchard's old remedies — and the old curses, which are the same plants with worse intentions."
+     },
+     {
+      "say": "sorrel",
+      "text": "The extraction made my blight-charms useless; nothing gets blight anymore. But I can teach you what I know. Hexes. Rot, burn, wither. Useful against things that heal themselves."
+     },
+     {
+      "unlock_job": "hexweaver"
+     },
+     {
+      "flag": "met_sorrel"
+     },
+     {
+      "tutorial": "Hexweaver unlocked: poison, burn and vulnerability. Burn also cuts enemy healing by 25% — very useful against things that regenerate.",
+      "title": "New job"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_tavi": {
+  "cmds": [
+   {
+    "if": "quest:pq_tavi_recruit>=3",
+    "then": [
+     {
+      "call": "ev_tavi_join"
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:pq_tavi_recruit",
+      "then": [
+       {
+        "say": "tavi_npc",
+        "text": "Three verses. A grower here, a child in Hollin, and something written in the Vaults. Songs hide in odd places."
+       }
+      ],
+      "else": [
+       {
+        "narrate": "A performer in a feathered hat is playing to nobody in particular. The tune keeps stopping in the same place, as if the rest of it was cut away."
+       },
+       {
+        "say": "tavi_npc",
+        "text": "Don't mind me. I'm just playing the parts of songs that are left."
+       },
+       {
+        "say": "tavi_npc",
+        "text": "Tavi Marr. I collect what the tolls take — verses, mostly. People remember a line or two, never the whole thing. If I find enough lines, I can sing the whole song back to them."
+       },
+       {
+        "say": "rowan",
+        "text": "Does that work?",
+        "expr": "surprised"
+       },
+       {
+        "say": "tavi_npc",
+        "text": "Sometimes people cry. I count that as working.",
+        "expr": "happy"
+       },
+       {
+        "say": "tavi_npc",
+        "text": "There are three verses around here I can't reach: a grower in town, a child in Hollin, and something carved into the Vaults. Bring them to me and I'll owe you a song. Maybe more."
+       },
+       {
+        "quest_start": "pq_tavi_recruit"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_grower": {
+  "cmds": [
+   {
+    "if": "quest:pq_tavi_recruit&!flag:song_a",
+    "then": [
+     {
+      "call": "ev_grower_song"
+     }
+    ],
+    "else": [
+     {
+      "say": "grower",
+      "text": "Pears, plums, quince, glassberry. All year round. My father couldn't grow a turnip."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_grower_song": {
+  "cmds": [
+   {
+    "say": "grower",
+    "text": "A song? There's a bit my nan used to sing at picking time… 'Under the glass and over the frost, count what we keep and not what we lost.' That's all I've got."
+   },
+   {
+    "narrate": "You copy the verse down for Tavi."
+   },
+   {
+    "if": "!flag:song_a",
+    "then": [
+     {
+      "flag": "song_a"
+     },
+     {
+      "item": "song_fragment",
+      "qty": 1
+     },
+     {
+      "if": "flag:song_a&flag:song_b&flag:song_c",
+      "then": [
+       {
+        "quest_stage": [
+         "pq_tavi_recruit",
+         3
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:pq_tavi_recruit<1",
+        "then": [
+         {
+          "quest_stage": [
+           "pq_tavi_recruit",
+           1
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "pq_tavi_recruit",
+           2
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_hollin_kid": {
+  "cmds": [
+   {
+    "if": "quest:pq_tavi_recruit&!flag:song_b",
+    "then": [
+     {
+      "call": "ev_hollin_song"
+     }
+    ],
+    "else": [
+     {
+      "say": "hollin_kid",
+      "text": "Our bell doesn't ring. Gran says that's how we know it's ours."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_hollin_song": {
+  "cmds": [
+   {
+    "say": "hollin_kid",
+    "text": "We sing it when the bell's quiet: 'Ring for no one, ring for none, keep the season, keep the son.' I don't know what it means. It's ours though."
+   },
+   {
+    "narrate": "You copy the verse down for Tavi."
+   },
+   {
+    "if": "!flag:song_b",
+    "then": [
+     {
+      "flag": "song_b"
+     },
+     {
+      "item": "song_fragment",
+      "qty": 1
+     },
+     {
+      "if": "flag:song_a&flag:song_b&flag:song_c",
+      "then": [
+       {
+        "quest_stage": [
+         "pq_tavi_recruit",
+         3
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:pq_tavi_recruit<1",
+        "then": [
+         {
+          "quest_stage": [
+           "pq_tavi_recruit",
+           1
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "pq_tavi_recruit",
+           2
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_vault_song": {
+  "cmds": [
+   {
+    "narrate": "Carved into the glass wall, under years of grime: 'Every bell was a voice before it was a well. Sing it back and it will tell.'"
+   },
+   {
+    "narrate": "You copy the verse down for Tavi."
+   },
+   {
+    "if": "!flag:song_c",
+    "then": [
+     {
+      "flag": "song_c"
+     },
+     {
+      "item": "song_fragment",
+      "qty": 1
+     },
+     {
+      "if": "flag:song_a&flag:song_b&flag:song_c",
+      "then": [
+       {
+        "quest_stage": [
+         "pq_tavi_recruit",
+         3
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:pq_tavi_recruit<1",
+        "then": [
+         {
+          "quest_stage": [
+           "pq_tavi_recruit",
+           1
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "pq_tavi_recruit",
+           2
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_tavi_join": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "say": "tavi_npc",
+    "text": "You found them. All three. Give me a moment."
+   },
+   {
+    "narrate": "Tavi plays. The three verses fit together like broken glass that remembers being a window. Growers stop at the end of their rows. Somebody's grandmother starts to sing along, then stops, astonished, and keeps going."
+   },
+   {
+    "say": "tavi_npc",
+    "text": "That's the Picking Song. Verrin and Hollin used to sing it together, before the toll split them. Nobody here knew.",
+    "expr": "sad"
+   },
+   {
+    "say": "tavi_npc",
+    "text": "I don't think I can collect songs fast enough on my own. And I think you're walking toward the place they're all kept."
+   },
+   {
+    "say": "tavi_npc",
+    "text": "Take me with you? I'm useful. I'm also very good company, which is a type of useful.",
+    "expr": "happy"
+   },
+   {
+    "join": "tavi"
+   },
+   {
+    "quest_complete": "pq_tavi_recruit"
+   },
+   {
+    "item": "song_fragment",
+    "qty": -3
+   },
+   {
+    "tutorial": "Tavi joined (optional recruit). Encore restores an ally's time gauge and grants Regen; Tavi's Cantor songs shape the whole party's tempo. Cantor is now unlocked.",
+    "title": "New ally"
+   },
+   {
+    "unlock_job": "cantor"
+   },
+   {
+    "music": "town_bellweather"
+   }
+  ],
+  "recap": "Tavi Marr, a performer who collects songs erased by tolls, joined after the party found three lost verses.",
+  "skippable": true
+ },
+ "ev_hollin_arrive": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "narrate": "Hollin Ward: stone cottages, a dry well, and a bell in the square that nobody has rung in three years. The people are thin and watchful."
+   },
+   {
+    "quest_stage": [
+     "mq_glass_orchard",
+     2
+    ]
+   },
+   {
+    "if": "party:garran",
+    "then": [
+     {
+      "call": "ev_garran_hollin"
+     }
+    ]
+   }
+  ],
+  "recap": "The party reached Hollin Ward, a poor village whose bell has been silent for three years."
+ },
+ "ev_garran_hollin": {
+  "cmds": [
+   {
+    "say": "garran",
+    "text": "This is where I stopped being a warden.",
+    "expr": "sad"
+   },
+   {
+    "say": "garran",
+    "text": "Hollin voted against the toll. The Authority sent us to 'persuade' them. The order was to break the bell's housing and install a resonator by force — and if the town resisted, to treat the resistance as sedition."
+   },
+   {
+    "say": "garran",
+    "text": "I looked at the square. Old men, kids, a woman holding a ladle like a sword. I told my wardens to stand down. Half of them did."
+   },
+   {
+    "say": "rowan",
+    "text": "And the other half?",
+    "expr": "sad"
+   },
+   {
+    "say": "garran",
+    "text": "Followed me out, eventually. They took my badge, and the Authority took Hollin off the trade routes. No toll, no freight. Three years of bad winters.",
+    "expr": "sad"
+   },
+   {
+    "say": "garran",
+    "text": "I saved their bell and starved their children. I still don't know if I did right.",
+    "expr": "sad"
+   },
+   {
+    "choice": [
+     {
+      "text": "\"You did right. They chose. You let them.\"",
+      "do": [
+       {
+        "say": "garran",
+        "text": "…Maybe. They chose. I'll hold onto that.",
+        "expr": "neutral"
+       }
+      ]
+     },
+     {
+      "text": "\"Maybe there wasn't a right. Just a less wrong.\"",
+      "do": [
+       {
+        "say": "garran",
+        "text": "That I can live with. That's most days.",
+        "expr": "neutral"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "quest_complete": "pq_garran_2"
+   }
+  ],
+  "recap": "At Hollin Ward Garran revealed his order: break the village's bell by force. He refused; Hollin kept its bell and lost its trade.",
+  "skippable": true
+ },
+ "ev_aldwen": {
+  "cmds": [
+   {
+    "if": "!flag:met_aldwen",
+    "then": [
+     {
+      "say": "aldwen",
+      "text": "Garran Holt. You came back."
+     },
+     {
+      "if": "party:garran",
+      "then": [
+       {
+        "say": "garran",
+        "text": "Elder."
+       },
+       {
+        "say": "aldwen",
+        "text": "You left with your badge in your hand and half a company at your back. We remember. We remember everything; that's rather the point of us."
+       }
+      ]
+     },
+     {
+      "say": "aldwen",
+      "text": "Something has changed, though. Our bell has started to hum. It's never hummed. Verrin's Engine is reaching for it — grafting roots under the hill."
+     },
+     {
+      "say": "aldwen",
+      "text": "If you're going to the Vaults, tell whatever is down there that Hollin said no. It said no three years ago and it says no now."
+     },
+     {
+      "flag": "met_aldwen"
+     },
+     {
+      "quest_stage": [
+       "mq_glass_orchard",
+       2
+      ]
+     },
+     {
+      "if": "!quest:sq_bread_hollin",
+      "then": [
+       {
+        "say": "aldwen",
+        "text": "And if you're passing back through Verrin… our stores won't last the winter. Verrin has grain. We have pride. Pride isn't very filling."
+       },
+       {
+        "quest_start": "sq_bread_hollin"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "quest_done:sq_bread_hollin",
+      "then": [
+       {
+        "say": "aldwen",
+        "text": "The grain came. We'll eat this winter. Thank you."
+       }
+      ],
+      "else": [
+       {
+        "say": "aldwen",
+        "text": "Tell the Engine Hollin said no."
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_hollin_bell": {
+  "cmds": [
+   {
+    "narrate": "Hollin's bell. Cold to the touch — and, faintly, it's humming the same flat note as the fork."
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "It's being drawn on. The Engine's reached it already.",
+      "expr": "angry"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_hollin_man": {
+  "cmds": [
+   {
+    "say": "hollin_kid",
+    "text": "We don't take Verrin pears. Too proud. I'd take a pear."
+   }
+  ]
+ },
+ "ev_vaults_enter": {
+  "cmds": [
+   {
+    "narrate": "The Glasshouse Vaults: a cathedral of glass and roots beneath the orchard. Steam ghosts across a frozen-looking pool; on the far side, a chasm where a vine bridge sags."
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "Season valves. Twist one and the whole vault's climate flips. Summer grows the bridge. Winter freezes the pool.",
+      "expr": ""
+     },
+     {
+      "who": "tavi",
+      "text": "Clever. Very theatrical. I approve.",
+      "expr": "happy"
+     }
+    ]
+   },
+   {
+    "quest_stage": [
+     "mq_glass_orchard",
+     3
+    ]
+   },
+   {
+    "autosave": true
+   }
+  ]
+ },
+ "ev_season_valve": {
+  "cmds": [
+   {
+    "if": "flag:vault_winter",
+    "then": [
+     {
+      "narrate": "You turn the valve to SUMMER. Warm air floods the vault; ice melts; the vine bridge thickens across the chasm."
+     },
+     {
+      "flag": "vault_winter",
+      "value": false
+     }
+    ],
+    "else": [
+     {
+      "narrate": "You turn the valve to WINTER. Frost races across the glass; the pool freezes solid; the vine bridge withers."
+     },
+     {
+      "flag": "vault_winter",
+      "value": true
+     }
+    ]
+   },
+   {
+    "sfx": "door"
+   },
+   {
+    "refresh_map": true
+   }
+  ]
+ },
+ "ev_boss_engine": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "The Engine Chamber. A resonator the size of a house, sealed in a glass dome, wrapped in grafted vines that run down into the floor — toward Hollin."
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "It heals itself through the vines. Burn it and it can't. Cut the grafts and it can't hide behind them.",
+      "expr": ""
+     },
+     {
+      "who": "nessa",
+      "text": "And when the glass goes gold, it's about to spit pollen. Guard or stun.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "choice": [
+     {
+      "text": "Stop the Harvest Engine",
+      "do": [
+       {
+        "battle": "boss_harvest_engine",
+        "no_escape": true,
+        "boss": true,
+        "win": [
+         {
+          "flag": "engine_done"
+         },
+         {
+          "call": "ev_engine_choice"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "text": "Step back and prepare",
+      "do": [
+       {
+        "move": "player",
+        "path": [
+         [
+          5,
+          4
+         ]
+        ],
+        "speed": 5
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_engine_choice": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "narrate": "The Engine slows. The grafts loosen and slide back toward the floor. Somewhere above, a field of glasshouses goes quiet."
+   },
+   {
+    "say": "mira",
+    "text": "I can retune it. Cut the grafts, drop the pitch back to safe — draw only from Verrin's own bell, once a season. Hollin goes free. Verrin keeps a smaller harvest.",
+    "expr": "neutral"
+   },
+   {
+    "say": "mira",
+    "text": "Or we shut it down. No extraction at all. Verrin farms like everyone else again. Hollin's bell is just a bell.",
+    "expr": "neutral"
+   },
+   {
+    "party_say": [
+     {
+      "who": "sera",
+      "text": "A safe draw is still a draw. Somebody's song, every season.",
+      "expr": ""
+     },
+     {
+      "who": "garran",
+      "text": "Verrin's children got through eleven winters on this thing. That's not nothing either.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "choice": [
+     {
+      "text": "Retune it (Mira): safe pitch, Verrin only",
+      "do": [
+       {
+        "flag": "ch3_retune"
+       },
+       {
+        "flag": "ch3_choice_made"
+       },
+       {
+        "say": "mira",
+        "text": "Hold the light for me. This is the part I'm good at.",
+        "expr": "happy"
+       },
+       {
+        "narrate": "Mira works for an hour. When she's done, the Engine hums a true note — quieter, smaller, and somehow lighter."
+       },
+       {
+        "say": "mira",
+        "text": "There. It'll take one verse a season from Verrin's own bell. Nothing from anyone else's.",
+        "expr": "happy"
+       }
+      ]
+     },
+     {
+      "text": "Shut it down for good",
+      "do": [
+       {
+        "flag": "ch3_shutdown"
+       },
+       {
+        "flag": "ch3_choice_made"
+       },
+       {
+        "say": "rowan",
+        "text": "Shut it down. If a town wants to trade its songs for pears, it should be able to ring its own bell and choose. Not this.",
+        "expr": "neutral"
+       },
+       {
+        "narrate": "Mira pulls the resonator's heart. The dome dims. Above, the glasshouses will be ordinary glasshouses from now on."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "quest_stage": [
+     "mq_glass_orchard",
+     5
+    ]
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "The party defeated the Harvest Engine and chose whether to retune it or shut it down.",
+  "skippable": true
+ },
+ "ev_ch3_end": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "narrate": "Evening. The freight waits at Verrin's platform. Mira sits on the roof of the last car, legs dangling, looking at the glasshouses."
+   },
+   {
+    "say": "mira",
+    "text": "Come up. The view's the only thing on this train that's free.",
+    "expr": "happy"
+   },
+   {
+    "say": "rowan",
+    "text": "You were amazing down there.",
+    "expr": "happy"
+   },
+   {
+    "say": "mira",
+    "text": "I was fixing something I broke. It's easier to be amazing at that.",
+    "expr": "neutral"
+   },
+   {
+    "say": "mira",
+    "text": "Rowan… when this is over. When we find your sister. What do you want to do?",
+    "expr": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "text": "\"I hadn't thought past finding her.\"",
+      "do": [
+       {
+        "say": "mira",
+        "text": "Then I'll think about it for both of us for a while. I'm good at plans.",
+        "expr": "happy"
+       }
+      ]
+     },
+     {
+      "text": "\"Deliver letters. Somewhere quiet. Maybe with you.\"",
+      "flag": "rowan_mira_close",
+      "do": [
+       {
+        "emote": "player",
+        "text": "…"
+       },
+       {
+        "say": "mira",
+        "text": "…Maybe with me. I'd like that. I'd like that a lot.",
+        "expr": "happy"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "narrate": "The freight shudders and begins to move. Behind it, the glasshouses catch the last of the light."
+   },
+   {
+    "quest_complete": "mq_glass_orchard"
+   },
+   {
+    "set_chapter": "ch4"
+   },
+   {
+    "end_slice": "Chapter Three",
+    "next": "Chapter Four — The Salt Archive"
+   }
+  ],
+  "recap": "The freight left Verrin's Glass for the coast. Rowan and Mira talked on the roof of the last car.",
+  "skippable": true
+ },
+ "pt_vg_start": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "Hollin's south. I need to go, Rowan. I need you to come with me.",
+      "expr": "sad"
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Let's meet the cooperative chair, then head south to Hollin."
+    }
+   }
+  ]
+ },
+ "pt_vg": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "tavi",
+      "text": "This town smells like a pie that won an argument.",
+      "expr": "happy"
+     },
+     {
+      "who": "sera",
+      "text": "Healthy children, every one. I keep looking for the catch.",
+      "expr": ""
+     },
+     {
+      "who": "mira",
+      "text": "The Vaults are east, past the last glasshouse.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_hollin": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "They kept their bell. It cost them everything else.",
+      "expr": "sad"
+     },
+     {
+      "who": "nessa",
+      "text": "Proud people. I like them. I'd also like to give them a sandwich.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_vaults": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "Summer for the bridge, winter for the pool. The valves are by the walls.",
+      "expr": ""
+     },
+     {
+      "who": "tavi",
+      "text": "If anyone sees words carved in the glass, tell me. Songs hide in odd places.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ }
+}

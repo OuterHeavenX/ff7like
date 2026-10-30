@@ -1470,8 +1470,15 @@
     "set_chapter": "ch3"
    },
    {
-    "end_slice": "Chapter Two",
-    "next": "Chapter Three — Glass Orchard"
+    "title_card": "Chapter Three",
+    "sub": "Glass Orchard"
+   },
+   {
+    "warp": "verrins_glass",
+    "spawn": "rail"
+   },
+   {
+    "call": "ev_ch3_arrival"
    }
   ],
   "recap": "The freight left Millbrook toward Glass Orchard.",

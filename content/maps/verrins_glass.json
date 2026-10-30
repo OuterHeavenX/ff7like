@@ -1,0 +1,476 @@
+{
+ "id": "verrins_glass",
+ "name": "Verrin's Glass",
+ "region": "Glass Orchard",
+ "music": "town_bellweather",
+ "destination": true,
+ "autosave": true,
+ "ambient": [
+  0.86,
+  0.78,
+  0.66
+ ],
+ "background": [
+  0.3,
+  0.26,
+  0.22
+ ],
+ "camera_dist": 15,
+ "rows": [
+  "################################",
+  "#YYYYYY#HHHHHH#YYYYYYYYY#RRRRRR#",
+  "#YYYYYY#HHHHHH#YYYYYYYYY#RRRRRR#",
+  "#YYYYYY#HHHHHH#YYYYYYYYY#RRRRRR#",
+  "#..............................#",
+  "rrrrr...........................",
+  "rrrrr..,,,,,,,,,,,,,,,,,,,,,,...",
+  "#.....,,,,,,,,,,,,,,,,,,,,,,,,..",
+  "#.....,,,,,,,,,,,,,,,,,,,,,,,,.#",
+  "#.....,,,,,,,,,,,,,,,,,,,,,,,,.#",
+  "#.....,,,,,,,,,,,,,,,,,,,,,,,,.#",
+  "#..............................#",
+  "hhhhhhhhhhhhhh...hhhhhhhhhhhhhhh"
+ ],
+ "spawns": {
+  "default": [
+   3,
+   7,
+   "right"
+  ],
+  "rail": [
+   5,
+   6,
+   "right"
+  ],
+  "east": [
+   30,
+   6,
+   "left"
+  ],
+  "south": [
+   15,
+   11,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "tree",
+   "at": [
+    8,
+    7
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    12,
+    7
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    16,
+    7
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    20,
+    7
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    24,
+    7
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    8,
+    9
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    12,
+    9
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    16,
+    9
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    20,
+    9
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    24,
+    9
+   ],
+   "tint": [
+    1.1,
+    0.95,
+    0.7
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    4,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    10,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    19,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    28,
+    3
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    6,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    14,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    24,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    2,
+    11
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    29,
+    11
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    26,
+    10
+   ],
+   "color": [
+    0.8,
+    0.6,
+    0.2
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    29,
+    9
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    7,
+    4
+   ]
+  },
+  {
+   "t": "sign",
+   "at": [
+    18,
+    4
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    12,
+    11
+   ]
+  },
+  {
+   "t": "fireflies",
+   "at": [
+    16,
+    8
+   ],
+   "w": 12,
+   "h": 2
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    6,
+    4
+   ],
+   "to": [
+    14,
+    4
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    14,
+    4
+   ],
+   "to": [
+    24,
+    4
+   ]
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    5
+   ],
+   "h": 2,
+   "kind": "event",
+   "event": "ev_vg_conductor",
+   "cond": "!flag:ch3_choice_made|quest_done:mq_glass_orchard"
+  },
+  {
+   "at": [
+    31,
+    5
+   ],
+   "h": 3,
+   "kind": "exit",
+   "to": "glass_vaults",
+   "spawn": "west",
+   "cond": "quest:mq_glass_orchard>=3"
+  },
+  {
+   "at": [
+    31,
+    5
+   ],
+   "h": 3,
+   "kind": "event",
+   "event": "ev_vg_gate",
+   "cond": "!quest:mq_glass_orchard>=3"
+  },
+  {
+   "at": [
+    14,
+    12
+   ],
+   "w": 3,
+   "kind": "exit",
+   "to": "hollin_ward",
+   "spawn": "road"
+  },
+  {
+   "at": [
+    18,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_vg_board",
+   "label": "Bounties"
+  },
+  {
+   "at": [
+    4,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_vg_glasshouse",
+   "label": "Look"
+  },
+  {
+   "at": [
+    10,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_vg_inn",
+   "label": "Inn"
+  },
+  {
+   "at": [
+    0,
+    5
+   ],
+   "h": 2,
+   "kind": "event",
+   "event": "ev_ch3_end",
+   "cond": "flag:ch3_choice_made&!quest_done:mq_glass_orchard"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "leda",
+   "sprite": "overseer",
+   "at": [
+    19,
+    5
+   ],
+   "face": "down",
+   "talk": "ev_leda"
+  },
+  {
+   "id": "sorrel",
+   "sprite": "elder",
+   "at": [
+    9,
+    5
+   ],
+   "face": "down",
+   "talk": "ev_sorrel"
+  },
+  {
+   "id": "tavi_npc",
+   "sprite": "tavi",
+   "at": [
+    15,
+    8
+   ],
+   "face": "down",
+   "cond": "!roster:tavi",
+   "talk": "ev_tavi"
+  },
+  {
+   "id": "grower",
+   "sprite": "grower",
+   "at": [
+    22,
+    8
+   ],
+   "face": "left",
+   "wander": 2,
+   "talk": "ev_grower"
+  },
+  {
+   "id": "ivo",
+   "sprite": "railworker",
+   "at": [
+    28,
+    5
+   ],
+   "face": "down",
+   "talk": "ev_ivo"
+  },
+  {
+   "id": "vg_market",
+   "sprite": "merchant",
+   "at": [
+    27,
+    9
+   ],
+   "face": "down",
+   "talk": "ev_vg_market"
+  },
+  {
+   "id": "vg_kid",
+   "sprite": "child",
+   "at": [
+    11,
+    10
+   ],
+   "face": "up",
+   "wander": 2,
+   "talk": "ev_vg_kid"
+  }
+ ],
+ "party_talk": [
+  {
+   "cond": "!quest:mq_glass_orchard>=2",
+   "event": "pt_vg_start"
+  },
+  {
+   "event": "pt_vg"
+  }
+ ]
+}

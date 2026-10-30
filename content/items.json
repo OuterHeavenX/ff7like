@@ -826,5 +826,152 @@
    "mag": 2
   },
   "desc": "The festival token, relit with echo dust."
+ },
+ {
+  "id": "glass_edge",
+  "name": "Glass Edge",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "blade",
+  "price": 1400,
+  "stats": {
+   "atk": 26,
+   "dex": 4
+  },
+  "desc": "Annealed orchard glass, harder than steel."
+ },
+ {
+  "id": "graft_wrench",
+  "name": "Grafter's Wrench",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "wrench",
+  "price": 1300,
+  "stats": {
+   "atk": 15,
+   "mag": 20
+  },
+  "desc": "Used to splice resonator vines."
+ },
+ {
+  "id": "orchard_maul",
+  "name": "Orchard Maul",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "hammer",
+  "price": 1450,
+  "stats": {
+   "atk": 30,
+   "def": 3
+  },
+  "desc": "A cider-press screw on a haft."
+ },
+ {
+  "id": "glass_bow",
+  "name": "Glasswing Bow",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "bow",
+  "price": 1350,
+  "stats": {
+   "atk": 23,
+   "dex": 6
+  },
+  "tags": [
+   "ranged"
+  ],
+  "desc": "Ranged: no back-row penalty."
+ },
+ {
+  "id": "thorn_staff",
+  "name": "Thorn Staff",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "staff",
+  "price": 1250,
+  "stats": {
+   "atk": 10,
+   "mag": 23
+  },
+  "desc": "Still flowering."
+ },
+ {
+  "id": "vagrant_lute",
+  "name": "Vagrant Lute",
+  "type": "equipment",
+  "slot": "weapon",
+  "kind": "lute",
+  "price": 1200,
+  "stats": {
+   "atk": 12,
+   "mag": 18,
+   "spd": 2
+  },
+  "desc": "Tavi's 'good' lute."
+ },
+ {
+  "id": "grower_coat",
+  "name": "Grower's Coat",
+  "type": "equipment",
+  "slot": "armor",
+  "price": 950,
+  "stats": {
+   "def": 18,
+   "res": 9,
+   "hp": 30
+  },
+  "element_res": {
+   "earth": 0.25
+  },
+  "desc": "Earth damage -25%."
+ },
+ {
+  "id": "glass_mail",
+  "name": "Glass Mail",
+  "type": "equipment",
+  "slot": "armor",
+  "price": 1200,
+  "stats": {
+   "def": 24,
+   "res": 6
+  },
+  "desc": "Clinks when you walk. Very, very sturdy."
+ },
+ {
+  "id": "pollen_veil",
+  "name": "Pollen Veil",
+  "type": "equipment",
+  "slot": "accessory",
+  "price": 700,
+  "stats": {
+   "res": 4
+  },
+  "status_res": {
+   "sleep": 1.0,
+   "poison": 0.5
+  },
+  "desc": "Immune to Sleep; Poison resistance 50%."
+ },
+ {
+  "id": "harvest_heart",
+  "name": "Harvest Heart",
+  "type": "equipment",
+  "slot": "accessory",
+  "price": 0,
+  "sell": 600,
+  "stats": {
+   "hp": 60,
+   "mag": 6
+  },
+  "status_res": {
+   "burn": 0.5
+  },
+  "desc": "The Engine's seed core. +60 HP, +6 MAG, Burn resistance 50%."
+ },
+ {
+  "id": "song_fragment",
+  "name": "Song Fragment",
+  "type": "key",
+  "desc": "A verse remembered by someone the bells missed. Tavi is collecting them."
  }
 ]

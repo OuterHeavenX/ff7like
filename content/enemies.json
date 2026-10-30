@@ -1015,5 +1015,517 @@
    }
   ],
   "desc": "Boss: the cutting's automated signal post. Its lamp shows its weakness: RED (frost), AMBER (storm), GREEN (earth/fire). Telegraphs Clear the Line — Guard or Stun."
+ },
+ {
+  "id": "glass_beetle",
+  "name": "Glass Beetle",
+  "role": "protector",
+  "level": 14,
+  "sprite": "glass_beetle",
+  "stats": {
+   "hp": 360,
+   "atk": 30,
+   "mag": 10,
+   "def": 34,
+   "res": 14,
+   "spd": 9,
+   "dex": 10
+  },
+  "elements": {
+   "earth": 1.5,
+   "physical": 0.7,
+   "frost": 0.75
+  },
+  "status_res": {
+   "poison": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_ram",
+    "w": 3
+   },
+   {
+    "skill": "e_carapace",
+    "w": 2,
+    "if": "no_foe_status:taunt&turn%3"
+   }
+  ],
+  "xp": 70,
+  "jp": 10,
+  "gold": 34,
+  "drops": [
+   {
+    "item": "silt_shell",
+    "chance": 0.4
+   }
+  ],
+  "desc": "Protector: grants Barrier to its allies. Shell resists physical; earth shatters it."
+ },
+ {
+  "id": "orchard_crow",
+  "name": "Orchard Crow",
+  "role": "aggressor",
+  "level": 13,
+  "sprite": "orchard_crow",
+  "stats": {
+   "hp": 230,
+   "atk": 32,
+   "mag": 8,
+   "def": 16,
+   "res": 12,
+   "spd": 18,
+   "dex": 20,
+   "evade": 0.1
+  },
+  "elements": {
+   "storm": 1.5,
+   "earth": 0.5
+  },
+  "status_res": {},
+  "ai": [
+   {
+    "skill": "e_peck",
+    "w": 3
+   },
+   {
+    "skill": "e_dive",
+    "w": 3,
+    "if": "foe_status:sleep",
+    "target": "lowest_hp"
+   },
+   {
+    "skill": "attack",
+    "w": 1
+   }
+  ],
+  "xp": 60,
+  "jp": 9,
+  "gold": 26,
+  "drops": [
+   {
+    "item": "moth_silk",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Aggressor: fast and evasive; dives on sleeping targets for 1.5x damage."
+ },
+ {
+  "id": "pollen_sprite",
+  "name": "Pollen Sprite",
+  "role": "disruptor",
+  "level": 13,
+  "sprite": "pollen_sprite",
+  "stats": {
+   "hp": 200,
+   "atk": 10,
+   "mag": 30,
+   "def": 14,
+   "res": 22,
+   "spd": 14,
+   "dex": 14
+  },
+  "elements": {
+   "fire": 1.5,
+   "earth": 0.5
+  },
+  "status_res": {
+   "sleep": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_pollen",
+    "w": 3,
+    "if": "no_foe_status:sleep"
+   },
+   {
+    "skill": "e_sting_seed",
+    "w": 3
+   }
+  ],
+  "xp": 62,
+  "jp": 10,
+  "gold": 22,
+  "drops": [
+   {
+    "item": "eye_drops",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Disruptor: sleeps the party. Quiet Bell accessories make Sleep harmless."
+ },
+ {
+  "id": "root_mender",
+  "name": "Root Mender",
+  "role": "healer",
+  "level": 14,
+  "sprite": "root_mender",
+  "stats": {
+   "hp": 300,
+   "atk": 20,
+   "mag": 30,
+   "def": 20,
+   "res": 20,
+   "spd": 10,
+   "dex": 10
+  },
+  "elements": {
+   "fire": 1.5,
+   "earth": 0.5
+  },
+  "status_res": {
+   "poison": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_root_mend",
+    "w": 4,
+    "if": "ally_hp<0.6",
+    "target": "lowest_hp"
+   },
+   {
+    "skill": "e_root_regen",
+    "w": 2,
+    "if": "turn%3"
+   },
+   {
+    "skill": "attack",
+    "w": 1
+   }
+  ],
+  "xp": 72,
+  "jp": 11,
+  "gold": 30,
+  "drops": [
+   {
+    "item": "echo_salve",
+    "chance": 0.2
+   }
+  ],
+  "desc": "Healer: mends and grants Regen. Burn halves its value."
+ },
+ {
+  "id": "sap_slime",
+  "name": "Sap Slime",
+  "role": "summoner",
+  "level": 13,
+  "sprite": "sap_slime",
+  "stats": {
+   "hp": 260,
+   "atk": 26,
+   "mag": 12,
+   "def": 18,
+   "res": 14,
+   "spd": 8,
+   "dex": 8
+  },
+  "elements": {
+   "fire": 1.5,
+   "frost": 1.3
+  },
+  "status_res": {
+   "poison": 1.0,
+   "slow": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_sap_glob",
+    "w": 3
+   },
+   {
+    "skill": "e_bud_off",
+    "w": 2,
+    "if": "allies<3&self_hp<0.7"
+   }
+  ],
+  "xp": 58,
+  "jp": 9,
+  "gold": 20,
+  "drops": [
+   {
+    "item": "brass_scrap",
+    "chance": 0.2
+   }
+  ],
+  "desc": "Summoner: buds off new slimes when wounded (buds give no rewards). Burst it down."
+ },
+ {
+  "id": "frost_bloom",
+  "name": "Frost Bloom",
+  "role": "elemental",
+  "level": 14,
+  "sprite": "frost_bloom",
+  "stats": {
+   "hp": 240,
+   "atk": 12,
+   "mag": 32,
+   "def": 16,
+   "res": 20,
+   "spd": 11,
+   "dex": 11
+  },
+  "elements": {
+   "frost": -1.0,
+   "fire": 1.5
+  },
+  "status_res": {
+   "slow": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_frost_petal",
+    "w": 3
+   },
+   {
+    "skill": "e_hail",
+    "w": 2
+   }
+  ],
+  "xp": 64,
+  "jp": 10,
+  "gold": 24,
+  "drops": [
+   {
+    "item": "frost_flask",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Elemental (winter): absorbs frost, wilts to fire."
+ },
+ {
+  "id": "ember_bloom",
+  "name": "Ember Bloom",
+  "role": "elemental",
+  "level": 14,
+  "sprite": "ember_bloom",
+  "stats": {
+   "hp": 240,
+   "atk": 12,
+   "mag": 32,
+   "def": 16,
+   "res": 20,
+   "spd": 11,
+   "dex": 11
+  },
+  "elements": {
+   "fire": -1.0,
+   "frost": 1.5
+  },
+  "status_res": {
+   "burn": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_ember_petal",
+    "w": 3
+   },
+   {
+    "skill": "e_heatwave",
+    "w": 2
+   }
+  ],
+  "xp": 64,
+  "jp": 10,
+  "gold": 24,
+  "drops": [
+   {
+    "item": "ember_flask",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Elemental (summer): absorbs fire, withers to frost."
+ },
+ {
+  "id": "orchard_overseer",
+  "name": "Quota Overseer",
+  "role": "commander",
+  "level": 15,
+  "sprite": "orchard_overseer",
+  "stats": {
+   "hp": 320,
+   "atk": 32,
+   "mag": 18,
+   "def": 20,
+   "res": 18,
+   "spd": 12,
+   "dex": 14
+  },
+  "elements": {
+   "storm": 1.3
+  },
+  "status_res": {
+   "sleep": 0.3
+  },
+  "ai": [
+   {
+    "skill": "e_quota_order",
+    "w": 3,
+    "if": "turn%2"
+   },
+   {
+    "skill": "e_ledger_strike",
+    "w": 3
+   }
+  ],
+  "xp": 90,
+  "jp": 14,
+  "gold": 70,
+  "drops": [
+   {
+    "item": "hi_tonic",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Commander: hastes every ally. Silence or defeat it first."
+ },
+ {
+  "id": "vine_graft",
+  "name": "Vine Graft",
+  "role": "summon",
+  "level": 14,
+  "sprite": "vine_graft",
+  "stats": {
+   "hp": 260,
+   "atk": 18,
+   "mag": 10,
+   "def": 26,
+   "res": 14,
+   "spd": 6,
+   "dex": 8
+  },
+  "elements": {
+   "fire": 1.5
+  },
+  "status_res": {
+   "sleep": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_graft_shield",
+    "w": 3,
+    "if": "self_no:cover"
+   },
+   {
+    "skill": "attack",
+    "w": 1
+   }
+  ],
+  "xp": 0,
+  "jp": 0,
+  "gold": 0,
+  "drops": [],
+  "desc": "Summoned protector: Covers the Engine. Prune it to strike the core."
+ },
+ {
+  "id": "harvest_engine",
+  "name": "The Harvest Engine",
+  "role": "boss",
+  "level": 17,
+  "sprite": "harvest_engine",
+  "stats": {
+   "hp": 3800,
+   "atk": 40,
+   "mag": 38,
+   "def": 26,
+   "res": 26,
+   "spd": 10,
+   "dex": 12
+  },
+  "elements": {
+   "fire": 1.3,
+   "storm": 1.3,
+   "earth": 0.5
+  },
+  "status_res": {
+   "sleep": 1.0,
+   "stun": 0.55,
+   "poison": 0.5,
+   "silence": 0.5,
+   "slow": 0.5,
+   "blind": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_thorn_lash",
+    "w": 3
+   },
+   {
+    "skill": "e_graft",
+    "w": 3,
+    "if": "allies<2"
+   },
+   {
+    "skill": "e_photosynthesis",
+    "w": 2,
+    "if": "self_hp<0.9&self_no:burn"
+   }
+  ],
+  "xp": 1100,
+  "jp": 100,
+  "gold": 1400,
+  "drops": [
+   {
+    "item": "harvest_heart",
+    "chance": 1.0
+   }
+  ],
+  "desc": "Boss: a resonator overgrown with grafts. It heals unless Burned, shields itself with Vine Grafts, and telegraphs Pollen Storm. Weak to fire and storm.",
+  "boss": true,
+  "phases": [
+   {
+    "hp_below": 0.6,
+    "message": "The Engine's dome frosts over as it pulls harder from the bell — the glass turns brittle: weak to FIRE, and the grafts wither.",
+    "elements": {
+     "fire": 1.6,
+     "frost": 0.5,
+     "storm": 1.3,
+     "earth": 0.5
+    },
+    "ai": [
+     {
+      "skill": "e_thorn_lash",
+      "w": 3
+     },
+     {
+      "skill": "e_pollen_storm",
+      "w": 3,
+      "if": "turn%3"
+     },
+     {
+      "skill": "e_graft",
+      "w": 2,
+      "if": "allies<2"
+     },
+     {
+      "skill": "e_photosynthesis",
+      "w": 1,
+      "if": "self_no:burn"
+     }
+    ]
+   },
+   {
+    "hp_below": 0.3,
+    "message": "Roots burst through the vault floor — the Engine surges! It moves faster but its core is exposed.",
+    "stat_mod": {
+     "spd": 1.35,
+     "def": 0.75,
+     "res": 0.75
+    },
+    "ai": [
+     {
+      "skill": "e_root_surge",
+      "w": 3
+     },
+     {
+      "skill": "e_pollen_storm",
+      "w": 2,
+      "if": "turn%2"
+     },
+     {
+      "skill": "e_thorn_lash",
+      "w": 2
+     }
+    ]
+   }
+  ]
  }
 ]

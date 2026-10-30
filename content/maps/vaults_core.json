@@ -1,0 +1,134 @@
+{
+ "id": "vaults_core",
+ "name": "The Engine Chamber",
+ "region": "Glass Orchard",
+ "music": "tension",
+ "ambient": [
+  0.5,
+  0.6,
+  0.55
+ ],
+ "background": [
+  0.05,
+  0.07,
+  0.06
+ ],
+ "camera_dist": 12,
+ "rows": [
+  "WWWWWWWWWWWWWWWWWWWW",
+  "WSSSSSSSSSSSSSSSSSSW",
+  "WSSSSSSggggggSSSSSSW",
+  "WSSSSSSggggggSSSSSSW",
+  "SSSSSSSggggggSSSSSSW",
+  "WSSSSSSggggggSSSSSSW",
+  "WSSSSSSSSSSSSSSSSSSW",
+  "WwwwwwwwwwwwwwwwwwwW"
+ ],
+ "spawns": {
+  "default": [
+   1,
+   4,
+   "right"
+  ],
+  "west": [
+   1,
+   4,
+   "right"
+  ]
+ },
+ "props": [
+  {
+   "t": "machine",
+   "at": [
+    15,
+    2
+   ],
+   "w": 2
+  },
+  {
+   "t": "tree",
+   "at": [
+    17,
+    5
+   ],
+   "tint": [
+    0.7,
+    1.2,
+    0.9
+   ]
+  },
+  {
+   "t": "crystal",
+   "at": [
+    3,
+    1
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    2,
+    6
+   ]
+  },
+  {
+   "t": "embers",
+   "at": [
+    10,
+    3
+   ],
+   "w": 6,
+   "h": 2
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    10,
+    3
+   ],
+   "color": [
+    0.9,
+    1.0,
+    0.6
+   ],
+   "radius": 7
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    4
+   ],
+   "kind": "exit",
+   "to": "glass_vaults",
+   "spawn": "east"
+  },
+  {
+   "at": [
+    2,
+    6
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    7,
+    1
+   ],
+   "h": 6,
+   "kind": "event",
+   "event": "ev_boss_engine",
+   "cond": "!flag:engine_done"
+  }
+ ],
+ "npcs": [],
+ "party_talk": [
+  {
+   "event": "pt_vaults"
+  }
+ ]
+}

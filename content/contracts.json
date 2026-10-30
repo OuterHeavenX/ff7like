@@ -100,5 +100,39 @@
   "cooldown_battles": 4,
   "region": "Stalled Freight",
   "danger": 4
+ },
+ {
+  "id": "c_crows",
+  "board": "orchard",
+  "title": "Scare the Crows",
+  "enemy": "orchard_crow",
+  "count": 6,
+  "reward": {
+   "gold": 700,
+   "jp": 100,
+   "items": {
+    "hi_tonic": 2
+   }
+  },
+  "cooldown_battles": 3,
+  "region": "Glass Orchard",
+  "danger": 4
+ },
+ {
+  "id": "c_slimes",
+  "board": "orchard",
+  "title": "Sap Cleanup",
+  "enemy": "sap_slime",
+  "count": 5,
+  "reward": {
+   "gold": 760,
+   "jp": 110,
+   "items": {
+    "echo_salve": 1
+   }
+  },
+  "cooldown_battles": 4,
+  "region": "Glass Orchard",
+  "danger": 4
  }
 ]

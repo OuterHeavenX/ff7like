@@ -158,5 +158,40 @@
   "id": "pilot",
   "name": "Barge Pilot",
   "portrait": "townsman"
+ },
+ {
+  "id": "leda",
+  "name": "Leda Vane",
+  "portrait": "overseer"
+ },
+ {
+  "id": "aldwen",
+  "name": "Elder Aldwen",
+  "portrait": "elder"
+ },
+ {
+  "id": "sorrel",
+  "name": "Mother Sorrel",
+  "portrait": "elder"
+ },
+ {
+  "id": "tavi_npc",
+  "name": "Tavi",
+  "portrait": "tavi"
+ },
+ {
+  "id": "grower",
+  "name": "Grower",
+  "portrait": "grower"
+ },
+ {
+  "id": "ivo",
+  "name": "Ivo",
+  "portrait": "railworker"
+ },
+ {
+  "id": "hollin_kid",
+  "name": "Hollin child",
+  "portrait": "child"
  }
 ]

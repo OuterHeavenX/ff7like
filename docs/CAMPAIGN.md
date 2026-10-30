@@ -1,6 +1,6 @@
 # Campaign Plan & Status
 
-Targets: 20–25 h first-time main story, 35–50 h with optional content. **These are design targets. Nothing below is measured except where QA.md says so.** Current authored content: Prologue, Chapter One and Chapter Two.
+Targets: 20–25 h first-time main story, 35–50 h with optional content. **These are design targets. Nothing below is measured except where QA.md says so.** Current authored content: Prologue and Chapters One–Three.
 
 ## Emotional payoffs (planned before writing scenes)
 | Payoff | Characters | Seeds in built content | Lands in |
@@ -22,7 +22,7 @@ Prologue (Lanternwake) -> Ch1 Bellweather -> Ch2 Rainward Line -> Ch3 Glass Orch
 | Prologue — Lanternwake | Festival walk, delivery, incident | — | Field, talk, menus | Rowan; Wayfarer/Vanguard/Artificer | 15 min | **Built** |
 | Ch1 — What the Street Forgot | Investigation (3 proofs) → confrontation → rescue dungeon | Station Undercroft (3 maps, valve puzzle or elite bypass, boss) | Battles, jobs, Resonance, side quests | Garran, Mira; Duelist/Arcanist/Mender | 40–50 min | **Built** |
 | Ch2 — The Rainward Line | Hub with conflicting testimony → car-by-car freight → rain cutting boss → village with the first major choice (expose Odile's logs or protect the station's workers) | Stalled Freight (locked brake car, warden ambush) + Millbrook Cutting (Signal Warden, colour-coded weakness phases) | Testimony gathering, party of five / reserves, barge return to Bellweather | Nessa, Sera; Ranger | est. 60–80 min | **Built** |
-| Ch3 — Glass Orchard | Investigate extraction's real tradeoffs; mediation | Glasshouse vaults | Weather/season switching in dungeon | Hexweaver; Tavi chain starts (optional) | 2.5 h | Planned |
+| Ch3 — Glass Orchard | Two towns on either side of the toll (prosperous Verrin's Glass, proud Hollin Ward); Garran's confession; mediation side quest; choice (retune the Engine / shut it down) | Glasshouse Vaults (season valves: winter ice vs. summer vine bridge) + Engine Chamber (Harvest Engine) | Season switching; party-aware persuasion choices | Tavi (optional, via Songs the Bells Took); Hexweaver, Cantor | est. 60–80 min | **Built** |
 | Ch4 — The Salt Archive | Coastal city; memories with physical weight | Flooded library (tide timing) | Memory fragments as keys | Ilyan; Sentinel | 2.5 h | Planned |
 | Ch5 — Crown Without a King | Multi-party operation across the capital; Nessa's betrayal | Directorate tower (split parties) | Party splitting, simultaneous objectives | Chronist | 3 h | Planned |
 | Ch6 — The Quiet Season | Failed stabilisation; places overlap their remembered versions; altered routes | Overlapping Glass Orchard / Bellweather | Toggle present/remembered layers | Garran's loss | 2.5 h | Planned |
@@ -34,17 +34,17 @@ Prologue (Lanternwake) -> Ch1 Bellweather -> Ch2 Rainward Line -> Ch3 Glass Orch
 ## Production targets vs. built
 | Target | Goal | Built now |
 |---|---|---|
-| Chapters | 8 + prologue + epilogue | Prologue + Ch1 + Ch2 |
-| Regions | 6 | 2 (Bellweather, the Rainward Line) |
-| Towns/settlements | 8 | 3 (Bellweather, Rainward Junction, Millbrook Halt) |
-| Substantial dungeons | 12 | 2 (Station Undercroft — 3 maps; Stalled Freight + Millbrook Cutting) |
-| Recruitable characters | 8 (6 story, 2 optional) | 5 joinable (Rowan, Garran, Mira, Nessa, Sera); all 8 defined as data |
-| Personal quest chains | 8 multi-stage | Stage 1 of Mira, Garran, Nessa, Sera |
-| Side quests | 30 (8 branching/multi-stage) | 5 (2 branching) |
-| Normal enemy types | 45 | 17 (+ summon) |
-| Bosses | 12 main + 4 optional | 2 main + 1 optional elite |
-| Jobs | 12 with 6 actives + 3 passives + mastery | 12 implemented & functional; 7 obtainable (Ranger added) |
-| Repeatable activities | 3 | 1 (bounty contracts, 6 contracts on 2 boards) |
+| Chapters | 8 + prologue + epilogue | Prologue + Ch1–Ch3 |
+| Regions | 6 | 3 (Bellweather, the Rainward Line, Glass Orchard) |
+| Towns/settlements | 8 | 5 (Bellweather, Rainward Junction, Millbrook Halt, Verrin's Glass, Hollin Ward) |
+| Substantial dungeons | 12 | 3 (Station Undercroft; Stalled Freight + Millbrook Cutting; Glasshouse Vaults + Engine Chamber) |
+| Recruitable characters | 8 (6 story, 2 optional) | 6 joinable (Rowan, Garran, Mira, Nessa, Sera, Tavi — optional); all 8 defined as data |
+| Personal quest chains | 8 multi-stage | Mira 1, Garran 1–2, Nessa 1, Sera 1, Tavi recruitment chain |
+| Side quests | 30 (8 branching/multi-stage) | 6 (3 branching) |
+| Normal enemy types | 45 | 25 (+ 2 summons) |
+| Bosses | 12 main + 4 optional | 3 main + 1 optional elite |
+| Jobs | 12 with 6 actives + 3 passives + mastery | 12 implemented & functional; 9 obtainable (+ Hexweaver, Cantor) |
+| Repeatable activities | 3 | 1 (bounty contracts: 8 contracts on 3 boards) |
 
 ## Prologue + Chapter One route (built)
 1. Wick Street: Nessa, objective → Post Office (Hale: sealed fork) → Lantern Square → Bell Station (meet Wren; Mira refuses the flat fork; Sallow overrules).
@@ -63,3 +63,11 @@ Side: The Lamplighter's Count (4 lanterns), Ledger of Small Debts (truth / mercy
 5. Millbrook Cutting: the Signal Warden (red/amber/green weakness phases, telegraphed Clear the Line, summons wraiths).
 6. Millbrook Halt: Names on the Doors (side), Sera's list (personal stage 1), Odile's confession and the major choice (expose / protect) → freight departs. End card for Chapter Two.
 Consequences recorded: `ch2_expose` / `ch2_protect`, `line_wardens_alert` (if the seal was broken) — to be paid off from Chapter Five.
+
+## Chapter Three route (built)
+1. Verrin's Glass: Leda Vane's case for extraction (no famine in eleven years). Mother Sorrel unlocks Hexweaver. Tavi starts the optional song chain.
+2. Hollin Ward (south): the silent bell; Garran's confession (personal stage 2); Elder Aldwen — the Engine is reaching for Hollin's bell. Side: Bread for Hollin (pay, or persuade with Garran or Sera in the party).
+3. Leda opens the Glasshouse Vaults. Season valves: winter freezes the pool, summer grows the vine bridge; encounter tables change with the season. A verse is carved in the glass (Tavi chain).
+4. The Harvest Engine: self-healing unless Burned, Vine Grafts that Cover it, telegraphed Pollen Storm, frost-dome phase (weak to fire), root-surge phase.
+5. Choice: retune (Mira; Verrin-only safe draw) or shut down. Flags `ch3_retune` / `ch3_shutdown`.
+6. Evening on the freight roof: Rowan and Mira (romance beat; flag `rowan_mira_close`). End card for Chapter Three.

@@ -1,0 +1,185 @@
+{
+ "id": "hollin_ward",
+ "name": "Hollin Ward",
+ "region": "Glass Orchard",
+ "music": "theme_wren",
+ "destination": true,
+ "autosave": true,
+ "ambient": [
+  0.6,
+  0.58,
+  0.62
+ ],
+ "background": [
+  0.22,
+  0.2,
+  0.22
+ ],
+ "camera_dist": 13,
+ "rows": [
+  "########################",
+  "#WWWWW#WWWWWW#WWWWW#WWW#",
+  "#WWWWW#WWWWWW#WWWWW#WWW#",
+  "#WWWWW#WWWWWW#WWWWW#WWW#",
+  "#.....SSSSSSSSS........#",
+  "#....SSSSSSSSSSS.......#",
+  "#....SSSSSSSSSSS.......#",
+  "#....SSSSSSSSSSS.......#",
+  "#,,,,,,,,,,,,,,,,,,,,,,#",
+  "hhhhhhhhhh...hhhhhhhhhhh"
+ ],
+ "spawns": {
+  "default": [
+   11,
+   8,
+   "up"
+  ],
+  "road": [
+   11,
+   8,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "bell",
+   "at": [
+    10,
+    5
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    3,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    9,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    16,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    21,
+    3
+   ]
+  },
+  {
+   "t": "brazier",
+   "at": [
+    17,
+    6
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    2,
+    8
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    21,
+    8
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    19,
+    5
+   ]
+  },
+  {
+   "t": "smoke",
+   "at": [
+    17,
+    6
+   ],
+   "y": 0.6
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    10,
+    9
+   ],
+   "w": 3,
+   "kind": "exit",
+   "to": "verrins_glass",
+   "spawn": "south"
+  },
+  {
+   "at": [
+    10,
+    5
+   ],
+   "on": "interact",
+   "event": "ev_hollin_bell",
+   "label": "Bell"
+  },
+  {
+   "at": [
+    11,
+    7
+   ],
+   "kind": "event",
+   "event": "ev_hollin_arrive",
+   "once": true,
+   "w": 3
+  }
+ ],
+ "npcs": [
+  {
+   "id": "aldwen",
+   "sprite": "elder",
+   "at": [
+    13,
+    6
+   ],
+   "face": "left",
+   "talk": "ev_aldwen"
+  },
+  {
+   "id": "hollin_kid",
+   "sprite": "child",
+   "at": [
+    6,
+    7
+   ],
+   "face": "right",
+   "wander": 1,
+   "talk": "ev_hollin_kid"
+  },
+  {
+   "id": "hollin_man",
+   "sprite": "townsman",
+   "at": [
+    19,
+    7
+   ],
+   "face": "left",
+   "talk": "ev_hollin_man"
+  }
+ ],
+ "party_talk": [
+  {
+   "event": "pt_hollin"
+  }
+ ]
+}

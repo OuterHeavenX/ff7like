@@ -3140,5 +3140,483 @@
     "turns": 2
    }
   ]
+ },
+ {
+  "id": "e_carapace",
+  "name": "Carapace",
+  "desc": "",
+  "kind": "support",
+  "target": "allies",
+  "sp": 0,
+  "anim": "ready",
+  "fx": "shield",
+  "ops": [
+   {
+    "op": "status",
+    "id": "barrier",
+    "turns": 2
+   }
+  ]
+ },
+ {
+  "id": "e_ram",
+  "name": "Glass Ram",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "impact",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 115
+   }
+  ]
+ },
+ {
+  "id": "e_peck",
+  "name": "Twin Peck",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "slash",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 65,
+    "hits": 2,
+    "crit_bonus": 0.1
+   }
+  ]
+ },
+ {
+  "id": "e_dive",
+  "name": "Dive",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "impact",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 130,
+    "bonus_vs": {
+     "sleep": 1.5
+    }
+   }
+  ]
+ },
+ {
+  "id": "e_pollen",
+  "name": "Drowsy Pollen",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemies",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "sparkle",
+  "ops": [
+   {
+    "op": "status",
+    "id": "sleep",
+    "chance": 0.35
+   }
+  ]
+ },
+ {
+  "id": "e_sting_seed",
+  "name": "Sting Seed",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "slash",
+  "element": "earth",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 85,
+    "element": "earth"
+   }
+  ]
+ },
+ {
+  "id": "e_root_regen",
+  "name": "Deep Roots",
+  "desc": "",
+  "kind": "heal",
+  "target": "allies",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "heal",
+  "ops": [
+   {
+    "op": "status",
+    "id": "regen",
+    "turns": 3
+   }
+  ]
+ },
+ {
+  "id": "e_root_mend",
+  "name": "Sap Mend",
+  "desc": "",
+  "kind": "heal",
+  "target": "ally",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "heal",
+  "ops": [
+   {
+    "op": "heal",
+    "power": 160
+   }
+  ]
+ },
+ {
+  "id": "e_sap_glob",
+  "name": "Sap Glob",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "drop",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 80
+   },
+   {
+    "op": "status",
+    "id": "slow",
+    "chance": 0.4
+   }
+  ]
+ },
+ {
+  "id": "e_bud_off",
+  "name": "Bud Off",
+  "desc": "",
+  "kind": "support",
+  "target": "self",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "drop",
+  "ops": [
+   {
+    "op": "summon",
+    "enemy": "sap_slime",
+    "count": 1,
+    "max": 2
+   }
+  ]
+ },
+ {
+  "id": "e_frost_petal",
+  "name": "Frost Petal",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "frost",
+  "element": "frost",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 110,
+    "element": "frost"
+   },
+   {
+    "op": "status",
+    "id": "slow",
+    "chance": 0.25
+   }
+  ]
+ },
+ {
+  "id": "e_hail",
+  "name": "Hail",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemies",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "frost",
+  "element": "frost",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 65,
+    "element": "frost"
+   }
+  ]
+ },
+ {
+  "id": "e_ember_petal",
+  "name": "Ember Petal",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "fire",
+  "element": "fire",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 110,
+    "element": "fire"
+   },
+   {
+    "op": "status",
+    "id": "burn",
+    "chance": 0.3
+   }
+  ]
+ },
+ {
+  "id": "e_heatwave",
+  "name": "Heatwave",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemies",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "fire",
+  "element": "fire",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 65,
+    "element": "fire"
+   }
+  ]
+ },
+ {
+  "id": "e_quota_order",
+  "name": "Quota Order",
+  "desc": "",
+  "kind": "support",
+  "target": "allies",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "buff",
+  "ops": [
+   {
+    "op": "status",
+    "id": "haste",
+    "turns": 2
+   }
+  ]
+ },
+ {
+  "id": "e_ledger_strike",
+  "name": "Ledger Strike",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "impact",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 100
+   },
+   {
+    "op": "status",
+    "id": "vulnerable",
+    "chance": 0.4
+   }
+  ]
+ },
+ {
+  "id": "e_thorn_lash",
+  "name": "Thorn Lash",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemy",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "slash",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 125
+   },
+   {
+    "op": "status",
+    "id": "poison",
+    "chance": 0.3
+   }
+  ]
+ },
+ {
+  "id": "e_photosynthesis",
+  "name": "Photosynthesis",
+  "desc": "",
+  "kind": "heal",
+  "target": "self",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "heal",
+  "ops": [
+   {
+    "op": "heal",
+    "pct": 0.04
+   }
+  ]
+ },
+ {
+  "id": "e_graft",
+  "name": "Graft",
+  "desc": "",
+  "kind": "support",
+  "target": "self",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "buff",
+  "ops": [
+   {
+    "op": "summon",
+    "enemy": "vine_graft",
+    "count": 1,
+    "max": 2
+   }
+  ]
+ },
+ {
+  "id": "e_pollen_storm",
+  "name": "Pollen Storm",
+  "desc": "",
+  "kind": "magic",
+  "target": "enemies",
+  "sp": 0,
+  "anim": "cast",
+  "fx": "sparkle",
+  "element": "earth",
+  "charge": true,
+  "telegraph": "The Engine's glass dome fogs gold — a POLLEN STORM is building! (Guard, Stun it, or equip Sleep protection.)",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 150,
+    "element": "earth"
+   },
+   {
+    "op": "status",
+    "id": "sleep",
+    "chance": 0.35
+   }
+  ]
+ },
+ {
+  "id": "e_root_surge",
+  "name": "Root Surge",
+  "desc": "",
+  "kind": "physical",
+  "target": "enemies",
+  "sp": 0,
+  "anim": "strike",
+  "fx": "impact",
+  "element": "earth",
+  "ops": [
+   {
+    "op": "damage",
+    "type": "physical",
+    "power": 95,
+    "element": "earth"
+   }
+  ]
+ },
+ {
+  "id": "e_graft_shield",
+  "name": "Bind",
+  "desc": "",
+  "kind": "support",
+  "target": "self",
+  "sp": 0,
+  "anim": "ready",
+  "fx": "shield",
+  "ops": [
+   {
+    "op": "status",
+    "id": "cover",
+    "turns": 3
+   }
+  ]
+ },
+ {
+  "id": "art_encore_chorus",
+  "name": "Encore Chorus",
+  "desc": "Resonance Art (Tavi + Rowan, 50): the whole street sings — Haste and Regen to all allies.",
+  "kind": "resonance",
+  "target": "allies",
+  "sp": 0,
+  "resonance": 50,
+  "owner": "tavi",
+  "partners": [
+   "rowan"
+  ],
+  "anim": "cast",
+  "fx": "note",
+  "magic": false,
+  "ops": [
+   {
+    "op": "status",
+    "id": "haste",
+    "turns": 3
+   },
+   {
+    "op": "status",
+    "id": "regen",
+    "turns": 3
+   }
+  ]
+ },
+ {
+  "id": "art_glasswork",
+  "name": "Glasswork",
+  "desc": "Resonance Art (Mira + Nessa, 50): Mira rigs a lens, Nessa shoots through it — heavy light damage to all foes.",
+  "kind": "resonance",
+  "target": "enemies",
+  "sp": 0,
+  "resonance": 50,
+  "owner": "mira",
+  "partners": [
+   "nessa"
+  ],
+  "anim": "cast",
+  "fx": "sparkle",
+  "element": "light",
+  "magic": false,
+  "ops": [
+   {
+    "op": "damage",
+    "type": "magic",
+    "power": 140,
+    "element": "light"
+   }
+  ]
  }
 ]

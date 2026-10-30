@@ -71,5 +71,39 @@
    "ticket_charm",
    "quiet_bell"
   ]
+ },
+ {
+  "id": "verrin_market",
+  "name": "Verrin Cooperative Market",
+  "keeper": "Coop",
+  "items": [
+   "tonic",
+   "hi_tonic",
+   "clear_drop",
+   "antidote",
+   "eye_drops",
+   "echo_salve",
+   "smelling_salts",
+   "frost_flask",
+   "ember_flask",
+   "storm_jar"
+  ]
+ },
+ {
+  "id": "verrin_smith",
+  "name": "Glasswright",
+  "keeper": "Ivo",
+  "items": [
+   "glass_edge",
+   "graft_wrench",
+   "orchard_maul",
+   "glass_bow",
+   "thorn_staff",
+   "vagrant_lute",
+   "grower_coat",
+   "glass_mail",
+   "pollen_veil",
+   "physician_coat"
+  ]
  }
 ]

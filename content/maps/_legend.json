@@ -187,5 +187,27 @@
   "block": 3,
   "top": "moss",
   "side": "stone_wall"
+ },
+ "Y": {
+  "walk": false,
+  "block": 4,
+  "top": "glass",
+  "side": "glass",
+  "windows": true,
+  "tint": [
+   0.85,
+   1.0,
+   0.95
+  ]
+ },
+ "I": {
+  "walk": true,
+  "tex": "glass",
+  "side": "stone_wall",
+  "tint": [
+   0.8,
+   0.95,
+   1.1
+  ]
  }
 }

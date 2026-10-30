@@ -19,6 +19,26 @@
   "h": 40,
   "w": 48
  },
+ "ember_bloom": {
+  "frames": 2,
+  "h": 44,
+  "w": 40
+ },
+ "frost_bloom": {
+  "frames": 2,
+  "h": 44,
+  "w": 40
+ },
+ "glass_beetle": {
+  "frames": 2,
+  "h": 36,
+  "w": 48
+ },
+ "harvest_engine": {
+  "frames": 2,
+  "h": 96,
+  "w": 100
+ },
  "hollow_clapper": {
   "frames": 2,
   "h": 96,
@@ -44,10 +64,30 @@
   "h": 28,
   "w": 48
  },
+ "orchard_crow": {
+  "frames": 2,
+  "h": 36,
+  "w": 44
+ },
+ "orchard_overseer": {
+  "frames": 2,
+  "h": 40,
+  "w": 40
+ },
+ "pollen_sprite": {
+  "frames": 2,
+  "h": 40,
+  "w": 36
+ },
  "rail_spider": {
   "frames": 2,
   "h": 36,
   "w": 52
+ },
+ "root_mender": {
+  "frames": 2,
+  "h": 48,
+  "w": 40
  },
  "rust_hound": {
   "frames": 2,
@@ -58,6 +98,11 @@
   "frames": 2,
   "h": 36,
   "w": 36
+ },
+ "sap_slime": {
+  "frames": 2,
+  "h": 32,
+  "w": 44
  },
  "signal_warden": {
   "frames": 2,
@@ -88,6 +133,11 @@
   "frames": 2,
   "h": 44,
   "w": 36
+ },
+ "vine_graft": {
+  "frames": 2,
+  "h": 48,
+  "w": 32
  },
  "warden": {
   "frames": 2,

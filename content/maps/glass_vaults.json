@@ -1,0 +1,279 @@
+{
+ "id": "glass_vaults",
+ "name": "The Glasshouse Vaults",
+ "region": "Glass Orchard",
+ "music": "dungeon_undercroft",
+ "ambient": [
+  0.5,
+  0.62,
+  0.6
+ ],
+ "background": [
+  0.06,
+  0.08,
+  0.08
+ ],
+ "camera_dist": 14,
+ "rows": [
+  "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+  "WSSSSSSSSWWWWWWWWWWWWWWWSSSSSW",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "SSSSSSSSS~~~~SSSSSS   SSSSSSSS",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "WSSSSSSSS~~~~SSSSSS   SSSSSSSW",
+  "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwW"
+ ],
+ "patches": [
+  {
+   "cond": "flag:vault_winter",
+   "at": [
+    9,
+    2
+   ],
+   "rows": [
+    "IIII",
+    "IIII",
+    "IIII",
+    "IIII",
+    "IIII",
+    "IIII",
+    "IIII",
+    "IIII"
+   ]
+  },
+  {
+   "cond": "!flag:vault_winter",
+   "at": [
+    19,
+    7
+   ],
+   "rows": [
+    "==="
+   ]
+  }
+ ],
+ "spawns": {
+  "default": [
+   1,
+   7,
+   "right"
+  ],
+  "west": [
+   1,
+   7,
+   "right"
+  ],
+  "east": [
+   28,
+   7,
+   "left"
+  ]
+ },
+ "props": [
+  {
+   "t": "valve",
+   "at": [
+    4,
+    2
+   ]
+  },
+  {
+   "t": "valve",
+   "at": [
+    16,
+    2
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    1,
+    1
+   ]
+  },
+  {
+   "t": "crystal",
+   "at": [
+    7,
+    9
+   ]
+  },
+  {
+   "t": "crystal",
+   "at": [
+    24,
+    1
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    14,
+    9
+   ],
+   "tint": [
+    0.7,
+    1.2,
+    1.0
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    27,
+    9
+   ],
+   "tint": [
+    0.7,
+    1.2,
+    1.0
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    8,
+    1
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    18,
+    9
+   ]
+  },
+  {
+   "t": "dust",
+   "at": [
+    15,
+    5
+   ],
+   "w": 12,
+   "h": 4
+  }
+ ],
+ "chests": [
+  {
+   "id": "gv_1",
+   "at": [
+    2,
+    9
+   ],
+   "items": {
+    "glass_mail": 1
+   }
+  },
+  {
+   "id": "gv_2",
+   "at": [
+    26,
+    9
+   ],
+   "items": {
+    "hi_tonic": 2,
+    "smelling_salts": 1
+   },
+   "gold": 400
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    7
+   ],
+   "kind": "exit",
+   "to": "verrins_glass",
+   "spawn": "east"
+  },
+  {
+   "at": [
+    29,
+    7
+   ],
+   "kind": "exit",
+   "to": "vaults_core",
+   "spawn": "west"
+  },
+  {
+   "at": [
+    1,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    4,
+    2
+   ],
+   "on": "interact",
+   "event": "ev_season_valve",
+   "label": "Season valve"
+  },
+  {
+   "at": [
+    16,
+    2
+   ],
+   "on": "interact",
+   "event": "ev_season_valve",
+   "label": "Season valve"
+  },
+  {
+   "at": [
+    27,
+    2
+   ],
+   "on": "interact",
+   "event": "ev_vault_song",
+   "label": "Inscription"
+  },
+  {
+   "at": [
+    2,
+    7
+   ],
+   "kind": "event",
+   "event": "ev_vaults_enter",
+   "once": true
+  }
+ ],
+ "npcs": [],
+ "encounters": {
+  "table": [
+   {
+    "enc": "gv_frost",
+    "w": 3,
+    "cond": "flag:vault_winter"
+   },
+   {
+    "enc": "gv_ember",
+    "w": 3,
+    "cond": "!flag:vault_winter"
+   },
+   {
+    "enc": "gv_overseer",
+    "w": 2
+   },
+   {
+    "enc": "gv_sprites",
+    "w": 2
+   }
+  ],
+  "min_steps": 12,
+  "rate": 1.0
+ },
+ "party_talk": [
+  {
+   "event": "pt_vaults"
+  }
+ ]
+}

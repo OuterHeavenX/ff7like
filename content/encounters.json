@@ -218,5 +218,92 @@
   "music": "boss",
   "can_escape": false,
   "boss": true
+ },
+ {
+  "id": "go_crows",
+  "enemies": [
+   "orchard_crow",
+   "orchard_crow"
+  ],
+  "arena": "arena_orchard",
+  "music": "battle"
+ },
+ {
+  "id": "go_crow_sprite",
+  "enemies": [
+   "orchard_crow",
+   "pollen_sprite",
+   "orchard_crow"
+  ],
+  "arena": "arena_orchard",
+  "music": "battle"
+ },
+ {
+  "id": "go_beetle_mender",
+  "enemies": [
+   "glass_beetle",
+   "root_mender"
+  ],
+  "arena": "arena_orchard",
+  "music": "battle"
+ },
+ {
+  "id": "go_slimes",
+  "enemies": [
+   "sap_slime",
+   "sap_slime"
+  ],
+  "arena": "arena_orchard",
+  "music": "battle"
+ },
+ {
+  "id": "gv_frost",
+  "enemies": [
+   "frost_bloom",
+   "glass_beetle",
+   "frost_bloom"
+  ],
+  "arena": "arena_vault",
+  "music": "battle"
+ },
+ {
+  "id": "gv_ember",
+  "enemies": [
+   "ember_bloom",
+   "root_mender",
+   "ember_bloom"
+  ],
+  "arena": "arena_vault",
+  "music": "battle"
+ },
+ {
+  "id": "gv_overseer",
+  "enemies": [
+   "orchard_overseer",
+   "orchard_crow",
+   "sap_slime"
+  ],
+  "arena": "arena_vault",
+  "music": "battle"
+ },
+ {
+  "id": "gv_sprites",
+  "enemies": [
+   "pollen_sprite",
+   "pollen_sprite",
+   "glass_beetle"
+  ],
+  "arena": "arena_vault",
+  "music": "battle"
+ },
+ {
+  "id": "boss_harvest_engine",
+  "enemies": [
+   "harvest_engine"
+  ],
+  "arena": "arena_vault",
+  "music": "boss",
+  "can_escape": false,
+  "boss": true
  }
 ]

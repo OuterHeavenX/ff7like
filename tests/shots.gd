@@ -30,6 +30,9 @@ func _ready() -> void:
 	GameState.set_quest_stage("mq_street_forgot", 4)
 	GameState.add_item("hi_tonic", 2)
 	GameState.chapter = "ch1"
+	if "--ch3" in OS.get_cmdline_user_args():
+		await _ch3()
+		return
 	if "--ch2" in OS.get_cmdline_user_args():
 		await _ch2()
 		return
@@ -91,4 +94,23 @@ func _ch2() -> void:
 	Router.run_battle("boss_signal_warden", {"can_escape": false})
 	await _wait(3.5)
 	await _shot("ch2_boss")
+	get_tree().quit()
+
+
+func _ch3() -> void:
+	GameState.join_member("nessa", true)
+	for cid: String in GameState.roster:
+		GameState.grant_xp(cid, GameState.xp_total_for_level(16))
+	GameState.heal_all()
+	for m: String in ["verrins_glass", "hollin_ward", "glass_vaults"]:
+		await Router.enter_world(m, "default")
+		await _wait(2.5)
+		await _shot("ch3_" + m)
+	GameState.set_flag("vault_winter")
+	Router.world.load_map_keep_player()
+	await _wait(1.0)
+	await _shot("ch3_vaults_winter")
+	Router.run_battle("boss_harvest_engine", {"can_escape": false})
+	await _wait(3.5)
+	await _shot("ch3_boss")
 	get_tree().quit()
