@@ -318,7 +318,7 @@ func _exec(c: Dictionary) -> void:
 	elif c.has("camera"):
 		pass   # camera follows the player; reserved for authored pans
 	elif c.has("end_slice"):
-		await _end_slice()
+		await _end_slice(str(c.end_slice) if c.end_slice is String else "Chapter One", str(c.get("next", "")))
 	else:
 		push_warning("Unknown event command: %s" % str(c.keys()))
 
@@ -365,8 +365,10 @@ func _shake(strength: float) -> void:
 	cam.v_offset = 0.0
 
 
-func _end_slice() -> void:
+func _end_slice(done_chapter: String, next_chapter: String) -> void:
 	GameState.set_flag("slice_complete")
+	GameState.set_flag("slice_complete_" + done_chapter.to_lower().replace(" ", "_"))
 	Saves.autosave()
-	await dialogue.title_card("End of Chapter One", "Bellweather")
-	await dialogue.narrate("Thank you for playing this build of Echoes of the Last Dawn.\n\nChapter Two, \"The Rainward Line\", is not yet built. Your progress has been autosaved; the journal records where the story continues.\n\nYou may keep exploring Bellweather, take on remaining side quests, or return to the title.")
+	await dialogue.title_card("End of " + done_chapter, "")
+	var nxt := next_chapter if next_chapter != "" else "The next chapter"
+	await dialogue.narrate("Thank you for playing this build of Echoes of the Last Dawn.\n\n%s is not yet built. Your progress has been autosaved; the journal records where the story continues.\n\nYou can keep exploring, finish side quests, or return to the title." % nxt)

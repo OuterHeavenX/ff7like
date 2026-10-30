@@ -1,33 +1,191 @@
 {
- " ": {"walk": false, "void": true},
- ".": {"walk": true, "tex": "cobble", "side": "stone_wall"},
- ";": {"walk": true, "tex": "cobble_dark", "side": "stone_wall"},
- ",": {"walk": true, "tex": "grass", "side": "dirt"},
- ":": {"walk": true, "tex": "dirt", "side": "dirt"},
- "_": {"walk": true, "tex": "planks", "side": "planks"},
- "t": {"walk": true, "tex": "tile_floor", "side": "stone_wall"},
- "c": {"walk": true, "tex": "carpet", "side": "planks"},
- "S": {"walk": true, "tex": "stone", "side": "stone_wall"},
- "g": {"walk": true, "tex": "grate", "side": "metal_wall"},
- "m": {"walk": true, "tex": "moss", "side": "stone_wall"},
- "~": {"walk": false, "water": true, "tex": "water", "side": "stone_wall"},
- "=": {"walk": true, "tex": "bridge", "side": "planks", "bridge": true},
- "#": {"walk": false, "block": 4, "top": "cobble_dark", "side": "brick"},
- "H": {"walk": false, "block": 5, "top": "roof_red", "side": "timber", "roof": "red", "windows": true},
- "R": {"walk": false, "block": 5, "top": "roof_slate", "side": "plaster", "roof": "slate", "windows": true},
- "B": {"walk": false, "block": 6, "top": "roof_slate", "side": "brass", "roof": "slate", "windows": true},
- "P": {"walk": false, "block": 4, "top": "plaster", "side": "plaster"},
- "W": {"walk": false, "block": 4, "top": "stone_wall", "side": "stone_wall"},
- "w": {"walk": false, "block": 1, "top": "stone", "side": "stone_wall"},
- "M": {"walk": false, "block": 4, "top": "metal_wall", "side": "metal_wall"},
- "b": {"walk": false, "block": 3, "top": "planks", "side": "shelf"},
- "k": {"walk": false, "block": 2, "top": "planks", "side": "planks", "counter": true},
- "h": {"walk": false, "block": 1, "top": "hedge", "side": "hedge"},
- "x": {"walk": false, "tex": "cobble", "side": "stone_wall"},
- "X": {"walk": false, "tex": "planks", "side": "planks"},
- "z": {"walk": false, "tex": "stone", "side": "stone_wall"},
- "^": {"walk": true, "tex": "stone", "side": "stone_wall", "stair": "^"},
- "v": {"walk": true, "tex": "stone", "side": "stone_wall", "stair": "v"},
- "<": {"walk": true, "tex": "stone", "side": "stone_wall", "stair": "<"},
- ">": {"walk": true, "tex": "stone", "side": "stone_wall", "stair": ">"}
+ " ": {
+  "walk": false,
+  "void": true
+ },
+ ".": {
+  "walk": true,
+  "tex": "cobble",
+  "side": "stone_wall"
+ },
+ ";": {
+  "walk": true,
+  "tex": "cobble_dark",
+  "side": "stone_wall"
+ },
+ ",": {
+  "walk": true,
+  "tex": "grass",
+  "side": "dirt"
+ },
+ ":": {
+  "walk": true,
+  "tex": "dirt",
+  "side": "dirt"
+ },
+ "_": {
+  "walk": true,
+  "tex": "planks",
+  "side": "planks"
+ },
+ "t": {
+  "walk": true,
+  "tex": "tile_floor",
+  "side": "stone_wall"
+ },
+ "c": {
+  "walk": true,
+  "tex": "carpet",
+  "side": "planks"
+ },
+ "S": {
+  "walk": true,
+  "tex": "stone",
+  "side": "stone_wall"
+ },
+ "g": {
+  "walk": true,
+  "tex": "grate",
+  "side": "metal_wall"
+ },
+ "m": {
+  "walk": true,
+  "tex": "moss",
+  "side": "stone_wall"
+ },
+ "~": {
+  "walk": false,
+  "water": true,
+  "tex": "water",
+  "side": "stone_wall"
+ },
+ "=": {
+  "walk": true,
+  "tex": "bridge",
+  "side": "planks",
+  "bridge": true
+ },
+ "#": {
+  "walk": false,
+  "block": 4,
+  "top": "cobble_dark",
+  "side": "brick"
+ },
+ "H": {
+  "walk": false,
+  "block": 5,
+  "top": "roof_red",
+  "side": "timber",
+  "roof": "red",
+  "windows": true
+ },
+ "R": {
+  "walk": false,
+  "block": 5,
+  "top": "roof_slate",
+  "side": "plaster",
+  "roof": "slate",
+  "windows": true
+ },
+ "B": {
+  "walk": false,
+  "block": 6,
+  "top": "roof_slate",
+  "side": "brass",
+  "roof": "slate",
+  "windows": true
+ },
+ "P": {
+  "walk": false,
+  "block": 4,
+  "top": "plaster",
+  "side": "plaster"
+ },
+ "W": {
+  "walk": false,
+  "block": 4,
+  "top": "stone_wall",
+  "side": "stone_wall"
+ },
+ "w": {
+  "walk": false,
+  "block": 1,
+  "top": "stone",
+  "side": "stone_wall"
+ },
+ "M": {
+  "walk": false,
+  "block": 4,
+  "top": "metal_wall",
+  "side": "metal_wall"
+ },
+ "b": {
+  "walk": false,
+  "block": 3,
+  "top": "planks",
+  "side": "shelf"
+ },
+ "k": {
+  "walk": false,
+  "block": 2,
+  "top": "planks",
+  "side": "planks",
+  "counter": true
+ },
+ "h": {
+  "walk": false,
+  "block": 1,
+  "top": "hedge",
+  "side": "hedge"
+ },
+ "x": {
+  "walk": false,
+  "tex": "cobble",
+  "side": "stone_wall"
+ },
+ "X": {
+  "walk": false,
+  "tex": "planks",
+  "side": "planks"
+ },
+ "z": {
+  "walk": false,
+  "tex": "stone",
+  "side": "stone_wall"
+ },
+ "^": {
+  "walk": true,
+  "tex": "stone",
+  "side": "stone_wall",
+  "stair": "^"
+ },
+ "v": {
+  "walk": true,
+  "tex": "stone",
+  "side": "stone_wall",
+  "stair": "v"
+ },
+ "<": {
+  "walk": true,
+  "tex": "stone",
+  "side": "stone_wall",
+  "stair": "<"
+ },
+ ">": {
+  "walk": true,
+  "tex": "stone",
+  "side": "stone_wall",
+  "stair": ">"
+ },
+ "r": {
+  "walk": true,
+  "tex": "rail",
+  "side": "stone_wall"
+ },
+ "G": {
+  "walk": false,
+  "block": 3,
+  "top": "moss",
+  "side": "stone_wall"
+ }
 }

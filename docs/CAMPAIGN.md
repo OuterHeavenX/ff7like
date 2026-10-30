@@ -1,6 +1,6 @@
 # Campaign Plan & Status
 
-Targets: 20–25 h first-time main story, 35–50 h with optional content. **These are design targets. Nothing below is measured except where QA.md says so.** Current authored content: Prologue + Chapter One only.
+Targets: 20–25 h first-time main story, 35–50 h with optional content. **These are design targets. Nothing below is measured except where QA.md says so.** Current authored content: Prologue, Chapter One and Chapter Two.
 
 ## Emotional payoffs (planned before writing scenes)
 | Payoff | Characters | Seeds in built content | Lands in |
@@ -21,7 +21,7 @@ Prologue (Lanternwake) -> Ch1 Bellweather -> Ch2 Rainward Line -> Ch3 Glass Orch
 |---|---|---|---|---|---|---|
 | Prologue — Lanternwake | Festival walk, delivery, incident | — | Field, talk, menus | Rowan; Wayfarer/Vanguard/Artificer | 15 min | **Built** |
 | Ch1 — What the Street Forgot | Investigation (3 proofs) → confrontation → rescue dungeon | Station Undercroft (3 maps, valve puzzle or elite bypass, boss) | Battles, jobs, Resonance, side quests | Garran, Mira; Duelist/Arcanist/Mender | 40–50 min | **Built** |
-| Ch2 — The Rainward Line | Rail journey with stops; conflicting testimony; first major choice (expose a station or protect its workers) | Stalled freight train + flooded cutting | Rail pass travel, car-to-car exploration | Nessa (rejoins), Sera; Ranger | 2–2.5 h | Planned |
+| Ch2 — The Rainward Line | Hub with conflicting testimony → car-by-car freight → rain cutting boss → village with the first major choice (expose Odile's logs or protect the station's workers) | Stalled Freight (locked brake car, warden ambush) + Millbrook Cutting (Signal Warden, colour-coded weakness phases) | Testimony gathering, party of five / reserves, barge return to Bellweather | Nessa, Sera; Ranger | est. 60–80 min | **Built** |
 | Ch3 — Glass Orchard | Investigate extraction's real tradeoffs; mediation | Glasshouse vaults | Weather/season switching in dungeon | Hexweaver; Tavi chain starts (optional) | 2.5 h | Planned |
 | Ch4 — The Salt Archive | Coastal city; memories with physical weight | Flooded library (tide timing) | Memory fragments as keys | Ilyan; Sentinel | 2.5 h | Planned |
 | Ch5 — Crown Without a King | Multi-party operation across the capital; Nessa's betrayal | Directorate tower (split parties) | Party splitting, simultaneous objectives | Chronist | 3 h | Planned |
@@ -34,16 +34,16 @@ Prologue (Lanternwake) -> Ch1 Bellweather -> Ch2 Rainward Line -> Ch3 Glass Orch
 ## Production targets vs. built
 | Target | Goal | Built now |
 |---|---|---|
-| Chapters | 8 + prologue + epilogue | Prologue + Ch1 |
-| Regions | 6 | 1 (Bellweather) |
-| Towns/settlements | 8 | 1 |
-| Substantial dungeons | 12 | 1 (Station Undercroft, 3 maps) |
-| Recruitable characters | 8 (6 story, 2 optional) | 3 joinable (all 8 defined as data with stats/skills/portraits/sprites) |
-| Personal quest chains | 8 multi-stage | Stage 1 of Mira's and Garran's |
-| Side quests | 30 (8 branching/multi-stage) | 3 (1 branching) |
-| Normal enemy types | 45 | 9 (+ summon) |
-| Bosses | 12 main + 4 optional | 1 main + 1 optional elite |
-| Jobs | 12 with 6 actives + 3 passives + mastery | 12 implemented as data & functional; 6 obtainable |
+| Chapters | 8 + prologue + epilogue | Prologue + Ch1 + Ch2 |
+| Regions | 6 | 2 (Bellweather, the Rainward Line) |
+| Towns/settlements | 8 | 3 (Bellweather, Rainward Junction, Millbrook Halt) |
+| Substantial dungeons | 12 | 2 (Station Undercroft — 3 maps; Stalled Freight + Millbrook Cutting) |
+| Recruitable characters | 8 (6 story, 2 optional) | 5 joinable (Rowan, Garran, Mira, Nessa, Sera); all 8 defined as data |
+| Personal quest chains | 8 multi-stage | Stage 1 of Mira, Garran, Nessa, Sera |
+| Side quests | 30 (8 branching/multi-stage) | 5 (2 branching) |
+| Normal enemy types | 45 | 17 (+ summon) |
+| Bosses | 12 main + 4 optional | 2 main + 1 optional elite |
+| Jobs | 12 with 6 actives + 3 passives + mastery | 12 implemented & functional; 7 obtainable (Ranger added) |
 | Repeatable activities | 3 | 0 |
 
 ## Prologue + Chapter One route (built)
@@ -54,3 +54,12 @@ Prologue (Lanternwake) -> Ch1 Bellweather -> Ch2 Rainward Line -> Ch3 Glass Orch
 5. Undercroft: rescue Tamsin (cache shop), valves *or* optional elite Ironside, Joss (side quest), Pell, extraction log (Wren's protest — proof), boss: the Hollow Clapper (2 phase changes, telegraphed peal).
 6. Barge with Nessa; End of Chapter One card; game continues in post-slice Bellweather with remaining side content.
 Side: The Lamplighter's Count (4 lanterns), Ledger of Small Debts (truth / mercy outcomes), No One Left Below.
+
+## Chapter Two route (built)
+1. Barge arrival at Rainward Junction (Nessa rejoins; Ranger unlocked). Wanted posters; Captain Ferro and Nessa's debt (personal stage 1).
+2. Three conflicting testimonies about Millbrook (railworker Abe, Widow Carrow, the Authority notice via Quartermaster Ide).
+3. Sera joins to reach the stranded freight crew (party of five; reserve tutorial). Side: Rain Rations (pay vs. break the depot seal).
+4. Stalled Freight: brakeman Tull (battle → brake key), locked brake car, warden ambush with orders to retrieve the fork and kill Garran.
+5. Millbrook Cutting: the Signal Warden (red/amber/green weakness phases, telegraphed Clear the Line, summons wraiths).
+6. Millbrook Halt: Names on the Doors (side), Sera's list (personal stage 1), Odile's confession and the major choice (expose / protect) → freight departs. End card for Chapter Two.
+Consequences recorded: `ch2_expose` / `ch2_protect`, `line_wardens_alert` (if the seal was broken) — to be paid off from Chapter Five.

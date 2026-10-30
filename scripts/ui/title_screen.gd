@@ -60,7 +60,7 @@ func _ready() -> void:
 	ver.size = Vector2(280, 24)
 	ver.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	ui.add_child(ver)
-	var credit := UITheme.label("An original JRPG  •  Early build: Prologue & Chapter One", 16, UITheme.C_DIM)
+	var credit := UITheme.label("An original JRPG  •  Early build: Prologue – Chapter Two", 16, UITheme.C_DIM)
 	credit.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
 	credit.position = Vector2(20, -34)
 	credit.size = Vector2(600, 24)

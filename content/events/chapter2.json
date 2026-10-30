@@ -1,0 +1,1587 @@
+{
+ "ev_ch2_arrival": {
+  "cmds": [
+   {
+    "music": "town_bellweather"
+   },
+   {
+    "narrate": "Rainward Junction, at grey dawn. The rain hasn't stopped in three days. Neither have the trains — until yesterday."
+   },
+   {
+    "say": "nessa",
+    "text": "Welcome to the Junction. Everything on the Line passes through here: coal, grain, mail. And, lately, people."
+   },
+   {
+    "say": "garran",
+    "text": "That's a refugee camp by the platform."
+   },
+   {
+    "say": "mira",
+    "text": "Those are Millbrook rail families. Millbrook's the next halt east — it had a toll last week.",
+    "expr": "sad"
+   },
+   {
+    "say": "nessa",
+    "text": "Freight to the coast is stalled at Millbrook Cutting. Nobody's going anywhere till it moves. Keep your hoods up — there are posters."
+   },
+   {
+    "set_chapter": "ch2"
+   },
+   {
+    "quest_start": "mq_rainward"
+   },
+   {
+    "quest_start": "pq_nessa_1"
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "The party arrived at Rainward Junction. Millbrook's displaced families are camped by the platform, and the coastal freight is stalled at Millbrook Cutting.",
+  "skippable": true
+ },
+ "ev_rw_posters": {
+  "cmds": [
+   {
+    "narrate": "WANTED for theft of Authority property and assault on wardens: a courier, about twenty, red scarf. A former warden captain, large, bearded. An engineer, goggles.\n\nThe drawings are terrible. Rowan's nose is enormous."
+   },
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "They've made me look old.",
+      "expr": ""
+     },
+     {
+      "who": "mira",
+      "text": "They spelled 'goggles' with three g's.",
+      "expr": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_rw_station_door": {
+  "cmds": [
+   {
+    "narrate": "Rainward Junction Station. A clerk inside is arguing with a telegraph that only says 'STALLED'."
+   }
+  ]
+ },
+ "ev_rw_smith": {
+  "cmds": [
+   {
+    "call": "ev_hobb"
+   }
+  ]
+ },
+ "ev_rw_warden": {
+  "cmds": [
+   {
+    "say": "warden_a",
+    "text": "Move along. And if you see a courier with a red scarf, report it to the station."
+   }
+  ]
+ },
+ "ev_rw_kid": {
+  "cmds": [
+   {
+    "say": "pim",
+    "text": "Where's Millbrook? Mum says we lived there. I don't remember the road.",
+    "expr": "sad"
+   }
+  ]
+ },
+ "ev_rw_not_yet": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "nessa",
+      "text": "The line runs east to the stalled freight. Let's hear what the Millbrook folk say first — I want to know what we're walking into.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Not yet. I want to understand what happened at Millbrook first."
+    }
+   },
+   {
+    "move": "player",
+    "path": [
+     [
+      31,
+      6
+     ]
+    ],
+    "speed": 5
+   }
+  ]
+ },
+ "ev_witness_a": {
+  "cmds": [
+   {
+    "if": "flag:wit_a",
+    "then": [
+     {
+      "say": "witness_a",
+      "text": "Odile's a good woman. Don't let anyone tell you different."
+     }
+    ],
+    "else": [
+     {
+      "quest_stage": [
+       "mq_rainward",
+       1
+      ]
+     },
+     {
+      "say": "witness_a",
+      "text": "Odile Brack — the stationmaster — she evacuated us the night before the toll. Got every family on the night train. If she hadn't, we'd have lost more than our road."
+     },
+     {
+      "say": "rowan",
+      "text": "Lost more?"
+     },
+     {
+      "say": "witness_a",
+      "text": "The ones who stayed don't remember their own children's names. We only lost… the way home. Funny thing to lose."
+     },
+     {
+      "flag": "wit_a"
+     },
+     {
+      "if": "flag:wit_a&flag:wit_b&flag:wit_c",
+      "then": [
+       {
+        "quest_stage": [
+         "mq_rainward",
+         4
+        ]
+       },
+       {
+        "say": "rowan",
+        "text": "Three stories. Odile saved them. Odile ruined them. Odile sabotaged the station. They can't all be true.",
+        "expr": "neutral"
+       },
+       {
+        "party_say": [
+         {
+          "who": "nessa",
+          "text": "They can if nobody remembers enough to argue. Millbrook's past the freight. Let's go look.",
+          "expr": ""
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "flag:wit_a&flag:wit_b|flag:wit_a&flag:wit_c|flag:wit_b&flag:wit_c",
+        "then": [
+         {
+          "quest_stage": [
+           "mq_rainward",
+           3
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "mq_rainward",
+           2
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_witness_b": {
+  "cmds": [
+   {
+    "if": "flag:wit_b",
+    "then": [
+     {
+      "say": "witness_b",
+      "text": "Ask Odile how many tolls she rang. Ask her."
+     }
+    ],
+    "else": [
+     {
+      "quest_stage": [
+       "mq_rainward",
+       1
+      ]
+     },
+     {
+      "say": "witness_b",
+      "text": "Odile Brack did this. My husband worked the station. He said she rang the bell twice a month when the quota is once a season."
+     },
+     {
+      "say": "witness_b",
+      "text": "He was going to report it. Then there was the toll, and now he doesn't know he was going to do anything at all.",
+      "expr": "sad"
+     },
+     {
+      "flag": "wit_b"
+     },
+     {
+      "if": "flag:wit_a&flag:wit_b&flag:wit_c",
+      "then": [
+       {
+        "quest_stage": [
+         "mq_rainward",
+         4
+        ]
+       },
+       {
+        "say": "rowan",
+        "text": "Three stories. Odile saved them. Odile ruined them. Odile sabotaged the station. They can't all be true.",
+        "expr": "neutral"
+       },
+       {
+        "party_say": [
+         {
+          "who": "nessa",
+          "text": "They can if nobody remembers enough to argue. Millbrook's past the freight. Let's go look.",
+          "expr": ""
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "flag:wit_a&flag:wit_b|flag:wit_a&flag:wit_c|flag:wit_b&flag:wit_c",
+        "then": [
+         {
+          "quest_stage": [
+           "mq_rainward",
+           3
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "mq_rainward",
+           2
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_ide": {
+  "cmds": [
+   {
+    "if": "!flag:wit_c",
+    "then": [
+     {
+      "quest_stage": [
+       "mq_rainward",
+       1
+      ]
+     },
+     {
+      "say": "ide",
+      "text": "Authority notice, posted yesterday: 'The Millbrook incident resulted from sabotage by station staff. Displaced persons will be resettled at the Authority's discretion.'"
+     },
+     {
+      "say": "ide",
+      "text": "Resettled where, I'd like to know. I'm the camp quartermaster now. Nobody appointed me. Somebody had to count the beans."
+     },
+     {
+      "flag": "wit_c"
+     },
+     {
+      "if": "flag:wit_a&flag:wit_b&flag:wit_c",
+      "then": [
+       {
+        "quest_stage": [
+         "mq_rainward",
+         4
+        ]
+       },
+       {
+        "say": "rowan",
+        "text": "Three stories. Odile saved them. Odile ruined them. Odile sabotaged the station. They can't all be true.",
+        "expr": "neutral"
+       },
+       {
+        "party_say": [
+         {
+          "who": "nessa",
+          "text": "They can if nobody remembers enough to argue. Millbrook's past the freight. Let's go look.",
+          "expr": ""
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "flag:wit_a&flag:wit_b|flag:wit_a&flag:wit_c|flag:wit_b&flag:wit_c",
+        "then": [
+         {
+          "quest_stage": [
+           "mq_rainward",
+           3
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "mq_rainward",
+           2
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "!quest:sq_rain_rations",
+      "then": [
+       {
+        "say": "ide",
+        "text": "We're short on food. The Authority depot next door is full of grain under seal. The clerk won't open it without orders."
+       },
+       {
+        "quest_start": "sq_rain_rations"
+       }
+      ],
+      "else": [
+       {
+        "if": "quest_done:sq_rain_rations",
+        "then": [
+         {
+          "say": "ide",
+          "text": "Everyone ate today. I'll remember that. One of us should."
+         },
+         {
+          "inn": 60
+         }
+        ],
+        "else": [
+         {
+          "say": "ide",
+          "text": "Talk to the depot clerk. Maybe a courier can do what a quartermaster can't."
+         },
+         {
+          "inn": 60
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_rw_depot": {
+  "cmds": [
+   {
+    "if": "quest:sq_rain_rations&!quest_done:sq_rain_rations",
+    "then": [
+     {
+      "say": "clerk",
+      "text": "Grain's under Authority seal. I can sell to registered buyers — three hundred crowns for a camp's worth. I can't give it away. I'd lose my post."
+     },
+     {
+      "quest_stage": [
+       "sq_rain_rations",
+       1
+      ]
+     },
+     {
+      "choice": [
+       {
+        "text": "Pay 300 crowns for the camp's food",
+        "cond": "gold>=300",
+        "do": [
+         {
+          "gold": -300
+         },
+         {
+          "say": "clerk",
+          "text": "…I'll add a few sacks the ledger won't notice. Don't tell anyone I have a heart."
+         },
+         {
+          "quest_complete": "sq_rain_rations",
+          "outcome": "paid"
+         }
+        ]
+       },
+       {
+        "text": "Come back at night and break the seal",
+        "do": [
+         {
+          "narrate": "That night, a courier and a scout who used to be a smuggler move forty sacks of grain in eleven minutes."
+         },
+         {
+          "party_say": [
+           {
+            "who": "nessa",
+            "text": "Like old times. Worse times. But like them.",
+            "expr": "happy"
+           }
+          ]
+         },
+         {
+          "quest_complete": "sq_rain_rations",
+          "outcome": "seal"
+         },
+         {
+          "flag": "line_wardens_alert"
+         }
+        ]
+       },
+       {
+        "text": "Not now",
+        "do": []
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "clerk",
+      "text": "Authority depot. Sealed goods only."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_dell": {
+  "cmds": [
+   {
+    "say": "dell",
+    "text": "Dell's Provisions. Tonics, salves, flasks. Rain's bad for business, good for colds."
+   },
+   {
+    "shop": "junction_provisioner"
+   }
+  ]
+ },
+ "ev_hobb": {
+  "cmds": [
+   {
+    "say": "hobb",
+    "text": "Platform smithy. I make things out of railway scrap that the railway would prefer I didn't."
+   },
+   {
+    "shop": "junction_smith"
+   }
+  ]
+ },
+ "ev_pilot": {
+  "cmds": [
+   {
+    "say": "pilot",
+    "text": "Night runs back up to Bellweather, if you've the nerve. Wardens don't check freight barges after midnight."
+   },
+   {
+    "choice": [
+     {
+      "text": "Ride back to Bellweather (Wick Street dock)",
+      "do": [
+       {
+        "fade": "out"
+       },
+       {
+        "warp": "bellweather_wick",
+        "spawn": "hatch"
+       }
+      ]
+     },
+     {
+      "text": "Stay",
+      "do": []
+     }
+    ]
+   }
+  ]
+ },
+ "ev_ferro": {
+  "cmds": [
+   {
+    "if": "!party:nessa",
+    "then": [
+     {
+      "say": "ferro",
+      "text": "I only talk business with Quill."
+     }
+    ],
+    "else": [
+     {
+      "music": "tension"
+     },
+     {
+      "say": "ferro",
+      "text": "Nessa Quill. Of all the barges on all the canals."
+     },
+     {
+      "say": "nessa",
+      "text": "Captain Ferro.",
+      "expr": "angry"
+     },
+     {
+      "say": "ferro",
+      "text": "I'll be brief, since your friends are listening. A parcel needs carrying down the Line. My new friends in the Authority would be grateful. Grateful enough to forget what your family owes me."
+     },
+     {
+      "say": "rowan",
+      "text": "What does her family owe you?",
+      "expr": "angry"
+     },
+     {
+      "say": "ferro",
+      "text": "Ask her. She's a very good scout. She'll find a way to tell you."
+     },
+     {
+      "emote": "nessa",
+      "text": "…"
+     },
+     {
+      "say": "nessa",
+      "text": "…Later, Rowan. Please.",
+      "expr": "sad"
+     },
+     {
+      "say": "ferro",
+      "text": "The offer stands until the Salt Archive, Quill. After that, it doesn't.",
+      "expr": "neutral"
+     },
+     {
+      "quest_complete": "pq_nessa_1"
+     },
+     {
+      "remove_npc": "ferro"
+     },
+     {
+      "narrate": "Nessa won't meet your eyes for a while. When she does, she hands you a bow she won from Ferro years ago. \"For whoever needs it. Not me. Not today.\""
+     },
+     {
+      "music": "town_bellweather"
+     }
+    ]
+   }
+  ],
+  "recap": "Captain Ferro, Nessa's creditor, offered to forgive her family's debt if she carries a parcel for the Authority. She hasn't answered.",
+  "skippable": true
+ },
+ "ev_sera_camp": {
+  "cmds": [
+   {
+    "say": "sera",
+    "text": "If you're here to resettle someone, you can resettle yourselves into the canal.",
+    "expr": "angry"
+   },
+   {
+    "say": "rowan",
+    "text": "We're not Authority. We're— honestly, we're wanted by them."
+   },
+   {
+    "say": "sera",
+    "text": "…The posters. Of course. The nose is wrong.",
+    "expr": "neutral"
+   },
+   {
+    "say": "sera",
+    "text": "Sera Voss. Physician, when there's medicine. Right now I'm a person who sits with people while they try to remember what they've forgotten."
+   },
+   {
+    "say": "sera",
+    "text": "The freight crew are still on the stalled train. Three days, no supplies. Nobody will walk the line because of what's living in the cars. I've been waiting for someone foolish enough to walk with me.",
+    "expr": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "text": "\"We're going that way anyway.\"",
+      "do": [
+       {
+        "say": "sera",
+        "text": "Good. I'll carry the bandages; you carry the swords.",
+        "expr": "happy"
+       }
+      ]
+     },
+     {
+      "text": "\"It's dangerous. Are you sure?\"",
+      "do": [
+       {
+        "say": "sera",
+        "text": "I've been sure of very few things this week. This is one of them.",
+        "expr": "neutral"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "join": "sera"
+   },
+   {
+    "tutorial": "Sera joined. With five members, one waits in reserve. Reserves still earn 75% XP (double if they fall behind) and 50% JP. Swap members in Menu > Party at any time outside battle.",
+    "title": "Party of five"
+   },
+   {
+    "quest_start": "pq_sera_1"
+   }
+  ],
+  "recap": "Sera Voss, a travelling physician caring for the displaced families, joined the party to reach the stalled freight crew.",
+  "skippable": true
+ },
+ "ev_freight_enter": {
+  "cmds": [
+   {
+    "music": "dungeon_undercroft"
+   },
+   {
+    "narrate": "The stalled freight: twelve cars, dark, dripping. Something moves between them with a sound like a lamp being lit and snuffed."
+   },
+   {
+    "party_say": [
+     {
+      "who": "sera",
+      "text": "The crew will be in the brake car near the front. Let's find them.",
+      "expr": ""
+     },
+     {
+      "who": "nessa",
+      "text": "Twelve cars. Four that matter. Stay close.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "quest_stage": [
+     "mq_rainward",
+     5
+    ]
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "The party entered the stalled freight."
+ },
+ "ev_tull": {
+  "cmds": [
+   {
+    "if": "flag:tull_saved",
+    "then": [
+     {
+      "say": "brakeman",
+      "text": "Brake car's through there. Key's yours."
+     }
+    ],
+    "else": [
+     {
+      "say": "brakeman",
+      "text": "Don't— oh. You're people. Thank the line. There's things in the forward cars. Lamp-ghosts and a rust hound pack."
+     },
+     {
+      "say": "brakeman",
+      "text": "I locked myself out of the brake car to keep 'em away from the crew. Then I lost my nerve and hid in here."
+     },
+     {
+      "battle": "tr_wraiths",
+      "no_escape": true,
+      "win": [
+       {
+        "say": "brakeman",
+        "text": "You're… very good at that. Here. The brake car key. The crew's in there."
+       },
+       {
+        "item": "brake_key",
+        "qty": 1
+       },
+       {
+        "flag": "tull_saved"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_brake_door": {
+  "cmds": [
+   {
+    "if": "item:brake_key",
+    "then": [
+     {
+      "narrate": "The key turns. The brake car door grinds open."
+     },
+     {
+      "flag": "brake_unlocked"
+     },
+     {
+      "refresh_map": true
+     },
+     {
+      "party_say": [
+       {
+        "who": "sera",
+        "text": "There they are. Dehydrated, frightened, alive. I'll see to them — you see to whatever's ahead.",
+        "expr": ""
+       }
+      ],
+      "fallback": {
+       "who": "rowan",
+       "text": "The crew's alive. Let's clear the way forward."
+      }
+     },
+     {
+      "quest_stage": [
+       "mq_rainward",
+       6
+      ]
+     }
+    ],
+    "else": [
+     {
+      "narrate": "The brake car door. Locked from this side."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_marksmen": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "The fourth car isn't empty. Two warden marksmen and a sergeant are waiting, rifles across their knees, as if they knew which train you'd take."
+   },
+   {
+    "say": "warden_a",
+    "text": "Courier Vale. Warden Holt. You'll come quietly, or you'll come."
+   },
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "Sergeant Pike. You trained under me.",
+      "expr": ""
+     },
+     {
+      "who": "rowan",
+      "text": "We're not going back to Bellweather.",
+      "expr": "angry"
+     }
+    ]
+   },
+   {
+    "say": "warden_a",
+    "text": "Orders are orders, Captain. You taught me that too."
+   },
+   {
+    "battle": "tr_marksmen",
+    "no_escape": true,
+    "win": [
+     {
+      "flag": "marksmen_done"
+     },
+     {
+      "narrate": "Among the sergeant's things: a folded order. 'Retrieve the courier's fork intact. The warden Holt is not to be retrieved.'"
+     },
+     {
+      "party_say": [
+       {
+        "who": "garran",
+        "text": "…Not to be retrieved. Well. That's honest of them.",
+        "expr": "sad"
+       }
+      ]
+     },
+     {
+      "party_say": [
+       {
+        "who": "mira",
+        "text": "They want the fork more than they want us. It's evidence — or it's a key to something.",
+        "expr": ""
+       }
+      ]
+     },
+     {
+      "music": "dungeon_undercroft"
+     }
+    ]
+   }
+  ],
+  "recap": "Wardens were waiting on the freight with orders to take the fork intact and to kill Garran.",
+  "skippable": true
+ },
+ "ev_cutting_enter": {
+  "cmds": [
+   {
+    "narrate": "Millbrook Cutting: a gash in the hillside, rain pouring down its walls. At the far end, a signal post blinks red, amber, green — in no order a train could follow."
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "That signal's been tied into the extraction grid. It's running on the bell's stolen memory. That's why it attacks the line.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "quest_stage": [
+     "mq_rainward",
+     6
+    ]
+   }
+  ]
+ },
+ "ev_boss_signal": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "The Signal Warden unfolds from its post: semaphore arms, a lamp-eye cycling through colours."
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "Watch its lamp! Red, amber, green — each setting reroutes its plating. Its weakness changes with the colour.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "party_say": [
+     {
+      "who": "nessa",
+      "text": "Then I'll call the colours. Mark it and hit where it's soft.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "choice": [
+     {
+      "text": "Fight the Signal Warden",
+      "do": [
+       {
+        "battle": "boss_signal_warden",
+        "no_escape": true,
+        "boss": true,
+        "win": [
+         {
+          "narrate": "The signal post goes dark. Then, slowly, one ordinary green lamp comes on. The line is clear."
+         },
+         {
+          "flag": "signal_done"
+         },
+         {
+          "quest_stage": [
+           "mq_rainward",
+           7
+          ]
+         },
+         {
+          "autosave": true
+         },
+         {
+          "music": "theme_wren"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "text": "Step back and prepare",
+      "do": [
+       {
+        "move": "player",
+        "path": [
+         [
+          23,
+          5
+         ]
+        ],
+        "speed": 5
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_halt_enter": {
+  "cmds": [
+   {
+    "narrate": "Millbrook Halt. Every door has a paper note pinned to it. Most of the ink has run in the rain."
+   },
+   {
+    "party_say": [
+     {
+      "who": "sera",
+      "text": "Notes so they'd remember who lives where. I've seen it in two other villages. It doesn't usually last.",
+      "expr": "sad"
+     }
+    ]
+   },
+   {
+    "quest_stage": [
+     "mq_rainward",
+     7
+    ]
+   }
+  ]
+ },
+ "ev_halt_sign": {
+  "cmds": [
+   {
+    "narrate": "MILLBROOK HALT. Under it, in chalk: 'We lived here. We will remember.'"
+   }
+  ]
+ },
+ "ev_halt_worker": {
+  "cmds": [
+   {
+    "if": "flag:ch2_choice_made",
+    "then": [
+     {
+      "say": "witness_a",
+      "text": "Freight's coupled. Whenever you're ready."
+     }
+    ],
+    "else": [
+     {
+      "say": "witness_a",
+      "text": "Odile's in the office. She's been in there since the toll."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_halt_office": {
+  "cmds": [
+   {
+    "narrate": "The station office. Through the window: two ledgers on the desk, one thick, one thin."
+   }
+  ]
+ },
+ "ev_odile": {
+  "cmds": [
+   {
+    "if": "flag:ch2_choice_made",
+    "then": [
+     {
+      "if": "flag:ch2_expose",
+      "then": [
+       {
+        "say": "odile",
+        "text": "When the Records Hall clerks come, I'll tell them everything. Go on. Your train's waiting.",
+        "expr": "sad"
+       }
+      ],
+      "else": [
+       {
+        "say": "odile",
+        "text": "Once a season. I swear it. Go on — your train's waiting.",
+        "expr": "sad"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "music": "theme_wren"
+     },
+     {
+      "say": "odile",
+      "text": "You're the ones who cleared the line. Thank you. I can't— I can't really thank anyone properly anymore. I've forgotten how I used to do it."
+     },
+     {
+      "say": "rowan",
+      "text": "Your people at the Junction tell three different stories about you."
+     },
+     {
+      "say": "odile",
+      "text": "They're all true.",
+      "expr": "sad"
+     },
+     {
+      "say": "odile",
+      "text": "The Authority wanted Millbrook closed — not enough freight to justify a station. I bargained. If we rang our bell more often, the extraction quota would make the station 'productive'. Thirty jobs. Thirty families."
+     },
+     {
+      "say": "odile",
+      "text": "I kept two ledgers. The thin one for the Authority. The thick one is the truth. Twice a month for three years."
+     },
+     {
+      "say": "odile",
+      "text": "Then last week's toll took more than the bell had to give. It took the town's way home. I evacuated who I could. I couldn't evacuate what I'd done.",
+      "expr": "sad"
+     },
+     {
+      "item": "station_logs",
+      "qty": 1
+     },
+     {
+      "say": "odile",
+      "text": "Take the real logs. You're a courier — Nessa told me. You can get them to the Records Hall. Or you can burn them, and I'll ring once a season like I should have, and the station stays open, and thirty families keep their wages.",
+      "expr": "neutral"
+     },
+     {
+      "quest_stage": [
+       "mq_rainward",
+       8
+      ]
+     },
+     {
+      "party_say": [
+       {
+        "who": "sera",
+        "text": "If those logs reach the Records Hall, they'll prove extraction is being pushed past safe limits all along the Line. That could help every town like this one.",
+        "expr": ""
+       },
+       {
+        "who": "garran",
+        "text": "If they reach the Records Hall, she hangs, and Millbrook loses its station anyway.",
+        "expr": ""
+       }
+      ]
+     },
+     {
+      "party_say": [
+       {
+        "who": "mira",
+        "text": "Either way, someone pays for my resonators. I just want it to be the right someone.",
+        "expr": "sad"
+       }
+      ]
+     },
+     {
+      "choice": [
+       {
+        "text": "Expose the logs (send them to the Records Hall)",
+        "do": [
+         {
+          "flag": "ch2_expose"
+         },
+         {
+          "flag": "ch2_choice_made"
+         },
+         {
+          "say": "rowan",
+          "text": "People need to know what extraction is costing. I'll send them. I'm sorry, Odile.",
+          "expr": "sad"
+         },
+         {
+          "say": "odile",
+          "text": "Don't be. I've been waiting three years for someone to make me stop.",
+          "expr": "sad"
+         },
+         {
+          "narrate": "Rowan seals the logs in a courier pouch and hands it to the halt's mail clerk, marked for the Records Hall. A copy goes into Rowan's own satchel."
+         }
+        ]
+       },
+       {
+        "text": "Protect her (burn the logs; she rings once a season)",
+        "do": [
+         {
+          "flag": "ch2_protect"
+         },
+         {
+          "flag": "ch2_choice_made"
+         },
+         {
+          "say": "rowan",
+          "text": "Thirty families shouldn't lose everything for one mistake. Ring once a season. Keep them working. And keep my name if anyone asks who burned these.",
+          "expr": "neutral"
+         },
+         {
+          "say": "odile",
+          "text": "…I'll remember that. Whatever else I lose.",
+          "expr": "sad"
+         },
+         {
+          "narrate": "The thick ledger goes into the stove. Odile doesn't look away from it."
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "quest_stage": [
+       "mq_rainward",
+       9
+      ]
+     },
+     {
+      "tutorial": "Major choices are recorded in your Journal. Consequences will appear later in the story (from Chapter Five, when it is built).",
+      "title": "Choices"
+     },
+     {
+      "music": "theme_wren"
+     }
+    ]
+   }
+  ],
+  "recap": "Odile Brack admitted she secretly over-rang Millbrook's bell for three years to keep the station open. The party chose what to do with her real logs.",
+  "skippable": true
+ },
+ "ev_maud": {
+  "cmds": [
+   {
+    "if": "quest_done:sq_names_doors",
+    "then": [
+     {
+      "say": "maud",
+      "text": "We're writing the names in wax now. Rain-proof. Thank you."
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:sq_names_doors>=3",
+      "then": [
+       {
+        "say": "maud",
+        "text": "Hollis. Pennet. The Carrow girls. Yes… yes. Those are our neighbours. I'll paint them on in wax this time."
+       },
+       {
+        "quest_complete": "sq_names_doors"
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:sq_names_doors",
+        "then": [
+         {
+          "say": "maud",
+          "text": "Three doors on the platform row. Read me what's left, would you?"
+         }
+        ],
+        "else": [
+         {
+          "say": "maud",
+          "text": "The rain's washed the names off the doors. I can't read them anymore — eyes, not memory. Well. Both.",
+          "expr": "sad"
+         },
+         {
+          "say": "maud",
+          "text": "Would you read them to me? The three on the platform row."
+         },
+         {
+          "quest_start": "sq_names_doors"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_door_note_a": {
+  "cmds": [
+   {
+    "if": "!quest:sq_names_doors",
+    "then": [
+     {
+      "narrate": "A soggy note: '…OLLIS — two boys, one dog, the dog's name is Captain.'"
+     }
+    ],
+    "else": [
+     {
+      "narrate": "A soggy note: '…OLLIS — two boys, one dog, the dog's name is Captain.'"
+     },
+     {
+      "if": "!flag:note_a",
+      "then": [
+       {
+        "flag": "note_a"
+       },
+       {
+        "if": "flag:note_a&flag:note_b&flag:note_c",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_names_doors",
+           3
+          ]
+         }
+        ],
+        "else": [
+         {
+          "if": "quest:sq_names_doors<1",
+          "then": [
+           {
+            "quest_stage": [
+             "sq_names_doors",
+             1
+            ]
+           }
+          ],
+          "else": [
+           {
+            "quest_stage": [
+             "sq_names_doors",
+             2
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_door_note_b": {
+  "cmds": [
+   {
+    "if": "!quest:sq_names_doors",
+    "then": [
+     {
+      "narrate": "A soggy note: 'PENN… — teacher. Ask her about the river.'"
+     }
+    ],
+    "else": [
+     {
+      "narrate": "A soggy note: 'PENN… — teacher. Ask her about the river.'"
+     },
+     {
+      "if": "!flag:note_b",
+      "then": [
+       {
+        "flag": "note_b"
+       },
+       {
+        "if": "flag:note_a&flag:note_b&flag:note_c",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_names_doors",
+           3
+          ]
+         }
+        ],
+        "else": [
+         {
+          "if": "quest:sq_names_doors<1",
+          "then": [
+           {
+            "quest_stage": [
+             "sq_names_doors",
+             1
+            ]
+           }
+          ],
+          "else": [
+           {
+            "quest_stage": [
+             "sq_names_doors",
+             2
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_door_note_c": {
+  "cmds": [
+   {
+    "if": "!quest:sq_names_doors",
+    "then": [
+     {
+      "narrate": "A soggy note: 'The CARROW girls. Mum works the station. Dad will be home soon.'"
+     }
+    ],
+    "else": [
+     {
+      "narrate": "A soggy note: 'The CARROW girls. Mum works the station. Dad will be home soon.'"
+     },
+     {
+      "if": "!flag:note_c",
+      "then": [
+       {
+        "flag": "note_c"
+       },
+       {
+        "if": "flag:note_a&flag:note_b&flag:note_c",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_names_doors",
+           3
+          ]
+         }
+        ],
+        "else": [
+         {
+          "if": "quest:sq_names_doors<1",
+          "then": [
+           {
+            "quest_stage": [
+             "sq_names_doors",
+             1
+            ]
+           }
+          ],
+          "else": [
+           {
+            "quest_stage": [
+             "sq_names_doors",
+             2
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_sera_list": {
+  "cmds": [
+   {
+    "say": "sera",
+    "text": "Sit. I want to show you something before we go."
+   },
+   {
+    "narrate": "A small book, its pages filled with names in different inks."
+   },
+   {
+    "say": "sera",
+    "text": "Every town on the Line has a ledger line that says 'acceptable loss'. Not a number. A category. I write down the names that go in it, so they're somewhere."
+   },
+   {
+    "say": "rowan",
+    "text": "There must be four hundred names here.",
+    "expr": "sad"
+   },
+   {
+    "say": "sera",
+    "text": "Four hundred and twelve. One of them used to be mine.",
+    "expr": "sad"
+   },
+   {
+    "say": "rowan",
+    "text": "What?"
+   },
+   {
+    "say": "sera",
+    "text": "Another time. When we're further from a bell.",
+    "expr": "neutral"
+   },
+   {
+    "quest_complete": "pq_sera_1"
+   }
+  ],
+  "recap": "Sera keeps a book of 412 names the Authority calls acceptable losses. She says one of them used to be hers."
+ },
+ "ev_ch2_end": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "narrate": "The freight pulls out of Millbrook Halt into the rain. Behind it, Odile stands on the platform until the last car rounds the bend."
+   },
+   {
+    "if": "flag:ch2_expose",
+    "then": [
+     {
+      "party_say": [
+       {
+        "who": "sera",
+        "text": "You did a hard thing well. Hard things don't feel good when they're done right.",
+        "expr": ""
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "party_say": [
+       {
+        "who": "garran",
+        "text": "You gave thirty families a winter. Can't say it's wrong.",
+        "expr": ""
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "say": "rowan",
+    "text": "Next stop, Glass Orchard. Then the coast. Then the Archive. Then Wren.",
+    "expr": "neutral"
+   },
+   {
+    "quest_complete": "mq_rainward"
+   },
+   {
+    "set_chapter": "ch3"
+   },
+   {
+    "end_slice": "Chapter Two",
+    "next": "Chapter Three — Glass Orchard"
+   }
+  ],
+  "recap": "The freight left Millbrook toward Glass Orchard.",
+  "skippable": true
+ },
+ "pt_rw_start": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "nessa",
+      "text": "The Millbrook folk will know what happened at the halt. Ask around the camp — Ide, the railworker by the stalls, the woman by the fire.",
+      "expr": ""
+     },
+     {
+      "who": "mira",
+      "text": "Somebody in that camp knows why the toll went wrong. Let's listen before we walk the line.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Let's talk to the people in the camp."
+    }
+   }
+  ]
+ },
+ "pt_rw": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "East along the rails to the freight. Stock up first.",
+      "expr": ""
+     },
+     {
+      "who": "nessa",
+      "text": "Rain's a smuggler's friend. Nobody looks up.",
+      "expr": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "pt_freight": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "sera",
+      "text": "Lamp-ghosts hate light. If anyone has something bright, now's the time.",
+      "expr": ""
+     },
+     {
+      "who": "nessa",
+      "text": "Brake car's forward. Watch the gaps between cars.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_cutting": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "That signal post's lamp will tell us its weakness. Red is frost, amber is storm, green is earth or fire.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "The signal post is ahead. Its lamp keeps changing colour."
+    }
+   }
+  ]
+ },
+ "pt_cutting_after": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "Just a signal post again. Strange how ordinary it looks."
+   }
+  ]
+ },
+ "pt_halt": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "sera",
+      "text": "Notes on every door. People holding on with paper and pins.",
+      "expr": "sad"
+     },
+     {
+      "who": "nessa",
+      "text": "Odile's in the office. I knew her, a little. Smugglers and stationmasters always know each other.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "ev_halt_wait": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "nessa",
+      "text": "The freight's waiting east, but Odile's in the office. We should talk to her first.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Not yet — I should talk to the stationmaster first."
+    }
+   },
+   {
+    "move": "player",
+    "path": [
+     [
+      23,
+      5
+     ]
+    ],
+    "speed": 5
+   }
+  ]
+ }
+}

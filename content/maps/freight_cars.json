@@ -1,0 +1,305 @@
+{
+ "id": "freight_cars",
+ "name": "The Stalled Freight",
+ "region": "The Rainward Line",
+ "music": "dungeon_undercroft",
+ "ambient": [
+  0.42,
+  0.42,
+  0.5
+ ],
+ "background": [
+  0.12,
+  0.13,
+  0.17
+ ],
+ "camera_dist": 12,
+ "rows": [
+  "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+  "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+  "M________M________M________M__________MM",
+  "M________M________M________M__________MM",
+  "__________________X___________________rr",
+  "M________M________M________M__________MM",
+  "M________M________M________M__________MM",
+  "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+ ],
+ "patches": [
+  {
+   "cond": "flag:brake_unlocked",
+   "at": [
+    18,
+    4
+   ],
+   "rows": [
+    "_"
+   ]
+  }
+ ],
+ "spawns": {
+  "default": [
+   1,
+   4,
+   "right"
+  ],
+  "west": [
+   1,
+   4,
+   "right"
+  ],
+  "east": [
+   38,
+   4,
+   "left"
+  ]
+ },
+ "props": [
+  {
+   "t": "crate",
+   "at": [
+    2,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    3,
+    2
+   ],
+   "size": 0.6
+  },
+  {
+   "t": "barrel",
+   "at": [
+    7,
+    6
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    5,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    12,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    16,
+    6
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    14,
+    6
+   ]
+  },
+  {
+   "t": "machine",
+   "at": [
+    20,
+    2
+   ],
+   "w": 2
+  },
+  {
+   "t": "gear",
+   "at": [
+    25,
+    6
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    23,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    30,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    31,
+    6
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    36,
+    2
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    34,
+    6
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    1,
+    6
+   ]
+  },
+  {
+   "t": "dust",
+   "at": [
+    20,
+    4
+   ],
+   "w": 18,
+   "h": 2
+  }
+ ],
+ "chests": [
+  {
+   "id": "fr_1",
+   "at": [
+    7,
+    2
+   ],
+   "items": {
+    "hi_tonic": 2
+   }
+  },
+  {
+   "id": "fr_2",
+   "at": [
+    25,
+    2
+   ],
+   "items": {
+    "oilskin_coat": 1
+   },
+   "gold": 200
+  },
+  {
+   "id": "fr_3",
+   "at": [
+    37,
+    6
+   ],
+   "items": {
+    "smelling_salts": 1,
+    "clear_drop": 2
+   }
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    4
+   ],
+   "kind": "exit",
+   "to": "rainward_junction",
+   "spawn": "east"
+  },
+  {
+   "at": [
+    39,
+    4
+   ],
+   "kind": "exit",
+   "to": "millbrook_cutting",
+   "spawn": "west"
+  },
+  {
+   "at": [
+    1,
+    4
+   ],
+   "kind": "event",
+   "event": "ev_freight_enter",
+   "once": true
+  },
+  {
+   "at": [
+    1,
+    6
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    18,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_brake_door",
+   "label": "Door",
+   "cond": "!flag:brake_unlocked"
+  },
+  {
+   "at": [
+    30,
+    4
+   ],
+   "kind": "event",
+   "event": "ev_marksmen",
+   "cond": "!flag:marksmen_done"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "brakeman",
+   "sprite": "railworker",
+   "at": [
+    15,
+    3
+   ],
+   "face": "left",
+   "cond": "!flag:brake_unlocked",
+   "talk": "ev_tull"
+  }
+ ],
+ "encounters": {
+  "table": [
+   {
+    "enc": "tr_wraiths",
+    "w": 2
+   },
+   {
+    "enc": "tr_leeches",
+    "w": 2
+   },
+   {
+    "enc": "tr_golem",
+    "w": 1
+   },
+   {
+    "enc": "rw_hounds",
+    "w": 2
+   }
+  ],
+  "min_steps": 12,
+  "rate": 1.0
+ },
+ "party_talk": [
+  {
+   "event": "pt_freight"
+  }
+ ]
+}

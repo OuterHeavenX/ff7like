@@ -537,5 +537,483 @@
    }
   ],
   "desc": "Boss: a malfunctioning extraction construct. Telegraphs its Discordant Peal — Guard, or Stun it (shield bash, shoulder charge, Spark Bulwark) to break the charge. Weak to storm; immune to sound."
+ },
+ {
+  "id": "rust_hound",
+  "name": "Rust Hound",
+  "role": "aggressor",
+  "level": 8,
+  "sprite": "rust_hound",
+  "stats": {
+   "hp": 150,
+   "atk": 24,
+   "mag": 6,
+   "def": 14,
+   "res": 9,
+   "spd": 16,
+   "dex": 14
+  },
+  "elements": {
+   "frost": 1.5,
+   "storm": 1.3
+  },
+  "status_res": {},
+  "ai": [
+   {
+    "skill": "attack",
+    "w": 2
+   },
+   {
+    "skill": "e_bite_rush",
+    "w": 3
+   },
+   {
+    "skill": "e_howl",
+    "w": 1,
+    "if": "self_no:haste&turn%3"
+   }
+  ],
+  "xp": 34,
+  "jp": 6,
+  "gold": 22,
+  "drops": [
+   {
+    "item": "brass_scrap",
+    "chance": 0.4
+   }
+  ],
+  "desc": "Aggressor: fast pack hunter. Its howl hastes the pack — Slow or Stun it first."
+ },
+ {
+  "id": "signal_wraith",
+  "name": "Signal Wraith",
+  "role": "disruptor",
+  "level": 8,
+  "sprite": "signal_wraith",
+  "stats": {
+   "hp": 120,
+   "atk": 10,
+   "mag": 22,
+   "def": 10,
+   "res": 18,
+   "spd": 12,
+   "dex": 12
+  },
+  "elements": {
+   "light": 1.5,
+   "shadow": 0.5,
+   "physical": 0.8
+  },
+  "status_res": {
+   "poison": 1.0,
+   "sleep": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_red_light",
+    "w": 3
+   },
+   {
+    "skill": "e_wrong_way",
+    "w": 2,
+    "if": "no_foe_status:slow"
+   }
+  ],
+  "xp": 36,
+  "jp": 7,
+  "gold": 18,
+  "drops": [
+   {
+    "item": "echo_dust",
+    "chance": 0.4
+   }
+  ],
+  "desc": "Disruptor: a lamp-spirit that stuns and slows. Weak to light."
+ },
+ {
+  "id": "coal_golem",
+  "name": "Coal Golem",
+  "role": "protector",
+  "level": 9,
+  "sprite": "coal_golem",
+  "stats": {
+   "hp": 280,
+   "atk": 26,
+   "mag": 8,
+   "def": 26,
+   "res": 10,
+   "spd": 7,
+   "dex": 8
+  },
+  "elements": {
+   "frost": 1.5,
+   "fire": -1.0,
+   "physical": 0.8
+  },
+  "status_res": {
+   "burn": 1.0,
+   "poison": 1.0,
+   "sleep": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_slag_fist",
+    "w": 3
+   },
+   {
+    "skill": "e_stoke",
+    "w": 2,
+    "if": "self_no:cover&allies<3"
+   }
+  ],
+  "xp": 48,
+  "jp": 8,
+  "gold": 30,
+  "drops": [
+   {
+    "item": "frost_flask",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Protector: covers its allies and absorbs fire. Frost cracks it."
+ },
+ {
+  "id": "rail_spider",
+  "name": "Rail Spider",
+  "role": "disruptor",
+  "level": 8,
+  "sprite": "rail_spider",
+  "stats": {
+   "hp": 130,
+   "atk": 20,
+   "mag": 10,
+   "def": 12,
+   "res": 12,
+   "spd": 14,
+   "dex": 16,
+   "evade": 0.08
+  },
+  "elements": {
+   "fire": 1.5,
+   "earth": 0.5
+  },
+  "status_res": {
+   "poison": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_venom_bite",
+    "w": 3
+   },
+   {
+    "skill": "e_web",
+    "w": 2,
+    "if": "no_foe_status:slow"
+   }
+  ],
+  "xp": 33,
+  "jp": 6,
+  "gold": 16,
+  "drops": [
+   {
+    "item": "antidote",
+    "chance": 0.5
+   }
+  ],
+  "desc": "Disruptor: poisons and webs (Slow). Weak to fire."
+ },
+ {
+  "id": "spore_toad",
+  "name": "Spore Toad",
+  "role": "healer",
+  "level": 8,
+  "sprite": "spore_toad",
+  "stats": {
+   "hp": 160,
+   "atk": 14,
+   "mag": 18,
+   "def": 12,
+   "res": 14,
+   "spd": 9,
+   "dex": 9
+  },
+  "elements": {
+   "fire": 1.5,
+   "frost": 0.75,
+   "earth": 0.5
+  },
+  "status_res": {
+   "poison": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_spore_mend",
+    "w": 4,
+    "if": "ally_hp<0.7"
+   },
+   {
+    "skill": "e_spore_cloud",
+    "w": 2
+   },
+   {
+    "skill": "attack",
+    "w": 1
+   }
+  ],
+  "xp": 38,
+  "jp": 7,
+  "gold": 20,
+  "drops": [
+   {
+    "item": "echo_salve",
+    "chance": 0.2
+   }
+  ],
+  "desc": "Healer: heals all allies. Burn it — fire is its weakness, and Burn cuts healing."
+ },
+ {
+  "id": "storm_kite",
+  "name": "Storm Kite",
+  "role": "elemental",
+  "level": 9,
+  "sprite": "storm_kite",
+  "stats": {
+   "hp": 135,
+   "atk": 12,
+   "mag": 24,
+   "def": 10,
+   "res": 16,
+   "spd": 15,
+   "dex": 14,
+   "evade": 0.1
+  },
+  "elements": {
+   "storm": -1.0,
+   "earth": 1.5,
+   "frost": 1.2
+  },
+  "status_res": {
+   "sleep": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_kite_bolt",
+    "w": 3
+   },
+   {
+    "skill": "e_squall",
+    "w": 2
+   }
+  ],
+  "xp": 40,
+  "jp": 7,
+  "gold": 24,
+  "drops": [
+   {
+    "item": "storm_jar",
+    "chance": 0.25
+   }
+  ],
+  "desc": "Elemental: absorbs storm — don't use Spark Coil! Earth grounds it."
+ },
+ {
+  "id": "memory_leech",
+  "name": "Memory Leech",
+  "role": "disruptor",
+  "level": 9,
+  "sprite": "memory_leech",
+  "stats": {
+   "hp": 140,
+   "atk": 12,
+   "mag": 22,
+   "def": 12,
+   "res": 14,
+   "spd": 11,
+   "dex": 12
+  },
+  "elements": {
+   "light": 1.5,
+   "fire": 1.3,
+   "shadow": 0.0
+  },
+  "status_res": {
+   "silence": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_siphon",
+    "w": 3
+   },
+   {
+    "skill": "attack",
+    "w": 1
+   }
+  ],
+  "xp": 42,
+  "jp": 8,
+  "gold": 20,
+  "drops": [
+   {
+    "item": "clear_drop",
+    "chance": 0.3
+   },
+   {
+    "item": "echo_dust",
+    "chance": 0.3
+   }
+  ],
+  "desc": "Disruptor: drains HP and Silences spellcasters. Gadgets and physical attacks still work."
+ },
+ {
+  "id": "line_marksman",
+  "name": "Line Marksman",
+  "role": "aggressor",
+  "level": 9,
+  "sprite": "line_marksman",
+  "row": "back",
+  "ranged": true,
+  "stats": {
+   "hp": 150,
+   "atk": 26,
+   "mag": 8,
+   "def": 12,
+   "res": 10,
+   "spd": 12,
+   "dex": 18
+  },
+  "elements": {
+   "storm": 1.3
+  },
+  "status_res": {
+   "blind": 0.3
+  },
+  "ai": [
+   {
+    "skill": "e_spot",
+    "w": 2,
+    "if": "no_foe_status:mark"
+   },
+   {
+    "skill": "e_aimed_shot",
+    "w": 3,
+    "target": "back"
+   }
+  ],
+  "xp": 44,
+  "jp": 8,
+  "gold": 40,
+  "drops": [
+   {
+    "item": "hi_tonic",
+    "chance": 0.2
+   }
+  ],
+  "desc": "Aggressor (back row): marks a target then snipes your back row. Blind ruins its aim."
+ },
+ {
+  "id": "signal_warden",
+  "name": "The Signal Warden",
+  "role": "boss",
+  "level": 11,
+  "sprite": "signal_warden",
+  "boss": true,
+  "stats": {
+   "hp": 2800,
+   "atk": 34,
+   "mag": 30,
+   "def": 22,
+   "res": 20,
+   "spd": 10,
+   "dex": 12
+  },
+  "elements": {
+   "frost": 1.5,
+   "fire": -1.0,
+   "storm": 0.75
+  },
+  "status_res": {
+   "sleep": 1.0,
+   "stun": 0.55,
+   "poison": 0.4,
+   "blind": 0.5,
+   "silence": 0.5,
+   "slow": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_semaphore",
+    "w": 3
+   },
+   {
+    "skill": "e_signal_flare",
+    "w": 2
+   }
+  ],
+  "phases": [
+   {
+    "hp_below": 0.7,
+    "message": "The signal turns AMBER. Its fire-plating cools and the storm-wiring sparks — now weak to STORM, resists frost.",
+    "elements": {
+     "storm": 1.5,
+     "frost": 0.5,
+     "fire": 1.0
+    },
+    "ai": [
+     {
+      "skill": "e_semaphore",
+      "w": 3
+     },
+     {
+      "skill": "e_call_wraiths",
+      "w": 2,
+      "if": "allies<3"
+     },
+     {
+      "skill": "e_clear_the_line",
+      "w": 2,
+      "if": "turn%3"
+     }
+    ]
+   },
+   {
+    "hp_below": 0.35,
+    "message": "The signal turns GREEN — all lines open. Its casing shudders: now weak to EARTH and FIRE, absorbs storm. It moves faster!",
+    "elements": {
+     "earth": 1.5,
+     "fire": 1.3,
+     "storm": -1.0,
+     "frost": 1.0
+    },
+    "stat_mod": {
+     "spd": 1.3,
+     "def": 0.8
+    },
+    "ai": [
+     {
+      "skill": "e_clear_the_line",
+      "w": 3,
+      "if": "turn%2"
+     },
+     {
+      "skill": "e_semaphore",
+      "w": 3
+     },
+     {
+      "skill": "e_signal_flare",
+      "w": 2
+     }
+    ]
+   }
+  ],
+  "xp": 700,
+  "jp": 70,
+  "gold": 900,
+  "drops": [
+   {
+    "item": "signal_lens",
+    "chance": 1.0
+   }
+  ],
+  "desc": "Boss: the cutting's automated signal post. Its lamp shows its weakness: RED (frost), AMBER (storm), GREEN (earth/fire). Telegraphs Clear the Line — Guard or Stun."
  }
 ]

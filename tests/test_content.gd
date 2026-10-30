@@ -158,7 +158,16 @@ func test_maps_connected() -> void:
 		t.ok(not m.is_empty(), "map %s loads" % mid)
 		if mid.begins_with("arena_"):
 			continue
-		var pm := m.duplicate()
+		# Reachability assumes every conditional patch has been unlocked (doors,
+		# drained channels); each patch's condition is set by some event.
+		var pm := m.duplicate(true)
+		var rows: Array = pm.get("rows", []).duplicate()
+		for patch: Dictionary in m.get("patches", []):
+			for i in patch.rows.size():
+				var y: int = int(patch.at[1]) + i
+				var r: String = rows[y]
+				rows[y] = r.substr(0, int(patch.at[0])) + str(patch.rows[i]) + r.substr(int(patch.at[0]) + str(patch.rows[i]).length())
+		pm["rows"] = rows
 		var g := MapBuilder.parse_grid(pm)
 		var blockers := {}
 		for p: Dictionary in m.get("props", []):

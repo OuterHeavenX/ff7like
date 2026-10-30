@@ -1,15 +1,222 @@
 [
- {"id": "story_wardens", "enemies": ["warden", "warden"], "arena": "arena_town", "music": "battle", "can_escape": false},
- {"id": "story_sergeant", "enemies": ["warden", "warden_sergeant", "warden"], "arena": "arena_town", "music": "battle", "can_escape": false},
- {"id": "uc_rats", "enemies": ["brass_rat", "brass_rat", "brass_rat"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_moths", "enemies": ["echo_moth", "brass_rat", "echo_moth"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_mender", "enemies": ["brass_rat", "rust_mender", "brass_rat"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_wisps", "enemies": ["tallow_wisp", "tallow_wisp"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_wisp_mender", "enemies": ["tallow_wisp", "rust_mender"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_crabs", "enemies": ["silt_crab", "rust_mender"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_crab_pair", "enemies": ["silt_crab", "silt_crab"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_echo", "enemies": ["hollow_echo", "echo_moth"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "uc_echo_wisp", "enemies": ["hollow_echo", "tallow_wisp"], "arena": "arena_undercroft", "music": "battle"},
- {"id": "elite_ironside", "enemies": ["ironside"], "arena": "arena_undercroft", "music": "boss", "can_escape": false},
- {"id": "boss_clapper", "enemies": ["hollow_clapper"], "arena": "arena_bellcore", "music": "boss", "can_escape": false, "boss": true}
+ {
+  "id": "story_wardens",
+  "enemies": [
+   "warden",
+   "warden"
+  ],
+  "arena": "arena_town",
+  "music": "battle",
+  "can_escape": false
+ },
+ {
+  "id": "story_sergeant",
+  "enemies": [
+   "warden",
+   "warden_sergeant",
+   "warden"
+  ],
+  "arena": "arena_town",
+  "music": "battle",
+  "can_escape": false
+ },
+ {
+  "id": "uc_rats",
+  "enemies": [
+   "brass_rat",
+   "brass_rat",
+   "brass_rat"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_moths",
+  "enemies": [
+   "echo_moth",
+   "brass_rat",
+   "echo_moth"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_mender",
+  "enemies": [
+   "brass_rat",
+   "rust_mender",
+   "brass_rat"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_wisps",
+  "enemies": [
+   "tallow_wisp",
+   "tallow_wisp"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_wisp_mender",
+  "enemies": [
+   "tallow_wisp",
+   "rust_mender"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_crabs",
+  "enemies": [
+   "silt_crab",
+   "rust_mender"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_crab_pair",
+  "enemies": [
+   "silt_crab",
+   "silt_crab"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_echo",
+  "enemies": [
+   "hollow_echo",
+   "echo_moth"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "uc_echo_wisp",
+  "enemies": [
+   "hollow_echo",
+   "tallow_wisp"
+  ],
+  "arena": "arena_undercroft",
+  "music": "battle"
+ },
+ {
+  "id": "elite_ironside",
+  "enemies": [
+   "ironside"
+  ],
+  "arena": "arena_undercroft",
+  "music": "boss",
+  "can_escape": false
+ },
+ {
+  "id": "boss_clapper",
+  "enemies": [
+   "hollow_clapper"
+  ],
+  "arena": "arena_bellcore",
+  "music": "boss",
+  "can_escape": false,
+  "boss": true
+ },
+ {
+  "id": "rw_hounds",
+  "enemies": [
+   "rust_hound",
+   "rust_hound"
+  ],
+  "arena": "arena_rail",
+  "music": "battle"
+ },
+ {
+  "id": "rw_hounds_spider",
+  "enemies": [
+   "rust_hound",
+   "rail_spider",
+   "rust_hound"
+  ],
+  "arena": "arena_rail",
+  "music": "battle"
+ },
+ {
+  "id": "rw_toad_spiders",
+  "enemies": [
+   "rail_spider",
+   "spore_toad",
+   "rail_spider"
+  ],
+  "arena": "arena_rail",
+  "music": "battle"
+ },
+ {
+  "id": "rw_kites",
+  "enemies": [
+   "storm_kite",
+   "storm_kite"
+  ],
+  "arena": "arena_rail",
+  "music": "battle"
+ },
+ {
+  "id": "rw_golem_toad",
+  "enemies": [
+   "coal_golem",
+   "spore_toad"
+  ],
+  "arena": "arena_rail",
+  "music": "battle"
+ },
+ {
+  "id": "tr_wraiths",
+  "enemies": [
+   "signal_wraith",
+   "rust_hound"
+  ],
+  "arena": "arena_train",
+  "music": "battle"
+ },
+ {
+  "id": "tr_leeches",
+  "enemies": [
+   "memory_leech",
+   "memory_leech",
+   "rail_spider"
+  ],
+  "arena": "arena_train",
+  "music": "battle"
+ },
+ {
+  "id": "tr_golem",
+  "enemies": [
+   "coal_golem",
+   "signal_wraith"
+  ],
+  "arena": "arena_train",
+  "music": "battle"
+ },
+ {
+  "id": "tr_marksmen",
+  "enemies": [
+   "line_marksman",
+   "warden_sergeant",
+   "line_marksman"
+  ],
+  "arena": "arena_train",
+  "music": "battle",
+  "can_escape": false
+ },
+ {
+  "id": "boss_signal_warden",
+  "enemies": [
+   "signal_warden"
+  ],
+  "arena": "arena_rail",
+  "music": "boss",
+  "can_escape": false,
+  "boss": true
+ }
 ]

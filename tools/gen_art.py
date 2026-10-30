@@ -116,6 +116,12 @@ CHARACTERS = {
                       pants="#4a3a2a", boots="#2a2018", accent="#c04040", acc="apron", build="broad", weapon="none"),
     "mentor": dict(skin="#b88060", hair="#d0d0d0", hair_style="cropped_beard", coat="#2e5a4a", coat2="#1e3e32",
                    pants="#2a3a34", boots="#222", accent="#e0c070", acc="none", build="normal", weapon="none"),
+    "stationmaster": dict(skin="#d8a880", hair="#5a5a60", hair_style="bun", coat="#2a4a6a", coat2="#1a3048",
+                          pants="#2a2a34", boots="#1a1a20", accent="#e0c070", acc="collar", build="normal", weapon="none"),
+    "railworker": dict(skin="#b07850", hair="#3a2a1a", hair_style="cap", coat="#6a5040", coat2="#4a3628",
+                       pants="#3a3a3a", boots="#2a2420", accent="#d08040", acc="none", build="broad", weapon="none"),
+    "captain": dict(skin="#c89070", hair="#2a2a2a", hair_style="hat", coat="#3a2a4a", coat2="#28203a",
+                    pants="#2a2a34", boots="#1a1a20", accent="#c0a040", acc="none", build="tall", weapon="none"),
     "survivor": dict(skin="#e0b898", hair="#5a4030", hair_style="short", coat="#6a6a72", coat2="#4a4a52",
                      pants="#3a3a42", boots="#2a2a30", accent="#a0a0a8", acc="none", build="normal", weapon="none"),
 }
@@ -867,6 +873,159 @@ def en_captain(frame):
     return outline(img)
 
 
+
+
+def en_rust_hound(frame):
+    img, d = enemy_canvas(52, 36)
+    body = rgb("#8a4a2a")
+    dk = rgb("#5a2a18")
+    o = frame
+    d.ellipse([12, 10 + o, 40, 26], fill=body)
+    d.polygon([(38, 12), (50, 8 + o), (50, 18), (40, 22)], fill=body)
+    d.polygon([(44, 8 + o), (46, 2 + o), (48, 9 + o)], fill=dk)
+    for lx, ly in ((14, 24), (20, 24), (32, 24), (38, 24)):
+        d.line([(lx, ly), (lx - 2 + o * 2, 34)], fill=dk, width=3)
+    d.line([(12, 16), (2, 10 - o)], fill=dk, width=2)
+    for i in range(16, 38, 5):
+        d.point((i, 12 + o), fill=rgb("#c07040"))
+    d.rectangle([46, 11 + o, 47, 12 + o], fill=rgb("#ffcc40"))
+    return outline(img)
+
+
+def en_signal_wraith(frame):
+    img, d = enemy_canvas(36, 52)
+    c = rgb("#6a8a7a")
+    lamp = rgb("#ff5040") if frame == 0 else rgb("#40ff80")
+    d.rectangle([16, 4, 19, 30], fill=rgb("#3a3a42"))
+    d.ellipse([10, 2, 26, 16], fill=rgb("#2a2a30"))
+    d.ellipse([13, 5, 23, 13], fill=lamp)
+    sway = frame * 2 - 1
+    d.polygon([(8, 18), (28, 18), (31 + sway, 50), (22, 44), (18, 51), (13, 44), (5 + sway, 50)], fill=c)
+    eyes(d, 14, 22, rgb("#ffffff"), 6, 2)
+    img = outline(img, (20, 30, 28, 255))
+    px_ = img.load()
+    for y in range(18, 52):
+        for x in range(36):
+            r, g, b, a = px_[x, y]
+            if a > 0:
+                px_[x, y] = (r, g, b, 200)
+    return img
+
+
+def en_coal_golem(frame):
+    img, d = enemy_canvas(56, 60)
+    c = rgb("#3a3a40")
+    hot = rgb("#ff7a30")
+    o = frame
+    d.rectangle([14, 14, 42, 46], fill=c)
+    d.rectangle([18, 2 + o, 38, 16 + o], fill=c)
+    d.rectangle([2, 18, 14, 40], fill=c)
+    d.rectangle([42, 18, 54, 40], fill=c)
+    d.rectangle([16, 46, 26, 58], fill=c)
+    d.rectangle([30, 46, 40, 58], fill=c)
+    for (x, y) in ((20, 20), (32, 28), (24, 36), (36, 18)):
+        d.line([(x, y), (x + 4, y + 3)], fill=hot, width=2)
+    d.rectangle([22, 7 + o, 25, 9 + o], fill=hot)
+    d.rectangle([31, 7 + o, 34, 9 + o], fill=hot)
+    return outline(img)
+
+
+def en_rail_spider(frame):
+    img, d = enemy_canvas(52, 36)
+    c = rgb("#4a5a3a")
+    o = frame * 2
+    for i, lx in enumerate((6, 12, 40, 46)):
+        d.line([(26, 18), (lx, 6 + (o if i % 2 else -o) + 6)], fill=rgb("#2a3020"), width=2)
+        d.line([(lx, 12 + (o if i % 2 else -o)), (lx + (-3 if lx < 26 else 3), 34)], fill=rgb("#2a3020"), width=2)
+    d.ellipse([16, 10, 36, 28], fill=c)
+    d.ellipse([20, 22, 32, 32], fill=rgb("#6a7a4a"))
+    for x in (21, 24, 28, 31):
+        d.point((x, 15), fill=rgb("#ff4040"))
+    d.line([(22, 24), (30, 30)], fill=rgb("#c0d080"))
+    return outline(img)
+
+
+def en_spore_toad(frame):
+    img, d = enemy_canvas(44, 36)
+    c = rgb("#7a8a4a")
+    o = frame
+    d.ellipse([6, 10 - o, 38, 34], fill=c)
+    d.ellipse([10, 4 - o, 20, 14 - o], fill=c)
+    d.ellipse([24, 4 - o, 34, 14 - o], fill=c)
+    d.ellipse([12, 6 - o, 17, 11 - o], fill=rgb("#ffe080"))
+    d.ellipse([27, 6 - o, 32, 11 - o], fill=rgb("#ffe080"))
+    for (x, y) in ((14, 20), (24, 16), (30, 24), (18, 28)):
+        d.ellipse([x, y, x + 4, y + 4], fill=rgb("#d06a8a"))
+    d.arc([12, 18, 32, 30], 20, 160, fill=rgb("#3a4020"))
+    return outline(img)
+
+
+def en_storm_kite(frame):
+    img, d = enemy_canvas(48, 44)
+    c = rgb("#4a6aa8")
+    flap = frame * 4
+    d.polygon([(24, 6), (4, 18 + flap), (24, 26), (44, 18 + flap)], fill=c)
+    d.polygon([(24, 6), (14, 16), (24, 22), (34, 16)], fill=rgb("#8ab0e8"))
+    d.line([(24, 26), (22, 42)], fill=rgb("#e8e0a0"), width=1)
+    for y in (32, 37):
+        d.line([(20, y), (24, y + 2)], fill=rgb("#ff6040"), width=2)
+    d.line([(16, 14), (20, 18), (17, 20)], fill=rgb("#fff080"), width=2)
+    eyes(d, 20, 12, rgb("#fff8c0"), 6, 2)
+    return outline(img)
+
+
+def en_memory_leech(frame):
+    img, d = enemy_canvas(48, 28)
+    c = rgb("#8a4a7a")
+    o = frame * 2
+    pts = [(4, 16), (12, 10 - o), (24, 8), (36, 10 + o), (44, 14), (36, 20 - o), (24, 22), (12, 20 + o)]
+    d.polygon(pts, fill=c)
+    for x in range(10, 40, 6):
+        d.line([(x, 12), (x + 2, 20)], fill=rgb("#5a2a4a"))
+    d.ellipse([38, 11, 46, 19], fill=rgb("#2a1a2a"))
+    d.ellipse([40, 13, 44, 17], fill=rgb("#c8a8ff"))
+    return outline(img)
+
+
+def en_marksman(frame):
+    p = dict(CHARACTERS["warden"])
+    p["coat"], p["coat2"], p["accent"] = "#4a5a3a", "#323e28", "#d0c080"
+    p["weapon"] = "bow"
+    base = draw_char_frame(p, "right", frame)
+    img = Image.new("RGBA", (40, 40), CLEAR)
+    big = base.resize((30, 40), Image.NEAREST)
+    img.paste(big, (5, 0), big)
+    d = ImageDraw.Draw(img)
+    d.arc([28, 8, 40, 32], 270, 90, fill=rgb("#7a5a2a"), width=2)
+    d.line([(34, 8), (34, 32)], fill=rgb("#e8e0c8"))
+    return outline(img)
+
+
+def en_signal_warden(frame):
+    """Boss: the Signal Warden, an automated rail-signal construct."""
+    img, d = enemy_canvas(96, 100)
+    iron = rgb("#4a4e58")
+    dk = rgb("#2a2c34")
+    d.rectangle([40, 30, 56, 96], fill=iron)
+    d.rectangle([30, 86, 66, 98], fill=dk)
+    d.rectangle([28, 14, 68, 46], fill=iron)
+    d.rectangle([32, 18, 64, 42], fill=dk)
+    a = -20 if frame == 0 else 20
+    import math as _m
+    for side, base_x in ((-1, 28), (1, 68)):
+        ang = _m.radians(a * side - 30 * side)
+        ex = base_x + side * int(30 * _m.cos(ang))
+        ey = 24 - int(30 * _m.sin(ang)) * side
+        d.line([(base_x, 24), (ex, ey)], fill=iron, width=5)
+        d.rectangle([ex - 5, ey - 5, ex + 5, ey + 5], fill=rgb("#c8b060"))
+    lamps = [rgb("#ff4030"), rgb("#ffc030"), rgb("#40ff70")]
+    for i, c in enumerate(lamps):
+        on = (i == frame) or (i == 2 and frame == 1)
+        d.ellipse([36 + i * 9, 24, 43 + i * 9, 31], fill=c if on else shade(c, 0.35))
+    d.rectangle([44, 50, 52, 80], fill=rgb("#c8b060"))
+    return outline(img)
+
+
 ENEMIES = {
     "warden": en_warden,
     "warden_sergeant": en_sergeant,
@@ -879,6 +1038,15 @@ ENEMIES = {
     "echo_mote": en_mote,
     "hollow_clapper": en_clapper,
     "ironside": en_captain,
+    "rust_hound": en_rust_hound,
+    "signal_wraith": en_signal_wraith,
+    "coal_golem": en_coal_golem,
+    "rail_spider": en_rail_spider,
+    "spore_toad": en_spore_toad,
+    "storm_kite": en_storm_kite,
+    "memory_leech": en_memory_leech,
+    "line_marksman": en_marksman,
+    "signal_warden": en_signal_warden,
 }
 
 

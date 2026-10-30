@@ -103,5 +103,60 @@
   "id": "nessa_barge",
   "name": "Nessa",
   "portrait": "nessa"
+ },
+ {
+  "id": "odile",
+  "name": "Odile Brack",
+  "portrait": "stationmaster"
+ },
+ {
+  "id": "ferro",
+  "name": "Captain Ferro",
+  "portrait": "captain"
+ },
+ {
+  "id": "maud",
+  "name": "Maud",
+  "portrait": "elder"
+ },
+ {
+  "id": "ide",
+  "name": "Quartermaster Ide",
+  "portrait": "railworker"
+ },
+ {
+  "id": "clerk",
+  "name": "Depot Clerk",
+  "portrait": "postmistress"
+ },
+ {
+  "id": "dell",
+  "name": "Dell",
+  "portrait": "merchant"
+ },
+ {
+  "id": "hobb",
+  "name": "Hobb",
+  "portrait": "railworker"
+ },
+ {
+  "id": "brakeman",
+  "name": "Brakeman Tull",
+  "portrait": "railworker"
+ },
+ {
+  "id": "witness_a",
+  "name": "Railworker Abe",
+  "portrait": "railworker"
+ },
+ {
+  "id": "witness_b",
+  "name": "Widow Carrow",
+  "portrait": "townswoman"
+ },
+ {
+  "id": "pilot",
+  "name": "Barge Pilot",
+  "portrait": "townsman"
  }
 ]

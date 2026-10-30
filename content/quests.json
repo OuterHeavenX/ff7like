@@ -1,61 +1,405 @@
 [
- {"id": "mq_sealed_fork", "type": "main", "title": "The Sealed Fork", "giver": "Postmistress Hale", "location": "Bellweather", "chapter": "prologue",
+ {
+  "id": "mq_sealed_fork",
+  "type": "main",
+  "title": "The Sealed Fork",
+  "giver": "Postmistress Hale",
+  "location": "Bellweather",
+  "chapter": "prologue",
   "summary": "A festival-night delivery: an Authority tuning fork for the Bell Station.",
   "stages": [
-   {"objective": "Pick up tonight's delivery at the Post Office on Lantern Square.", "recap": "Nessa said Postmistress Hale was looking for you. The Post Office is east of Wick Street, on Lantern Square."},
-   {"objective": "Deliver the sealed fork to the Bell Station (north of Lantern Square).", "recap": "Hale gave you a sealed Authority tuning fork for engineer Mira Fen at the Bell Station."},
-   {"objective": "Join the Lanternwake crowd in Lantern Square for the toll.", "recap": "Mira refused to install the fork — it was tuned wrong. Wren asked you to meet her at the Lantern Bridge after the toll."},
-   {"objective": "Done.", "recap": "The Lanternwake toll misfired."}],
-  "rewards": {"gold": 50}},
- {"id": "mq_street_forgot", "type": "main", "title": "What the Street Forgot", "giver": "—", "location": "Bellweather", "chapter": "ch1",
+   {
+    "objective": "Pick up tonight's delivery at the Post Office on Lantern Square.",
+    "recap": "Nessa said Postmistress Hale was looking for you. The Post Office is east of Wick Street, on Lantern Square."
+   },
+   {
+    "objective": "Deliver the sealed fork to the Bell Station (north of Lantern Square).",
+    "recap": "Hale gave you a sealed Authority tuning fork for engineer Mira Fen at the Bell Station."
+   },
+   {
+    "objective": "Join the Lanternwake crowd in Lantern Square for the toll.",
+    "recap": "Mira refused to install the fork — it was tuned wrong. Wren asked you to meet her at the Lantern Bridge after the toll."
+   },
+   {
+    "objective": "Done.",
+    "recap": "The Lanternwake toll misfired."
+   }
+  ],
+  "rewards": {
+   "gold": 50
+  }
+ },
+ {
+  "id": "mq_street_forgot",
+  "type": "main",
+  "title": "What the Street Forgot",
+  "giver": "—",
+  "location": "Bellweather",
+  "chapter": "ch1",
   "summary": "After the misfired toll, everyone on Wick Street has forgotten Wren Vale. Rowan hasn't.",
   "stages": [
-   {"objective": "Find Wren at the Lantern Bridge on Wick Street.", "recap": "The toll went wrong. Wren said she'd wait at the Lantern Bridge."},
-   {"objective": "Find proof that Wren existed. (Check the Post Office, the bridge, and ask the children.)", "recap": "Nobody on Wick Street remembers Wren — not even the neighbours who watched her grow up. You found her scarf. You need more proof."},
-   {"objective": "Go home to Wick Street and think things through.", "recap": "You have three pieces of proof: the scarf, the ledger page, and Pim's drawing. Wren existed."},
-   {"objective": "Meet Mira at the Copper Kettle inn on Lantern Square.", "recap": "Wardens tried to take the tuning fork. Garran Holt stepped in. Mira wants to talk at the Copper Kettle."},
-   {"objective": "Enter the Station Undercroft through the canal hatch under the Lantern Bridge.", "recap": "The night crew is trapped beneath the sealed station. Mira's key opens the canal maintenance hatch on the Wick Street dock."},
-   {"objective": "Find the trapped night crew in the Undercroft.", "recap": "Three engineers are missing below. The extraction logs may prove what happened to Wren."},
-   {"objective": "Reach the bell core and stop the misfiring construct.", "recap": "The survivors say a construct called the Clapper is still tolling in the bell core."},
-   {"objective": "Escape Bellweather by barge.", "recap": "You have Wren's countersigned log. The Authority will be looking for you."}],
-  "rewards": {"xp": 100, "gold": 200}},
- {"id": "sq_lamplighter", "type": "side", "title": "The Lamplighter's Count", "giver": "Oswin the Lamplighter", "location": "Bellweather",
+   {
+    "objective": "Find Wren at the Lantern Bridge on Wick Street.",
+    "recap": "The toll went wrong. Wren said she'd wait at the Lantern Bridge."
+   },
+   {
+    "objective": "Find proof that Wren existed. (Check the Post Office, the bridge, and ask the children.)",
+    "recap": "Nobody on Wick Street remembers Wren — not even the neighbours who watched her grow up. You found her scarf. You need more proof."
+   },
+   {
+    "objective": "Go home to Wick Street and think things through.",
+    "recap": "You have three pieces of proof: the scarf, the ledger page, and Pim's drawing. Wren existed."
+   },
+   {
+    "objective": "Meet Mira at the Copper Kettle inn on Lantern Square.",
+    "recap": "Wardens tried to take the tuning fork. Garran Holt stepped in. Mira wants to talk at the Copper Kettle."
+   },
+   {
+    "objective": "Enter the Station Undercroft through the canal hatch under the Lantern Bridge.",
+    "recap": "The night crew is trapped beneath the sealed station. Mira's key opens the canal maintenance hatch on the Wick Street dock."
+   },
+   {
+    "objective": "Find the trapped night crew in the Undercroft.",
+    "recap": "Three engineers are missing below. The extraction logs may prove what happened to Wren."
+   },
+   {
+    "objective": "Reach the bell core and stop the misfiring construct.",
+    "recap": "The survivors say a construct called the Clapper is still tolling in the bell core."
+   },
+   {
+    "objective": "Escape Bellweather by barge.",
+    "recap": "You have Wren's countersigned log. The Authority will be looking for you."
+   }
+  ],
+  "rewards": {
+   "xp": 100,
+   "gold": 200
+  }
+ },
+ {
+  "id": "sq_lamplighter",
+  "type": "side",
+  "title": "The Lamplighter's Count",
+  "giver": "Oswin the Lamplighter",
+  "location": "Bellweather",
   "summary": "Four festival lanterns went dark during the toll. Oswin can't remember which ones, only that the count is wrong.",
   "stages": [
-   {"objective": "Relight the dark lanterns with Lantern Oil (0/4 — two on Wick Street, two on Lantern Square).", "recap": "Oswin gave you lantern oil. Dark lanterns are marked by cold, unlit glass."},
-   {"objective": "Relight the dark lanterns (1/4).", "recap": "One down."},
-   {"objective": "Relight the dark lanterns (2/4).", "recap": "Halfway."},
-   {"objective": "Relight the dark lanterns (3/4).", "recap": "One left."},
-   {"objective": "Return to Oswin in Lantern Square.", "recap": "All four lanterns burn again."}],
-  "rewards": {"gold": 120, "items": {"lamplighter_hook": 1}, "xp": 40}},
- {"id": "sq_small_debts", "type": "side", "title": "Ledger of Small Debts", "giver": "Brisk & Dunmore", "location": "Bellweather", "branching": true,
+   {
+    "objective": "Relight the dark lanterns with Lantern Oil (0/4 — two on Wick Street, two on Lantern Square).",
+    "recap": "Oswin gave you lantern oil. Dark lanterns are marked by cold, unlit glass."
+   },
+   {
+    "objective": "Relight the dark lanterns (1/4).",
+    "recap": "One down."
+   },
+   {
+    "objective": "Relight the dark lanterns (2/4).",
+    "recap": "Halfway."
+   },
+   {
+    "objective": "Relight the dark lanterns (3/4).",
+    "recap": "One left."
+   },
+   {
+    "objective": "Return to Oswin in Lantern Square.",
+    "recap": "All four lanterns burn again."
+   }
+  ],
+  "rewards": {
+   "gold": 120,
+   "items": {
+    "lamplighter_hook": 1
+   },
+   "xp": 40
+  }
+ },
+ {
+  "id": "sq_small_debts",
+  "type": "side",
+  "title": "Ledger of Small Debts",
+  "giver": "Brisk & Dunmore",
+  "location": "Bellweather",
+  "branching": true,
   "summary": "The stallkeeper Brisk and the cooper Dunmore each remember the other owing money. The toll took the truth.",
   "stages": [
-   {"objective": "Hear out Brisk (festival stall) and Dunmore (forge) in Lantern Square.", "recap": "Two merchants are arguing over a debt neither clearly remembers."},
-   {"objective": "Search the Wick Street dock crates for Dunmore's lost receipt box.", "recap": "Dunmore kept receipts in a crate he sent to the dock before the festival."},
-   {"objective": "Decide what to do with the receipt.", "recap": "The receipt proves Dunmore owes Brisk 300 crowns — but Dunmore's workshop is struggling."},
-   {"objective": "Done.", "recap": ""}],
+   {
+    "objective": "Hear out Brisk (festival stall) and Dunmore (forge) in Lantern Square.",
+    "recap": "Two merchants are arguing over a debt neither clearly remembers."
+   },
+   {
+    "objective": "Search the Wick Street dock crates for Dunmore's lost receipt box.",
+    "recap": "Dunmore kept receipts in a crate he sent to the dock before the festival."
+   },
+   {
+    "objective": "Decide what to do with the receipt.",
+    "recap": "The receipt proves Dunmore owes Brisk 300 crowns — but Dunmore's workshop is struggling."
+   },
+   {
+    "objective": "Done.",
+    "recap": ""
+   }
+  ],
   "outcome_rewards": {
-   "truth": {"gold": 80, "items": {"ledger_clasp": 1}, "xp": 40},
-   "mercy": {"gold": 30, "items": {"barrel_hoop": 1}, "xp": 40}},
-  "outcomes": {"truth": "You showed Brisk the receipt. The debt was paid, stiffly. Brisk trusts records now; Dunmore is cool toward you.", "mercy": "You proposed they split the loss and burned the receipt. Neither is fully satisfied, but they're speaking again."}},
- {"id": "pq_mira_1", "type": "personal", "title": "Mira: The Weight of Blueprints", "giver": "Mira Fen", "location": "Bellweather",
+   "truth": {
+    "gold": 80,
+    "items": {
+     "ledger_clasp": 1
+    },
+    "xp": 40
+   },
+   "mercy": {
+    "gold": 30,
+    "items": {
+     "barrel_hoop": 1
+    },
+    "xp": 40
+   }
+  },
+  "outcomes": {
+   "truth": "You showed Brisk the receipt. The debt was paid, stiffly. Brisk trusts records now; Dunmore is cool toward you.",
+   "mercy": "You proposed they split the loss and burned the receipt. Neither is fully satisfied, but they're speaking again."
+  }
+ },
+ {
+  "id": "pq_mira_1",
+  "type": "personal",
+  "title": "Mira: The Weight of Blueprints",
+  "giver": "Mira Fen",
+  "location": "Bellweather",
   "summary": "Mira designed the resonators that make extraction possible. Stage 1 of her personal story.",
   "stages": [
-   {"objective": "Talk with Mira on the inn balcony before entering the Undercroft.", "recap": "Mira seemed to want to say something at the Copper Kettle."},
-   {"objective": "Stage 1 complete. Her story continues in Chapter Two (not yet built).", "recap": "Mira admitted she drew the resonator plans. She wants to fix what she built."}],
-  "rewards": {"items": {"kite_string": 0}}},
- {"id": "pq_garran_1", "type": "personal", "title": "Garran: The Order He Refused", "giver": "Garran Holt", "location": "Bellweather",
+   {
+    "objective": "Talk with Mira on the inn balcony before entering the Undercroft.",
+    "recap": "Mira seemed to want to say something at the Copper Kettle."
+   },
+   {
+    "objective": "Stage 1 complete. Her story continues in Chapter Two (not yet built).",
+    "recap": "Mira admitted she drew the resonator plans. She wants to fix what she built."
+   }
+  ],
+  "rewards": {}
+ },
+ {
+  "id": "pq_garran_1",
+  "type": "personal",
+  "title": "Garran: The Order He Refused",
+  "giver": "Garran Holt",
+  "location": "Bellweather",
   "summary": "Why was Garran stripped of his badge? Stage 1 of his personal story.",
   "stages": [
-   {"objective": "Ask Garran about his old badge at the Copper Kettle bar.", "recap": "Garran keeps touching the place his badge used to be."},
-   {"objective": "Stage 1 complete. His story continues in Chapter Three (not yet built).", "recap": "Garran refused an order at Glass Orchard. He won't say yet what it was."}],
-  "rewards": {}},
- {"id": "sq_night_crew", "type": "side", "title": "No One Left Below", "giver": "Tamsin", "location": "Station Undercroft",
+   {
+    "objective": "Ask Garran about his old badge at the Copper Kettle bar.",
+    "recap": "Garran keeps touching the place his badge used to be."
+   },
+   {
+    "objective": "Stage 1 complete. His story continues in Chapter Three (not yet built).",
+    "recap": "Garran refused an order at Glass Orchard. He won't say yet what it was."
+   }
+  ],
+  "rewards": {}
+ },
+ {
+  "id": "sq_night_crew",
+  "type": "side",
+  "title": "No One Left Below",
+  "giver": "Tamsin",
+  "location": "Station Undercroft",
   "summary": "Tamsin believes a third night-crew member, the porter Joss, is still somewhere in the cistern.",
   "stages": [
-   {"objective": "Find Joss somewhere in the flooded cistern.", "recap": "Joss went to check the east sluice and never came back."},
-   {"objective": "Bring Joss back to Tamsin's cache.", "recap": "You found Joss hiding behind the old sluice gate."},
-   {"objective": "Done.", "recap": ""}],
-  "rewards": {"xp": 60, "items": {"smelling_salts": 2, "hi_tonic": 2}}}
+   {
+    "objective": "Find Joss somewhere in the flooded cistern.",
+    "recap": "Joss went to check the east sluice and never came back."
+   },
+   {
+    "objective": "Bring Joss back to Tamsin's cache.",
+    "recap": "You found Joss hiding behind the old sluice gate."
+   },
+   {
+    "objective": "Done.",
+    "recap": ""
+   }
+  ],
+  "rewards": {
+   "xp": 60,
+   "items": {
+    "smelling_salts": 2,
+    "hi_tonic": 2
+   }
+  }
+ },
+ {
+  "id": "mq_rainward",
+  "type": "main",
+  "title": "The Rainward Line",
+  "giver": "—",
+  "location": "Rainward Junction",
+  "chapter": "ch2",
+  "summary": "The barge delivers you to Rainward Junction. The coast — and the Salt Archive — are down the line, but the freight is stalled at Millbrook Cutting, and the junction is full of people who no longer know where they came from.",
+  "stages": [
+   {
+    "objective": "Look around Rainward Junction. Find somewhere to lie low.",
+    "recap": "You arrived by barge. Wanted posters with your face are on the platform."
+   },
+   {
+    "objective": "Hear the displaced families' accounts of what happened at Millbrook (0/3).",
+    "recap": "The camp by the platform is Millbrook's whole population. Their accounts don't agree."
+   },
+   {
+    "objective": "Hear the displaced families' accounts (1/3).",
+    "recap": "One account heard."
+   },
+   {
+    "objective": "Hear the displaced families' accounts (2/3).",
+    "recap": "Two accounts heard."
+   },
+   {
+    "objective": "Walk the line east to the stalled freight and get it moving.",
+    "recap": "Three accounts that can't all be true. The answer is at Millbrook, past the stalled freight."
+   },
+   {
+    "objective": "Clear the stalled freight car by car.",
+    "recap": "Something is living in the freight cars."
+   },
+   {
+    "objective": "Reach Millbrook Cutting and deal with the signal post blocking the line.",
+    "recap": "The freight's crew say the signal post at the cutting has gone wrong — it attacks anything on the line."
+   },
+   {
+    "objective": "Find stationmaster Odile Brack at Millbrook Halt.",
+    "recap": "The line is clear. Millbrook Halt is just past the cutting."
+   },
+   {
+    "objective": "Decide what to do with the station logs.",
+    "recap": "Odile kept two sets of logs. The real ones show years of hidden over-quota tolls."
+   },
+   {
+    "objective": "Board the freight toward Glass Orchard.",
+    "recap": "The freight is ready."
+   }
+  ],
+  "rewards": {
+   "xp": 300,
+   "gold": 500
+  }
+ },
+ {
+  "id": "pq_nessa_1",
+  "type": "personal",
+  "title": "Nessa: The Captain's Ledger",
+  "giver": "Nessa Quill",
+  "location": "Rainward Junction",
+  "summary": "Nessa owes Captain Ferro more than money. Stage 1 of her personal story.",
+  "stages": [
+   {
+    "objective": "Find Nessa on the barge dock at Rainward Junction.",
+    "recap": "Nessa went quiet when Captain Ferro's barge docked."
+   },
+   {
+    "objective": "Stage 1 complete. Her story continues in a later chapter (not yet built).",
+    "recap": "Ferro wants Nessa to carry a parcel for 'friends in the Authority'. She hasn't said yes. She hasn't said no."
+   }
+  ],
+  "rewards": {
+   "items": {
+    "rain_bow": 1
+   }
+  }
+ },
+ {
+  "id": "pq_sera_1",
+  "type": "personal",
+  "title": "Sera: Acceptable Losses",
+  "giver": "Sera Voss",
+  "location": "Rainward Junction",
+  "summary": "Sera keeps a list of names the Authority's ledgers call 'acceptable losses'. Stage 1 of her personal story.",
+  "stages": [
+   {
+    "objective": "Talk with Sera at Millbrook Halt.",
+    "recap": "Sera has been writing in a small book by lamplight."
+   },
+   {
+    "objective": "Stage 1 complete. Her story continues in a later chapter (not yet built).",
+    "recap": "Sera's list has four hundred names. She says one of them used to be hers."
+   }
+  ],
+  "rewards": {}
+ },
+ {
+  "id": "sq_names_doors",
+  "type": "side",
+  "title": "Names on the Doors",
+  "giver": "Maud",
+  "location": "Millbrook Halt",
+  "summary": "Millbrook's people pinned notes on their doors so they'd remember who lives where. The rain washed the ink.",
+  "stages": [
+   {
+    "objective": "Check the three washed-out door notes in Millbrook (0/3).",
+    "recap": "Maud asked you to read what's left of the notes."
+   },
+   {
+    "objective": "Check the door notes (1/3).",
+    "recap": ""
+   },
+   {
+    "objective": "Check the door notes (2/3).",
+    "recap": ""
+   },
+   {
+    "objective": "Report to Maud.",
+    "recap": "You read all three notes."
+   },
+   {
+    "objective": "Done.",
+    "recap": ""
+   }
+  ],
+  "rewards": {
+   "xp": 120,
+   "items": {
+    "names_ribbon": 1
+   }
+  }
+ },
+ {
+  "id": "sq_rain_rations",
+  "type": "side",
+  "title": "Rain Rations",
+  "giver": "Quartermaster Ide",
+  "location": "Rainward Junction",
+  "branching": true,
+  "summary": "The camp's food crate is short. The Authority depot next door has plenty — under seal.",
+  "stages": [
+   {
+    "objective": "Talk to the depot clerk about the sealed crates.",
+    "recap": "The camp is short of food."
+   },
+   {
+    "objective": "Decide: buy food for the camp (300 crowns) or break the depot seal.",
+    "recap": "The clerk can't open the seal without orders."
+   },
+   {
+    "objective": "Done.",
+    "recap": ""
+   }
+  ],
+  "outcome_rewards": {
+   "paid": {
+    "xp": 100,
+    "items": {
+     "hi_tonic": 2
+    }
+   },
+   "seal": {
+    "xp": 100,
+    "gold": 150,
+    "items": {
+     "smelling_salts": 1
+    }
+   }
+  },
+  "outcomes": {
+   "paid": "You paid for the food. The clerk quietly added extra. The camp eats.",
+   "seal": "You broke the seal at night. The camp eats — and wardens on the Line now look harder at couriers."
+  }
+ }
 ]

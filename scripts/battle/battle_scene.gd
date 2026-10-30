@@ -84,9 +84,11 @@ func _build_arena() -> void:
 	camera.fov = 36
 	add_child(camera)
 	camera.position = CAM_POS
-	camera.look_at(CAM_LOOK)
+	# Boss arenas frame higher so tall sprites stay on screen.
+	camera.look_at(CAM_LOOK + (Vector3(0, 1.6, -0.4) if encounter.get("boss", false) else Vector3.ZERO))
 	camera.current = true
-	_cam_pitch_comp = 1.0 / cos(atan2(CAM_POS.y - CAM_LOOK.y, CAM_POS.z - CAM_LOOK.z))
+	var look := CAM_LOOK + (Vector3(0, 1.6, -0.4) if encounter.get("boss", false) else Vector3.ZERO)
+	_cam_pitch_comp = 1.0 / cos(atan2(CAM_POS.y - look.y, CAM_POS.z - look.z))
 	var env := WorldEnvironment.new()
 	var e := Environment.new()
 	e.background_mode = Environment.BG_COLOR
@@ -141,8 +143,9 @@ func _enemy_slot(u: BattleUnit) -> Vector3:
 		5: [Vector2(7.0, 2.3), Vector2(5.0, 2.8), Vector2(6.0, 3.8), Vector2(4.6, 4.8), Vector2(7.0, 5.0)]}
 	var lay: Array = layouts.get(mini(n, 5), layouts[5])
 	var p: Vector2 = lay[idx % lay.size()]
-	var big := u.boss
-	return Vector3(p.x - (0.6 if big else 0.0), 1.0, p.y)
+	if u.boss:
+		return Vector3(5.0, 1.0, 3.9)
+	return Vector3(p.x, 1.0, p.y)
 
 
 func _make_visual(u: BattleUnit) -> void:
@@ -168,7 +171,12 @@ func _make_visual(u: BattleUnit) -> void:
 		if spr.texture:
 			w = spr.texture.get_width() / 2
 			h = spr.texture.get_height()
-	spr.offset = Vector2(0, h / 2.0)
+	# Oversized sprites (bosses) are drawn at 2/3 scale so they stay framed.
+	if h > 64:
+		spr.pixel_size = 1.0 / 36.0
+		h = int(h * 24.0 / 36.0)
+		w = int(w * 24.0 / 36.0)
+	spr.offset = Vector2(0, (h * 36.0 / 24.0 if spr.pixel_size < 1.0 / 30.0 else h) / 2.0)
 	spr.scale = Vector3(1, _cam_pitch_comp, 1)
 	root.add_child(spr)
 	var shadow := MeshInstance3D.new()

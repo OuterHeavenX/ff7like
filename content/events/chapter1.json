@@ -1620,7 +1620,10 @@
     "set_chapter": "ch2"
    },
    {
-    "end_slice": true
+    "join": "nessa"
+   },
+   {
+    "unlock_job": "ranger"
    },
    {
     "flag": "nessa_barge",
@@ -1630,10 +1633,22 @@
     "refresh_npcs": true
    },
    {
-    "music": "town_bellweather"
+    "tutorial": "Nessa joined! Her Snipe command hits hardest against Marked foes — Rowan's Waymark sets them up. She also unlocks the Ranger job.",
+    "title": "New ally"
+   },
+   {
+    "title_card": "Chapter Two",
+    "sub": "The Rainward Line"
+   },
+   {
+    "warp": "rainward_junction",
+    "spawn": "barge"
+   },
+   {
+    "call": "ev_ch2_arrival"
    }
   ],
-  "recap": "The party stopped the Hollow Clapper and escaped to the Wick Street dock, where Nessa waited with a barge bound down the Rainward Line toward the Salt Archive, where copies of Wren's protest may survive.",
+  "recap": "The party stopped the Hollow Clapper and escaped to the Wick Street dock, where Nessa waited with a barge bound down the Rainward Line toward the Salt Archive, where copies of Wren's protest may survive. Nessa joined, and the barge carried the party to Rainward Junction.",
   "skippable": true
  },
  "pt_wick_default": {

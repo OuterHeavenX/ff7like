@@ -30,6 +30,9 @@ func _ready() -> void:
 	GameState.set_quest_stage("mq_street_forgot", 4)
 	GameState.add_item("hi_tonic", 2)
 	GameState.chapter = "ch1"
+	if "--ch2" in OS.get_cmdline_user_args():
+		await _ch2()
+		return
 	await Router.enter_world("bellweather_square", "west")
 	await _wait(3.5)
 	await _shot("square")
@@ -72,4 +75,20 @@ func _ready() -> void:
 		b._choose_skill("attack")
 		await _wait(0.4)
 		await _shot("battle_target")
+	get_tree().quit()
+
+
+func _ch2() -> void:
+	GameState.join_member("nessa", true)
+	GameState.join_member("sera", true)
+	for cid: String in GameState.roster:
+		GameState.grant_xp(cid, GameState.xp_total_for_level(11))
+	GameState.heal_all()
+	for m: String in ["rainward_junction", "freight_cars", "millbrook_cutting", "millbrook_halt"]:
+		await Router.enter_world(m, "default")
+		await _wait(2.5)
+		await _shot("ch2_" + m)
+	Router.run_battle("boss_signal_warden", {"can_escape": false})
+	await _wait(3.5)
+	await _shot("ch2_boss")
 	get_tree().quit()

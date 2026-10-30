@@ -4,6 +4,11 @@
   "h": 28,
   "w": 40
  },
+ "coal_golem": {
+  "frames": 2,
+  "h": 60,
+  "w": 56
+ },
  "echo_mote": {
   "frames": 2,
   "h": 24,
@@ -29,15 +34,55 @@
   "h": 40,
   "w": 40
  },
+ "line_marksman": {
+  "frames": 2,
+  "h": 40,
+  "w": 40
+ },
+ "memory_leech": {
+  "frames": 2,
+  "h": 28,
+  "w": 48
+ },
+ "rail_spider": {
+  "frames": 2,
+  "h": 36,
+  "w": 52
+ },
+ "rust_hound": {
+  "frames": 2,
+  "h": 36,
+  "w": 52
+ },
  "rust_mender": {
   "frames": 2,
   "h": 36,
+  "w": 36
+ },
+ "signal_warden": {
+  "frames": 2,
+  "h": 100,
+  "w": 96
+ },
+ "signal_wraith": {
+  "frames": 2,
+  "h": 52,
   "w": 36
  },
  "silt_crab": {
   "frames": 2,
   "h": 36,
   "w": 52
+ },
+ "spore_toad": {
+  "frames": 2,
+  "h": 36,
+  "w": 44
+ },
+ "storm_kite": {
+  "frames": 2,
+  "h": 44,
+  "w": 48
  },
  "tallow_wisp": {
   "frames": 2,

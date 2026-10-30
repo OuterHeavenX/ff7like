@@ -1,0 +1,239 @@
+{
+ "id": "millbrook_cutting",
+ "name": "Millbrook Cutting",
+ "region": "The Rainward Line",
+ "music": "dungeon_undercroft",
+ "ambient": [
+  0.5,
+  0.54,
+  0.64
+ ],
+ "background": [
+  0.16,
+  0.18,
+  0.24
+ ],
+ "camera_dist": 14,
+ "weather": "rain",
+ "rows": [
+  "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+  "GGG::::::::GGGGGGGG::::::::::GGG",
+  "GG:::,,,:::::GGGG:::::,,,,::::GG",
+  "G:::,,,,,:::::::::::::,,,,,:::::",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "G:::::::::::::::::::::::::::::::",
+  "G:::,,,,:::GGGGG:::::::::,,,:::G",
+  "GG:,,,,,,::GGGGG::::GGG::,,,,::G",
+  "GG::,,,,:::::::::::GGGGG::,,:::G",
+  "GGGhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+ ],
+ "spawns": {
+  "default": [
+   1,
+   5,
+   "right"
+  ],
+  "west": [
+   1,
+   5,
+   "right"
+  ],
+  "east": [
+   30,
+   5,
+   "left"
+  ]
+ },
+ "props": [
+  {
+   "t": "tree",
+   "at": [
+    5,
+    2
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    24,
+    3
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    5,
+    8
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    27,
+    8
+   ]
+  },
+  {
+   "t": "lantern_post",
+   "at": [
+    12,
+    3
+   ]
+  },
+  {
+   "t": "lantern_post",
+   "at": [
+    20,
+    6
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    3,
+    9
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    17,
+    9
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    2,
+    3
+   ]
+  },
+  {
+   "t": "machine",
+   "at": [
+    28,
+    2
+   ],
+   "w": 2,
+   "solid": true
+  },
+  {
+   "t": "fireflies",
+   "at": [
+    16,
+    8
+   ],
+   "w": 10,
+   "h": 2
+  }
+ ],
+ "chests": [
+  {
+   "id": "cut_1",
+   "at": [
+    6,
+    9
+   ],
+   "items": {
+    "echo_salve": 2
+   },
+   "gold": 120
+  },
+  {
+   "id": "cut_2",
+   "at": [
+    26,
+    9
+   ],
+   "items": {
+    "ticket_charm": 1
+   }
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    4
+   ],
+   "h": 2,
+   "kind": "exit",
+   "to": "freight_cars",
+   "spawn": "east"
+  },
+  {
+   "at": [
+    31,
+    4
+   ],
+   "h": 3,
+   "kind": "exit",
+   "to": "millbrook_halt",
+   "spawn": "west",
+   "cond": "flag:signal_done"
+  },
+  {
+   "at": [
+    25,
+    4
+   ],
+   "h": 3,
+   "kind": "event",
+   "event": "ev_boss_signal",
+   "cond": "!flag:signal_done"
+  },
+  {
+   "at": [
+    2,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    3,
+    4
+   ],
+   "kind": "event",
+   "event": "ev_cutting_enter",
+   "once": true,
+   "h": 2
+  }
+ ],
+ "npcs": [],
+ "encounters": {
+  "table": [
+   {
+    "enc": "rw_hounds_spider",
+    "w": 2
+   },
+   {
+    "enc": "rw_toad_spiders",
+    "w": 2
+   },
+   {
+    "enc": "rw_kites",
+    "w": 2
+   },
+   {
+    "enc": "rw_golem_toad",
+    "w": 1
+   }
+  ],
+  "min_steps": 13,
+  "rate": 1.0,
+  "cond": "!flag:signal_done"
+ },
+ "party_talk": [
+  {
+   "cond": "!flag:signal_done",
+   "event": "pt_cutting"
+  },
+  {
+   "event": "pt_cutting_after"
+  }
+ ]
+}

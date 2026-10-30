@@ -1,0 +1,49 @@
+{
+ "id": "arena_rail",
+ "name": "Battle",
+ "ambient": [
+  0.52,
+  0.55,
+  0.66
+ ],
+ "background": [
+  0.16,
+  0.18,
+  0.24
+ ],
+ "weather": "rain",
+ "rows": [
+  "GGGGGGGGGGGGGGGGGG",
+  "GGG::::::::::GGGGG",
+  "::::,,,,::::::::::",
+  "rrrrrrrrrrrrrrrrrr",
+  "rrrrrrrrrrrrrrrrrr",
+  "::::::::::::::::::",
+  "::::,,,,,:::::::::",
+  "::::::::::::::::::",
+  "hhhhhhhhhhhhhhhhhh"
+ ],
+ "props": [
+  {
+   "t": "lantern_post",
+   "at": [
+    3,
+    2
+   ]
+  },
+  {
+   "t": "lantern_post",
+   "at": [
+    14,
+    2
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    1,
+    1
+   ]
+  }
+ ]
+}

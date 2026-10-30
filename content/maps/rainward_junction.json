@@ -1,0 +1,471 @@
+{
+ "id": "rainward_junction",
+ "name": "Rainward Junction",
+ "region": "The Rainward Line",
+ "music": "town_bellweather",
+ "destination": true,
+ "ambient": [
+  0.56,
+  0.6,
+  0.72
+ ],
+ "background": [
+  0.18,
+  0.2,
+  0.26
+ ],
+ "camera_dist": 15,
+ "autosave": true,
+ "weather": "rain",
+ "water_color": [
+  0.14,
+  0.22,
+  0.28
+ ],
+ "rows": [
+  "##################################",
+  "#BBBBBBBBBBBB#RRRRRRR#HHHHHHHHHHH#",
+  "#BBBBBBBBBBBB#RRRRRRR#HHHHHHHHHHH#",
+  "#BBBBBBBBBBBB#RRRRRRR#HHHHHHHHHHH#",
+  "#.................................",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "#.................................",
+  "#::::::::::::::::::::::::::::::::#",
+  "#::::::::::::::::::::::::::::::::#",
+  "#::::::::::::::::::::::::::::::::#",
+  "#,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#",
+  "#,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,#",
+  "#,,,,,^,,,,,,,,,,,,,,,,,,,,,,,,,,#",
+  "~~~____~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+  "~~~____~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+ ],
+ "heights": [
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222221222222222222222222222222222",
+  "0001111000000000000000000000000000",
+  "0001111000000000000000000000000000"
+ ],
+ "spawns": {
+  "default": [
+   5,
+   12,
+   "up"
+  ],
+  "barge": [
+   5,
+   14,
+   "up"
+  ],
+  "east": [
+   32,
+   6,
+   "left"
+  ],
+  "station": [
+   6,
+   4,
+   "down"
+  ]
+ },
+ "props": [
+  {
+   "t": "door",
+   "at": [
+    6,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    17,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    26,
+    3
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    3,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    13,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    21,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    31,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    3,
+    7
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    20,
+    7
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    4,
+    9
+   ],
+   "color": [
+    0.5,
+    0.55,
+    0.45
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    9,
+    9
+   ],
+   "color": [
+    0.55,
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    14,
+    9
+   ],
+   "color": [
+    0.45,
+    0.5,
+    0.55
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    24,
+    11
+   ],
+   "color": [
+    0.8,
+    0.5,
+    0.25
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    28,
+    11
+   ],
+   "color": [
+    0.35,
+    0.45,
+    0.7
+   ]
+  },
+  {
+   "t": "brazier",
+   "at": [
+    11,
+    11
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    18,
+    9
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    19,
+    9
+   ],
+   "size": 0.6
+  },
+  {
+   "t": "barrel",
+   "at": [
+    2,
+    11
+   ]
+  },
+  {
+   "t": "sign",
+   "at": [
+    10,
+    4
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    16,
+    7
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    26,
+    7
+   ]
+  },
+  {
+   "t": "boat",
+   "at": [
+    8,
+    14
+   ],
+   "len": 4
+  },
+  {
+   "t": "tree",
+   "at": [
+    32,
+    12
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    1,
+    12
+   ]
+  },
+  {
+   "t": "smoke",
+   "at": [
+    11,
+    11
+   ],
+   "y": 0.6
+  },
+  {
+   "t": "steam",
+   "at": [
+    30,
+    5
+   ],
+   "y": 0.3
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    33,
+    5
+   ],
+   "h": 2,
+   "kind": "exit",
+   "to": "freight_cars",
+   "spawn": "west",
+   "cond": "quest:mq_rainward>=4"
+  },
+  {
+   "at": [
+    33,
+    5
+   ],
+   "h": 2,
+   "kind": "event",
+   "event": "ev_rw_not_yet",
+   "cond": "!quest:mq_rainward>=4"
+  },
+  {
+   "at": [
+    6,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_rw_station_door",
+   "label": "Station"
+  },
+  {
+   "at": [
+    17,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_rw_depot",
+   "label": "Depot"
+  },
+  {
+   "at": [
+    26,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_rw_smith",
+   "label": "Smithy"
+  },
+  {
+   "at": [
+    10,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_rw_posters",
+   "label": "Read"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "sera_camp",
+   "sprite": "sera",
+   "at": [
+    12,
+    11
+   ],
+   "face": "left",
+   "cond": "!roster:sera",
+   "talk": "ev_sera_camp"
+  },
+  {
+   "id": "witness_a",
+   "sprite": "railworker",
+   "at": [
+    6,
+    10
+   ],
+   "face": "down",
+   "talk": "ev_witness_a"
+  },
+  {
+   "id": "witness_b",
+   "sprite": "townswoman",
+   "at": [
+    16,
+    11
+   ],
+   "face": "left",
+   "wander": 1,
+   "talk": "ev_witness_b"
+  },
+  {
+   "id": "ide",
+   "sprite": "railworker",
+   "at": [
+    20,
+    10
+   ],
+   "face": "down",
+   "talk": "ev_ide"
+  },
+  {
+   "id": "dell",
+   "sprite": "merchant",
+   "at": [
+    25,
+    12
+   ],
+   "face": "up",
+   "talk": "ev_dell"
+  },
+  {
+   "id": "hobb",
+   "sprite": "railworker",
+   "at": [
+    29,
+    12
+   ],
+   "face": "up",
+   "talk": "ev_hobb"
+  },
+  {
+   "id": "pilot",
+   "sprite": "townsman",
+   "at": [
+    3,
+    15
+   ],
+   "face": "right",
+   "talk": "ev_pilot"
+  },
+  {
+   "id": "ferro",
+   "sprite": "captain",
+   "at": [
+    6,
+    15
+   ],
+   "face": "left",
+   "cond": "!quest_done:pq_nessa_1",
+   "talk": "ev_ferro"
+  },
+  {
+   "id": "rw_warden",
+   "sprite": "warden",
+   "at": [
+    24,
+    4
+   ],
+   "face": "down",
+   "wander": 3,
+   "talk": "ev_rw_warden"
+  },
+  {
+   "id": "rw_kid",
+   "sprite": "child",
+   "at": [
+    8,
+    12
+   ],
+   "face": "up",
+   "wander": 2,
+   "talk": "ev_rw_kid"
+  }
+ ],
+ "party_talk": [
+  {
+   "cond": "!quest:mq_rainward>=4",
+   "event": "pt_rw_start"
+  },
+  {
+   "event": "pt_rw"
+  }
+ ]
+}

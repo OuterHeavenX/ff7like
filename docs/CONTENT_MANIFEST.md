@@ -12,22 +12,26 @@ Validation: `python3 tools/validate_content.py` (engine-free) and `tests/test_co
 | undercroft_upper | Dungeon 1/3 | wick (ladder), cistern (S) | Built |
 | undercroft_cistern | Dungeon 2/3 | upper (N), core (S); drained-channel patch | Built |
 | undercroft_core | Dungeon 3/3 (boss) | cistern (N) | Built |
-| arena_town, arena_undercroft, arena_bellcore | Battle arenas | — | Built |
+| arena_town, arena_undercroft, arena_bellcore, arena_rail, arena_train | Battle arenas | — | Built |
+| rainward_junction | Rail hub (rain) | barge ↔ Wick dock, freight (E) | Built |
+| freight_cars | Dungeon (train interior, locked brake car patch) | junction (W), cutting (E) | Built |
+| millbrook_cutting | Dungeon (rain, boss) | freight (W), halt (E, after boss) | Built |
+| millbrook_halt | Village | cutting (W); freight departure trigger | Built |
 
 ## Characters (`content/characters.json`)
-rowan, mira, garran — joinable (story). sera, ilyan, nessa (story) and orin, tavi (optional) — fully defined (stats, growth, personal skills, sprites, portraits) but **not yet recruitable** (later chapters).
+rowan, mira, garran (Ch1), nessa, sera (Ch2) — joinable. ilyan (story) and orin, tavi (optional) — fully defined but **not yet recruitable**.
 
 ## Jobs (`content/jobs.json`)
-All 12 defined with 6 actives + 3 passives + mastery (108 abilities, all referencing implemented skill ops). Obtainable now: wayfarer, vanguard, artificer (start), duelist, arcanist, mender (Hask). Locked with documented unlock: ranger, cantor, hexweaver, sentinel, chronist, bellbound.
+All 12 defined with 6 actives + 3 passives + mastery (108 abilities, all referencing implemented skill ops). Obtainable now: wayfarer, vanguard, artificer (start), duelist, arcanist, mender (Hask), ranger (Nessa, Ch2). Locked with documented unlock: cantor, hexweaver, sentinel, chronist, bellbound.
 
 ## Enemies (`content/enemies.json`)
-warden (aggressor), warden_sergeant (protector), brass_rat (aggressor), echo_moth (disruptor), tallow_wisp (elemental), rust_mender (healer), silt_crab (protector/armored), hollow_echo (summoner), echo_mote (summon, no rewards), ironside (optional elite), hollow_clapper (boss, 3 phases). warden_sergeant/story_sergeant encounter is defined but not yet placed.
+warden (aggressor), warden_sergeant (protector), brass_rat (aggressor), echo_moth (disruptor), tallow_wisp (elemental), rust_mender (healer), silt_crab (protector/armored), hollow_echo (summoner), echo_mote (summon, no rewards), ironside (optional elite), hollow_clapper (boss, 3 phases). Ch2: rust_hound (aggressor, pack haste), signal_wraith (disruptor), coal_golem (protector, absorbs fire), rail_spider (disruptor, poison/slow), spore_toad (healer), storm_kite (elemental, absorbs storm), memory_leech (disruptor, drain/silence), line_marksman (back-row aggressor, mark+snipe), signal_warden (boss, element-shifting phases). warden_sergeant/story_sergeant encounter is defined but not yet placed.
 
 ## Quests (`content/quests.json`)
-mq_sealed_fork (main, prologue) · mq_street_forgot (main, ch1) · sq_lamplighter (side) · sq_small_debts (side, branching: truth/mercy) · sq_night_crew (side) · pq_mira_1, pq_garran_1 (personal stage 1).
+mq_sealed_fork (main, prologue) · mq_street_forgot (main, ch1) · sq_lamplighter (side) · sq_small_debts (side, branching: truth/mercy) · sq_night_crew (side) · pq_mira_1, pq_garran_1 (personal stage 1). Ch2: mq_rainward (main, with major choice), pq_nessa_1, pq_sera_1 (personal), sq_names_doors (side), sq_rain_rations (side, branching paid/seal).
 
 ## Items, shops, events
-44 items (consumables, materials, key items, equipment); shops: festival_stall, forge, undercroft_cache; 92 events in `content/events/prologue.json` and `chapter1.json`.
+58 items; shops: festival_stall, forge, undercroft_cache, junction_provisioner, junction_smith; 132 events in `content/events/prologue.json`, `chapter1.json`, `chapter2.json`.
 
 ## Assets
 22 character sprite sets (8 party + 14 NPC types) × field/battle/5 portraits; 11 enemy sheets; 32-tile atlas; FX sheet; status & element icons; 9 music loops; 31 SFX. All generated; see ASSET_LICENSES.md.

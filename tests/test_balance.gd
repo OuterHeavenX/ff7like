@@ -5,10 +5,12 @@ extends RefCounted
 var t: Node
 
 
-func _setup_party(level: int) -> void:
+func _setup_party(level: int, extra: Array = []) -> void:
 	GameState.new_game()
 	GameState.join_member("garran", true)
 	GameState.join_member("mira", true)
+	for cid: String in extra:
+		GameState.join_member(cid, true)
 	for cid: String in GameState.roster:
 		var m: Dictionary = GameState.members[cid]
 		m.level = level
@@ -41,19 +43,19 @@ func _policy(s: BattleSim, u: BattleUnit) -> Dictionary:
 		var sk: Dictionary = Content.skill(art)
 		if str(sk.get("owner")) == u.source_id and s.command_block_reason(u, {"kind": "skill", "id": art}) == "":
 			return {"kind": "skill", "id": art, "targets": [tgt.uid]}
-	var pref := {"rowan": "dash_cut", "mira": "spark_coil", "garran": "shoulder_charge"}
+	var pref := {"rowan": "dash_cut", "mira": "spark_coil", "garran": "shoulder_charge", "nessa": "snipe"}
 	var sid: String = pref.get(u.source_id, "attack")
 	if u.sp < 8 or s.command_block_reason(u, {"kind": "skill", "id": sid}) != "":
 		sid = "attack"
 	return {"kind": "skill", "id": sid, "targets": [tgt.uid]}
 
 
-func _simulate(enc: String, level: int, seeds: int, use_auto: bool = false) -> Dictionary:
+func _simulate(enc: String, level: int, seeds: int, use_auto: bool = false, extra: Array = []) -> Dictionary:
 	var wins := 0
 	var total_time := 0.0
 	var total_actions := 0
 	for sd in seeds:
-		_setup_party(level)
+		_setup_party(level, extra)
 		var party: Array = []
 		var i := 0
 		for cid: String in GameState.party:
@@ -134,3 +136,13 @@ func test_story_wardens_tutorial() -> void:
 			wins += 1
 	print("    sim story_wardens Lv1-2 (attack only): wins %d/10" % wins)
 	t.ok(wins >= 9, "tutorial fight is safe even with attack-only play")
+
+
+func test_chapter_two_balance() -> void:
+	for enc: String in ["rw_hounds_spider", "rw_toad_spiders", "rw_kites", "rw_golem_toad", "tr_leeches", "tr_golem", "tr_marksmen"]:
+		var r := _simulate(enc, 10, 6, false, ["nessa"])
+		print("    sim %-16s Lv10 wins %d/%d  actions %.1f" % [enc, r.wins, r.seeds, r.avg_actions])
+		t.ok(r.wins >= 5, "%s winnable at Lv10" % enc)
+	for lvl in [10, 11, 12, 13]:
+		var r2 := _simulate("boss_signal_warden", lvl, 8, false, ["nessa"])
+		print("    sim boss_signal_warden Lv%d wins %d/%d  actions %.1f" % [lvl, r2.wins, r2.seeds, r2.avg_actions])

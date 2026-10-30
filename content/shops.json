@@ -1,5 +1,75 @@
 [
- {"id": "festival_stall", "name": "Lanternwake Stall", "keeper": "Brisk", "items": ["tonic", "clear_drop", "antidote", "eye_drops", "ember_flask"]},
- {"id": "forge", "name": "Dunmore's Cooperage & Forge", "keeper": "Dunmore", "items": ["steel_saber", "torque_wrench", "oak_maul", "padded_vest", "travel_coat", "copper_charm", "quiet_bell"]},
- {"id": "undercroft_cache", "name": "Night Crew Cache", "keeper": "Tamsin", "items": ["tonic", "hi_tonic", "clear_drop", "echo_salve", "smelling_salts", "frost_flask", "storm_jar"]}
+ {
+  "id": "festival_stall",
+  "name": "Lanternwake Stall",
+  "keeper": "Brisk",
+  "items": [
+   "tonic",
+   "clear_drop",
+   "antidote",
+   "eye_drops",
+   "ember_flask"
+  ]
+ },
+ {
+  "id": "forge",
+  "name": "Dunmore's Cooperage & Forge",
+  "keeper": "Dunmore",
+  "items": [
+   "steel_saber",
+   "torque_wrench",
+   "oak_maul",
+   "padded_vest",
+   "travel_coat",
+   "copper_charm",
+   "quiet_bell"
+  ]
+ },
+ {
+  "id": "undercroft_cache",
+  "name": "Night Crew Cache",
+  "keeper": "Tamsin",
+  "items": [
+   "tonic",
+   "hi_tonic",
+   "clear_drop",
+   "echo_salve",
+   "smelling_salts",
+   "frost_flask",
+   "storm_jar"
+  ]
+ },
+ {
+  "id": "junction_provisioner",
+  "name": "Junction Provisioner",
+  "keeper": "Dell",
+  "items": [
+   "tonic",
+   "hi_tonic",
+   "clear_drop",
+   "antidote",
+   "eye_drops",
+   "echo_salve",
+   "smelling_salts",
+   "frost_flask",
+   "ember_flask"
+  ]
+ },
+ {
+  "id": "junction_smith",
+  "name": "Platform Smithy",
+  "keeper": "Hobb",
+  "items": [
+   "rail_saber",
+   "signal_wrench",
+   "coupling_maul",
+   "rain_bow",
+   "willow_staff",
+   "oilskin_coat",
+   "brakeman_vest",
+   "physician_coat",
+   "ticket_charm",
+   "quiet_bell"
+  ]
+ }
 ]

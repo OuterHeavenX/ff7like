@@ -1,0 +1,266 @@
+{
+ "id": "millbrook_halt",
+ "name": "Millbrook Halt",
+ "region": "The Rainward Line",
+ "music": "theme_wren",
+ "destination": true,
+ "autosave": true,
+ "ambient": [
+  0.6,
+  0.6,
+  0.7
+ ],
+ "background": [
+  0.18,
+  0.2,
+  0.26
+ ],
+ "camera_dist": 13,
+ "weather": "rain",
+ "rows": [
+  "##########################",
+  "#HHHHH#RRRRRRR#HHHHH#HHHH#",
+  "#HHHHH#RRRRRRR#HHHHH#HHHH#",
+  "#HHHHH#RRRRRRR#HHHHH#HHHH#",
+  "#........................#",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "rrrrrrrrrrrrrrrrrrrrrrrrrr",
+  "#........................#",
+  "#,,,,,,,,,,,,,,,,,,,,,,,,#",
+  "#,,,,,,,,,,,,,,,,,,,,,,,,#",
+  "hhhhhhhhhhhhhhhhhhhhhhhhhh"
+ ],
+ "spawns": {
+  "default": [
+   2,
+   5,
+   "right"
+  ],
+  "west": [
+   1,
+   5,
+   "right"
+  ]
+ },
+ "props": [
+  {
+   "t": "door",
+   "at": [
+    3,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    10,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    17,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    22,
+    3
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    6,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    14,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    20,
+    7
+   ]
+  },
+  {
+   "t": "sign",
+   "at": [
+    12,
+    7
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    8,
+    8
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    2,
+    9
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    23,
+    9
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    16,
+    8
+   ]
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    5
+   ],
+   "h": 2,
+   "kind": "exit",
+   "to": "millbrook_cutting",
+   "spawn": "east"
+  },
+  {
+   "at": [
+    3,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_door_note_a",
+   "label": "Note"
+  },
+  {
+   "at": [
+    17,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_door_note_b",
+   "label": "Note"
+  },
+  {
+   "at": [
+    22,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_door_note_c",
+   "label": "Note"
+  },
+  {
+   "at": [
+    10,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_halt_office",
+   "label": "Office"
+  },
+  {
+   "at": [
+    12,
+    7
+   ],
+   "on": "interact",
+   "event": "ev_halt_sign",
+   "label": "Read"
+  },
+  {
+   "at": [
+    2,
+    4
+   ],
+   "kind": "event",
+   "event": "ev_halt_enter",
+   "once": true,
+   "h": 4
+  },
+  {
+   "at": [
+    25,
+    5
+   ],
+   "h": 2,
+   "kind": "event",
+   "event": "ev_ch2_end",
+   "cond": "flag:ch2_choice_made"
+  },
+  {
+   "at": [
+    24,
+    5
+   ],
+   "h": 2,
+   "kind": "event",
+   "event": "ev_halt_wait",
+   "cond": "!flag:ch2_choice_made"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "odile",
+   "sprite": "stationmaster",
+   "at": [
+    11,
+    4
+   ],
+   "face": "down",
+   "talk": "ev_odile"
+  },
+  {
+   "id": "maud",
+   "sprite": "elder",
+   "at": [
+    7,
+    9
+   ],
+   "face": "up",
+   "talk": "ev_maud"
+  },
+  {
+   "id": "sera_halt",
+   "sprite": "sera",
+   "at": [
+    19,
+    8
+   ],
+   "face": "left",
+   "cond": "roster:sera&!quest_done:pq_sera_1",
+   "talk": "ev_sera_list"
+  },
+  {
+   "id": "halt_worker",
+   "sprite": "railworker",
+   "at": [
+    24,
+    7
+   ],
+   "face": "left",
+   "talk": "ev_halt_worker"
+  }
+ ],
+ "party_talk": [
+  {
+   "event": "pt_halt"
+  }
+ ]
+}
