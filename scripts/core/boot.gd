@@ -13,8 +13,11 @@ func _ready() -> void:
 		for e in Content.load_errors:
 			push_error("Content: " + e)
 	await get_tree().process_frame
-	if "--smoke" in OS.get_cmdline_user_args():
-		var s: Node = load("res://tests/smoke_route.gd").new()
-		get_tree().root.add_child(s)
-		return
+	# Development harnesses (tests/ is excluded from release exports).
+	for arg: String in ["--smoke", "--shots"]:
+		if arg in OS.get_cmdline_user_args():
+			var path := "res://tests/%s.gd" % ("smoke_route" if arg == "--smoke" else "shots")
+			if ResourceLoader.exists(path):
+				get_tree().root.add_child(load(path).new())
+				return
 	Router.goto_title()

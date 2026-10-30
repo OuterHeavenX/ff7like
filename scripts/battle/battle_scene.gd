@@ -13,7 +13,7 @@ const STATUS_ABBR := {"poison": "PSN", "burn": "BRN", "slow": "SLW", "haste": "H
 const STATUS_ICON := {"poison": 0, "burn": 1, "slow": 2, "haste": 3, "sleep": 4, "silence": 5, "blind": 6, "regen": 7,
 	"barrier": 8, "stun": 9, "vulnerable": 10, "guard": 11, "mark": 12, "cover": 8, "taunt": 10, "counter_stance": 11}
 const CAM_POS := Vector3(9.0, 6.2, 13.6)
-const CAM_LOOK := Vector3(9.0, 0.9, 4.6)
+const CAM_LOOK := Vector3(8.8, 0.6, 5.4)
 
 var sim := BattleSim.new()
 var encounter: Dictionary = {}
@@ -127,18 +127,18 @@ func _build_units() -> void:
 
 func _party_slot(u: BattleUnit) -> Vector3:
 	var idx := int(u.uid.substr(1))
-	var x := 12.2 + idx * 0.35 + (1.3 if u.row == "back" else 0.0)
-	return Vector3(x, 1.0, 3.0 + idx * 1.25)
+	var x := 11.3 + idx * 0.3 + (1.0 if u.row == "back" else 0.0)
+	return Vector3(x, 1.0, 2.5 + idx * 0.95)
 
 
 func _enemy_slot(u: BattleUnit) -> Vector3:
 	var all: Array = sim.side_units(1, false)
 	var idx := all.find(u)
 	var n := all.size()
-	var layouts := {1: [Vector2(5.0, 4.6)], 2: [Vector2(5.5, 3.6), Vector2(4.6, 5.8)],
-		3: [Vector2(6.0, 3.2), Vector2(4.2, 4.6), Vector2(6.0, 6.2)],
-		4: [Vector2(6.2, 3.0), Vector2(4.0, 4.0), Vector2(6.2, 5.6), Vector2(4.0, 6.6)],
-		5: [Vector2(6.4, 2.9), Vector2(3.8, 3.6), Vector2(5.4, 4.8), Vector2(3.8, 6.2), Vector2(6.4, 6.6)]}
+	var layouts := {1: [Vector2(5.6, 3.6)], 2: [Vector2(6.2, 2.8), Vector2(5.0, 4.4)],
+		3: [Vector2(6.6, 2.5), Vector2(4.8, 3.5), Vector2(6.6, 4.6)],
+		4: [Vector2(6.8, 2.4), Vector2(4.8, 3.0), Vector2(6.8, 4.2), Vector2(4.8, 4.9)],
+		5: [Vector2(7.0, 2.3), Vector2(5.0, 2.8), Vector2(6.0, 3.8), Vector2(4.6, 4.8), Vector2(7.0, 5.0)]}
 	var lay: Array = layouts.get(mini(n, 5), layouts[5])
 	var p: Vector2 = lay[idx % lay.size()]
 	var big := u.boss

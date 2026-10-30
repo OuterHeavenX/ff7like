@@ -187,6 +187,14 @@ func _header(text: String) -> void:
 	content.add_child(UITheme.title_label(text, 24))
 
 
+## Adds a wrapped explanatory line (never overflows the panel).
+func _note(text: String, size: int = 17, color: Color = UITheme.C_DIM) -> Label:
+	var l := UITheme.label(text, size, color)
+	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content.add_child(l)
+	return l
+
+
 func _member_header(cid: String) -> void:
 	var hb := HBoxContainer.new()
 	hb.add_theme_constant_override("separation", 12)
@@ -206,6 +214,7 @@ func _member_header(cid: String) -> void:
 	vb.add_child(UITheme.title_label("%s  —  %s" % [c.get("name", cid), c.get("role", "")], 24))
 	vb.add_child(UITheme.label("Lv %d   HP %d/%d   SP %d/%d   %s row" % [int(m.level), int(m.hp), int(st.hp), int(m.sp), int(st.sp), str(m.row).capitalize()], 19))
 	var job_name: String = Content.job(str(m.job)).get("name", "—")
+	vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	vb.add_child(UITheme.label("Job: %s (rank %d, %d JP)   Secondary: %s" % [job_name, GameState.job_rank(cid, str(m.job)), int(m.jp.get(m.job, 0)), Content.job(str(m.secondary)).get("name", "—") if str(m.secondary) != "" else "—"], 18, UITheme.C_DIM))
 	vb.add_child(UITheme.label("%s / %s: change member" % [InputHub.prompt("tab_prev"), InputHub.prompt("tab_next")], 15, UITheme.C_DIM))
 	content.add_child(hb)
@@ -215,7 +224,7 @@ func _member_header(cid: String) -> void:
 
 func _party() -> void:
 	_header("Party")
-	content.add_child(UITheme.label("Active party (max 4) fights; reserves earn 75% XP (x2 catch-up when behind) and 50% JP.", 17, UITheme.C_DIM))
+	_note("Active party (max 4) fights; reserves earn 75% XP (x2 catch-up when behind) and 50% JP.", 17, UITheme.C_DIM)
 	var locked: Array = GameState.flags.get("party_required", []) if GameState.flags.get("party_required") is Array else []
 	for cid: String in GameState.roster:
 		var m: Dictionary = GameState.members[cid]
@@ -228,7 +237,7 @@ func _party() -> void:
 			Content.job(str(m.job)).get("name", ""), tag, "  (required)" if cid in locked else ""]
 		_btn(t, _on_party_pick.bind(cid), "Select to view status, change row, or move between active party and reserves.")
 	if GameState.roster.size() > 1:
-		content.add_child(UITheme.label("Tip: select a member, then choose 'Swap/Move' and pick another to swap positions.", 16, UITheme.C_DIM))
+		_note("Tip: select a member, then choose 'Swap/Move' and pick another to swap positions.", 16, UITheme.C_DIM)
 
 
 func _on_party_pick(cid: String) -> void:
@@ -250,15 +259,15 @@ func _on_party_pick(cid: String) -> void:
 		grid.add_child(UITheme.label(str(st[k]), 19))
 	content.add_child(grid)
 	var to_next := GameState.xp_total_for_level(int(m.level) + 1) - int(m.xp)
-	content.add_child(UITheme.label("XP %d   (next level in %d)" % [int(m.xp), to_next], 18))
+	_note("XP %d   (next level in %d)" % [int(m.xp), to_next], 18)
 	var er: PackedStringArray = []
 	for e: String in st.element_res.keys():
 		er.append("%s %d%%" % [e, int(float(st.element_res[e]) * 100)])
 	var sr: PackedStringArray = []
 	for s: String in st.status_res.keys():
 		sr.append("%s %d%%" % [s, int(float(st.status_res[s]) * 100)])
-	content.add_child(UITheme.label("Element resistance: " + (", ".join(er) if not er.is_empty() else "none"), 17))
-	content.add_child(UITheme.label("Status resistance: " + (", ".join(sr) if not sr.is_empty() else "none"), 17))
+	_note("Element resistance: " + (", ".join(er) if not er.is_empty() else "none"), 17)
+	_note("Status resistance: " + (", ".join(sr) if not sr.is_empty() else "none"), 17)
 	var bio := UITheme.label(str(Content.character(cid).get("bio", "")), 17, UITheme.C_DIM)
 	bio.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(bio)
@@ -308,7 +317,7 @@ func _items() -> void:
 		if ids.is_empty():
 			continue
 		ids.sort()
-		content.add_child(UITheme.label(cats[cat], 18, UITheme.C_ACCENT))
+		_note(cats[cat], 18, UITheme.C_ACCENT)
 		for iid: String in ids:
 			var it: Dictionary = Content.item(iid)
 			var usable: bool = it.get("field", false)
@@ -392,7 +401,7 @@ func _equip() -> void:
 
 func _stat_line(cid: String) -> void:
 	var st := GameState.stats_for(cid)
-	content.add_child(UITheme.label("ATK %d  MAG %d  DEF %d  RES %d  SPD %d  DEX %d" % [st.atk, st.mag, st.def, st.res, st.spd, st.dex], 18, UITheme.C_DIM))
+	_note("ATK %d  MAG %d  DEF %d  RES %d  SPD %d  DEX %d" % [st.atk, st.mag, st.def, st.res, st.spd, st.dex], 18, UITheme.C_DIM)
 
 
 func _input(event: InputEvent) -> void:
@@ -432,7 +441,7 @@ func _on_slot(cid: String, slot: String) -> void:
 		if not ok:
 			b.add_theme_color_override("font_color", Color(0.55, 0.55, 0.6))
 	if options.is_empty():
-		content.add_child(UITheme.label("No %s items in inventory." % slot, 18, UITheme.C_DIM))
+		_note("No %s items in inventory." % slot, 18, UITheme.C_DIM)
 	_btn("« Back", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
@@ -462,7 +471,7 @@ func _jobs() -> void:
 	var cid := _cid()
 	_member_header(cid)
 	var m: Dictionary = GameState.members[cid]
-	content.add_child(UITheme.label("Choose a job to view abilities, set it as main job, or set it as your secondary skill set. Learned abilities are never lost; changing jobs is free. JP is earned by your current main job.", 16, UITheme.C_DIM))
+	_note("Choose a job to view abilities, set it as main job, or set it as your secondary skill set. Learned abilities are never lost; changing jobs is free. JP is earned by your current main job.", 16, UITheme.C_DIM)
 	for jid: String in Content.table("jobs").keys():
 		var j: Dictionary = Content.job(jid)
 		var unlocked := jid in GameState.jobs_unlocked
@@ -498,9 +507,9 @@ func _on_job(cid: String, jid: String) -> void:
 	var mods: PackedStringArray = []
 	for k: String in j.get("stat_mod", {}).keys():
 		mods.append("%s %+d%%" % [k.to_upper(), int(float(j.stat_mod[k]) * 100)])
-	content.add_child(UITheme.label("Stat modifiers as main job: " + ", ".join(mods), 17, UITheme.C_DIM))
+	_note("Stat modifiers as main job: " + ", ".join(mods), 17, UITheme.C_DIM)
 	var mastery: Dictionary = j.get("mastery", {})
-	content.add_child(UITheme.label("Mastery reward — %s: %s" % [mastery.get("name", ""), mastery.get("desc", "")], 17, UITheme.C_DIM))
+	_note("Mastery reward — %s: %s" % [mastery.get("name", ""), mastery.get("desc", "")], 17, UITheme.C_DIM)
 	if jid != m.job:
 		_btn("Set as MAIN job", func() -> void:
 			if GameState.set_job(cid, jid):
@@ -552,10 +561,10 @@ func _passives() -> void:
 	var cid := _cid()
 	_member_header(cid)
 	var m: Dictionary = GameState.members[cid]
-	content.add_child(UITheme.label("Equip up to %d learned passives from any job. (%d/%d equipped)" % [GameState.MAX_PASSIVES, m.passives.size(), GameState.MAX_PASSIVES], 17, UITheme.C_DIM))
+	_note("Equip up to %d learned passives from any job. (%d/%d equipped)" % [GameState.MAX_PASSIVES, m.passives.size(), GameState.MAX_PASSIVES], 17, UITheme.C_DIM)
 	var list := GameState.learned_passives(cid)
 	if list.is_empty():
-		content.add_child(UITheme.label("No passives learned yet. Learn them from the Jobs screen with JP.", 18))
+		_note("No passives learned yet. Learn them from the Jobs screen with JP.", 18)
 	for pid: String in list:
 		var s: Dictionary = Content.skill(pid)
 		_btn("%s %s" % ["[x]" if pid in m.passives else "[  ]", s.get("name", pid)], func() -> void:
@@ -571,7 +580,7 @@ func _passives() -> void:
 func _journal() -> void:
 	_header("Journal")
 	var ch: Dictionary = Content.get_entry("chapters", GameState.chapter)
-	content.add_child(UITheme.label(str(ch.get("name", GameState.chapter)), 19, UITheme.C_ACCENT))
+	_note(str(ch.get("name", GameState.chapter)), 19, UITheme.C_ACCENT)
 	var order := {"main": "Main Story", "personal": "Personal", "side": "Side Quests", "contract": "Contracts"}
 	for typ: String in order.keys():
 		var ids: Array = []
@@ -580,7 +589,7 @@ func _journal() -> void:
 				ids.append(qid)
 		if ids.is_empty():
 			continue
-		content.add_child(UITheme.label(order[typ], 18, UITheme.C_DIM))
+		_note(order[typ], 18, UITheme.C_DIM)
 		ids.sort_custom(func(a: String, b: String) -> bool: return int(GameState.quests[a].done) < int(GameState.quests[b].done))
 		for qid: String in ids:
 			var q: Dictionary = Content.quest(qid)
@@ -588,7 +597,7 @@ func _journal() -> void:
 			var mark := "+ " if qs.done else ("* " if qid == GameState.tracked_quest else "• ")
 			_btn(mark + str(q.get("title", qid)), _on_quest.bind(qid), _quest_summary(qid))
 	if GameState.quests.is_empty():
-		content.add_child(UITheme.label("No entries yet.", 18))
+		_note("No entries yet.", 18)
 
 
 func _quest_summary(qid: String) -> String:
@@ -607,7 +616,7 @@ func _on_quest(qid: String) -> void:
 	var q: Dictionary = Content.quest(qid)
 	var qs: Dictionary = GameState.quests[qid]
 	_header(str(q.get("title", qid)))
-	content.add_child(UITheme.label("%s  •  From: %s  •  %s" % [str(q.get("type", "")).capitalize(), q.get("giver", "—"), q.get("location", "")], 17, UITheme.C_DIM))
+	_note("%s  •  From: %s  •  %s" % [str(q.get("type", "")).capitalize(), q.get("giver", "—"), q.get("location", "")], 17, UITheme.C_DIM)
 	var sm := UITheme.label(str(q.get("summary", "")), 18)
 	sm.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(sm)
@@ -628,7 +637,7 @@ func _on_quest(qid: String) -> void:
 			GameState.tracked_quest = qid
 			_on_quest(qid))
 	elif qs.done and str(qs.outcome) != "":
-		content.add_child(UITheme.label("Outcome: " + str(q.get("outcomes", {}).get(str(qs.outcome), qs.outcome)), 17))
+		_note("Outcome: " + str(q.get("outcomes", {}).get(str(qs.outcome), qs.outcome)), 17)
 	_btn("« Back", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
@@ -640,7 +649,7 @@ func _bestiary() -> void:
 	var ids: Array = GameState.bestiary.keys()
 	ids.sort()
 	if ids.is_empty():
-		content.add_child(UITheme.label("No creatures recorded yet.", 18))
+		_note("No creatures recorded yet.", 18)
 	for eid: String in ids:
 		var e: Dictionary = Content.enemy(eid)
 		var b: Dictionary = GameState.bestiary[eid]
@@ -669,7 +678,7 @@ func _map() -> void:
 	_header("Map — Bellweather")
 	var here: Dictionary = Content.map(GameState.map_id)
 	var can_travel: bool = here.get("destination", false) and not here.has("encounters")
-	content.add_child(UITheme.label("Fast travel is available between discovered places while in town." if can_travel else "Fast travel is unavailable here (dungeon or interior).", 17, UITheme.C_DIM))
+	_note("Fast travel is available between discovered places while in town." if can_travel else "Fast travel is unavailable here (dungeon or interior).", 17, UITheme.C_DIM)
 	for mid: String in GameState.discovered:
 		var md: Dictionary = Content.map(mid)
 		var here_tag := "  (you are here)" if mid == GameState.map_id else ""
@@ -681,7 +690,7 @@ func _map() -> void:
 			Router.enter_world(mid, "default"), "Travel to %s." % md.get("name", mid))
 		if not can_travel:
 			b.add_theme_color_override("font_color", Color(0.6, 0.6, 0.66))
-	content.add_child(UITheme.label("The wider world map (the Rainward Line and beyond) opens in Chapter Two — not yet built.", 16, UITheme.C_DIM))
+	_note("The wider world map (the Rainward Line and beyond) opens in Chapter Two — not yet built.", 16, UITheme.C_DIM)
 
 
 # ------------------------------------------------------------------ Settings / Save / Title
@@ -700,7 +709,7 @@ func _save() -> void:
 	_header("Save")
 	var here: Dictionary = Content.map(GameState.map_id)
 	if here.has("encounters"):
-		content.add_child(UITheme.label("You can only save at a Bell Shrine in dangerous areas.", 18))
+		_note("You can only save at a Bell Shrine in dangerous areas.", 18)
 		_btn("Load a save…", _open_load, "Load a previous save.")
 		return
 	_btn("Save game…", func() -> void:

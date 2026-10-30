@@ -37,6 +37,7 @@ func _ready() -> void:
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	overlay.color = Color(0, 0, 0, 0)
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.gui_input.connect(_on_panel_input)   # taps advance narration / title cards
 	root.add_child(overlay)
 	center_label = Label.new()
 	center_label.set_anchors_preset(Control.PRESET_FULL_RECT)

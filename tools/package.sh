@@ -20,8 +20,12 @@ chmod +x "$STAGE/EchoesOfTheLastDawn.x86_64"
 tar -C dist/stage -czf "$OUT/echoes-of-the-last-dawn-$VERSION-linux-x86_64.tar.gz" "$(basename "$STAGE")"
 ( cd dist/stage && zip -q -9 -r "../../$OUT/echoes-of-the-last-dawn-$VERSION-linux-x86_64.zip" "$(basename "$STAGE")" )
 # Verify archives.
-unzip -l "$OUT/echoes-of-the-last-dawn-$VERSION-web.zip" | grep -q " index.html$" || { echo "web zip missing root index.html"; exit 1; }
-tar -tzvf "$OUT/echoes-of-the-last-dawn-$VERSION-linux-x86_64.tar.gz" | grep -q "rwxr-xr-x.*EchoesOfTheLastDawn.x86_64" || { echo "linux tarball missing exec bit"; exit 1; }
+WEB_LIST="$(unzip -l "$OUT/echoes-of-the-last-dawn-$VERSION-web.zip")"
+grep -q " index.html$" <<< "$WEB_LIST" || { echo "web zip missing root index.html"; exit 1; }
+for f in index.js index.wasm index.pck; do grep -q " $f$" <<< "$WEB_LIST" || { echo "web zip missing $f"; exit 1; }; done
+TAR_LIST="$(tar -tzvf "$OUT/echoes-of-the-last-dawn-$VERSION-linux-x86_64.tar.gz")"
+grep -q "rwxr-xr-x.*EchoesOfTheLastDawn.x86_64" <<< "$TAR_LIST" || { echo "linux tarball missing exec bit"; exit 1; }
+grep -q "EchoesOfTheLastDawn.pck" <<< "$TAR_LIST" || { echo "linux tarball missing pck"; exit 1; }
 ( cd "$OUT" && sha256sum * > SHA256SUMS.txt )
 cat "$OUT/SHA256SUMS.txt"
 ls -la "$OUT"

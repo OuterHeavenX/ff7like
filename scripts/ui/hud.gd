@@ -39,7 +39,11 @@ func _ready() -> void:
 	prompt_panel.offset_bottom = -40
 	prompt_panel.offset_left = -110
 	prompt_panel.offset_right = 110
-	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	prompt_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	prompt_panel.gui_input.connect(func(e: InputEvent) -> void:
+		# Tapping the prompt interacts (touch convenience; A still works).
+		if e is InputEventMouseButton and e.pressed and get_parent().can_control():
+			get_parent().interact())
 	root.add_child(prompt_panel)
 	prompt_label = UITheme.label("", 20)
 	prompt_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

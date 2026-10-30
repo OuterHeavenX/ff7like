@@ -16,8 +16,8 @@ void fragment() {
 	vec2 p = floor(wpos.xz * 24.0) / 24.0;
 	float r1 = sin(p.x * 2.7 + TIME * 1.1) * sin(p.y * 4.1 - TIME * 0.8);
 	float r2 = sin((p.x + p.y) * 3.3 - TIME * 1.6);
-	float hl = step(0.86, r1 * 0.7 + r2 * 0.4);
-	float dark = step(r1, -0.75) * 0.25;
+	float hl = step(0.93, r1 * 0.6 + r2 * 0.45);
+	float dark = step(r1 * 0.7 + r2 * 0.3, -0.85) * 0.12;
 	vec3 lit = COLOR.rgb;
 	vec3 c = base_color * (0.55 + lit * 0.9) * (1.0 - dark) + hl * lit * vec3(0.55, 0.6, 0.65);
 	ALBEDO = c;

@@ -262,6 +262,13 @@ func _update_camera(delta: float) -> void:
 	if bounds.size() == 4:
 		goal.x = clampf(goal.x, float(bounds[0]), float(bounds[2]))
 		goal.z = clampf(goal.z, float(bounds[1]), float(bounds[3]))
+	elif grid:
+		# Keep the view over the map instead of the void beyond its edges.
+		var half_w := 7.5 * float(map_data.get("camera_dist", 14.0)) / 14.0
+		var w := float(grid.w)
+		goal.x = w * 0.5 if w <= half_w * 2.0 else clampf(goal.x, half_w, w - half_w)
+		var h := float(grid.h)
+		goal.z = clampf(goal.z, minf(3.5, h * 0.5), maxf(h - 2.5, h * 0.5))
 	var k := 1.0 - exp(-delta * 6.0)
 	cam_target = cam_target.lerp(goal, k)
 	_snap_camera()
