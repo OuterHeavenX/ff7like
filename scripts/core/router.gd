@@ -16,6 +16,9 @@ var _pause_layer: CanvasLayer
 var _toast_layer: CanvasLayer
 var _toast_box: VBoxContainer
 var busy: bool = false
+## Development-only: the traversal harness sets this so battles auto-play.
+## Never set by normal play; the harness file is excluded from exports.
+var debug_auto_battle: bool = false
 
 
 func _ready() -> void:

@@ -837,7 +837,7 @@
  "ev_home_shelf": {
   "cmds": [
    {
-    "narrate": "Wren's notebooks. Lists of dates and numbers, pitch values in neat columns. One column is circled three times: WICK — 432 → 426."
+    "narrate": "Wren's notebooks. Lists of dates and numbers, pitch values in neat columns. One column is circled three times: WICK — 432 -> 426."
    }
   ]
  },

@@ -59,7 +59,7 @@ func handle_input(event: InputEvent) -> void:
 func _build() -> void:
 	MenuScreen.clear(tab_bar)
 	for i in tabs.size():
-		var b := UITheme.button(("▸ " if i == tab_idx else "") + tabs[i], func() -> void:
+		var b := UITheme.button(("» " if i == tab_idx else "") + tabs[i], func() -> void:
 			tab_idx = i
 			_build(), 44)
 		b.focus_mode = Control.FOCUS_NONE
@@ -123,7 +123,7 @@ func _value_label(label: String, key: String, values: Array, names: Array) -> St
 	for i in values.size():
 		if str(values[i]) == str(v) or (typeof(v) == TYPE_FLOAT and typeof(values[i]) == TYPE_FLOAT and is_equal_approx(float(v), float(values[i]))):
 			idx = i
-	return "%s:   ◀ %s ▶" % [label, names[idx]]
+	return "%s:   « %s »" % [label, names[idx]]
 
 
 func _choice(label: String, key: String, values: Array, names: Array, help: String) -> void:

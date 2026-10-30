@@ -110,8 +110,8 @@ func _build_logo() -> void:
 func _process(delta: float) -> void:
 	_t += minf(delta, 0.1)
 	var s := 0.0 if bool(Settings.get_value("reduce_motion")) else _t * 0.05
-	camera.position = Vector3(12.0 + sin(s) * 5.0, 5.5, 26.0 + cos(s * 0.7) * 1.5)
-	camera.rotation_degrees.y = -10 + sin(s) * 8.0
+	camera.position = Vector3(15.0 + sin(s) * 6.0, 3.6, 13.5 + cos(s * 0.7) * 0.8)
+	camera.rotation_degrees = Vector3(-14.0, -8.0 + sin(s) * 7.0, 0.0)
 	if not _gate_open:
 		press_label.modulate.a = 0.45 + 0.55 * absf(sin(_t * 2.0))
 

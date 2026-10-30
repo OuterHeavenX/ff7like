@@ -750,7 +750,9 @@ func to_dict() -> Dictionary:
 	}
 
 
-func from_dict(d: Dictionary) -> void:
+func from_dict(src: Dictionary) -> void:
+	# Deep copy so later resets never mutate the caller's snapshot (retry/load).
+	var d: Dictionary = src.duplicate(true)
 	reset()
 	members = d.get("members", {})
 	roster = d.get("roster", [])

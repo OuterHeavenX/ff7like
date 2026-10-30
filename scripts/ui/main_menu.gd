@@ -269,8 +269,8 @@ func _on_party_pick(cid: String) -> void:
 		_btn("Swap / Move…", func() -> void:
 			_swap_from = cid
 			_show_section(true)
-			info.text = "Choose who to swap with.", "Swap positions with another member (active ⇄ reserve).")
-	_btn("◀ Back to party list", func() -> void: _show_section(true))
+			info.text = "Choose who to swap with.", "Swap positions with another member (active <-> reserve).")
+	_btn("« Back to party list", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
 
@@ -327,7 +327,7 @@ func _on_item(iid: String) -> void:
 		var m: Dictionary = GameState.members[cid]
 		var st := GameState.stats_for(cid)
 		_btn("%s  HP %d/%d  SP %d/%d" % [Content.character(cid).get("name", cid), int(m.hp), int(st.hp), int(m.sp), int(st.sp)], _use_item.bind(iid, cid))
-	_btn("◀ Back", func() -> void: _show_section(true))
+	_btn("« Back", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
 
@@ -376,7 +376,7 @@ func _equip() -> void:
 	for slot: String in ["weapon", "armor", "accessory"]:
 		var iid: String = m.equip.get(slot, "")
 		var nm: String = Content.item(iid).get("name", "—") if iid != "" else "—"
-		var lock := "  🔒" if _locked_slots.get(cid + slot, false) else ""
+		var lock := " [locked]" if _locked_slots.get(cid + slot, false) else ""
 		_btn("%s:  %s%s" % [slot.capitalize(), nm, lock], _on_slot.bind(cid, slot),
 			str(Content.item(iid).get("desc", "Empty slot.")) + "   [%s: lock/unlock for Optimize]" % InputHub.prompt("context")).set_meta("slot", slot)
 	_btn("Optimize (skips locked slots)", func() -> void:
@@ -423,7 +423,7 @@ func _on_slot(cid: String, slot: String) -> void:
 	for iid: String in options:
 		var ok := GameState.can_equip(cid, iid)
 		var preview := _preview(cid, slot, iid, before) if ok else "Cannot equip (weapon type not usable by this character)."
-		var b := _btn(("%s  x%d" % [Content.item(iid).get("name", iid), GameState.count_item(iid)]) + ("" if ok else "  ✕"), func() -> void:
+		var b := _btn(("%s  x%d" % [Content.item(iid).get("name", iid), GameState.count_item(iid)]) + ("" if ok else "  x"), func() -> void:
 			if ok and GameState.equip(cid, slot, iid):
 				Audio.sfx("confirm")
 				_show_section(true)
@@ -433,7 +433,7 @@ func _on_slot(cid: String, slot: String) -> void:
 			b.add_theme_color_override("font_color", Color(0.55, 0.55, 0.6))
 	if options.is_empty():
 		content.add_child(UITheme.label("No %s items in inventory." % slot, 18, UITheme.C_DIM))
-	_btn("◀ Back", func() -> void: _show_section(true))
+	_btn("« Back", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
 
@@ -477,7 +477,7 @@ func _jobs() -> void:
 		elif jid == m.secondary:
 			tag = "  [SECONDARY]"
 		var mastered := GameState.is_job_mastered(cid, jid)
-		var t := "%s  rank %d  %d JP  (%d/%d learned)%s%s" % [j.get("name", jid), GameState.job_rank(cid, jid), int(m.jp.get(jid, 0)), learned, j.get("abilities", []).size(), tag, "  ★MASTERED" if mastered else ""]
+		var t := "%s  rank %d  %d JP  (%d/%d learned)%s%s" % [j.get("name", jid), GameState.job_rank(cid, jid), int(m.jp.get(jid, 0)), learned, j.get("abilities", []).size(), tag, "  *MASTERED" if mastered else ""]
 		if not unlocked:
 			t = "%s  — locked" % j.get("name", jid)
 		var b := _btn(t, _on_job.bind(cid, jid), str(j.get("desc", "")) + ("" if unlocked else "  Unlock: " + str(j.get("unlock", "?"))))
@@ -521,14 +521,14 @@ func _on_job(cid: String, jid: String) -> void:
 	for a: Dictionary in j.get("abilities", []):
 		var s: Dictionary = Content.skill(str(a.id))
 		var reason := GameState.learn_block_reason(cid, jid, str(a.id))
-		var state := "✓ learned" if a.id in m.learned else ("%d JP" % int(a.jp))
-		var t := "%s %s  [%s]  rank %d  %s" % ["◆" if a.type == "active" else "◇", s.get("name", a.id), a.type, int(a.get("rank", 1)), state]
+		var state := "+ learned" if a.id in m.learned else ("%d JP" % int(a.jp))
+		var t := "%s %s  [%s]  rank %d  %s" % ["*" if a.type == "active" else "-", s.get("name", a.id), a.type, int(a.get("rank", 1)), state]
 		var help := "%s%s%s" % [s.get("desc", ""), ("  SP %d." % int(s.get("sp", 0))) if int(s.get("sp", 0)) > 0 else "",
 			("" if reason == "" or a.id in m.learned else "  — " + reason)]
 		var b := _btn(t, _learn.bind(cid, jid, str(a.id)), help)
 		if reason != "" and not a.id in m.learned:
 			b.add_theme_color_override("font_color", Color(0.6, 0.6, 0.66))
-	_btn("◀ Back to jobs", func() -> void: _show_section(true))
+	_btn("« Back to jobs", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
 
@@ -558,7 +558,7 @@ func _passives() -> void:
 		content.add_child(UITheme.label("No passives learned yet. Learn them from the Jobs screen with JP.", 18))
 	for pid: String in list:
 		var s: Dictionary = Content.skill(pid)
-		_btn("%s %s" % ["[■]" if pid in m.passives else "[  ]", s.get("name", pid)], func() -> void:
+		_btn("%s %s" % ["[x]" if pid in m.passives else "[  ]", s.get("name", pid)], func() -> void:
 			if not GameState.toggle_passive(cid, pid):
 				Audio.sfx("error")
 				info.text = "All passive slots are full. Unequip one first."
@@ -585,7 +585,7 @@ func _journal() -> void:
 		for qid: String in ids:
 			var q: Dictionary = Content.quest(qid)
 			var qs: Dictionary = GameState.quests[qid]
-			var mark := "✓ " if qs.done else ("◆ " if qid == GameState.tracked_quest else "• ")
+			var mark := "+ " if qs.done else ("* " if qid == GameState.tracked_quest else "• ")
 			_btn(mark + str(q.get("title", qid)), _on_quest.bind(qid), _quest_summary(qid))
 	if GameState.quests.is_empty():
 		content.add_child(UITheme.label("No entries yet.", 18))
@@ -617,19 +617,19 @@ func _on_quest(qid: String) -> void:
 		if i > cur and not qs.done:
 			break
 		var done_step: bool = i < cur or bool(qs.done)
-		var l := UITheme.label(("✓ " if done_step else "▶ ") + str(stages[i].get("objective", "")), 17, UITheme.C_DIM if done_step else Color(0, 0, 0, 0))
+		var l := UITheme.label(("+ " if done_step else "» ") + str(stages[i].get("objective", "")), 17, UITheme.C_DIM if done_step else Color(0, 0, 0, 0))
 		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		content.add_child(l)
 	if not qs.done and cur < stages.size():
 		var rc := UITheme.label("Recap: " + str(stages[cur].get("recap", "")), 17, UITheme.C_ACCENT)
 		rc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		content.add_child(rc)
-		_btn("Track this quest" if GameState.tracked_quest != qid else "Tracking ◆", func() -> void:
+		_btn("Track this quest" if GameState.tracked_quest != qid else "Tracking *", func() -> void:
 			GameState.tracked_quest = qid
 			_on_quest(qid))
 	elif qs.done and str(qs.outcome) != "":
 		content.add_child(UITheme.label("Outcome: " + str(q.get("outcomes", {}).get(str(qs.outcome), qs.outcome)), 17))
-	_btn("◀ Back", func() -> void: _show_section(true))
+	_btn("« Back", func() -> void: _show_section(true))
 	MenuScreen.focus_first(content)
 
 

@@ -82,7 +82,7 @@ func _ready() -> void:
 	text_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vb.add_child(text_label)
 	arrow = Label.new()
-	arrow.text = "▼"
+	arrow.text = "»"
 	arrow.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	vb.add_child(arrow)
 	choice_panel = PanelContainer.new()

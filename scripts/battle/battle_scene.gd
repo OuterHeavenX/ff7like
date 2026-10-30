@@ -56,6 +56,9 @@ func setup(enc_id: String, o: Dictionary) -> void:
 	_build_arena()
 	_build_units()
 	_build_ui()
+	if Router.debug_auto_battle:
+		_auto = true
+		auto_btn.text = "Auto: ON"
 	Audio.play_music(str(o.get("music", "")) if str(o.get("music", "")) != "" else str(encounter.get("music", "battle")))
 	var names: PackedStringArray = []
 	for u: BattleUnit in sim.enemies_alive():
@@ -92,7 +95,7 @@ func _build_arena() -> void:
 	env.environment = e
 	add_child(env)
 	_cursor = Label3D.new()
-	_cursor.text = "▼"
+	_cursor.text = "V"
 	_cursor.font = UITheme.bold()
 	_cursor.font_size = 72
 	_cursor.outline_size = 14
@@ -213,7 +216,7 @@ func _build_ui() -> void:
 	help_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	help_label.custom_minimum_size = Vector2(0, 28)
 	thb.add_child(help_label)
-	wait_label = UITheme.label("⏸ WAIT", 18, UITheme.C_ACCENT)
+	wait_label = UITheme.label("|| WAIT", 18, UITheme.C_ACCENT)
 	wait_label.visible = false
 	thb.add_child(wait_label)
 	auto_btn = UITheme.button("Auto: OFF", _toggle_auto, 40)
@@ -307,9 +310,9 @@ func _status_strip(u: BattleUnit) -> HBoxContainer:
 		var l := UITheme.label(STATUS_ABBR[sid], 13)
 		hb.add_child(l)
 	if not u.delayed.is_empty():
-		hb.add_child(UITheme.label("⏳", 13))
+		hb.add_child(UITheme.label("~", 13))
 	if not u.charging.is_empty():
-		hb.add_child(UITheme.label("⚠CHARGING", 13, UITheme.C_BAD))
+		hb.add_child(UITheme.label("!CHARGING", 13, UITheme.C_BAD))
 	return hb
 
 
@@ -325,7 +328,7 @@ func _refresh_panels() -> void:
 		hb.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		hb.add_theme_constant_override("separation", 8)
 		b.add_child(hb)
-		var name_col := UITheme.label(("▶ " if u.uid == _active_uid else "") + u.name.split(" ")[0] + ("  (B)" if u.row == "back" else ""), 19,
+		var name_col := UITheme.label(("» " if u.uid == _active_uid else "") + u.name.split(" ")[0] + ("  (B)" if u.row == "back" else ""), 19,
 			UITheme.C_ACCENT if u.uid == _active_uid else (UITheme.C_BAD if not u.alive() else Color(0, 0, 0, 0)))
 		name_col.custom_minimum_size = Vector2(130, 0)
 		hb.add_child(name_col)
@@ -492,7 +495,7 @@ func _present(evs: Array) -> void:
 				await get_tree().create_timer(0.9 / spd).timeout
 			"telegraph":
 				Audio.sfx("warning")
-				_show_banner("⚠ " + str(ev.text), Color(1.0, 0.55, 0.45))
+				_show_banner("! " + str(ev.text), Color(1.0, 0.55, 0.45))
 				_flash_unit(str(ev.actor), Color(1.6, 1.6, 1.6))
 				_show_help(str(ev.text))
 				await get_tree().create_timer(1.8 / spd).timeout
@@ -768,21 +771,21 @@ func _build_root_menu() -> void:
 	cmd_box.add_child(UITheme.title_label(u.name.split(" ")[0], 20))
 	var first := _cmd_button("Attack", func() -> void: _choose_skill("attack"), "", "Basic weapon attack.")
 	if not sk.personal.is_empty():
-		_cmd_button(str(sk.personal_name) + " ▸", func() -> void: _open_list(sk.personal, str(sk.personal_name)), "", "Personal command.")
+		_cmd_button(str(sk.personal_name) + " »", func() -> void: _open_list(sk.personal, str(sk.personal_name)), "", "Personal command.")
 	var m: Dictionary = GameState.members[u.source_id]
 	if not sk.main.is_empty():
 		var jn: String = Content.job(str(m.job)).get("name", "Job")
-		_cmd_button(jn + " ▸", func() -> void: _open_list(sk.main, jn), "", "Main job skills.")
+		_cmd_button(jn + " »", func() -> void: _open_list(sk.main, jn), "", "Main job skills.")
 	if not sk.secondary.is_empty():
 		var jn2: String = Content.job(str(m.secondary)).get("name", "Job")
-		_cmd_button(jn2 + " ▸", func() -> void: _open_list(sk.secondary, jn2), "", "Secondary skill set.")
+		_cmd_button(jn2 + " »", func() -> void: _open_list(sk.secondary, jn2), "", "Secondary skill set.")
 	var arts := _arts_for(u)
 	if not arts.is_empty():
-		_cmd_button("Resonance ▸", func() -> void: _open_list(arts, "Resonance"), "" if sim.resonance >= 50 else "Needs 50 Resonance", "Team techniques fuelled by shared Resonance.")
+		_cmd_button("Resonance »", func() -> void: _open_list(arts, "Resonance"), "" if sim.resonance >= 50 else "Needs 50 Resonance", "Team techniques fuelled by shared Resonance.")
 	var items := sim.available_items()
-	_cmd_button("Item ▸", func() -> void: _open_items(), "" if not items.is_empty() else "No usable items", "Use an item.")
+	_cmd_button("Item »", func() -> void: _open_items(), "" if not items.is_empty() else "No usable items", "Use an item.")
 	_cmd_button("Guard", func() -> void: _submit({"kind": "guard"}), "", "Halve damage taken until your next turn.")
-	_cmd_button("Row: " + ("Back→Front" if u.row == "back" else "Front→Back"), func() -> void: _submit({"kind": "row"}), "", "Back row: melee deals 60%, physical damage taken 70%.")
+	_cmd_button("Row: " + ("Back->Front" if u.row == "back" else "Front->Back"), func() -> void: _submit({"kind": "row"}), "", "Back row: melee deals 60%, physical damage taken 70%.")
 	if sim.can_escape:
 		_cmd_button("Escape", func() -> void: _submit({"kind": "escape"}), "", "Try to run. Chance improves with each attempt.")
 	if not u.last_command.is_empty():
@@ -908,7 +911,7 @@ func _update_target_highlight() -> void:
 		var on: bool = uid in _target_ids and (_target_multi or uid == _target_ids[_target_idx])
 		spr.modulate = Color(1.25, 1.2, 1.0, spr.modulate.a) if on else Color(1, 1, 1, spr.modulate.a)
 	_show_help("Target: " + ", ".join(names) + "   (%s confirm, %s back%s)" % [InputHub.prompt("confirm"), InputHub.prompt("cancel"),
-		"" if _target_multi else ", ◀▶ change"])
+		"" if _target_multi else ", «» change"])
 
 
 func _confirm_target() -> void:
@@ -1113,7 +1116,7 @@ func _victory_screen(rw: Dictionary, report: Array) -> void:
 		var job_name: String = Content.job(str(m.job)).get("name", "—")
 		var line := "%s  +%d XP  +%d JP (%s)" % [str(c.get("name", r.id)).split(" ")[0], int(r.xp), int(r.jp), job_name]
 		if int(r.levels) > 0:
-			line += "   LEVEL UP! %d → %d" % [int(r.level_before), int(r.level)]
+			line += "   LEVEL UP! %d -> %d" % [int(r.level_before), int(r.level)]
 		if r.rank_up:
 			line += "   %s rank %d!" % [job_name, int(r.rank)]
 		var to_next := GameState.xp_total_for_level(int(m.level) + 1) - int(m.xp)

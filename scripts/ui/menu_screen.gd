@@ -25,7 +25,7 @@ func add_dim(alpha: float = 0.72) -> void:
 
 ## Visible tap target for touch users (B also works).
 func add_back_button(parent: Control) -> Button:
-	back_button = UITheme.button("◀ Back", back, 48)
+	back_button = UITheme.button("« Back", back, 48)
 	back_button.focus_mode = Control.FOCUS_NONE
 	parent.add_child(back_button)
 	return back_button

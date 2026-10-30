@@ -69,7 +69,7 @@ func refresh() -> void:
 		var stages: Array = qd.get("stages", [])
 		var st := clampi(GameState.quest_stage(q), 0, maxi(0, stages.size() - 1))
 		var obj: String = stages[st].get("objective", "") if not stages.is_empty() else ""
-		objective.text = "◆ " + obj
+		objective.text = "* " + obj
 	else:
 		objective.text = ""
 	objective.position.y = 20 if banner.modulate.a < 0.1 else 74

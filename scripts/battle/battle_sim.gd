@@ -834,23 +834,92 @@ func choose_enemy_action(u: BattleUnit) -> Dictionary:
 	return {"kind": "skill", "id": str(def2.get("id", "attack")), "targets": tgt}
 
 
-## Simple party policy used by auto-battle and headless simulations.
+## Auto-battle policy (also used by headless simulations). Never spends items.
+## Priorities: answer telegraphed charges, keep allies alive with skills, use
+## Resonance arts, then the strongest affordable attack on a priority target.
 func auto_command(u: BattleUnit) -> Dictionary:
-	if u.last_command.size() > 0:
-		var lc: Dictionary = u.last_command.duplicate(true)
-		if str(lc.get("kind")) == "skill" and command_block_reason(u, lc) == "":
-			var def := skill_def(str(lc.id))
-			if not str(def.get("kind", "")) in ["heal", "support"]:
-				lc.targets = _resolve_targets(u, def, lc.get("targets", []))
-				return lc
 	var foes := enemies_alive()
 	if foes.is_empty():
 		return {"kind": "guard"}
-	var weakest: BattleUnit = foes[0]
+	var skills := _usable_skill_ids(u)
+	var charger: BattleUnit = null
 	for f: BattleUnit in foes:
-		if f.hp < weakest.hp:
-			weakest = f
-	return {"kind": "skill", "id": "attack", "targets": [weakest.uid]}
+		if not f.charging.is_empty():
+			charger = f
+	if charger:
+		for sid: String in skills:
+			for op: Dictionary in skill_def(sid).get("ops", []):
+				if str(op.op) == "status" and str(op.id) == "stun" and str(skill_def(sid).get("target")) in ["enemy", "enemies"]:
+					return {"kind": "skill", "id": sid, "targets": [charger.uid]}
+		return {"kind": "guard"}
+	var allies := side_units(u.side)
+	var weakest: BattleUnit = allies[0]
+	for a: BattleUnit in allies:
+		if a.hp_ratio() < weakest.hp_ratio():
+			weakest = a
+	for a: BattleUnit in side_units(u.side, false):
+		if not a.alive():
+			for sid: String in skills:
+				if str(skill_def(sid).get("target")) == "ally_ko":
+					return {"kind": "skill", "id": sid, "targets": [a.uid]}
+	if weakest.hp_ratio() < 0.4:
+		for sid: String in skills:
+			var d := skill_def(sid)
+			if str(d.get("kind")) == "heal" and str(d.get("target")) in ["ally", "allies", "self"]:
+				if str(d.get("target")) == "self" and weakest != u:
+					continue
+				return {"kind": "skill", "id": sid, "targets": [weakest.uid]}
+	var tgt: BattleUnit = foes[0]
+	for f: BattleUnit in foes:
+		if f.role == "healer" or (f.summoned and tgt.boss):
+			tgt = f
+			break
+		if f.hp < tgt.hp and not tgt.role == "healer":
+			tgt = f
+	for sid: String in skills:
+		if int(skill_def(sid).get("resonance", 0)) > 0:
+			return {"kind": "skill", "id": sid, "targets": [tgt.uid]}
+	var best := "attack"
+	var best_score := 1.0
+	var reserve := u.max_sp * 0.3
+	for sid: String in skills:
+		var d2 := skill_def(sid)
+		if int(d2.get("resonance", 0)) > 0 or not str(d2.get("target")) in ["enemy", "enemies"]:
+			continue
+		var score := 0.0
+		for op: Dictionary in d2.get("ops", []):
+			if str(op.op) == "damage":
+				var mult := tgt.elem(str(op.get("element", "")))
+				score += float(op.get("power", 100)) / 100.0 * float(op.get("hits", 1)) * maxf(0.0, mult)
+		if is_multi(d2):
+			score *= minf(float(foes.size()), 2.5) * 0.8
+		if u.sp - sp_cost(u, d2) < reserve and sp_cost(u, d2) > 0:
+			score *= 0.5
+		if score > best_score:
+			best_score = score
+			best = sid
+	return {"kind": "skill", "id": best, "targets": [tgt.uid]}
+
+
+func _usable_skill_ids(u: BattleUnit) -> Array:
+	var out: Array = []
+	var ids: Array = u.skills.duplicate() if u.side == 1 else []
+	if u.side == 0 and GameState.members.has(u.source_id):
+		var bs := GameState.battle_skills(u.source_id)
+		ids = bs.personal + bs.main + bs.secondary
+		for sid: String in Content.table("skills").keys():
+			var sd: Dictionary = Content.skill(sid)
+			if str(sd.get("owner", "")) == u.source_id:
+				var ok := true
+				for pid: String in sd.get("partners", []):
+					if _find_source(u.side, pid) == null:
+						ok = false
+				if ok:
+					ids.append(sid)
+	for sid: String in ids:
+		if command_block_reason(u, {"kind": "skill", "id": sid}) == "":
+			out.append(sid)
+	return out
 
 
 # ------------------------------------------------------------------ rewards

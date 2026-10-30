@@ -48,7 +48,7 @@ func _policy(s: BattleSim, u: BattleUnit) -> Dictionary:
 	return {"kind": "skill", "id": sid, "targets": [tgt.uid]}
 
 
-func _simulate(enc: String, level: int, seeds: int) -> Dictionary:
+func _simulate(enc: String, level: int, seeds: int, use_auto: bool = false) -> Dictionary:
 	var wins := 0
 	var total_time := 0.0
 	var total_actions := 0
@@ -72,7 +72,7 @@ func _simulate(enc: String, level: int, seeds: int) -> Dictionary:
 			s.step(0.05)
 			for uid: String in s.ready_queue.duplicate():
 				var u := s.unit(uid)
-				var cmd := _policy(s, u)
+				var cmd := s.auto_command(u) if use_auto else _policy(s, u)
 				if s.submit(uid, cmd) != "":
 					s.submit(uid, {"kind": "guard"})
 			steps += 1
@@ -97,6 +97,15 @@ func test_boss_winnable_but_not_trivial() -> void:
 		if lvl == 7:
 			t.ok(r.wins >= 7, "boss winnable at expected level 7 with sensible play (%d/10)" % r.wins)
 			t.ok(r.avg_actions >= 20, "boss is not trivial (%.1f actions)" % r.avg_actions)
+
+
+func test_auto_battle_policy_is_viable() -> void:
+	for lvl in [7, 8, 10]:
+		var r := _simulate("boss_clapper", lvl, 10, true)
+		print("    sim boss_clapper AUTO Lv%d  wins %d/%d  actions %.1f" % [lvl, r.wins, r.seeds, r.avg_actions])
+	var r2 := _simulate("uc_crabs", 4, 6, true)
+	print("    sim uc_crabs AUTO Lv4 wins %d/%d" % [r2.wins, r2.seeds])
+	t.ok(r2.wins == r2.seeds, "auto-battle clears common fights")
 
 
 func test_elite_ironside() -> void:
