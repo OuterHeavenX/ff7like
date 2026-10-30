@@ -1,0 +1,323 @@
+{
+ "id": "undercroft_upper",
+ "name": "Maintenance Galleries",
+ "region": "Station Undercroft",
+ "music": "dungeon_undercroft",
+ "ambient": [
+  0.34,
+  0.36,
+  0.44
+ ],
+ "background": [
+  0.01,
+  0.01,
+  0.02
+ ],
+ "camera_dist": 13,
+ "autosave": true,
+ "rows": [
+  "WWWWWWWWWWWWWWWWWWWWWWWWWW",
+  "WSSSSSWWWWWWWWWWWWWWSSSSSW",
+  "WSSSSSWWWWWWWWWWWWWWSSSSSW",
+  "WSSSSSSSSSSSSSSSSSSSSSSSSW",
+  "WSSSSSSSSSSSSSSSSSSSSSSSSW",
+  "WwwwSSwwwwwwwSSSwwwwwSSwwW",
+  "WWWWSSWWWWWWWgggWWWWWSSWWW",
+  "WSSSSSSSSSWWWgggWWSSSSSSSW",
+  "WSSSSSSSSSWWWgggWWSSSSSSSW",
+  "WSSSSSSSSSwwwgggwwSSSSSSSW",
+  "WSSSSSSSSSSSSgggSSSSSSSSSW",
+  "WwwwwwwwwwwwwgggwwwwwwwwwW",
+  "             ggg          "
+ ],
+ "spawns": {
+  "default": [
+   3,
+   2,
+   "down"
+  ],
+  "hatch": [
+   3,
+   2,
+   "down"
+  ],
+  "south": [
+   14,
+   11,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "lamp",
+   "at": [
+    5,
+    1
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    1,
+    1
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    1,
+    4
+   ],
+   "size": 0.6
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    6,
+    3
+   ],
+   "len": 6
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    14,
+    3
+   ],
+   "len": 5
+  },
+  {
+   "t": "valve",
+   "at": [
+    24,
+    1
+   ],
+   "_on": false
+  },
+  {
+   "t": "machine",
+   "at": [
+    20,
+    1
+   ],
+   "w": 2
+  },
+  {
+   "t": "lamp",
+   "at": [
+    21,
+    7
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    2,
+    7
+   ]
+  },
+  {
+   "t": "crystal",
+   "at": [
+    9,
+    7
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    24,
+    7
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    1,
+    10
+   ]
+  },
+  {
+   "t": "gear",
+   "at": [
+    6,
+    8
+   ]
+  },
+  {
+   "t": "steam",
+   "at": [
+    14,
+    6
+   ],
+   "y": 0.2
+  },
+  {
+   "t": "dust",
+   "at": [
+    12,
+    5
+   ],
+   "w": 10,
+   "h": 4
+  }
+ ],
+ "chests": [
+  {
+   "id": "uc_up_1",
+   "at": [
+    8,
+    8
+   ],
+   "items": {
+    "hi_tonic": 1
+   },
+   "gold": 60
+  },
+  {
+   "id": "uc_up_2",
+   "at": [
+    23,
+    10
+   ],
+   "items": {
+    "storm_jar": 2
+   }
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    14,
+    9
+   ],
+   "color": [
+    0.4,
+    0.8,
+    1.0
+   ],
+   "radius": 4
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    3,
+    1
+   ],
+   "kind": "event",
+   "event": "ev_undercroft_enter",
+   "once": true
+  },
+  {
+   "at": [
+    1,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    3,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_ladder_up",
+   "label": "Ladder"
+  },
+  {
+   "at": [
+    24,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_valve_a",
+   "label": "Valve"
+  },
+  {
+   "at": [
+    18,
+    8
+   ],
+   "w": 2,
+   "kind": "event",
+   "event": "ev_tamsin_rescue",
+   "cond": "!flag:tamsin_rescued"
+  },
+  {
+   "at": [
+    13,
+    12
+   ],
+   "w": 3,
+   "kind": "exit",
+   "to": "undercroft_cistern",
+   "spawn": "north"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "tamsin_trapped",
+   "sprite": "engineer",
+   "at": [
+    22,
+    8
+   ],
+   "face": "left",
+   "cond": "!flag:tamsin_rescued",
+   "talk": "ev_tamsin_rescue"
+  },
+  {
+   "id": "tamsin",
+   "sprite": "engineer",
+   "at": [
+    4,
+    4
+   ],
+   "face": "down",
+   "cond": "flag:tamsin_rescued",
+   "talk": "ev_tamsin_cache"
+  },
+  {
+   "id": "joss_saved",
+   "sprite": "survivor",
+   "at": [
+    2,
+    3
+   ],
+   "face": "right",
+   "cond": "flag:joss_rescued",
+   "talk": "ev_joss_saved"
+  }
+ ],
+ "encounters": {
+  "table": [
+   {
+    "enc": "uc_rats",
+    "w": 3
+   },
+   {
+    "enc": "uc_moths",
+    "w": 3
+   },
+   {
+    "enc": "uc_mender",
+    "w": 2
+   }
+  ],
+  "min_steps": 14,
+  "rate": 1.0,
+  "cond": "flag:tamsin_rescued"
+ },
+ "party_talk": [
+  {
+   "cond": "!flag:valve_a",
+   "event": "pt_upper_valve"
+  },
+  {
+   "event": "pt_upper"
+  }
+ ]
+}

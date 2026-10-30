@@ -1,0 +1,15 @@
+# Godot caches and generated
+.godot/
+*.import.bak
+/android/
+# Exports / packages (produced by tools/build.sh)
+dist/*
+!dist/.gitkeep
+# Python
+__pycache__/
+*.pyc
+# Local
+*.tmp
+.DS_Store
+export_credentials.cfg
+.env

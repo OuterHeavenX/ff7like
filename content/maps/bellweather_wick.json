@@ -1,0 +1,621 @@
+{
+ "id": "bellweather_wick",
+ "name": "Wick Street",
+ "region": "Bellweather",
+ "music": "town_bellweather",
+ "destination": true,
+ "ambient": [
+  0.42,
+  0.44,
+  0.62
+ ],
+ "background": [
+  0.03,
+  0.03,
+  0.07
+ ],
+ "camera_dist": 14,
+ "autosave": true,
+ "rows": [
+  "################################",
+  "#HHHHHHH#RRRRRR#HHHHHHHH#RRRRRR#",
+  "#HHHHHHH#RRRRRR#HHHHHHHH#RRRRRR#",
+  "#HHHHHHH#RRRRRR#HHHHHHHH#RRRRRR#",
+  "x...............................",
+  "x...............................",
+  "x...............................",
+  "~~~~~~~~~~~~~====~~~~~~~~~~~~~~~",
+  "~~~~~~~~~~~~~====~~~~~~~~~~~~~~~",
+  "~~_____~~~~~~====~~~~~~~~~~~~~~~",
+  ",,,,v,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+ ],
+ "heights": [
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "00000000000002222000000000000000",
+  "00000000000002222000000000000000",
+  "00111110000002222000000000000000",
+  "22221222222222222222222222222222",
+  "22222222222222222222222222222222",
+  "22222222222222222222222222222222"
+ ],
+ "spawns": {
+  "default": [
+   4,
+   5,
+   "down"
+  ],
+  "home": [
+   4,
+   4,
+   "down"
+  ],
+  "east": [
+   30,
+   5,
+   "left"
+  ],
+  "hatch": [
+   3,
+   9,
+   "left"
+  ]
+ },
+ "props": [
+  {
+   "t": "door",
+   "at": [
+    4,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    12,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    19,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    28,
+    3
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    8,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    15,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    23,
+    4
+   ],
+   "lit_flag": "lamp_wick_a"
+  },
+  {
+   "t": "lamp",
+   "at": [
+    30,
+    4
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    9,
+    11
+   ],
+   "lit_flag": "lamp_wick_b"
+  },
+  {
+   "t": "lamp",
+   "at": [
+    21,
+    11
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    28,
+    11
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    1,
+    4
+   ],
+   "to": [
+    8,
+    4
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    8,
+    4
+   ],
+   "to": [
+    15,
+    4
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    15,
+    4
+   ],
+   "to": [
+    23,
+    4
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    23,
+    4
+   ],
+   "to": [
+    30,
+    4
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    12,
+    6
+   ],
+   "to": [
+    17,
+    10
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    1,
+    11
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    6,
+    11
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    24,
+    11
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    31,
+    11
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    12,
+    11
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    18,
+    11
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    6,
+    4
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    26,
+    4
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    27,
+    4
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    6,
+    9
+   ],
+   "size": 0.75
+  },
+  {
+   "t": "crate",
+   "at": [
+    5,
+    9
+   ],
+   "size": 0.6
+  },
+  {
+   "t": "boat",
+   "at": [
+    21,
+    8
+   ],
+   "len": 3
+  },
+  {
+   "t": "boat",
+   "at": [
+    8,
+    7
+   ],
+   "len": 3
+  },
+  {
+   "t": "hatch",
+   "at": [
+    2,
+    9
+   ]
+  },
+  {
+   "t": "smoke",
+   "at": [
+    3,
+    2
+   ],
+   "y": 3.4
+  },
+  {
+   "t": "smoke",
+   "at": [
+    20,
+    2
+   ],
+   "y": 3.4
+  },
+  {
+   "t": "smoke",
+   "at": [
+    11,
+    2
+   ],
+   "y": 3.4
+  },
+  {
+   "t": "fireflies",
+   "at": [
+    16,
+    11
+   ],
+   "w": 12,
+   "h": 1
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    15,
+    8
+   ],
+   "color": [
+    0.5,
+    0.6,
+    0.9
+   ],
+   "radius": 5,
+   "y": 0.6
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    31,
+    4
+   ],
+   "h": 3,
+   "kind": "exit",
+   "to": "bellweather_square",
+   "spawn": "west"
+  },
+  {
+   "at": [
+    4,
+    3
+   ],
+   "on": "interact",
+   "kind": "exit",
+   "to": "vale_home",
+   "spawn": "door",
+   "label": "Enter"
+  },
+  {
+   "at": [
+    12,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_wick_door_abernethy",
+   "label": "Knock"
+  },
+  {
+   "at": [
+    19,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_wick_door_locked",
+   "label": "Knock"
+  },
+  {
+   "at": [
+    28,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_wick_door_locked",
+   "label": "Knock"
+  },
+  {
+   "at": [
+    23,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_lamp_wick_a",
+   "label": "Lantern",
+   "cond": "quest:sq_lamplighter&!flag:lamp_wick_a&!quest_done:sq_lamplighter"
+  },
+  {
+   "at": [
+    9,
+    11
+   ],
+   "on": "interact",
+   "event": "ev_lamp_wick_b",
+   "label": "Lantern",
+   "cond": "quest:sq_lamplighter&!flag:lamp_wick_b&!quest_done:sq_lamplighter"
+  },
+  {
+   "at": [
+    15,
+    6
+   ],
+   "h": 1,
+   "w": 2,
+   "kind": "event",
+   "event": "ev_bridge_after_toll",
+   "cond": "quest:mq_street_forgot&!flag:found_scarf",
+   "once": false
+  },
+  {
+   "at": [
+    6,
+    9
+   ],
+   "on": "interact",
+   "event": "ev_receipt_crate",
+   "label": "Search",
+   "cond": "quest:sq_small_debts>=1&!flag:receipt_found"
+  },
+  {
+   "at": [
+    2,
+    9
+   ],
+   "on": "interact",
+   "event": "ev_hatch",
+   "label": "Hatch"
+  },
+  {
+   "at": [
+    4,
+    4
+   ],
+   "kind": "event",
+   "event": "ev_home_return",
+   "cond": "quest:mq_street_forgot>=2&!flag:wardens_came"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "nessa_npc",
+   "sprite": "nessa",
+   "at": [
+    6,
+    5
+   ],
+   "face": "left",
+   "cond": "!flag:toll_happened",
+   "talk": "ev_nessa_prologue"
+  },
+  {
+   "id": "abernethy",
+   "sprite": "elder",
+   "at": [
+    13,
+    5
+   ],
+   "face": "down",
+   "wander": 2,
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_abernethy_after"
+    },
+    {
+     "event": "ev_abernethy_before"
+    }
+   ]
+  },
+  {
+   "id": "wick_man",
+   "sprite": "townsman",
+   "at": [
+    20,
+    5
+   ],
+   "face": "down",
+   "wander": 3,
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_wick_man_after"
+    },
+    {
+     "event": "ev_wick_man_before"
+    }
+   ]
+  },
+  {
+   "id": "wick_woman",
+   "sprite": "townswoman",
+   "at": [
+    26,
+    10
+   ],
+   "face": "up",
+   "wander": 2,
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_wick_woman_after"
+    },
+    {
+     "event": "ev_wick_woman_before"
+    }
+   ]
+  },
+  {
+   "id": "pim",
+   "sprite": "child",
+   "at": [
+    16,
+    11
+   ],
+   "face": "down",
+   "cond": "flag:toll_happened&!flag:got_drawing",
+   "talk": "ev_pim_drawing"
+  },
+  {
+   "id": "sallow",
+   "sprite": "sallow",
+   "at": [
+    7,
+    5
+   ],
+   "face": "left",
+   "cond": "flag:wardens_scene&!flag:wardens_came"
+  },
+  {
+   "id": "warden_a",
+   "sprite": "warden",
+   "at": [
+    7,
+    4
+   ],
+   "face": "left",
+   "cond": "flag:wardens_scene&!flag:wardens_came"
+  },
+  {
+   "id": "warden_b",
+   "sprite": "warden",
+   "at": [
+    7,
+    6
+   ],
+   "face": "left",
+   "cond": "flag:wardens_scene&!flag:wardens_came"
+  },
+  {
+   "id": "garran_npc",
+   "sprite": "garran",
+   "at": [
+    11,
+    5
+   ],
+   "face": "left",
+   "cond": "flag:garran_arrives&!flag:garran_joined"
+  },
+  {
+   "id": "mira_npc",
+   "sprite": "mira",
+   "at": [
+    9,
+    5
+   ],
+   "face": "left",
+   "cond": "flag:mira_arrives&!flag:mira_joined"
+  },
+  {
+   "id": "nessa_barge",
+   "sprite": "nessa",
+   "at": [
+    4,
+    9
+   ],
+   "face": "down",
+   "cond": "flag:nessa_barge"
+  }
+ ],
+ "party_talk": [
+  {
+   "cond": "flag:toll_happened&!flag:wardens_came",
+   "event": "pt_wick_after"
+  },
+  {
+   "cond": "party:mira",
+   "event": "pt_wick_mira"
+  },
+  {
+   "event": "pt_wick_default"
+  }
+ ]
+}

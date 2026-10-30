@@ -1,0 +1,154 @@
+{
+ "id": "post_office",
+ "name": "Post Office",
+ "region": "Lantern Square",
+ "music": "town_bellweather",
+ "ambient": [
+  0.62,
+  0.55,
+  0.5
+ ],
+ "background": [
+  0.02,
+  0.02,
+  0.03
+ ],
+ "camera_dist": 10,
+ "rows": [
+  "PPPPPPPPPPPP",
+  "PbbbbbbbbbbP",
+  "P__________P",
+  "Pkkkkk_____P",
+  "P__________P",
+  "P__________P",
+  "     __     "
+ ],
+ "spawns": {
+  "default": [
+   5,
+   5,
+   "up"
+  ],
+  "door": [
+   5,
+   5,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "crate",
+   "at": [
+    9,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    10,
+    2
+   ],
+   "size": 0.6
+  },
+  {
+   "t": "rug",
+   "at": [
+    4,
+    4
+   ],
+   "w": 4,
+   "h": 2,
+   "tint": [
+    0.6,
+    0.7,
+    0.9
+   ]
+  },
+  {
+   "t": "brazier",
+   "at": [
+    10,
+    5
+   ]
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    3,
+    2
+   ],
+   "color": [
+    1.0,
+    0.75,
+    0.45
+   ],
+   "radius": 5
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    5,
+    6
+   ],
+   "w": 2,
+   "kind": "exit",
+   "to": "bellweather_square",
+   "spawn": "post"
+  },
+  {
+   "at": [
+    7,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_post_ledger",
+   "label": "Search",
+   "cond": "quest:mq_street_forgot>=1&!flag:got_ledger"
+  },
+  {
+   "at": [
+    8,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_post_shelves",
+   "label": "Look"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "hale",
+   "sprite": "postmistress",
+   "at": [
+    3,
+    2
+   ],
+   "face": "down",
+   "talk": [
+    {
+     "cond": "flag:toll_happened&!flag:got_ledger&quest:mq_street_forgot>=1",
+     "event": "ev_hale_after"
+    },
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_hale_later"
+    },
+    {
+     "cond": "quest:mq_sealed_fork>=1",
+     "event": "ev_hale_reminder"
+    },
+    {
+     "event": "ev_hale_delivery"
+    }
+   ]
+  }
+ ],
+ "party_talk": [
+  {
+   "event": "pt_post"
+  }
+ ]
+}

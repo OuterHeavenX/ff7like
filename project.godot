@@ -1,0 +1,58 @@
+; Engine configuration file.
+; Pinned engine: Godot 4.4.1-stable (see docs/DECISIONS.md).
+
+config_version=5
+
+[application]
+
+config/name="Echoes of the Last Dawn"
+config/description="An original story-driven 2.5D JRPG."
+config/version="0.2.0"
+run/main_scene="res://scenes/boot.tscn"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://assets/ui/icon.png"
+run/max_fps=0
+boot_splash/bg_color=Color(0.04, 0.04, 0.08, 1)
+boot_splash/show_image=false
+
+[autoload]
+
+Settings="*res://scripts/core/settings.gd"
+Content="*res://scripts/core/content.gd"
+InputHub="*res://scripts/core/input_hub.gd"
+GameState="*res://scripts/core/game_state.gd"
+Saves="*res://scripts/core/save_service.gd"
+Audio="*res://scripts/core/audio_service.gd"
+Router="*res://scripts/core/router.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=0
+window/energy_saving/keep_screen_on=true
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+theme/default_font_antialiasing=0
+
+[input_devices]
+
+pointing/emulate_mouse_from_touch=true
+pointing/emulate_touch_from_mouse=false
+
+[physics]
+
+common/physics_ticks_per_second=60
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=0
+environment/defaults/default_clear_color=Color(0.03, 0.03, 0.06, 1)

@@ -1,0 +1,57 @@
+{
+ "brass_rat": {
+  "frames": 2,
+  "h": 28,
+  "w": 40
+ },
+ "echo_mote": {
+  "frames": 2,
+  "h": 24,
+  "w": 24
+ },
+ "echo_moth": {
+  "frames": 2,
+  "h": 40,
+  "w": 48
+ },
+ "hollow_clapper": {
+  "frames": 2,
+  "h": 96,
+  "w": 96
+ },
+ "hollow_echo": {
+  "frames": 2,
+  "h": 48,
+  "w": 40
+ },
+ "ironside": {
+  "frames": 2,
+  "h": 40,
+  "w": 40
+ },
+ "rust_mender": {
+  "frames": 2,
+  "h": 36,
+  "w": 36
+ },
+ "silt_crab": {
+  "frames": 2,
+  "h": 36,
+  "w": 52
+ },
+ "tallow_wisp": {
+  "frames": 2,
+  "h": 44,
+  "w": 36
+ },
+ "warden": {
+  "frames": 2,
+  "h": 40,
+  "w": 40
+ },
+ "warden_sergeant": {
+  "frames": 2,
+  "h": 40,
+  "w": 40
+ }
+}

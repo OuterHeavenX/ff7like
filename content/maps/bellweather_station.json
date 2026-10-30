@@ -1,0 +1,312 @@
+{
+ "id": "bellweather_station",
+ "name": "Bell Station",
+ "region": "Bellweather",
+ "music": "bells",
+ "destination": true,
+ "ambient": [
+  0.48,
+  0.5,
+  0.66
+ ],
+ "background": [
+  0.03,
+  0.03,
+  0.07
+ ],
+ "camera_dist": 13,
+ "rows": [
+  "########################",
+  "#BBBBBBBBBBBBBBBBBBBBBB#",
+  "#BBBBBBBBBBBBBBBBBBBBBB#",
+  "#BBBBBBBBBBBBBBBBBBBBBB#",
+  "#gggggggggggggggggggggg#",
+  "#gggggggggggggggggggggg#",
+  "#......................#",
+  "#......................#",
+  "#......................#",
+  "#......................#",
+  "#......................#",
+  "#########.....##########"
+ ],
+ "heights": [
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222",
+  "222222222222222222222222"
+ ],
+ "spawns": {
+  "default": [
+   11,
+   10,
+   "up"
+  ],
+  "south": [
+   11,
+   10,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "door",
+   "at": [
+    11,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    12,
+    3
+   ]
+  },
+  {
+   "t": "machine",
+   "at": [
+    2,
+    4
+   ],
+   "w": 2
+  },
+  {
+   "t": "machine",
+   "at": [
+    20,
+    4
+   ],
+   "w": 2
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    4,
+    4
+   ],
+   "len": 4
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    16,
+    4
+   ],
+   "len": 4
+  },
+  {
+   "t": "bell",
+   "at": [
+    11,
+    8
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    5,
+    7
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    18,
+    7
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    5,
+    10
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    18,
+    10
+   ]
+  },
+  {
+   "t": "steam",
+   "at": [
+    3,
+    4
+   ],
+   "y": 1.3
+  },
+  {
+   "t": "steam",
+   "at": [
+    21,
+    4
+   ],
+   "y": 1.3
+  },
+  {
+   "t": "crate",
+   "at": [
+    1,
+    6
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    22,
+    6
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    22,
+    7
+   ]
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    11,
+    5
+   ],
+   "color": [
+    0.5,
+    0.9,
+    1.0
+   ],
+   "radius": 5
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    9,
+    11
+   ],
+   "w": 5,
+   "kind": "exit",
+   "to": "bellweather_square",
+   "spawn": "north"
+  },
+  {
+   "at": [
+    11,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_station_doors",
+   "label": "Doors"
+  },
+  {
+   "at": [
+    12,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_station_doors",
+   "label": "Doors"
+  },
+  {
+   "at": [
+    11,
+    8
+   ],
+   "on": "interact",
+   "event": "ev_station_bell",
+   "label": "Examine"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "mira_npc",
+   "sprite": "mira",
+   "at": [
+    8,
+    5
+   ],
+   "face": "down",
+   "cond": "!flag:toll_happened",
+   "talk": [
+    {
+     "cond": "quest:mq_sealed_fork>=2",
+     "event": "ev_mira_after_delivery"
+    },
+    {
+     "event": "ev_mira_delivery"
+    }
+   ]
+  },
+  {
+   "id": "wren",
+   "sprite": "wren",
+   "at": [
+    15,
+    8
+   ],
+   "face": "left",
+   "cond": "!flag:toll_happened&!flag:met_wren",
+   "talk": "ev_wren"
+  },
+  {
+   "id": "wren_left",
+   "sprite": "wren",
+   "at": [
+    15,
+    8
+   ],
+   "face": "left",
+   "cond": "!flag:toll_happened&flag:met_wren",
+   "talk": "ev_wren_again"
+  },
+  {
+   "id": "st_engineer",
+   "sprite": "engineer",
+   "at": [
+    17,
+    5
+   ],
+   "face": "down",
+   "wander": 2,
+   "cond": "!flag:toll_happened",
+   "talk": "ev_st_engineer"
+  },
+  {
+   "id": "st_warden",
+   "sprite": "warden",
+   "at": [
+    13,
+    10
+   ],
+   "face": "up",
+   "cond": "!flag:toll_happened",
+   "talk": "ev_st_warden"
+  },
+  {
+   "id": "sallow",
+   "sprite": "sallow",
+   "at": [
+    10,
+    6
+   ],
+   "face": "left",
+   "cond": "flag:sallow_at_station"
+  }
+ ],
+ "party_talk": [
+  {
+   "event": "pt_station"
+  }
+ ]
+}

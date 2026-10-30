@@ -1,0 +1,185 @@
+{
+ "id": "vale_home",
+ "name": "The Vale House",
+ "region": "Wick Street",
+ "music": "theme_wren",
+ "ambient": [
+  0.62,
+  0.55,
+  0.5
+ ],
+ "background": [
+  0.02,
+  0.02,
+  0.03
+ ],
+ "camera_dist": 10,
+ "rows": [
+  "PPPPPPPPPP",
+  "PbbPPPPbbP",
+  "P________P",
+  "P________P",
+  "P________P",
+  "P________P",
+  "    __    "
+ ],
+ "spawns": {
+  "default": [
+   4,
+   5,
+   "up"
+  ],
+  "door": [
+   4,
+   5,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "bed",
+   "at": [
+    1,
+    2
+   ],
+   "tint": [
+    0.4,
+    0.55,
+    0.8
+   ]
+  },
+  {
+   "t": "bed",
+   "at": [
+    8,
+    2
+   ],
+   "tint": [
+    0.8,
+    0.3,
+    0.3
+   ]
+  },
+  {
+   "t": "table",
+   "at": [
+    4,
+    2
+   ],
+   "w": 2
+  },
+  {
+   "t": "rug",
+   "at": [
+    3,
+    3
+   ],
+   "w": 4,
+   "h": 2,
+   "tint": [
+    0.8,
+    0.7,
+    0.6
+   ]
+  },
+  {
+   "t": "window_glow",
+   "at": [
+    5,
+    1
+   ]
+  },
+  {
+   "t": "brazier",
+   "at": [
+    6,
+    2
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    1,
+    5
+   ],
+   "size": 0.6
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    4,
+    3
+   ],
+   "color": [
+    1.0,
+    0.7,
+    0.4
+   ],
+   "radius": 5
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    4,
+    6
+   ],
+   "w": 2,
+   "kind": "exit",
+   "to": "bellweather_wick",
+   "spawn": "home"
+  },
+  {
+   "at": [
+    8,
+    2
+   ],
+   "on": "interact",
+   "event": "ev_wren_bed",
+   "label": "Look"
+  },
+  {
+   "at": [
+    8,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_wren_bed",
+   "label": "Look"
+  },
+  {
+   "at": [
+    4,
+    2
+   ],
+   "on": "interact",
+   "event": "ev_home_table",
+   "label": "Look"
+  },
+  {
+   "at": [
+    7,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_home_shelf",
+   "label": "Look"
+  },
+  {
+   "at": [
+    8,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_home_shelf",
+   "label": "Look"
+  }
+ ],
+ "npcs": [],
+ "party_talk": [
+  {
+   "event": "pt_home"
+  }
+ ]
+}

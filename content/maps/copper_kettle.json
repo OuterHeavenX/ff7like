@@ -1,0 +1,212 @@
+{
+ "id": "copper_kettle",
+ "name": "The Copper Kettle",
+ "region": "Lantern Square",
+ "music": "theme_wren",
+ "ambient": [
+  0.62,
+  0.55,
+  0.5
+ ],
+ "background": [
+  0.02,
+  0.02,
+  0.03
+ ],
+ "camera_dist": 11,
+ "autosave": true,
+ "rows": [
+  "PPPPPPPPPPPPPP",
+  "PbbbPPPPPPbbbP",
+  "P____________P",
+  "Pkkkk________P",
+  "P____________P",
+  "P____________P",
+  "P____________P",
+  "P____________P",
+  "      __      "
+ ],
+ "spawns": {
+  "default": [
+   6,
+   7,
+   "up"
+  ],
+  "door": [
+   6,
+   7,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "table",
+   "at": [
+    8,
+    4
+   ],
+   "w": 2
+  },
+  {
+   "t": "table",
+   "at": [
+    9,
+    6
+   ],
+   "w": 2
+  },
+  {
+   "t": "table",
+   "at": [
+    3,
+    6
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    5,
+    2
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    1,
+    2
+   ]
+  },
+  {
+   "t": "brazier",
+   "at": [
+    7,
+    2
+   ]
+  },
+  {
+   "t": "rug",
+   "at": [
+    5,
+    5
+   ],
+   "w": 3,
+   "h": 2,
+   "tint": [
+    0.9,
+    0.6,
+    0.4
+   ]
+  },
+  {
+   "t": "window_glow",
+   "at": [
+    12,
+    2
+   ]
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    7,
+    4
+   ],
+   "color": [
+    1.0,
+    0.65,
+    0.35
+   ],
+   "radius": 6
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    6,
+    8
+   ],
+   "w": 2,
+   "kind": "exit",
+   "to": "bellweather_square",
+   "spawn": "inn"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "innkeeper",
+   "sprite": "innkeeper",
+   "at": [
+    2,
+    2
+   ],
+   "face": "down",
+   "talk": "ev_innkeeper"
+  },
+  {
+   "id": "hask",
+   "sprite": "mentor",
+   "at": [
+    11,
+    3
+   ],
+   "face": "down",
+   "talk": "ev_hask"
+  },
+  {
+   "id": "garran_bar",
+   "sprite": "garran",
+   "at": [
+    4,
+    4
+   ],
+   "face": "up",
+   "cond": "!flag:toll_happened",
+   "talk": "ev_garran_bar_before"
+  },
+  {
+   "id": "garran_inn",
+   "sprite": "garran",
+   "at": [
+    4,
+    4
+   ],
+   "face": "up",
+   "cond": "flag:garran_joined&!flag:undercroft_entered",
+   "talk": "ev_garran_badge"
+  },
+  {
+   "id": "mira_inn",
+   "sprite": "mira",
+   "at": [
+    12,
+    6
+   ],
+   "face": "left",
+   "cond": "flag:garran_joined&!flag:undercroft_entered",
+   "talk": "ev_mira_balcony"
+  },
+  {
+   "id": "kettle_patron",
+   "sprite": "townswoman",
+   "at": [
+    10,
+    5
+   ],
+   "face": "down",
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_patron_after"
+    },
+    {
+     "event": "ev_patron_before"
+    }
+   ]
+  }
+ ],
+ "party_talk": [
+  {
+   "event": "pt_inn"
+  }
+ ]
+}

@@ -1,0 +1,287 @@
+{
+ "id": "undercroft_cistern",
+ "name": "Flooded Cistern",
+ "region": "Station Undercroft",
+ "music": "dungeon_undercroft",
+ "ambient": [
+  0.3,
+  0.36,
+  0.46
+ ],
+ "background": [
+  0.01,
+  0.01,
+  0.02
+ ],
+ "camera_dist": 14,
+ "water_color": [
+  0.08,
+  0.2,
+  0.26
+ ],
+ "rows": [
+  "WWWWWWWWWWWWWgggWWWWWWWWWWWW",
+  "WmmmmmmmmmmmmgggmmmmmmmmmmmW",
+  "WmmmmmmmmmmmmmmmmmmmmmmmmmmW",
+  "Wmm~~~~~~=~~~~~~~~~~~~=~~mmW",
+  "Wmm~~~~~~=~~~~~~~~~~~~=~~mmW",
+  "WmmmmmmmmmmmmmmW~~~~~mmmmmmW",
+  "WmmmmmmmmmmmmmmW~~~~~mmmmmmW",
+  "Wwww~~~~~wwwwwwW~~~~~wwwwmmW",
+  "WWWW~~~~~WWWWWWW~~~~~WWWWmmW",
+  "WSSS~~~~~SSSSSSSSSSSSSSWWmmW",
+  "WSSS~~~~~SSSSSSSSSSSSSSWWmmW",
+  "WSSSSSSSSSSSSSSSSSSSSSSmmmmW",
+  "WwwwwwwwwwwwgggwwwwwwwwwwwwW",
+  "            ggg             "
+ ],
+ "patches": [
+  {
+   "cond": "flag:cistern_drained",
+   "at": [
+    4,
+    7
+   ],
+   "rows": [
+    "mmmmm",
+    "mmmmm",
+    "mmmmm",
+    "mmmmm"
+   ]
+  }
+ ],
+ "spawns": {
+  "default": [
+   14,
+   1,
+   "down"
+  ],
+  "north": [
+   14,
+   1,
+   "down"
+  ],
+  "south": [
+   13,
+   12,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "lamp",
+   "at": [
+    12,
+    1
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    17,
+    1
+   ]
+  },
+  {
+   "t": "valve",
+   "at": [
+    26,
+    1
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    1,
+    1
+   ]
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    2,
+    2
+   ],
+   "len": 8,
+   "vertical": false
+  },
+  {
+   "t": "crystal",
+   "at": [
+    9,
+    10
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    22,
+    9
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    1,
+    9
+   ]
+  },
+  {
+   "t": "gear",
+   "at": [
+    20,
+    11
+   ]
+  },
+  {
+   "t": "dust",
+   "at": [
+    14,
+    9
+   ],
+   "w": 10,
+   "h": 3
+  }
+ ],
+ "chests": [
+  {
+   "id": "uc_cis_1",
+   "at": [
+    1,
+    5
+   ],
+   "items": {
+    "clear_drop": 2
+   }
+  },
+  {
+   "id": "uc_cis_elite",
+   "at": [
+    26,
+    11
+   ],
+   "items": {
+    "lucky_lantern": 1
+   },
+   "gold": 150
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    13,
+    0
+   ],
+   "w": 3,
+   "kind": "exit",
+   "to": "undercroft_upper",
+   "spawn": "south"
+  },
+  {
+   "at": [
+    12,
+    13
+   ],
+   "w": 3,
+   "kind": "exit",
+   "to": "undercroft_core",
+   "spawn": "north"
+  },
+  {
+   "at": [
+    1,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    26,
+    1
+   ],
+   "on": "interact",
+   "event": "ev_valve_b",
+   "label": "Valve"
+  },
+  {
+   "at": [
+    4,
+    6
+   ],
+   "w": 5,
+   "kind": "event",
+   "event": "ev_cistern_blocked",
+   "cond": "!flag:cistern_drained",
+   "once": false
+  },
+  {
+   "at": [
+    26,
+    9
+   ],
+   "kind": "event",
+   "event": "ev_ironside",
+   "cond": "!flag:ironside_done"
+  },
+  {
+   "at": [
+    25,
+    5
+   ],
+   "on": "interact",
+   "event": "ev_joss_found",
+   "cond": "quest:sq_night_crew&!flag:joss_rescued",
+   "label": "Look"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "joss",
+   "sprite": "survivor",
+   "at": [
+    25,
+    5
+   ],
+   "face": "down",
+   "cond": "!flag:joss_rescued",
+   "talk": "ev_joss_found"
+  }
+ ],
+ "encounters": {
+  "table": [
+   {
+    "enc": "uc_wisps",
+    "w": 2
+   },
+   {
+    "enc": "uc_crabs",
+    "w": 3
+   },
+   {
+    "enc": "uc_crab_pair",
+    "w": 1
+   },
+   {
+    "enc": "uc_wisp_mender",
+    "w": 2
+   },
+   {
+    "enc": "uc_moths",
+    "w": 1
+   }
+  ],
+  "min_steps": 14,
+  "rate": 1.0
+ },
+ "party_talk": [
+  {
+   "cond": "!flag:cistern_drained",
+   "event": "pt_cistern_water"
+  },
+  {
+   "event": "pt_cistern"
+  }
+ ]
+}

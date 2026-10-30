@@ -1,0 +1,1855 @@
+{
+ "ev_home_return": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "flag": "wardens_scene"
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "face": "player",
+    "dir": "right"
+   },
+   {
+    "say": "sallow",
+    "text": "Courier Vale. You were given an Authority instrument this evening. I'll have it back."
+   },
+   {
+    "say": "rowan",
+    "text": "You. You changed the pitch. Wren found out — and now nobody remembers her!",
+    "expr": "angry"
+   },
+   {
+    "say": "sallow",
+    "text": "I don't know anyone by that name. Neither, by morning, will you. The fork, please. It's evidence of a malfunction I intend to correct."
+   },
+   {
+    "choice": [
+     {
+      "text": "\"Come and take it.\"",
+      "flag": "rowan_defiant",
+      "do": [
+       {
+        "say": "sallow",
+        "text": "As you like. Wardens."
+       }
+      ]
+     },
+     {
+      "text": "\"…Fine. Here.\" (hold it out)",
+      "flag": "rowan_hesitant",
+      "do": [
+       {
+        "narrate": "Rowan holds out the fork. It shrieks — a thin, furious tone — and Sallow flinches back from it."
+       },
+       {
+        "say": "sallow",
+        "text": "…Wardens. Take it from the courier.",
+        "expr": "angry"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "flag": "garran_arrives"
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "emote": "garran_npc",
+    "text": "!"
+   },
+   {
+    "say": "garran_npc",
+    "text": "Evening, Adjunct. Kid signed for that parcel. Means it's the kid's until the recipient signs. Courier law. Older than your Authority."
+   },
+   {
+    "say": "sallow",
+    "text": "Holt. I'd hoped the Orchard taught you to stay out of things."
+   },
+   {
+    "say": "garran_npc",
+    "text": "It taught me what happens when I do."
+   },
+   {
+    "join": "garran"
+   },
+   {
+    "tutorial": "Battles use an active time gauge. In Wait mode (default), time pauses while you choose commands. Attack, use your character's personal command, or Guard to halve damage. Garran's Bulwark command can counter attacks.",
+    "title": "Battle basics"
+   },
+   {
+    "battle": "story_wardens",
+    "no_escape": true,
+    "win": [
+     {
+      "say": "sallow",
+      "text": "This is a city matter, Holt. You're making it a criminal one."
+     },
+     {
+      "say": "sallow",
+      "text": "Keep your fork, courier. You'll find the city remembers what it's told to.",
+      "expr": "angry"
+     },
+     {
+      "flag": "wardens_came"
+     },
+     {
+      "refresh_npcs": true
+     },
+     {
+      "flag": "mira_arrives"
+     },
+     {
+      "refresh_npcs": true
+     },
+     {
+      "say": "mira_npc",
+      "text": "Rowan! You're— good. You're both still standing.",
+      "expr": "surprised"
+     },
+     {
+      "say": "mira_npc",
+      "text": "They've sealed the station. The night crew was below in the core when it misfired — Tamsin, Joss, Pell. Nobody's going down to get them.",
+      "expr": "angry"
+     },
+     {
+      "say": "mira_npc",
+      "text": "And Rowan… the extraction logs are kept in the core. If your sister was investigating the pitch, her name might be in them. Proof.",
+      "expr": "neutral"
+     },
+     {
+      "say": "garran_npc",
+      "text": "There's a way down that isn't the front door, I take it."
+     },
+     {
+      "say": "mira_npc",
+      "text": "The canal maintenance hatch under the Lantern Bridge. I have a key. I'm coming with you — I know those galleries better than anyone alive."
+     },
+     {
+      "join": "mira"
+     },
+     {
+      "flag": "mira_joined"
+     },
+     {
+      "flag": "garran_joined"
+     },
+     {
+      "refresh_npcs": true
+     },
+     {
+      "say": "mira_npc",
+      "text": "Get what you need first. The Copper Kettle on the square — Marta will put you up, and old Hask at the Hall of Paths can help you find your footing. I'll meet you there."
+     },
+     {
+      "quest_stage": [
+       "mq_street_forgot",
+       3
+      ]
+     },
+     {
+      "quest_start": "pq_mira_1"
+     },
+     {
+      "quest_start": "pq_garran_1"
+     },
+     {
+      "music": "town_bellweather"
+     },
+     {
+      "autosave": true
+     }
+    ]
+   }
+  ],
+  "recap": "Adjunct Sallow and two wardens demanded the tuning fork. Garran Holt, a disgraced warden, stepped in and helped Rowan drive them off. Mira arrived: the night crew is trapped under the sealed station, and the extraction logs there may prove Wren existed. Mira and Garran joined. They agreed to meet at the Copper Kettle.",
+  "skippable": true
+ },
+ "ev_hask": {
+  "cmds": [
+   {
+    "if": "!flag:met_hask",
+    "then": [
+     {
+      "say": "hask",
+      "text": "Ah. The courier who remembers things. Word travels, even on a night like this."
+     },
+     {
+      "say": "hask",
+      "text": "I keep the Hall of Paths. A path is a way of fighting, mending, enduring. A job, if you want a plain word."
+     },
+     {
+      "say": "hask",
+      "text": "Each of you has your own nature — that never changes. But you can walk a path beside it: earn Job Points in battle, learn its skills, and keep what you learn even after you change paths."
+     },
+     {
+      "unlock_job": "duelist"
+     },
+     {
+      "unlock_job": "arcanist"
+     },
+     {
+      "unlock_job": "mender"
+     },
+     {
+      "flag": "met_hask"
+     },
+     {
+      "tutorial": "Jobs menu: choose a main job (stats + skills) and, once you've learned skills elsewhere, a secondary skill set. JP earned in battle goes to your current main job. Reserve members earn 75% XP and 50% JP, with double XP catch-up if they fall behind. Learned passives can be equipped in up to 3 slots.",
+      "title": "Jobs & JP"
+     },
+     {
+      "say": "hask",
+      "text": "Shall we look at your paths now?"
+     },
+     {
+      "choice": [
+       {
+        "text": "Open the Jobs menu",
+        "do": [
+         {
+          "open_menu": "jobs"
+         }
+        ]
+       },
+       {
+        "text": "Later",
+        "do": []
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "hask",
+      "text": "Paths are walked one step at a time. Come back whenever you want to change yours."
+     },
+     {
+      "choice": [
+       {
+        "text": "Open the Jobs menu",
+        "do": [
+         {
+          "open_menu": "jobs"
+         }
+        ]
+       },
+       {
+        "text": "Later",
+        "do": []
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_mira_balcony": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "say": "mira_npc",
+    "text": "Rowan. Sit a minute."
+   },
+   {
+    "say": "mira_npc",
+    "text": "The resonators — the parts that let the station draw memory from the bell instead of just… listening to it. I drew those. Third year at the academy. They gave me a medal.",
+    "expr": "sad"
+   },
+   {
+    "say": "mira_npc",
+    "text": "I told myself a famine-proof harvest was worth some old songs nobody sang anymore. And tonight a whole street forgot your sister.",
+    "expr": "sad"
+   },
+   {
+    "choice": [
+     {
+      "text": "\"You didn't change the pitch. Sallow did.\"",
+      "flag": "mira_reassured",
+      "do": [
+       {
+        "say": "mira_npc",
+        "text": "I made it possible for him to. That's not nothing.",
+        "expr": "sad"
+       },
+       {
+        "say": "mira_npc",
+        "text": "…But thank you. Truly.",
+        "expr": "neutral"
+       }
+      ]
+     },
+     {
+      "text": "\"Then help me fix it.\"",
+      "flag": "mira_challenged",
+      "do": [
+       {
+        "say": "mira_npc",
+        "text": "Yes. That I can do. Fixing things is the only thing I've ever been good at.",
+        "expr": "happy"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "say": "mira_npc",
+    "text": "Here — the hatch key. Under the Lantern Bridge, on the dock. When you're ready, we go down."
+   },
+   {
+    "item": "hatch_key",
+    "qty": 1
+   },
+   {
+    "quest_complete": "pq_mira_1"
+   },
+   {
+    "quest_stage": [
+     "mq_street_forgot",
+     4
+    ]
+   },
+   {
+    "music": "theme_wren"
+   }
+  ],
+  "recap": "Mira admitted she designed the resonators that make memory extraction possible. She gave Rowan the hatch key. The way into the Undercroft is the maintenance hatch on the Wick Street dock.",
+  "skippable": true
+ },
+ "ev_garran_badge": {
+  "cmds": [
+   {
+    "if": "quest_done:pq_garran_1",
+    "then": [
+     {
+      "say": "garran_npc",
+      "text": "Get some rest, kid. Below's no place for tired feet."
+     }
+    ],
+    "else": [
+     {
+      "say": "rowan",
+      "text": "You keep touching your coat. Where the badge used to be."
+     },
+     {
+      "say": "garran_npc",
+      "text": "Habit. Twenty-two years of wearing a thing, your hand forgets it's gone."
+     },
+     {
+      "say": "garran_npc",
+      "text": "Glass Orchard. Three years back. I was given an order about a village that wouldn't let the Authority listen to its bell. I didn't follow it."
+     },
+     {
+      "say": "rowan",
+      "text": "What was the order?"
+     },
+     {
+      "say": "garran_npc",
+      "text": "…Another night. Ask me when we're somewhere I can see the sky.",
+      "expr": "sad"
+     },
+     {
+      "learn": [
+       "garran",
+       "warden_cover"
+      ]
+     },
+     {
+      "flag": "garran_oath"
+     },
+     {
+      "narrate": "Garran learned \"Old Oath\" (Bulwark): he can now cover allies against single-target physical attacks."
+     },
+     {
+      "quest_complete": "pq_garran_1"
+     }
+    ]
+   }
+  ],
+  "recap": "Garran told Rowan he lost his badge at Glass Orchard for refusing an order. He'll say more later."
+ },
+ "ev_hatch": {
+  "cmds": [
+   {
+    "if": "!item:hatch_key",
+    "then": [
+     {
+      "narrate": "A maintenance hatch, locked tight. Authority stamp on the padlock."
+     }
+    ],
+    "else": [
+     {
+      "if": "flag:boss_clapper_done",
+      "then": [
+       {
+        "narrate": "The hatch to the Undercroft. You've done what you came to do down there."
+       },
+       {
+        "choice": [
+         {
+          "text": "Go down anyway",
+          "do": [
+           {
+            "warp": "undercroft_upper",
+            "spawn": "hatch"
+           }
+          ]
+         },
+         {
+          "text": "Stay",
+          "do": []
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "narrate": "The canal maintenance hatch. Below, the sound of water and something tolling, very faintly."
+       },
+       {
+        "choice": [
+         {
+          "text": "Descend into the Undercroft",
+          "do": [
+           {
+            "flag": "undercroft_entered"
+           },
+           {
+            "warp": "undercroft_upper",
+            "spawn": "hatch"
+           }
+          ]
+         },
+         {
+          "text": "Not yet",
+          "do": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_receipt_crate": {
+  "cmds": [
+   {
+    "narrate": "Dunmore's receipt crate, wedged between barrels. Inside, under oilcloth: a water-stained receipt."
+   },
+   {
+    "item": "debt_receipt",
+    "qty": 1
+   },
+   {
+    "flag": "receipt_found"
+   },
+   {
+    "quest_stage": [
+     "sq_small_debts",
+     2
+    ]
+   },
+   {
+    "say": "rowan",
+    "text": "\"Dunmore owes Brisk 300 crowns, for brass fittings.\" Signed by both. Hm."
+   }
+  ]
+ },
+ "ev_brisk": {
+  "cmds": [
+   {
+    "if": "quest_done:sq_small_debts",
+    "then": [
+     {
+      "if": "quest_outcome:sq_small_debts=truth",
+      "then": [
+       {
+        "say": "brisk",
+        "text": "Records, Rowan. I'm keeping receipts in triplicate now. Bless you."
+       },
+       {
+        "shop": "festival_stall"
+       }
+      ],
+      "else": [
+       {
+        "say": "brisk",
+        "text": "Half a loss is still a loss. But Dunmore's coming to supper. Strange world."
+       },
+       {
+        "shop": "festival_stall"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "flag:toll_happened",
+      "then": [
+       {
+        "if": "!quest:sq_small_debts",
+        "then": [
+         {
+          "say": "brisk",
+          "text": "Rowan! You're honest. Tell Dunmore he owes me. He swears I owe him! Ever since the toll we both remember it backwards."
+         },
+         {
+          "say": "brisk",
+          "text": "Three hundred crowns. Or was it… oh, I don't know. Someone owes someone."
+         },
+         {
+          "quest_start": "sq_small_debts"
+         }
+        ]
+       },
+       {
+        "if": "quest:sq_small_debts>=2&!quest_done:sq_small_debts",
+        "then": [
+         {
+          "say": "rowan",
+          "text": "I found the receipt. Dunmore owes you 300 for brass fittings."
+         },
+         {
+          "say": "brisk",
+          "text": "Ha! I knew it! …I knew it, didn't I?"
+         },
+         {
+          "choice": [
+           {
+            "text": "Give Brisk the receipt (the record stands)",
+            "do": [
+             {
+              "say": "brisk",
+              "text": "Thank you. A debt's a debt, toll or no toll."
+             },
+             {
+              "item": "debt_receipt",
+              "qty": -1
+             },
+             {
+              "quest_complete": "sq_small_debts",
+              "outcome": "truth"
+             },
+             {
+              "narrate": "Dunmore pays, grimly. Brisk gives you a ledger clasp in thanks."
+             }
+            ]
+           },
+           {
+            "text": "Burn it and propose they split the loss",
+            "do": [
+             {
+              "say": "rowan",
+              "text": "Neither of you remembers why it was owed. The toll took that. Split it — 150 each — and start fresh."
+             },
+             {
+              "say": "brisk",
+              "text": "…That's daft. That's completely daft. …Fine. Fine!"
+             },
+             {
+              "item": "debt_receipt",
+              "qty": -1
+             },
+             {
+              "quest_complete": "sq_small_debts",
+              "outcome": "mercy"
+             },
+             {
+              "narrate": "Dunmore, relieved, presses a cooper's hoop into your hands."
+             }
+            ]
+           },
+           {
+            "text": "Not yet",
+            "do": []
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "if": "!quest:sq_small_debts>=2",
+        "then": [
+         {
+          "shop": "festival_stall"
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "say": "brisk",
+        "text": "Tonics! Clear drops! Ember flasks for the brave! Lanternwake prices — only a little robbery!"
+       },
+       {
+        "shop": "festival_stall"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_dunmore": {
+  "cmds": [
+   {
+    "if": "quest:sq_small_debts&!quest:sq_small_debts>=1",
+    "then": [
+     {
+      "say": "dunmore",
+      "text": "Brisk thinks I owe her? She owes me! I keep receipts. In a crate. Which I sent down to the Wick Street dock before the festival. Which I can't leave the forge to fetch."
+     },
+     {
+      "quest_stage": [
+       "sq_small_debts",
+       1
+      ]
+     }
+    ]
+   },
+   {
+    "say": "dunmore",
+    "text": "Forge is open, festival or no. Blades, mauls, wrenches, coats."
+   },
+   {
+    "shop": "forge"
+   }
+  ]
+ },
+ "ev_oswin": {
+  "cmds": [
+   {
+    "if": "quest_done:sq_lamplighter",
+    "then": [
+     {
+      "say": "oswin",
+      "text": "All lit. Every one. Bellweather looks like itself again — almost.",
+      "expr": "happy"
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:sq_lamplighter>=4",
+      "then": [
+       {
+        "say": "oswin",
+        "text": "Four lit! I can see them from here. Thank you, Rowan. Here — my old hook. It's held a flame for thirty years."
+       },
+       {
+        "quest_complete": "sq_lamplighter"
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:sq_lamplighter",
+        "then": [
+         {
+          "say": "oswin",
+          "text": "Two dark on Wick Street, two on the square. Look for cold glass."
+         }
+        ],
+        "else": [
+         {
+          "if": "flag:toll_happened",
+          "then": [
+           {
+            "say": "oswin",
+            "text": "Four lanterns went dark during the toll. I've lit this city for thirty years and I can't remember which ones. The count's wrong, and I can't fix the count."
+           },
+           {
+            "say": "oswin",
+            "text": "Would you? Take some oil. Two on Wick Street, two here on the square."
+           },
+           {
+            "item": "lantern_oil",
+            "qty": 4
+           },
+           {
+            "quest_start": "sq_lamplighter"
+           }
+          ],
+          "else": [
+           {
+            "say": "oswin",
+            "text": "Two hundred and twelve lanterns tonight. I count them twice. Always the same number.",
+            "expr": "happy"
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_lamp_wick_a": {
+  "cmds": [
+   {
+    "narrate": "Cold glass. You fill the reservoir with lantern oil and strike a match."
+   },
+   {
+    "item": "lantern_oil",
+    "qty": -1
+   },
+   {
+    "flag": "lamp_wick_a"
+   },
+   {
+    "sfx": "magic"
+   },
+   {
+    "if": "flag:lamp_wick_a&flag:lamp_wick_b&flag:lamp_square_a&flag:lamp_square_b",
+    "then": [
+     {
+      "quest_stage": [
+       "sq_lamplighter",
+       4
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:sq_lamplighter<1",
+      "then": [
+       {
+        "quest_stage": [
+         "sq_lamplighter",
+         1
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:sq_lamplighter<2",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           2
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           3
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "call": "ev_reload_map"
+   }
+  ]
+ },
+ "ev_lamp_wick_b": {
+  "cmds": [
+   {
+    "narrate": "Cold glass. You fill the reservoir with lantern oil and strike a match."
+   },
+   {
+    "item": "lantern_oil",
+    "qty": -1
+   },
+   {
+    "flag": "lamp_wick_b"
+   },
+   {
+    "sfx": "magic"
+   },
+   {
+    "if": "flag:lamp_wick_a&flag:lamp_wick_b&flag:lamp_square_a&flag:lamp_square_b",
+    "then": [
+     {
+      "quest_stage": [
+       "sq_lamplighter",
+       4
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:sq_lamplighter<1",
+      "then": [
+       {
+        "quest_stage": [
+         "sq_lamplighter",
+         1
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:sq_lamplighter<2",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           2
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           3
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "call": "ev_reload_map"
+   }
+  ]
+ },
+ "ev_lamp_square_a": {
+  "cmds": [
+   {
+    "narrate": "Cold glass. You fill the reservoir with lantern oil and strike a match."
+   },
+   {
+    "item": "lantern_oil",
+    "qty": -1
+   },
+   {
+    "flag": "lamp_square_a"
+   },
+   {
+    "sfx": "magic"
+   },
+   {
+    "if": "flag:lamp_wick_a&flag:lamp_wick_b&flag:lamp_square_a&flag:lamp_square_b",
+    "then": [
+     {
+      "quest_stage": [
+       "sq_lamplighter",
+       4
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:sq_lamplighter<1",
+      "then": [
+       {
+        "quest_stage": [
+         "sq_lamplighter",
+         1
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:sq_lamplighter<2",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           2
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           3
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "call": "ev_reload_map"
+   }
+  ]
+ },
+ "ev_lamp_square_b": {
+  "cmds": [
+   {
+    "narrate": "Cold glass. You fill the reservoir with lantern oil and strike a match."
+   },
+   {
+    "item": "lantern_oil",
+    "qty": -1
+   },
+   {
+    "flag": "lamp_square_b"
+   },
+   {
+    "sfx": "magic"
+   },
+   {
+    "if": "flag:lamp_wick_a&flag:lamp_wick_b&flag:lamp_square_a&flag:lamp_square_b",
+    "then": [
+     {
+      "quest_stage": [
+       "sq_lamplighter",
+       4
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if": "quest:sq_lamplighter<1",
+      "then": [
+       {
+        "quest_stage": [
+         "sq_lamplighter",
+         1
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if": "quest:sq_lamplighter<2",
+        "then": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           2
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest_stage": [
+           "sq_lamplighter",
+           3
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "call": "ev_reload_map"
+   }
+  ]
+ },
+ "ev_reload_map": {
+  "cmds": [
+   {
+    "refresh_map": true
+   }
+  ]
+ },
+ "ev_undercroft_enter": {
+  "cmds": [
+   {
+    "music": "dungeon_undercroft"
+   },
+   {
+    "say": "mira",
+    "text": "Maintenance Galleries. Pipes above, cistern below, the bell core at the bottom. Mind your heads."
+   },
+   {
+    "say": "garran",
+    "text": "Something's skittering."
+   },
+   {
+    "say": "mira",
+    "text": "Brass rats. Cleaning automata. They're not supposed to bite. Things down here stopped doing what they're supposed to tonight."
+   },
+   {
+    "tutorial": "Dungeons have random encounters, but never right next to entrances or story points, and there's a short grace period after each battle. Bell Shrines let you save. Enemies have roles — healers, protectors, disruptors — so pick targets carefully.",
+    "title": "The Undercroft"
+   },
+   {
+    "quest_stage": [
+     "mq_street_forgot",
+     5
+    ]
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "The party entered the Station Undercroft through the canal hatch."
+ },
+ "ev_bell_shrine": {
+  "cmds": [
+   {
+    "narrate": "A small bell shrine. Maintenance crews leave notes for each other here. It hums softly."
+   },
+   {
+    "choice": [
+     {
+      "text": "Save",
+      "do": [
+       {
+        "save_menu": true
+       }
+      ]
+     },
+     {
+      "text": "Leave",
+      "do": []
+     }
+    ]
+   }
+  ]
+ },
+ "ev_ladder_up": {
+  "cmds": [
+   {
+    "choice": [
+     {
+      "text": "Climb back up to Wick Street",
+      "do": [
+       {
+        "warp": "bellweather_wick",
+        "spawn": "hatch"
+       }
+      ]
+     },
+     {
+      "text": "Stay",
+      "do": []
+     }
+    ]
+   }
+  ]
+ },
+ "ev_tamsin_rescue": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "say": "tamsin",
+    "text": "Hello? HELLO? Is someone there? They've got me boxed in—",
+    "expr": "surprised"
+   },
+   {
+    "say": "mira",
+    "text": "Tamsin! Hold on!"
+   },
+   {
+    "tutorial": "Brass rats are weak to storm. Mira's Spark Coil (Tinker) is a gadget: it uses MAG and works even when Silenced.",
+    "title": "Weaknesses"
+   },
+   {
+    "battle": "uc_rats",
+    "no_escape": true,
+    "win": [
+     {
+      "music": "dungeon_undercroft"
+     },
+     {
+      "say": "tamsin",
+      "text": "Mira Fen. Of course it's you. Who else would come down here on festival night?",
+      "expr": "happy"
+     },
+     {
+      "say": "tamsin",
+      "text": "Pell was in the core when it went wrong. Joss went to check the east sluice in the cistern and never came back. I couldn't get past the rats."
+     },
+     {
+      "say": "tamsin",
+      "text": "The west channel in the cistern floods when the pumps fail. Two valves drain it — one up here in the far north-east room, one in the cistern. Or go around the east side, if you fancy arguing with Ironside."
+     },
+     {
+      "say": "garran",
+      "text": "Who's Ironside?"
+     },
+     {
+      "say": "tamsin",
+      "text": "Old warden automaton. Guards the east sluice. Hits like a cart."
+     },
+     {
+      "say": "tamsin",
+      "text": "I'll set up by the ladder with the night-crew stores. Come see me if you need supplies."
+     },
+     {
+      "flag": "tamsin_rescued"
+     },
+     {
+      "refresh_npcs": true
+     },
+     {
+      "quest_start": "sq_night_crew"
+     },
+     {
+      "quest_stage": [
+       "mq_street_forgot",
+       6
+      ]
+     }
+    ]
+   }
+  ],
+  "recap": "The party rescued Tamsin from brass rats. She explained the cistern valves and set up a supply cache by the ladder. Joss is missing in the cistern; Pell is in the core.",
+  "skippable": true
+ },
+ "ev_tamsin_cache": {
+  "cmds": [
+   {
+    "if": "flag:joss_rescued&!quest_done:sq_night_crew",
+    "then": [
+     {
+      "say": "tamsin",
+      "text": "Joss! You found him. You daft, wonderful people.",
+      "expr": "happy"
+     },
+     {
+      "quest_complete": "sq_night_crew"
+     }
+    ]
+   },
+   {
+    "say": "tamsin",
+    "text": "Night-crew stores. I'll take crowns — I'm sentimental, not stupid."
+   },
+   {
+    "shop": "undercroft_cache"
+   }
+  ]
+ },
+ "ev_joss_saved": {
+  "cmds": [
+   {
+    "say": "joss",
+    "text": "I'm not going near that sluice again. Ever."
+   }
+  ]
+ },
+ "ev_joss_found": {
+  "cmds": [
+   {
+    "say": "joss",
+    "text": "Oh thank the bells. I've been hiding behind this gate for hours. Something big walks the east side."
+   },
+   {
+    "say": "rowan",
+    "text": "Tamsin's by the ladder in the galleries. Go — the way back is clear."
+   },
+   {
+    "flag": "joss_rescued"
+   },
+   {
+    "quest_stage": [
+     "sq_night_crew",
+     1
+    ]
+   },
+   {
+    "remove_npc": "joss"
+   }
+  ]
+ },
+ "ev_valve_a": {
+  "cmds": [
+   {
+    "if": "flag:valve_a",
+    "then": [
+     {
+      "narrate": "The valve is open. Water rushes somewhere below."
+     }
+    ],
+    "else": [
+     {
+      "narrate": "You heave the valve wheel. It groans, then gives."
+     },
+     {
+      "flag": "valve_a"
+     },
+     {
+      "sfx": "door"
+     },
+     {
+      "call": "ev_check_valves"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_valve_b": {
+  "cmds": [
+   {
+    "if": "flag:valve_b",
+    "then": [
+     {
+      "narrate": "The valve is open."
+     }
+    ],
+    "else": [
+     {
+      "narrate": "You heave the valve wheel. Pipes shudder along the ceiling."
+     },
+     {
+      "flag": "valve_b"
+     },
+     {
+      "sfx": "door"
+     },
+     {
+      "call": "ev_check_valves"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_check_valves": {
+  "cmds": [
+   {
+    "if": "flag:valve_a&flag:valve_b",
+    "then": [
+     {
+      "shake": 3
+     },
+     {
+      "narrate": "A deep gurgle. Somewhere in the cistern, the west channel drains."
+     },
+     {
+      "flag": "cistern_drained"
+     },
+     {
+      "refresh_map": true
+     }
+    ],
+    "else": [
+     {
+      "party_say": [
+       {
+        "who": "mira",
+        "text": "One valve open. The other one's on the far side of the system.",
+        "expr": ""
+       }
+      ],
+      "fallback": {
+       "who": "rowan",
+       "text": "One down."
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "ev_cistern_blocked": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "The west channel's flooded. Both valves need to be open to drain it — or we go round the east side, past Ironside.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Too deep to cross."
+    }
+   }
+  ]
+ },
+ "ev_ironside": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "A hulking warden-automaton blocks the east walkway, its visor lamp sweeping slowly."
+   },
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "Old Ironside. They retired these after one walked through a wall. Its Iron Guard counters anything that hits it physically. Mira's gadgets, or patience.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "That thing looks heavy."
+    }
+   },
+   {
+    "choice": [
+     {
+      "text": "Fight Ironside",
+      "do": [
+       {
+        "battle": "elite_ironside",
+        "no_escape": true,
+        "win": [
+         {
+          "flag": "ironside_done"
+         },
+         {
+          "narrate": "Ironside grinds to a halt. Its armor plates could be refitted…"
+         },
+         {
+          "music": "dungeon_undercroft"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "text": "Back away",
+      "do": [
+       {
+        "move": "player",
+        "path": [
+         [
+          26,
+          8
+         ]
+        ],
+        "speed": 5
+       },
+       {
+        "music": "dungeon_undercroft"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_core_pell": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "A woman in a night-crew jacket is slumped against a pipe, breathing slowly."
+   },
+   {
+    "say": "mira",
+    "text": "Pell! Pell, can you hear me?"
+   },
+   {
+    "say": "pell",
+    "text": "Mira…? It didn't stop. The clapper. It's still pulling. Pitch is wrong — it's drawing from the whole ward, not just the bell…"
+   },
+   {
+    "say": "pell",
+    "text": "Someone changed the setting this afternoon. I logged it. It's in the terminal."
+   },
+   {
+    "heal": true
+   },
+   {
+    "narrate": "Mira gives Pell water. Garran props her up. The party's own wounds are tended while they wait for her to steady."
+   },
+   {
+    "say": "pell",
+    "text": "I'll make my own way back up. Go. Stop it before it takes anything else."
+   },
+   {
+    "flag": "pell_found"
+   },
+   {
+    "remove_npc": "pell"
+   },
+   {
+    "quest_stage": [
+     "mq_street_forgot",
+     6
+    ]
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "The party found Pell in the bell core. The clapper construct is still extracting from the whole ward. Someone changed its pitch setting this afternoon; Pell logged it at the terminal.",
+  "skippable": true
+ },
+ "ev_core_terminal": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "narrate": "The extraction terminal. Mira's fingers know the keys."
+   },
+   {
+    "say": "mira",
+    "text": "Here. Pitch change, this afternoon: 432 to 426. \"By order of Adjunct C. Sallow. Target: Wick Street.\""
+   },
+   {
+    "say": "mira",
+    "text": "And there's a countersignature. An objection, filed through the Records Hall. \"Under protest. This will remove the memory of a person, not a season.\"",
+    "expr": "sad"
+   },
+   {
+    "say": "mira",
+    "text": "Signed… W. Vale.",
+    "expr": "surprised"
+   },
+   {
+    "emote": "player",
+    "text": "…"
+   },
+   {
+    "say": "rowan",
+    "text": "She knew. She knew they were going to take her and she wrote it down anyway.",
+    "expr": "sad"
+   },
+   {
+    "say": "rowan",
+    "text": "\"Don't let anyone tell you what you remember.\"",
+    "expr": "sad"
+   },
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "Then we don't. We take the log, we stop the bell, and we go find her.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "item": "extraction_log",
+    "qty": 1
+   },
+   {
+    "flag": "got_log"
+   },
+   {
+    "learn": [
+     "rowan",
+     "waymark"
+    ]
+   },
+   {
+    "flag": "rowan_waymark"
+   },
+   {
+    "narrate": "Rowan learned \"Waymark\" (Courier): mark a foe so the whole party can find its weak points."
+   },
+   {
+    "music": "tension"
+   }
+  ],
+  "recap": "At the core terminal, the party found the extraction log: Sallow ordered the pitch change targeting Wick Street, and Wren filed a protest warning it would erase a person. It is proof she existed.",
+  "skippable": true
+ },
+ "ev_boss_clapper": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "The bell core. The great bell hangs in its cradle, and in front of it, the extraction construct — a hollow bronze clapper the size of a house — swings, and swings, and tolls."
+   },
+   {
+    "say": "mira",
+    "text": "That's it. The Clapper. It's not meant to move on its own. It's caught in a loop — the wrong pitch keeps feeding it."
+   },
+   {
+    "say": "mira",
+    "text": "Listen: when it starts glowing white, it's charging a full peal. Guard, or hit it hard enough to stun it and break the charge."
+   },
+   {
+    "say": "garran",
+    "text": "Shield bash it is."
+   },
+   {
+    "if": "!flag:got_log",
+    "then": [
+     {
+      "say": "rowan",
+      "text": "(There's a terminal by the west wall. Maybe check it first.)"
+     }
+    ]
+   },
+   {
+    "choice": [
+     {
+      "text": "Stop the Clapper",
+      "do": [
+       {
+        "battle": "boss_clapper",
+        "no_escape": true,
+        "boss": true,
+        "win": [
+         {
+          "call": "ev_chapter_end"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "text": "Prepare first (step back)",
+      "do": [
+       {
+        "move": "player",
+        "path": [
+         [
+          11,
+          6
+         ]
+        ],
+        "speed": 5
+       },
+       {
+        "music": "tension"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ev_chapter_end": {
+  "cmds": [
+   {
+    "music": "bells"
+   },
+   {
+    "narrate": "The Clapper slows. Its toll softens to a hum, then to nothing. For the first time all night, the Undercroft is quiet."
+   },
+   {
+    "say": "rowan",
+    "text": "The scar's stopped burning.",
+    "expr": "surprised"
+   },
+   {
+    "say": "mira",
+    "text": "It's stopped extracting. Whatever was taken tonight… it's still taken. But nothing more. Not from Wick Street.",
+    "expr": "sad"
+   },
+   {
+    "flag": "boss_clapper_done"
+   },
+   {
+    "quest_stage": [
+     "mq_street_forgot",
+     7
+    ]
+   },
+   {
+    "fade": "out",
+    "time": 1.0
+   },
+   {
+    "warp": "bellweather_wick",
+    "spawn": "hatch"
+   },
+   {
+    "music": "theme_wren"
+   },
+   {
+    "narrate": "Dawn is still hours away. On the Wick Street dock, a freight barge waits with its lamps shuttered."
+   },
+   {
+    "flag": "nessa_barge"
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "say": "nessa_npc",
+    "text": "Heard half the wardens in Bellweather are looking for a courier with a red scarf. Figured you'd come out of a hole eventually.",
+    "expr": "neutral"
+   },
+   {
+    "say": "rowan",
+    "text": "Nessa. Do you remember Wren?",
+    "expr": "sad"
+   },
+   {
+    "emote": "nessa_barge",
+    "text": "…"
+   },
+   {
+    "say": "nessa_npc",
+    "text": "…No. And I hate that I don't. You've never lied to me once in fifteen years, so if you say she's real, she's real.",
+    "expr": "sad"
+   },
+   {
+    "say": "nessa_npc",
+    "text": "This barge runs the Rainward Line at first light. The captain owes me. Well — I owe him. It's complicated.",
+    "expr": "neutral"
+   },
+   {
+    "say": "garran",
+    "text": "Sallow will have every station on the Line watching for us."
+   },
+   {
+    "say": "mira",
+    "text": "Then we get off before the stations. Wren filed her protest through the Records Hall. If there are copies, they went down the Line — to the Salt Archive.",
+    "expr": "neutral"
+   },
+   {
+    "say": "rowan",
+    "text": "Then that's where we go.",
+    "expr": "angry"
+   },
+   {
+    "say": "rowan",
+    "text": "I remember you, Wren. Whatever they tell me. I remember.",
+    "expr": "sad"
+   },
+   {
+    "quest_complete": "mq_street_forgot"
+   },
+   {
+    "set_chapter": "ch2"
+   },
+   {
+    "end_slice": true
+   },
+   {
+    "flag": "nessa_barge",
+    "value": false
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "music": "town_bellweather"
+   }
+  ],
+  "recap": "The party stopped the Hollow Clapper and escaped to the Wick Street dock, where Nessa waited with a barge bound down the Rainward Line toward the Salt Archive, where copies of Wren's protest may survive.",
+  "skippable": true
+ },
+ "pt_wick_default": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "Wick Street. Every cobble's a shortcut if you're small enough.",
+    "expr": "happy"
+   }
+  ]
+ },
+ "pt_wick_after": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "Keep your head down out here. Wardens patrol in pairs after a misfire.",
+      "expr": ""
+     },
+     {
+      "who": "mira",
+      "text": "Everyone on this street lost the same thing. The same person. That's not an accident — that's aim.",
+      "expr": "angry"
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Someone here has to remember her. Someone."
+    }
+   }
+  ]
+ },
+ "pt_wick_mira": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "The hatch is on the dock by the west end. We go when you're ready.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_square_default": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "Post Office, Copper Kettle, and the station up north. And Brisk's stall, if I'm feeling rich.",
+    "expr": "happy"
+   }
+  ]
+ },
+ "pt_square_after": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "People are laughing, buying cakes. Like nothing happened. Maybe for them nothing did.",
+    "expr": "sad"
+   }
+  ]
+ },
+ "pt_square_garran": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "I walked this square for twenty years with a badge. Funny how much bigger it feels without one.",
+      "expr": ""
+     }
+    ]
+   },
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "Hask at the Copper Kettle can help with jobs. Don't skip it — the Undercroft won't be gentle.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_station": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "The station hums like the fork does. Maybe that's normal. I'd never noticed before tonight.",
+    "expr": "neutral"
+   }
+  ]
+ },
+ "pt_home": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "It still smells like her ink.",
+    "expr": "sad"
+   }
+  ]
+ },
+ "pt_post": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "Six years she worked here. Hale gave her the window desk because she was the only one who could read the old maps.",
+    "expr": "sad"
+   }
+  ]
+ },
+ "pt_inn": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "Marta's stew is the best thing in this city. Don't tell her I said so.",
+      "expr": ""
+     },
+     {
+      "who": "mira",
+      "text": "Rest first. Then the hatch.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "A real bed would be nice."
+    }
+   }
+  ]
+ },
+ "pt_upper_valve": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "Tamsin said one valve's in the far north-east room up here. The other's in the cistern.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Valves. Pipes. Rats. Glamorous."
+    }
+   }
+  ]
+ },
+ "pt_upper": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "I helped install half of these pipes. The other half I've been meaning to complain about.",
+      "expr": "happy"
+     },
+     {
+      "who": "garran",
+      "text": "Stay close. Things echo strangely down here.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_cistern_water": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "West channel's flooded. Two valves, or the east walkway past Ironside.",
+      "expr": ""
+     }
+    ],
+    "fallback": {
+     "who": "rowan",
+     "text": "Lots of water and not much floor."
+    }
+   }
+  ]
+ },
+ "pt_cistern": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "garran",
+      "text": "The core's south. Whatever's doing this is down there.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ },
+ "pt_core": {
+  "cmds": [
+   {
+    "party_say": [
+     {
+      "who": "mira",
+      "text": "The terminal by the west wall keeps the logs. If Wren filed anything, it's there.",
+      "expr": ""
+     },
+     {
+      "who": "garran",
+      "text": "Whatever that thing is, it knows we're here.",
+      "expr": ""
+     }
+    ]
+   }
+  ]
+ }
+}

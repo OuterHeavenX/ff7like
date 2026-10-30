@@ -1,0 +1,18 @@
+[
+ {"id": "poison", "name": "Poison", "kind": "bad", "turns": 4, "desc": "Loses 6% max HP at the start of each of its turns."},
+ {"id": "burn", "name": "Burn", "kind": "bad", "turns": 3, "desc": "Loses 4% max HP each turn; ATK x0.85; healing received x0.75."},
+ {"id": "slow", "name": "Slow", "kind": "bad", "turns": 3, "desc": "Time gauge fills at 60% speed. Cancels Haste."},
+ {"id": "haste", "name": "Haste", "kind": "good", "turns": 3, "desc": "Time gauge fills at 150% speed. Cancels Slow."},
+ {"id": "sleep", "name": "Sleep", "kind": "bad", "turns": 3, "desc": "Skips turns until hit or it wears off; then briefly immune."},
+ {"id": "silence", "name": "Silence", "kind": "bad", "turns": 3, "desc": "Cannot use magic or songs. Gadgets and items still work."},
+ {"id": "blind", "name": "Blind", "kind": "bad", "turns": 3, "desc": "Physical accuracy halved."},
+ {"id": "regen", "name": "Regen", "kind": "good", "turns": 4, "desc": "Recovers 8% max HP at the start of each of its turns."},
+ {"id": "barrier", "name": "Barrier", "kind": "good", "turns": 3, "desc": "Damage taken x0.67."},
+ {"id": "stun", "name": "Stun", "kind": "bad", "turns": 1, "desc": "Loses its next turn and breaks any charge. Then immune to stun for 2 turns."},
+ {"id": "vulnerable", "name": "Vulnerable", "kind": "bad", "turns": 3, "desc": "Damage taken x1.3."},
+ {"id": "mark", "name": "Marked", "kind": "bad", "turns": 3, "desc": "Attacks against it gain +20% critical chance; some skills deal bonus damage."},
+ {"id": "guard", "name": "Guard", "kind": "good", "turns": 1, "desc": "Damage taken x0.5 until its next turn."},
+ {"id": "cover", "name": "Cover", "kind": "good", "turns": 3, "desc": "Intercepts single-target physical attacks aimed at allies."},
+ {"id": "taunt", "name": "Challenge", "kind": "good", "turns": 3, "desc": "Enemies usually aim single-target attacks at this unit."},
+ {"id": "counter_stance", "name": "Riposte", "kind": "good", "turns": 2, "desc": "Counters every single-target physical attack."}
+]

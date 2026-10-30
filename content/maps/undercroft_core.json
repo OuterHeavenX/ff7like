@@ -1,0 +1,213 @@
+{
+ "id": "undercroft_core",
+ "name": "The Bell Core",
+ "region": "Station Undercroft",
+ "music": "tension",
+ "ambient": [
+  0.3,
+  0.32,
+  0.44
+ ],
+ "background": [
+  0.01,
+  0.01,
+  0.02
+ ],
+ "camera_dist": 14,
+ "rows": [
+  "MMMMMMMMMMMMMMMMMMMMMMMM",
+  "MMMMMMMMggggggggMMMMMMMM",
+  "MMMMMMMggggggggggMMMMMMM",
+  "MMMMMMgggggggggggggMMMMM",
+  "MggggggggggggggggggggggM",
+  "MggggggggggggggggggggggM",
+  "MSSSSSSSSSSggSSSSSSSSSSM",
+  "MSSSSSSSSSSggSSSSSSSSSSM",
+  "MSSSSSSSSSSggSSSSSSSSSSM",
+  "MwwwwwwwwwwggwwwwwwwwwwM",
+  "           gg           "
+ ],
+ "spawns": {
+  "default": [
+   11,
+   9,
+   "up"
+  ],
+  "north": [
+   11,
+   9,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "bell",
+   "at": [
+    11,
+    2
+   ],
+   "tint": [
+    1.0,
+    0.9,
+    0.9
+   ]
+  },
+  {
+   "t": "machine",
+   "at": [
+    3,
+    4
+   ],
+   "w": 2
+  },
+  {
+   "t": "machine",
+   "at": [
+    19,
+    4
+   ],
+   "w": 2
+  },
+  {
+   "t": "crystal",
+   "at": [
+    7,
+    3
+   ]
+  },
+  {
+   "t": "crystal",
+   "at": [
+    16,
+    3
+   ]
+  },
+  {
+   "t": "bell_shrine",
+   "at": [
+    2,
+    7
+   ]
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    1,
+    6
+   ],
+   "len": 4
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    19,
+    6
+   ],
+   "len": 4
+  },
+  {
+   "t": "embers",
+   "at": [
+    11,
+    4
+   ],
+   "w": 8,
+   "h": 2
+  }
+ ],
+ "lights": [
+  {
+   "at": [
+    11,
+    3
+   ],
+   "color": [
+    0.6,
+    0.95,
+    1.0
+   ],
+   "radius": 7
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    11,
+    10
+   ],
+   "w": 2,
+   "kind": "exit",
+   "to": "undercroft_cistern",
+   "spawn": "south",
+   "cond": "!flag:boss_clapper_done"
+  },
+  {
+   "at": [
+    2,
+    7
+   ],
+   "on": "interact",
+   "event": "ev_bell_shrine",
+   "label": "Bell Shrine"
+  },
+  {
+   "at": [
+    4,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_core_terminal",
+   "label": "Terminal",
+   "cond": "!flag:got_log"
+  },
+  {
+   "at": [
+    3,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_core_terminal",
+   "label": "Terminal",
+   "cond": "!flag:got_log"
+  },
+  {
+   "at": [
+    5,
+    7
+   ],
+   "w": 14,
+   "kind": "event",
+   "event": "ev_core_pell",
+   "cond": "!flag:pell_found"
+  },
+  {
+   "at": [
+    6,
+    4
+   ],
+   "w": 12,
+   "h": 1,
+   "kind": "event",
+   "event": "ev_boss_clapper",
+   "cond": "flag:pell_found&!flag:boss_clapper_done"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "pell",
+   "sprite": "survivor",
+   "at": [
+    17,
+    7
+   ],
+   "face": "left",
+   "cond": "!flag:pell_found",
+   "talk": "ev_core_pell"
+  }
+ ],
+ "party_talk": [
+  {
+   "event": "pt_core"
+  }
+ ]
+}

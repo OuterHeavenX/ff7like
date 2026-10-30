@@ -1,0 +1,72 @@
+{
+ "id": "arena_bellcore",
+ "name": "Battle",
+ "ambient": [
+  0.34,
+  0.34,
+  0.5
+ ],
+ "background": [
+  0.01,
+  0.01,
+  0.02
+ ],
+ "rows": [
+  "MMMMMMMMMMMMMMMMMM",
+  "MMMMMMMMMMMMMMMMMM",
+  "gggggggggggggggggg",
+  "gggggggggggggggggg",
+  "gggggggggggggggggg",
+  "gggggggggggggggggg",
+  "gggggggggggggggggg",
+  "gggggggggggggggggg",
+  "wwwwwwwwwwwwwwwwww"
+ ],
+ "lights": [
+  {
+   "at": [
+    5,
+    4
+   ],
+   "color": [
+    0.6,
+    0.9,
+    1.0
+   ],
+   "radius": 6
+  }
+ ],
+ "props": [
+  {
+   "t": "crystal",
+   "at": [
+    2,
+    2
+   ]
+  },
+  {
+   "t": "crystal",
+   "at": [
+    15,
+    2
+   ]
+  },
+  {
+   "t": "machine",
+   "at": [
+    7,
+    2
+   ],
+   "w": 3
+  },
+  {
+   "t": "embers",
+   "at": [
+    9,
+    4
+   ],
+   "w": 8,
+   "h": 3
+  }
+ ]
+}

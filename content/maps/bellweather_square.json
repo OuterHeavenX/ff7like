@@ -1,0 +1,609 @@
+{
+ "id": "bellweather_square",
+ "name": "Lantern Square",
+ "region": "Bellweather",
+ "music": "town_bellweather",
+ "destination": true,
+ "ambient": [
+  0.42,
+  0.44,
+  0.62
+ ],
+ "background": [
+  0.03,
+  0.03,
+  0.07
+ ],
+ "camera_dist": 15,
+ "autosave": true,
+ "rows": [
+  "#################.....############",
+  "#RRRRRR#BBBBBBBB#.....#HHHHHHHHHH#",
+  "#RRRRRR#BBBBBBBB#.....#HHHHHHHHHH#",
+  "#RRRRRR#BBBBBBBB#.....#HHHHHHHHHH#",
+  "#................................#",
+  "#................................#",
+  "#................................#",
+  "#................................#",
+  "#..............SSSSS.............#",
+  "...............SSSSS.............#",
+  "...............SSSSS.............#",
+  "...............SS^SS.............#",
+  "#................................#",
+  "#................................#",
+  "#................................#",
+  "#................................#",
+  "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+ ],
+ "heights": [
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222223333322222222222222",
+  "2222222222222223333322222222222222",
+  "2222222222222223333322222222222222",
+  "2222222222222223323322222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222",
+  "2222222222222222222222222222222222"
+ ],
+ "spawns": {
+  "default": [
+   3,
+   10,
+   "right"
+  ],
+  "west": [
+   1,
+   10,
+   "right"
+  ],
+  "north": [
+   19,
+   1,
+   "down"
+  ],
+  "post": [
+   4,
+   4,
+   "down"
+  ],
+  "inn": [
+   27,
+   4,
+   "down"
+  ],
+  "toll": [
+   17,
+   13,
+   "up"
+  ]
+ },
+ "props": [
+  {
+   "t": "door",
+   "at": [
+    4,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    27,
+    3
+   ]
+  },
+  {
+   "t": "door",
+   "at": [
+    12,
+    3
+   ]
+  },
+  {
+   "t": "bell",
+   "at": [
+    17,
+    9
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    2,
+    5
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    13,
+    5
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    22,
+    5
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    31,
+    5
+   ],
+   "lit_flag": "lamp_square_a"
+  },
+  {
+   "t": "lamp",
+   "at": [
+    2,
+    14
+   ],
+   "lit_flag": "lamp_square_b"
+  },
+  {
+   "t": "lamp",
+   "at": [
+    12,
+    14
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    22,
+    14
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    31,
+    14
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    2,
+    5
+   ],
+   "to": [
+    13,
+    5
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    22,
+    5
+   ],
+   "to": [
+    31,
+    5
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    13,
+    5
+   ],
+   "to": [
+    17,
+    9
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    22,
+    5
+   ],
+   "to": [
+    17,
+    9
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    2,
+    14
+   ],
+   "to": [
+    12,
+    14
+   ]
+  },
+  {
+   "t": "lantern_string",
+   "at": [
+    22,
+    14
+   ],
+   "to": [
+    31,
+    14
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    5,
+    12
+   ],
+   "color": [
+    0.85,
+    0.3,
+    0.3
+   ]
+  },
+  {
+   "t": "stall",
+   "at": [
+    26,
+    12
+   ],
+   "color": [
+    0.3,
+    0.45,
+    0.8
+   ]
+  },
+  {
+   "t": "barrel",
+   "at": [
+    29,
+    12
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    24,
+    12
+   ]
+  },
+  {
+   "t": "crate",
+   "at": [
+    8,
+    12
+   ],
+   "size": 0.6
+  },
+  {
+   "t": "tree",
+   "at": [
+    1,
+    15
+   ]
+  },
+  {
+   "t": "tree",
+   "at": [
+    32,
+    15
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    9,
+    7
+   ]
+  },
+  {
+   "t": "bench",
+   "at": [
+    25,
+    7
+   ]
+  },
+  {
+   "t": "sign",
+   "at": [
+    21,
+    4
+   ]
+  },
+  {
+   "t": "smoke",
+   "at": [
+    30,
+    2
+   ],
+   "y": 3.4
+  },
+  {
+   "t": "smoke",
+   "at": [
+    3,
+    2
+   ],
+   "y": 3.4
+  },
+  {
+   "t": "fireflies",
+   "at": [
+    17,
+    13
+   ],
+   "w": 14,
+   "h": 2
+  }
+ ],
+ "triggers": [
+  {
+   "at": [
+    0,
+    9
+   ],
+   "h": 3,
+   "kind": "exit",
+   "to": "bellweather_wick",
+   "spawn": "east"
+  },
+  {
+   "at": [
+    17,
+    0
+   ],
+   "w": 5,
+   "kind": "exit",
+   "to": "bellweather_station",
+   "spawn": "south",
+   "cond": "!flag:toll_happened|flag:boss_clapper_done"
+  },
+  {
+   "at": [
+    17,
+    0
+   ],
+   "w": 5,
+   "kind": "event",
+   "event": "ev_station_sealed",
+   "cond": "flag:toll_happened&!flag:boss_clapper_done"
+  },
+  {
+   "at": [
+    4,
+    3
+   ],
+   "on": "interact",
+   "kind": "exit",
+   "to": "post_office",
+   "spawn": "door",
+   "label": "Enter"
+  },
+  {
+   "at": [
+    27,
+    3
+   ],
+   "on": "interact",
+   "kind": "exit",
+   "to": "copper_kettle",
+   "spawn": "door",
+   "label": "Enter"
+  },
+  {
+   "at": [
+    12,
+    3
+   ],
+   "on": "interact",
+   "event": "ev_records_hall",
+   "label": "Read notice"
+  },
+  {
+   "at": [
+    21,
+    4
+   ],
+   "on": "interact",
+   "event": "ev_square_sign",
+   "label": "Read"
+  },
+  {
+   "at": [
+    17,
+    9
+   ],
+   "on": "interact",
+   "event": "ev_square_bell",
+   "label": "Examine"
+  },
+  {
+   "at": [
+    31,
+    5
+   ],
+   "on": "interact",
+   "event": "ev_lamp_square_a",
+   "label": "Lantern",
+   "cond": "quest:sq_lamplighter&!flag:lamp_square_a&!quest_done:sq_lamplighter"
+  },
+  {
+   "at": [
+    2,
+    14
+   ],
+   "on": "interact",
+   "event": "ev_lamp_square_b",
+   "label": "Lantern",
+   "cond": "quest:sq_lamplighter&!flag:lamp_square_b&!quest_done:sq_lamplighter"
+  },
+  {
+   "at": [
+    10,
+    10
+   ],
+   "w": 14,
+   "h": 6,
+   "kind": "event",
+   "event": "ev_toll",
+   "cond": "quest:mq_sealed_fork>=2&!flag:toll_happened"
+  },
+  {
+   "at": [
+    10,
+    4
+   ],
+   "w": 14,
+   "h": 4,
+   "kind": "event",
+   "event": "ev_toll",
+   "cond": "quest:mq_sealed_fork>=2&!flag:toll_happened"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "brisk",
+   "sprite": "merchant",
+   "at": [
+    7,
+    13
+   ],
+   "face": "down",
+   "talk": "ev_brisk"
+  },
+  {
+   "id": "dunmore",
+   "sprite": "townsman",
+   "at": [
+    28,
+    13
+   ],
+   "face": "down",
+   "talk": "ev_dunmore"
+  },
+  {
+   "id": "oswin",
+   "sprite": "lamplighter",
+   "at": [
+    10,
+    8
+   ],
+   "face": "down",
+   "wander": 1,
+   "talk": "ev_oswin"
+  },
+  {
+   "id": "pim_square",
+   "sprite": "child",
+   "at": [
+    24,
+    9
+   ],
+   "face": "left",
+   "wander": 2,
+   "cond": "!flag:toll_happened",
+   "talk": "ev_pim_before"
+  },
+  {
+   "id": "sq_woman",
+   "sprite": "townswoman",
+   "at": [
+    14,
+    13
+   ],
+   "face": "up",
+   "wander": 2,
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_sq_woman_after"
+    },
+    {
+     "event": "ev_sq_woman_before"
+    }
+   ]
+  },
+  {
+   "id": "sq_man",
+   "sprite": "townsman",
+   "at": [
+    21,
+    7
+   ],
+   "face": "left",
+   "wander": 2,
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_sq_man_after"
+    },
+    {
+     "event": "ev_sq_man_before"
+    }
+   ]
+  },
+  {
+   "id": "sq_elder",
+   "sprite": "elder",
+   "at": [
+    26,
+    9
+   ],
+   "face": "down",
+   "talk": [
+    {
+     "cond": "flag:toll_happened",
+     "event": "ev_sq_elder_after"
+    },
+    {
+     "event": "ev_sq_elder_before"
+    }
+   ]
+  },
+  {
+   "id": "warden_gate",
+   "sprite": "warden",
+   "at": [
+    17,
+    1
+   ],
+   "face": "down",
+   "cond": "flag:toll_happened&!flag:boss_clapper_done",
+   "talk": "ev_warden_gate"
+  },
+  {
+   "id": "warden_gate2",
+   "sprite": "warden",
+   "at": [
+    21,
+    1
+   ],
+   "face": "down",
+   "cond": "flag:toll_happened&!flag:boss_clapper_done",
+   "talk": "ev_warden_gate"
+  }
+ ],
+ "party_talk": [
+  {
+   "cond": "flag:toll_happened&party:garran",
+   "event": "pt_square_garran"
+  },
+  {
+   "cond": "flag:toll_happened",
+   "event": "pt_square_after"
+  },
+  {
+   "event": "pt_square_default"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "id": "arena_undercroft",
+ "name": "Battle",
+ "ambient": [
+  0.36,
+  0.38,
+  0.48
+ ],
+ "background": [
+  0.01,
+  0.01,
+  0.02
+ ],
+ "rows": [
+  "WWWWWWWWWWWWWWWWWW",
+  "WWWWWWWWWWWWWWWWWW",
+  "SSSSSSSSSSSSSSSSSS",
+  "SSSSSSSSSgSSSSSSSS",
+  "SSSSSSSSSgSSSSSSSS",
+  "SSSSSSSSSgSSSSSSSS",
+  "SSSSSSSSSgSSSSSSSS",
+  "SSSSSSSSSSSSSSSSSS",
+  "wwwwwwwwwwwwwwwwww"
+ ],
+ "props": [
+  {
+   "t": "lamp",
+   "at": [
+    2,
+    2
+   ]
+  },
+  {
+   "t": "lamp",
+   "at": [
+    15,
+    2
+   ]
+  },
+  {
+   "t": "pipe_run",
+   "at": [
+    4,
+    2
+   ],
+   "len": 10
+  },
+  {
+   "t": "crystal",
+   "at": [
+    9,
+    2
+   ]
+  },
+  {
+   "t": "dust",
+   "at": [
+    9,
+    4
+   ],
+   "w": 8,
+   "h": 3
+  }
+ ]
+}

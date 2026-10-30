@@ -1,0 +1,541 @@
+[
+ {
+  "id": "warden",
+  "name": "Authority Warden",
+  "role": "aggressor",
+  "level": 3,
+  "sprite": "warden",
+  "stats": {
+   "hp": 95,
+   "atk": 14,
+   "mag": 5,
+   "def": 8,
+   "res": 6,
+   "spd": 9,
+   "dex": 8
+  },
+  "elements": {},
+  "status_res": {
+   "sleep": 0.2
+  },
+  "ai": [
+   {
+    "skill": "attack",
+    "w": 3
+   },
+   {
+    "skill": "e_baton",
+    "w": 2
+   }
+  ],
+  "xp": 14,
+  "jp": 4,
+  "gold": 18,
+  "drops": [
+   {
+    "item": "tonic",
+    "chance": 0.3
+   }
+  ],
+  "desc": "City enforcer. Follows orders; some hate them."
+ },
+ {
+  "id": "warden_sergeant",
+  "name": "Warden Sergeant",
+  "role": "protector",
+  "level": 5,
+  "sprite": "warden_sergeant",
+  "stats": {
+   "hp": 180,
+   "atk": 15,
+   "mag": 6,
+   "def": 14,
+   "res": 8,
+   "spd": 7,
+   "dex": 8
+  },
+  "elements": {
+   "storm": 1.3
+  },
+  "status_res": {
+   "stun": 0.3
+  },
+  "ai": [
+   {
+    "skill": "attack",
+    "w": 2
+   },
+   {
+    "skill": "e_shield_wall",
+    "w": 3,
+    "if": "self_no:cover&allies<3"
+   },
+   {
+    "skill": "e_rally_order",
+    "w": 2,
+    "if": "ally_hp<0.6"
+   }
+  ],
+  "xp": 30,
+  "jp": 7,
+  "gold": 40,
+  "drops": [
+   {
+    "item": "hi_tonic",
+    "chance": 0.15
+   }
+  ],
+  "desc": "Protector: shields allies (Cover). Defeat it first or use area attacks and magic."
+ },
+ {
+  "id": "brass_rat",
+  "name": "Brass Rat",
+  "role": "aggressor",
+  "level": 2,
+  "sprite": "brass_rat",
+  "stats": {
+   "hp": 46,
+   "atk": 11,
+   "mag": 3,
+   "def": 5,
+   "res": 4,
+   "spd": 15,
+   "dex": 10,
+   "evade": 0.05
+  },
+  "elements": {
+   "storm": 1.5
+  },
+  "status_res": {},
+  "ai": [
+   {
+    "skill": "attack",
+    "w": 3
+   },
+   {
+    "skill": "e_gnaw",
+    "w": 2
+   }
+  ],
+  "xp": 7,
+  "jp": 2,
+  "gold": 6,
+  "drops": [
+   {
+    "item": "brass_scrap",
+    "chance": 0.4
+   }
+  ],
+  "desc": "Fast clockwork vermin. Weak to storm."
+ },
+ {
+  "id": "echo_moth",
+  "name": "Echo Moth",
+  "role": "disruptor",
+  "level": 3,
+  "sprite": "echo_moth",
+  "stats": {
+   "hp": 58,
+   "atk": 10,
+   "mag": 13,
+   "def": 4,
+   "res": 8,
+   "spd": 12,
+   "dex": 12,
+   "evade": 0.12
+  },
+  "elements": {
+   "fire": 1.5,
+   "sound": 0.5
+  },
+  "status_res": {
+   "sleep": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_wing_buffet",
+    "w": 3
+   },
+   {
+    "skill": "e_dream_dust",
+    "w": 2,
+    "if": "no_foe_status:sleep"
+   }
+  ],
+  "xp": 9,
+  "jp": 3,
+  "gold": 8,
+  "drops": [
+   {
+    "item": "moth_silk",
+    "chance": 0.35
+   }
+  ],
+  "desc": "Disruptor: scatters sleep dust. Weak to fire; evasive."
+ },
+ {
+  "id": "tallow_wisp",
+  "name": "Tallow Wisp",
+  "role": "elemental",
+  "level": 4,
+  "sprite": "tallow_wisp",
+  "stats": {
+   "hp": 70,
+   "atk": 6,
+   "mag": 16,
+   "def": 6,
+   "res": 10,
+   "spd": 10,
+   "dex": 9
+  },
+  "elements": {
+   "fire": -1.0,
+   "frost": 1.5,
+   "physical": 0.8
+  },
+  "status_res": {
+   "burn": 1.0,
+   "poison": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_ember",
+    "w": 4
+   },
+   {
+    "skill": "attack",
+    "w": 1
+   }
+  ],
+  "xp": 11,
+  "jp": 3,
+  "gold": 10,
+  "drops": [
+   {
+    "item": "ember_flask",
+    "chance": 0.2
+   }
+  ],
+  "desc": "Elemental: absorbs fire, weak to frost. Lamp oil given a grudge."
+ },
+ {
+  "id": "rust_mender",
+  "name": "Rust Mender",
+  "role": "healer",
+  "level": 4,
+  "sprite": "rust_mender",
+  "stats": {
+   "hp": 75,
+   "atk": 6,
+   "mag": 14,
+   "def": 7,
+   "res": 9,
+   "spd": 11,
+   "dex": 8
+  },
+  "elements": {
+   "storm": 1.5,
+   "frost": 1.2
+  },
+  "status_res": {
+   "poison": 1.0
+  },
+  "ai": [
+   {
+    "skill": "e_patch",
+    "w": 5,
+    "if": "ally_hp<0.6",
+    "target": "lowest_hp"
+   },
+   {
+    "skill": "e_spark",
+    "w": 2
+   }
+  ],
+  "xp": 12,
+  "jp": 4,
+  "gold": 12,
+  "drops": [
+   {
+    "item": "brass_scrap",
+    "chance": 0.5
+   }
+  ],
+  "desc": "Healer: repairs its allies. Take it out first. Weak to storm."
+ },
+ {
+  "id": "silt_crab",
+  "name": "Silt Crab",
+  "role": "protector",
+  "level": 5,
+  "sprite": "silt_crab",
+  "stats": {
+   "hp": 130,
+   "atk": 15,
+   "mag": 4,
+   "def": 18,
+   "res": 6,
+   "spd": 7,
+   "dex": 7
+  },
+  "elements": {
+   "storm": 1.5,
+   "physical": 0.75,
+   "frost": 0.5
+  },
+  "status_res": {},
+  "ai": [
+   {
+    "skill": "e_pinch",
+    "w": 3
+   },
+   {
+    "skill": "e_shell_up",
+    "w": 2,
+    "if": "self_no:barrier&self_hp<0.7"
+   }
+  ],
+  "xp": 16,
+  "jp": 4,
+  "gold": 14,
+  "drops": [
+   {
+    "item": "silt_shell",
+    "chance": 0.45
+   }
+  ],
+  "desc": "Armored: resists physical and frost. Gadgets and storm crack it."
+ },
+ {
+  "id": "hollow_echo",
+  "name": "Hollow Echo",
+  "role": "summoner",
+  "level": 6,
+  "sprite": "hollow_echo",
+  "stats": {
+   "hp": 120,
+   "atk": 8,
+   "mag": 17,
+   "def": 7,
+   "res": 12,
+   "spd": 10,
+   "dex": 10
+  },
+  "elements": {
+   "light": 1.5,
+   "sound": 1.5,
+   "shadow": 0.0
+  },
+  "status_res": {
+   "poison": 1.0,
+   "sleep": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_forget",
+    "w": 3
+   },
+   {
+    "skill": "e_call_motes",
+    "w": 2,
+    "if": "allies<4"
+   }
+  ],
+  "xp": 20,
+  "jp": 6,
+  "gold": 16,
+  "drops": [
+   {
+    "item": "echo_dust",
+    "chance": 0.5
+   }
+  ],
+  "desc": "Summoner: a shape made of someone's lost memories. Calls motes (which give no rewards). Weak to light and sound."
+ },
+ {
+  "id": "echo_mote",
+  "name": "Echo Mote",
+  "role": "summon",
+  "level": 3,
+  "sprite": "echo_mote",
+  "stats": {
+   "hp": 30,
+   "atk": 5,
+   "mag": 12,
+   "def": 4,
+   "res": 6,
+   "spd": 11,
+   "dex": 9
+  },
+  "elements": {
+   "light": 1.5
+  },
+  "status_res": {},
+  "ai": [
+   {
+    "skill": "e_flicker",
+    "w": 1
+   }
+  ],
+  "xp": 0,
+  "jp": 0,
+  "gold": 0,
+  "drops": [],
+  "desc": "Summoned fragment. Grants no rewards."
+ },
+ {
+  "id": "ironside",
+  "name": "Ironside",
+  "role": "elite",
+  "level": 7,
+  "sprite": "ironside",
+  "stats": {
+   "hp": 620,
+   "atk": 22,
+   "mag": 6,
+   "def": 16,
+   "res": 9,
+   "spd": 8,
+   "dex": 9
+  },
+  "elements": {
+   "storm": 1.3
+  },
+  "status_res": {
+   "stun": 0.5,
+   "sleep": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_heavy_swing",
+    "w": 3
+   },
+   {
+    "skill": "e_iron_guard",
+    "w": 2,
+    "if": "self_no:counter_stance&turn%3"
+   },
+   {
+    "skill": "attack",
+    "w": 2
+   }
+  ],
+  "xp": 90,
+  "jp": 18,
+  "gold": 160,
+  "drops": [
+   {
+    "item": "canal_mail",
+    "chance": 1.0
+   }
+  ],
+  "desc": "Elite: a warden-automaton left guarding the cistern. Its Iron Guard counters physical blows — switch to gadgets or wait it out."
+ },
+ {
+  "id": "hollow_clapper",
+  "name": "The Hollow Clapper",
+  "role": "boss",
+  "level": 8,
+  "sprite": "hollow_clapper",
+  "boss": true,
+  "stats": {
+   "hp": 1900,
+   "atk": 27,
+   "mag": 26,
+   "def": 12,
+   "res": 12,
+   "spd": 9,
+   "dex": 10
+  },
+  "elements": {
+   "storm": 1.5,
+   "sound": 0.0,
+   "fire": 0.75
+  },
+  "status_res": {
+   "sleep": 1.0,
+   "stun": 0.55,
+   "poison": 0.4,
+   "blind": 0.4,
+   "silence": 0.5
+  },
+  "ai": [
+   {
+    "skill": "e_clapper_swing",
+    "w": 3
+   },
+   {
+    "skill": "e_toll",
+    "w": 2
+   },
+   {
+    "skill": "e_extract",
+    "w": 2,
+    "if": "turn%3"
+   }
+  ],
+  "phases": [
+   {
+    "hp_below": 0.6,
+    "message": "The Clapper's frame shrieks. Fragments of stolen memory pour out of its cracks!",
+    "summon": "echo_mote",
+    "summon_count": 2,
+    "ai": [
+     {
+      "skill": "e_clapper_swing",
+      "w": 3
+     },
+     {
+      "skill": "e_toll",
+      "w": 2
+     },
+     {
+      "skill": "e_reverberate",
+      "w": 2,
+      "if": "allies<3"
+     },
+     {
+      "skill": "e_discordant_peal",
+      "w": 3,
+      "if": "turn%3"
+     }
+    ]
+   },
+   {
+    "hp_below": 0.25,
+    "message": "The bell cracks wide open — the Clapper is tolling itself apart! (Its defenses drop.)",
+    "stat_mod": {
+     "def": 0.6,
+     "res": 0.6,
+     "spd": 1.3
+    },
+    "ai": [
+     {
+      "skill": "e_discordant_peal",
+      "w": 3,
+      "if": "turn%2"
+     },
+     {
+      "skill": "e_clapper_swing",
+      "w": 3
+     },
+     {
+      "skill": "e_extract",
+      "w": 2
+     }
+    ]
+   }
+  ],
+  "xp": 260,
+  "jp": 40,
+  "gold": 400,
+  "drops": [
+   {
+    "item": "hi_tonic",
+    "chance": 1.0,
+    "qty": 2
+   }
+  ],
+  "desc": "Boss: a malfunctioning extraction construct. Telegraphs its Discordant Peal — Guard, or Stun it (shield bash, shoulder charge, Spark Bulwark) to break the charge. Weak to storm; immune to sound."
+ }
+]

@@ -1,0 +1,14 @@
+[
+ {"id": "_start", "party": ["rowan"], "jobs": ["wayfarer", "vanguard", "artificer"], "items": {"tonic": 3, "tuning_fork": 0}, "gold": 120,
+  "map": "bellweather_wick", "pos": [4, 5], "chapter": "prologue", "opening_event": "ev_opening"},
+ {"id": "prologue", "name": "Prologue — Lanternwake", "status": "implemented", "summary": "Festival night in Bellweather; a delivery; a toll that goes wrong."},
+ {"id": "ch1", "name": "Chapter One — What the Street Forgot", "status": "implemented", "summary": "Proof that Wren existed, first allies, and the Station Undercroft."},
+ {"id": "ch2", "name": "Chapter Two — The Rainward Line", "status": "planned"},
+ {"id": "ch3", "name": "Chapter Three — Glass Orchard", "status": "planned"},
+ {"id": "ch4", "name": "Chapter Four — The Salt Archive", "status": "planned"},
+ {"id": "ch5", "name": "Chapter Five — Crown Without a King", "status": "planned"},
+ {"id": "ch6", "name": "Chapter Six — The Quiet Season", "status": "planned"},
+ {"id": "ch7", "name": "Chapter Seven — Roads We Remember", "status": "planned"},
+ {"id": "ch8", "name": "Chapter Eight — The Last Dawn", "status": "planned"},
+ {"id": "epilogue", "name": "Epilogue", "status": "planned"}
+]

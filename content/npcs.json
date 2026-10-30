@@ -1,0 +1,107 @@
+[
+ {
+  "id": "nessa_npc",
+  "name": "Nessa",
+  "portrait": "nessa"
+ },
+ {
+  "id": "wren",
+  "name": "Wren",
+  "portrait": "wren"
+ },
+ {
+  "id": "hale",
+  "name": "Postmistress Hale",
+  "portrait": "postmistress"
+ },
+ {
+  "id": "oswin",
+  "name": "Oswin",
+  "portrait": "lamplighter"
+ },
+ {
+  "id": "brisk",
+  "name": "Brisk",
+  "portrait": "merchant"
+ },
+ {
+  "id": "dunmore",
+  "name": "Dunmore",
+  "portrait": "townsman"
+ },
+ {
+  "id": "pim",
+  "name": "Pim",
+  "portrait": "child"
+ },
+ {
+  "id": "abernethy",
+  "name": "Mrs. Abernethy",
+  "portrait": "elder"
+ },
+ {
+  "id": "sallow",
+  "name": "Adjunct Sallow",
+  "portrait": "sallow"
+ },
+ {
+  "id": "warden_a",
+  "name": "Warden",
+  "portrait": "warden"
+ },
+ {
+  "id": "warden_b",
+  "name": "Warden",
+  "portrait": "warden"
+ },
+ {
+  "id": "mira_npc",
+  "name": "Mira",
+  "portrait": "mira"
+ },
+ {
+  "id": "garran_npc",
+  "name": "Garran",
+  "portrait": "garran"
+ },
+ {
+  "id": "innkeeper",
+  "name": "Marta",
+  "portrait": "innkeeper"
+ },
+ {
+  "id": "hask",
+  "name": "Hask, Mentor of Paths",
+  "portrait": "mentor"
+ },
+ {
+  "id": "tamsin",
+  "name": "Tamsin",
+  "portrait": "engineer"
+ },
+ {
+  "id": "joss",
+  "name": "Joss",
+  "portrait": "survivor"
+ },
+ {
+  "id": "pell",
+  "name": "Pell",
+  "portrait": "survivor"
+ },
+ {
+  "id": "townsfolk",
+  "name": "Townsperson",
+  "portrait": ""
+ },
+ {
+  "id": "crowd",
+  "name": "Crowd",
+  "portrait": ""
+ },
+ {
+  "id": "nessa_barge",
+  "name": "Nessa",
+  "portrait": "nessa"
+ }
+]

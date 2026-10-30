@@ -1,0 +1,984 @@
+{
+ "ev_opening": {
+  "cmds": [
+   {
+    "music": "town_bellweather"
+   },
+   {
+    "narrate": "Beneath every city in Asterreach, a buried bell keeps the seasons.\n\nTonight, Bellweather lights its lanterns for the toll."
+   },
+   {
+    "title_card": "Prologue",
+    "sub": "Lanternwake"
+   },
+   {
+    "emote": "nessa_npc",
+    "text": "!"
+   },
+   {
+    "say": "nessa_npc",
+    "text": "There you are! Rowan Vale, courier of the year, missing on the one night the whole city wants a parcel.",
+    "expr": "happy"
+   },
+   {
+    "say": "rowan",
+    "text": "I was helping Mrs. Abernethy carry lanterns. She tips in biscuits.",
+    "expr": "happy"
+   },
+   {
+    "say": "nessa_npc",
+    "text": "Hale's been shouting your name across Lantern Square. Something sealed for the Bell Station. Urgent, she says. She says that about everything."
+   },
+   {
+    "say": "nessa_npc",
+    "text": "Oh — and Wren went up to the station early. Said she'd catch you at the Lantern Bridge after the toll.",
+    "expr": "neutral"
+   },
+   {
+    "say": "rowan",
+    "text": "She's working on festival night?"
+   },
+   {
+    "say": "nessa_npc",
+    "text": "Your sister's always working. Go on. Post Office is east, on the square. I'm helping at my uncle's stall till the toll.",
+    "expr": "happy"
+   },
+   {
+    "flag": "met_nessa"
+   },
+   {
+    "quest_start": "mq_sealed_fork"
+   },
+   {
+    "tutorial": "Move with the left stick, D-pad, WASD or arrow keys (or drag on the left of a touchscreen). Talk and examine with A / Enter / Space. Hold B / Shift to run.",
+    "title": "Getting around"
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "Nessa told Rowan that Postmistress Hale needs an urgent delivery taken to the Bell Station, and that Wren will meet Rowan at the Lantern Bridge after the toll.",
+  "skippable": true
+ },
+ "ev_nessa_prologue": {
+  "cmds": [
+   {
+    "if": "quest:mq_sealed_fork>=1",
+    "then": [
+     {
+      "say": "nessa_npc",
+      "text": "A sealed Authority parcel on Lanternwake? Somebody important forgot something. Or wants it delivered by someone nobody notices."
+     },
+     {
+      "say": "nessa_npc",
+      "text": "Hey. After the toll, come find me. I… have a thing I want to tell you. Nothing bad. Probably.",
+      "expr": "sad"
+     }
+    ],
+    "else": [
+     {
+      "say": "nessa_npc",
+      "text": "Post Office. East. Lantern Square. Hale. Go!",
+      "expr": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_hale_delivery": {
+  "cmds": [
+   {
+    "say": "hale",
+    "text": "Rowan Vale! Finally. You know how many couriers are drunk on cider tonight? All of them but you.",
+    "expr": "angry"
+   },
+   {
+    "say": "hale",
+    "text": "Sealed parcel, Authority stamp. A calibration fork for engineer Mira Fen at the Bell Station. It must be there before the toll."
+   },
+   {
+    "item": "tuning_fork",
+    "qty": 1
+   },
+   {
+    "say": "rowan",
+    "text": "It's humming.",
+    "expr": "surprised"
+   },
+   {
+    "say": "hale",
+    "text": "Forks do that. Don't drop it, don't open it, don't sing near it. Station's north through the square."
+   },
+   {
+    "quest_stage": [
+     "mq_sealed_fork",
+     1
+    ]
+   },
+   {
+    "tutorial": "Open the menu with Y / Tab / the MENU button to check your party, items, equipment and the Journal. The Journal (View / J) always shows your current objective and a recap.",
+    "title": "Menu & Journal"
+   }
+  ],
+  "recap": "Hale gave Rowan a sealed Authority tuning fork to deliver to engineer Mira Fen."
+ },
+ "ev_hale_reminder": {
+  "cmds": [
+   {
+    "say": "hale",
+    "text": "Station's north through the square, Rowan. Before the toll!"
+   }
+  ]
+ },
+ "ev_wick_door_abernethy": {
+  "cmds": [
+   {
+    "if": "flag:toll_happened",
+    "then": [
+     {
+      "narrate": "Mrs. Abernethy's door. Through the window, two teacups on the table — she always set one for Wren."
+     }
+    ],
+    "else": [
+     {
+      "narrate": "Mrs. Abernethy's house. She's out on the street tonight."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_wick_door_locked": {
+  "cmds": [
+   {
+    "narrate": "Locked. Everyone's out for Lanternwake."
+   }
+  ]
+ },
+ "ev_abernethy_before": {
+  "cmds": [
+   {
+    "say": "abernethy",
+    "text": "Rowan, dear! Tell your sister I saved her a honey biscuit. She works too hard. You both do."
+   },
+   {
+    "say": "abernethy",
+    "text": "The toll keeps the floods out of the lower wards, you know. Last spring my cellar stayed dry for the first time in forty years."
+   }
+  ]
+ },
+ "ev_wick_man_before": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "Two years running, no famine in the river towns. Say what you like about the Authority — they keep the seasons honest."
+   }
+  ]
+ },
+ "ev_wick_woman_before": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "My boy's lantern is the green one, third from the bridge. He painted a fish on it. It looks like a potato."
+   }
+  ]
+ },
+ "ev_st_engineer": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "Night crew's already below in the core. Tamsin, Joss, and Pell drew the short straws. Festival shift."
+   }
+  ]
+ },
+ "ev_st_warden": {
+  "cmds": [
+   {
+    "say": "warden_a",
+    "text": "Move along, citizen. The ceremony is in the square. Couriers to the platform."
+   }
+  ]
+ },
+ "ev_station_doors": {
+  "cmds": [
+   {
+    "if": "flag:toll_happened",
+    "then": [
+     {
+      "narrate": "Sealed with Authority chain and wax."
+     }
+    ],
+    "else": [
+     {
+      "narrate": "The great brass doors. Engineers only past this point."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_station_bell": {
+  "cmds": [
+   {
+    "narrate": "A ceremonial replica of the buried bell. Its rim is engraved with the names of every season it has kept."
+   }
+  ]
+ },
+ "ev_wren": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "face": "wren",
+    "toward": "player"
+   },
+   {
+    "say": "wren",
+    "text": "There's my little courier. You walked the whole way without a single shortcut? I'm impressed.",
+    "expr": "happy"
+   },
+   {
+    "say": "rowan",
+    "text": "Wren! What are you doing up here? Nessa said you were working.",
+    "expr": "happy"
+   },
+   {
+    "say": "wren",
+    "text": "Checking numbers. Pitch logs, mostly. Someone's been adjusting them, and the adjustments don't add up.",
+    "expr": "neutral"
+   },
+   {
+    "choice": [
+     {
+      "text": "\"Adjusting them how?\"",
+      "do": [
+       {
+        "say": "wren",
+        "text": "Small changes. A quarter-tone here, a quarter-tone there. Small enough that nobody asks. That's what bothers me.",
+        "expr": "sad"
+       }
+      ]
+     },
+     {
+      "text": "\"It's festival night. Take a break.\"",
+      "do": [
+       {
+        "say": "wren",
+        "text": "I will. After the toll. I promise. You can buy me a honey cake with your enormous courier wages.",
+        "expr": "happy"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "say": "wren",
+    "text": "Meet me at the Lantern Bridge after the toll. I want to show you something."
+   },
+   {
+    "emote": "wren",
+    "text": "…"
+   },
+   {
+    "say": "wren",
+    "text": "And Rowan — whatever happens tonight, don't let anyone tell you what you remember.",
+    "expr": "sad"
+   },
+   {
+    "say": "rowan",
+    "text": "That's ominous.",
+    "expr": "surprised"
+   },
+   {
+    "say": "wren",
+    "text": "That's sisterly. Go on, your engineer's waiting.",
+    "expr": "happy"
+   },
+   {
+    "flag": "met_wren"
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "music": "bells"
+   }
+  ],
+  "recap": "Rowan met Wren at the station. She has been investigating altered pitch logs and asked Rowan to meet at the Lantern Bridge after the toll: \"Don't let anyone tell you what you remember.\"",
+  "skippable": true
+ },
+ "ev_wren_again": {
+  "cmds": [
+   {
+    "say": "wren",
+    "text": "Bridge. After the toll. And deliver your parcel before Hale has a heart attack.",
+    "expr": "happy"
+   }
+  ]
+ },
+ "ev_mira_delivery": {
+  "cmds": [
+   {
+    "if": "!item:tuning_fork",
+    "then": [
+     {
+      "say": "mira_npc",
+      "text": "If you're a courier, you're early. If you're a tourist, the ceremony's in the square."
+     }
+    ],
+    "else": [
+     {
+      "say": "mira_npc",
+      "text": "A courier with an Authority seal. That'll be my calibration fork. Thank you—"
+     },
+     {
+      "emote": "mira_npc",
+      "text": "?"
+     },
+     {
+      "say": "mira_npc",
+      "text": "Wait. Listen to it.",
+      "expr": "surprised"
+     },
+     {
+      "say": "rowan",
+      "text": "It's been humming since I picked it up."
+     },
+     {
+      "say": "mira_npc",
+      "text": "It's flat. A quarter-tone flat. If I calibrate the resonators to this, the toll won't just draw from the bell. It'll pull wider. Into the street.",
+      "expr": "angry"
+     },
+     {
+      "say": "mira_npc",
+      "text": "I designed those resonators. I know what they do when they're tuned wrong.",
+      "expr": "sad"
+     },
+     {
+      "flag": "sallow_at_station"
+     },
+     {
+      "refresh_npcs": true
+     },
+     {
+      "say": "sallow",
+      "text": "Engineer Fen. Is there a difficulty with my fork?"
+     },
+     {
+      "say": "mira_npc",
+      "text": "Adjunct Sallow. The pitch is wrong. I'm not installing it."
+     },
+     {
+      "say": "sallow",
+      "text": "Then the station will toll on its existing settings, which I approved this morning. The flood wards will hold. The orchards will eat. The city will thank us."
+     },
+     {
+      "say": "sallow",
+      "text": "Courier. Your delivery is complete. Enjoy the festival."
+     },
+     {
+      "remove_npc": "sallow"
+     },
+     {
+      "flag": "sallow_at_station",
+      "value": false
+     },
+     {
+      "say": "mira_npc",
+      "text": "…Keep the fork. Take it back to Hale. If anyone asks, it was refused at the platform.",
+      "expr": "sad"
+     },
+     {
+      "say": "mira_npc",
+      "text": "And if anything feels wrong at the toll — anything — find me afterwards.",
+      "expr": "neutral"
+     },
+     {
+      "quest_stage": [
+       "mq_sealed_fork",
+       2
+      ]
+     },
+     {
+      "flag": "fork_delivered"
+     }
+    ]
+   }
+  ],
+  "recap": "Mira found the fork tuned a quarter-tone flat and refused to install it. Adjunct Sallow overruled her: the toll will proceed on settings he approved. Mira told Rowan to keep the fork.",
+  "skippable": true
+ },
+ "ev_mira_after_delivery": {
+  "cmds": [
+   {
+    "say": "mira_npc",
+    "text": "The toll's starting soon in the square. Go. I'll be watching the gauges.",
+    "expr": "sad"
+   }
+  ]
+ },
+ "ev_toll": {
+  "cmds": [
+   {
+    "music": "tension"
+   },
+   {
+    "narrate": "Lantern Square fills with people. Lanterns rise. Somewhere below the cobbles, the great bell waits."
+   },
+   {
+    "say": "sallow",
+    "text": "Citizens of Bellweather! For eleven years, the toll has kept the floods from the lower wards and bread on every table along the Rainward Line."
+   },
+   {
+    "say": "sallow",
+    "text": "Tonight we draw a little of the old season's memory from the bell, and in exchange, it keeps us safe. A small price. A fair one."
+   },
+   {
+    "say": "crowd",
+    "text": "Toll! Toll! Toll!"
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "wait": 1.2
+   },
+   {
+    "say": "rowan",
+    "text": "…That's not the right note.",
+    "expr": "surprised"
+   },
+   {
+    "sfx": "bell_wrong"
+   },
+   {
+    "shake": 4
+   },
+   {
+    "flash": [
+     0.85,
+     0.95,
+     1.0
+    ]
+   },
+   {
+    "say": "rowan",
+    "text": "My arm— the scar's burning—!",
+    "expr": "angry"
+   },
+   {
+    "sfx": "bell_wrong"
+   },
+   {
+    "flash": [
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "fade": "out",
+    "time": 1.2
+   },
+   {
+    "flag": "toll_happened"
+   },
+   {
+    "set_chapter": "ch1"
+   },
+   {
+    "quest_complete": "mq_sealed_fork"
+   },
+   {
+    "wait": 1.0
+   },
+   {
+    "narrate": "…\n\nWhen Rowan opens their eyes, the lanterns are still burning.\n\nThe tuning fork in their satchel is humming, warm as a held hand."
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "fade": "in",
+    "time": 1.0
+   },
+   {
+    "music": "town_bellweather"
+   },
+   {
+    "title_card": "Chapter One",
+    "sub": "What the Street Forgot"
+   },
+   {
+    "say": "rowan",
+    "text": "Everyone's… fine? They're just standing there.",
+    "expr": "surprised"
+   },
+   {
+    "say": "rowan",
+    "text": "Wren. The bridge. She said the bridge.",
+    "expr": "sad"
+   },
+   {
+    "quest_start": "mq_street_forgot"
+   },
+   {
+    "autosave": true
+   }
+  ],
+  "recap": "During the Lanternwake toll, the bell rang a wrong note. Rowan's old scar burned and the tuning fork hummed. Afterwards, the crowd seemed dazed but unhurt. Wren had asked to meet at the Lantern Bridge.",
+  "skippable": true
+ },
+ "ev_station_sealed": {
+  "cmds": [
+   {
+    "say": "warden_a",
+    "text": "Station's sealed by order of Adjunct Sallow. Maintenance incident. Go home, citizen."
+   },
+   {
+    "move": "player",
+    "path": [
+     [
+      19,
+      2
+     ]
+    ],
+    "speed": 5
+   }
+  ]
+ },
+ "ev_warden_gate": {
+  "cmds": [
+   {
+    "say": "warden_a",
+    "text": "Nobody in or out. That includes couriers."
+   }
+  ]
+ },
+ "ev_bridge_after_toll": {
+  "cmds": [
+   {
+    "music": "theme_wren"
+   },
+   {
+    "say": "rowan",
+    "text": "Wren? …Wren!",
+    "expr": "sad"
+   },
+   {
+    "narrate": "The Lantern Bridge is crowded with people looking at the water, puzzled, as if they'd come here for a reason they can't name."
+   },
+   {
+    "narrate": "A red scarf is knotted to the railing. Neat, careful knots. Wren's knots."
+   },
+   {
+    "item": "red_scarf",
+    "qty": 1
+   },
+   {
+    "say": "rowan",
+    "text": "She was here. She left this for me — she wouldn't just leave it.",
+    "expr": "sad"
+   },
+   {
+    "flag": "found_scarf"
+   },
+   {
+    "quest_stage": [
+     "mq_street_forgot",
+     1
+    ]
+   },
+   {
+    "call": "ev_check_evidence"
+   },
+   {
+    "say": "rowan",
+    "text": "Someone must have seen her. Mrs. Abernethy. Hale. Anyone.",
+    "expr": "neutral"
+   },
+   {
+    "music": "town_bellweather"
+   }
+  ],
+  "recap": "Wren wasn't at the bridge. Rowan found her red scarf tied to the railing.",
+  "skippable": true
+ },
+ "ev_abernethy_after": {
+  "cmds": [
+   {
+    "if": "flag:asked_abernethy",
+    "then": [
+     {
+      "say": "abernethy",
+      "text": "Are you feeling all right, dear? You look pale. Come for biscuits later."
+     }
+    ],
+    "else": [
+     {
+      "say": "rowan",
+      "text": "Mrs. Abernethy, have you seen Wren? She was meant to meet me—"
+     },
+     {
+      "say": "abernethy",
+      "text": "Wren, dear? I don't know a Wren. Is she one of the new couriers?"
+     },
+     {
+      "say": "rowan",
+      "text": "My sister. Wren Vale. You taught her to knit. You save her honey biscuits every festival!",
+      "expr": "angry"
+     },
+     {
+      "say": "abernethy",
+      "text": "Oh, Rowan. Your parents only ever had the one child. You. I'd remember, sweetheart — I was at the naming."
+     },
+     {
+      "emote": "player",
+      "text": "…"
+     },
+     {
+      "say": "abernethy",
+      "text": "Is it the toll? Some folk come over strange. Sit down, have some water."
+     },
+     {
+      "flag": "asked_abernethy"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_wick_man_after": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "Odd night. I came out here to meet someone and I can't think who. Must've been the cider."
+   }
+  ]
+ },
+ "ev_wick_woman_after": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "Wren? No… no, I don't think so. Is she the one who fixed the Hollins' gutter? No, that was a man. Wasn't it?"
+   }
+  ]
+ },
+ "ev_pim_drawing": {
+  "cmds": [
+   {
+    "say": "pim",
+    "text": "Rowan! Look, I drew the kite lady. She fixed my kite last week. Nobody remembers her but I do. Well — mostly I do.",
+    "expr": "happy"
+   },
+   {
+    "narrate": "A crayon drawing: a tall woman in a red scarf, holding a kite with a lightning bolt on it. Underneath, in careful letters: WREN."
+   },
+   {
+    "say": "rowan",
+    "text": "Pim… can I borrow this? It's really important.",
+    "expr": "sad"
+   },
+   {
+    "say": "pim",
+    "text": "You can keep it if you find her. And — here. She gave me this string. You can have it too. For luck.",
+    "expr": "neutral"
+   },
+   {
+    "item": "pims_drawing",
+    "qty": 1
+   },
+   {
+    "item": "kite_string",
+    "qty": 1
+   },
+   {
+    "flag": "got_drawing"
+   },
+   {
+    "refresh_npcs": true
+   },
+   {
+    "call": "ev_check_evidence"
+   }
+  ],
+  "recap": "Pim, a child, still half-remembers Wren and gave Rowan a drawing of her."
+ },
+ "ev_hale_after": {
+  "cmds": [
+   {
+    "say": "rowan",
+    "text": "Hale. Wren Vale. She's a courier here. She's been a courier here for six years.",
+    "expr": "angry"
+   },
+   {
+    "say": "hale",
+    "text": "Rowan, I've run this office for twenty. I know every courier on my books, and I've never heard that name."
+   },
+   {
+    "say": "hale",
+    "text": "…But you're shaking. Fine. The night ledgers are on the back shelf. Look for yourself."
+   },
+   {
+    "flag": "hale_permission"
+   }
+  ]
+ },
+ "ev_hale_later": {
+  "cmds": [
+   {
+    "say": "hale",
+    "text": "Get some rest, Rowan. The toll does strange things. My own head's been foggy all night."
+   }
+  ]
+ },
+ "ev_post_ledger": {
+  "cmds": [
+   {
+    "if": "!flag:hale_permission",
+    "then": [
+     {
+      "narrate": "The night ledgers. Hale is watching — better ask her first."
+     }
+    ],
+    "else": [
+     {
+      "narrate": "The courier ledger for last week. Page after page in Hale's cramped hand…"
+     },
+     {
+      "narrate": "…and one page in a different hand. Slanted, quick, familiar. Deliveries to the Records Hall and the Bell Station, signed W. Vale. Countersigned by Hale."
+     },
+     {
+      "say": "hale",
+      "text": "That's my signature. I— I don't remember signing that.",
+      "expr": "surprised"
+     },
+     {
+      "say": "rowan",
+      "text": "That's Wren's handwriting. She was here.",
+      "expr": "sad"
+     },
+     {
+      "item": "courier_ledger",
+      "qty": 1
+     },
+     {
+      "flag": "got_ledger"
+     },
+     {
+      "call": "ev_check_evidence"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_post_shelves": {
+  "cmds": [
+   {
+    "narrate": "Parcels waiting for owners. Some of the labels have been smudged, as if someone wiped a name off."
+   }
+  ]
+ },
+ "ev_check_evidence": {
+  "cmds": [
+   {
+    "if": "flag:found_scarf&flag:got_ledger&flag:got_drawing",
+    "then": [
+     {
+      "say": "rowan",
+      "text": "The scarf. The ledger. Pim's drawing. She existed. She exists. They didn't just forget her — someone made them forget.",
+      "expr": "angry"
+     },
+     {
+      "quest_stage": [
+       "mq_street_forgot",
+       2
+      ]
+     },
+     {
+      "say": "rowan",
+      "text": "I need to go home and think.",
+      "expr": "sad"
+     }
+    ]
+   }
+  ]
+ },
+ "ev_wren_bed": {
+  "cmds": [
+   {
+    "if": "flag:toll_happened",
+    "then": [
+     {
+      "narrate": "Wren's bed, made with hospital corners. Her books on the shelf. Her boots by the door."
+     },
+     {
+      "narrate": "The whole street insists this room only ever had one bed."
+     },
+     {
+      "say": "rowan",
+      "text": "Then whose boots are these?",
+      "expr": "sad"
+     }
+    ],
+    "else": [
+     {
+      "narrate": "Wren's bed, neatly made. A stack of pitch-log copies sits on the pillow. She brings work home."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_home_table": {
+  "cmds": [
+   {
+    "narrate": "Two mugs, one with a chipped handle. Wren always takes the chipped one. \"Character,\" she says."
+   }
+  ]
+ },
+ "ev_home_shelf": {
+  "cmds": [
+   {
+    "narrate": "Wren's notebooks. Lists of dates and numbers, pitch values in neat columns. One column is circled three times: WICK — 432 → 426."
+   }
+  ]
+ },
+ "ev_records_hall": {
+  "cmds": [
+   {
+    "narrate": "Records Hall — closed for Lanternwake.\n\nA fresh Authority notice: \"Memory disturbances following the toll are temporary and harmless. Report persistent symptoms to your ward warden.\""
+   }
+  ]
+ },
+ "ev_square_sign": {
+  "cmds": [
+   {
+    "narrate": "North: Bell Station.  West: Wick Street & the canal.\nPost Office — Records Hall — The Copper Kettle (rooms, food, the Hall of Paths)"
+   }
+  ]
+ },
+ "ev_square_bell": {
+  "cmds": [
+   {
+    "if": "flag:toll_happened",
+    "then": [
+     {
+      "narrate": "The ceremonial bell is silent. Rowan's scar prickles when they come close to it."
+     },
+     {
+      "party_say": [
+       {
+        "who": "mira",
+        "text": "The real bell is sixty feet under us. This one's for show. I used to think that was charming.",
+        "expr": "sad"
+       }
+      ],
+      "fallback": {
+       "who": "rowan",
+       "text": "It rang wrong. I heard it ring wrong."
+      }
+     }
+    ],
+    "else": [
+     {
+      "narrate": "A replica of the buried bell, garlanded for Lanternwake."
+     }
+    ]
+   }
+  ]
+ },
+ "ev_sq_woman_before": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "The toll's the best part. You feel it in your teeth. Then everything's calm for a whole season."
+   }
+  ]
+ },
+ "ev_sq_woman_after": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "I felt it in my teeth, all right. And now there's a word on the tip of my tongue and I can't reach it."
+   }
+  ]
+ },
+ "ev_sq_man_before": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "My cousin in Glass Orchard says the toll is why the harvest never fails anymore. Whole villages that used to starve."
+   }
+  ]
+ },
+ "ev_sq_man_after": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "There were more of us on this street yesterday. I'm sure of it. Aren't I?"
+   }
+  ]
+ },
+ "ev_sq_elder_before": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "Eleven tolls I've seen. The Authority always says it's harmless. I keep a diary, just in case."
+   }
+  ]
+ },
+ "ev_sq_elder_after": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "I checked my diary just now. Three pages are about someone called 'W.' I've no idea who that is. My handwriting, though."
+   }
+  ]
+ },
+ "ev_pim_before": {
+  "cmds": [
+   {
+    "say": "pim",
+    "text": "I'm going to fly my kite during the toll! The kite lady fixed it. It's got a lightning bolt.",
+    "expr": "happy"
+   }
+  ]
+ },
+ "ev_garran_bar_before": {
+  "cmds": [
+   {
+    "say": "garran_npc",
+    "text": "…"
+   },
+   {
+    "say": "garran_npc",
+    "text": "Festival's outside, courier. I'm not festive."
+   }
+  ]
+ },
+ "ev_patron_before": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "The big fellow at the bar used to be a warden captain. They took his badge after some business in Glass Orchard. Nobody says what."
+   }
+  ]
+ },
+ "ev_patron_after": {
+  "cmds": [
+   {
+    "say": "townsfolk",
+    "text": "Marta says the rooms are cheap tonight. Half the city forgot they booked them."
+   }
+  ]
+ },
+ "ev_innkeeper": {
+  "cmds": [
+   {
+    "say": "innkeeper",
+    "text": "Welcome to the Copper Kettle. A bed's 40 crowns — that restores your strength, and you can write in the ledger (save) after."
+   },
+   {
+    "inn": 40
+   }
+  ]
+ }
+}
