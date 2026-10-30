@@ -31,8 +31,11 @@ Estimated real duration (sim time + ~1.3 s per presented action + decision time)
 ## Playtime
 Chapter Three estimate: 60–80 min (not measured). Chapter Two estimate: 60–80 min (not measured). Prologue + Chapter One estimate: 45–60 min for a first-time player (dialogue ~92 events, ~12–18 random battles, 3 story battles, elite, boss). **Not measured.** The harness playtime figure (≈6 min at 6× speed with auto-advance) is not representative.
 
+## Real-device reports
+- **iPhone, mobile browser via GitHub Pages (v0.4.0, reported by the owner 2026-10-30):** game loads and the walking stick works. **Bugs:** (1) no A/B/X/Menu/Log/Pause buttons — right-side touch buttons were positioned off-screen because iOS reports screen width in portrait while landscape; (2) no sound — device was in silent mode, which mutes Web Audio on iOS. Both addressed in 0.4.1; **re-test pending.**
+
 ## Pending real-device checks (NOT done)
-- [ ] iPhone Safari (landscape, touch controls, audio after tap, save persistence in Safari ITP)
+- [ ] iPhone Safari re-test of 0.4.1 (touch buttons visible, audio with silent switch on and off, save persistence in Safari ITP)
 - [ ] iPad Safari
 - [ ] Android Chrome
 - [ ] Desktop Firefox / Safari / Chrome on real GPUs; itch.io iframe embed persistence

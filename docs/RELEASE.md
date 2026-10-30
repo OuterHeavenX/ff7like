@@ -18,6 +18,12 @@ git push -u origin <branch>
 ```
 CI (`.github/workflows/build.yml`) installs Godot 4.4.1 + templates, validates, tests, exports and uploads packages as artifacts.
 
+## GitHub Pages (live)
+- URL: https://outerheavenx.github.io/ff7like/ — Pages source is the `gh-pages` branch, root folder (set in repository Settings → Pages).
+- `gh-pages` holds only the exported Web files plus `.nojekyll`; it has its own history.
+- Automatic: every push to `claude/echoes-of-the-last-dawn` runs `.github/workflows/build.yml`. If validation, tests, exports and the traversal harness pass, the `deploy-pages` job copies `dist/web` onto `gh-pages` as a normal commit (never forced) and Pages republishes. Pull requests and other branches build but do not deploy.
+- Players may need a hard refresh after a deploy; the title screen shows the version.
+
 ## itch.io (not performed — needs your account)
 1. Create the project page (Kind: HTML). Upload the web ZIP and tick "This file will be played in the browser".
 2. Embed settings tested in development: **viewport 1280×720**, "Mobile friendly" on, orientation **landscape**, "Automatically start on page load" off (needs a click for audio), fullscreen button on. `SharedArrayBuffer` support **not** required.

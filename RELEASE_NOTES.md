@@ -1,5 +1,10 @@
 # Release Notes
 
+## 0.4.1 — iPhone fixes and automatic Pages deployment
+- Touch controls: A/B/X/Menu/Log/Pause buttons were placed off-screen on iPhone in landscape (iOS reports screen size in portrait). Web builds no longer apply a device safe-area offset; native builds clamp it.
+- Audio on iOS: game audio now plays with the silent switch on (playback audio session on Safari 17+, silent looping media element fallback), unlocked on the first tap.
+- GitHub Actions now publishes each tested Web build to GitHub Pages automatically.
+
 ## 0.4.0 — Chapter Three: Glass Orchard
 - New region: Verrin's Glass, Hollin Ward, the Glasshouse Vaults (season valves switch winter/summer routes and encounters), the Engine Chamber.
 - Garran's backstory (personal stage 2), optional recruit Tavi via a song-collecting chain, Hexweaver and Cantor jobs.

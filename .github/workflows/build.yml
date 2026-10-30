@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 env:
   GODOT_VERSION: 4.4.1
+  PAGES_SOURCE_BRANCH: claude/echoes-of-the-last-dawn
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -26,3 +27,52 @@ jobs:
         with:
           name: echoes-packages
           path: dist/packages/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: echoes-web
+          path: |
+            dist/web/
+            !dist/web/**/*.import
+          include-hidden-files: false
+
+  # Publishes the tested Web build to the gh-pages branch (GitHub Pages source)
+  # on every push to the main development branch. Never force-pushes.
+  deploy-pages:
+    needs: build
+    if: github.event_name == 'push' && github.ref_name == 'claude/echoes-of-the-last-dawn'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - uses: actions/download-artifact@v4
+        with:
+          name: echoes-web
+          path: web
+      - name: Replace site contents with the new build
+        run: |
+          set -e
+          test -f web/index.html && test -f web/index.wasm && test -f web/index.pck
+          find site -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r web/. site/
+          touch site/.nojekyll
+          find site -name '*.import' -delete
+      - name: Commit and push to gh-pages
+        working-directory: site
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Site unchanged; nothing to deploy."
+            exit 0
+          fi
+          git commit -m "Deploy web build from ${GITHUB_SHA::7}"
+          git push origin gh-pages

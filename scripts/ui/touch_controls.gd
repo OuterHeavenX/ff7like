@@ -54,11 +54,22 @@ func _add_button(action: String, label: String, offset: Vector2, radius: float, 
 func _button_center(b: Dictionary) -> Vector2:
 	var vp := root.get_global_rect().size
 	var o: Vector2 = b.offset
+	return Vector2(vp.x + o.x - _right_inset(vp), (o.y if b.top else vp.y + o.y))
+
+
+## Right-edge safe-area inset in canvas units. In browsers the page is already
+## laid out inside the safe area, and iOS reports screen size in portrait even
+## when rotated, so no inset is applied on Web. Natively it is clamped so bad
+## platform values can never push buttons off-screen.
+func _right_inset(vp: Vector2) -> float:
+	if OS.has_feature("web"):
+		return 0.0
 	var safe := DisplayServer.get_display_safe_area()
-	var inset := 0.0
-	if safe.size.x > 0 and DisplayServer.screen_get_size().x > 0:
-		inset = float(DisplayServer.screen_get_size().x - safe.end.x) * vp.x / float(DisplayServer.screen_get_size().x)
-	return Vector2(vp.x + o.x - inset, (o.y if b.top else vp.y + o.y))
+	var screen := DisplayServer.screen_get_size()
+	if safe.size.x <= 0 or screen.x <= 0:
+		return 0.0
+	var inset := float(screen.x - safe.end.x) * vp.x / float(screen.x)
+	return clampf(inset, 0.0, vp.x * 0.08)
 
 
 func _world_menu_open() -> bool:
