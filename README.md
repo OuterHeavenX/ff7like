@@ -23,6 +23,8 @@ An original, story-driven 2.5D JRPG built in **Godot 4.4.1** (Compatibility rend
 
 Battle: Wait mode is default — time pauses while you choose. Tap enemies or party rows directly to target.
 
+Finding your way: a minimap (top right), signs naming each exit's destination, a gold marker over the next objective (or a gold exit toward it) and an edge-of-screen arrow when it's off screen. The pause menu's Map page shows the whole area.
+
 ## Build, test, release
 ```
 python3 tools/gen_art.py         # regenerate original pixel art (deterministic)
@@ -32,6 +34,7 @@ godot --headless --import
 godot --headless -s res://tools/check_scripts.gd
 godot --headless res://tests/test_runner.tscn
 godot --headless -- --smoke      # dev-only traversal of the whole slice
+godot --headless -- --padtest    # dev-only: every gamepad button (Steam Deck layout) in every screen
 bash tools/build.sh              # all of the above + Web/Linux export + packages + checksums
 ```
 Godot export templates for 4.4.1 must be installed. CI: `.github/workflows/build.yml`. Publishing: `docs/RELEASE.md`.

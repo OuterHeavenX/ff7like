@@ -20,8 +20,10 @@ const DEFAULTS := {
 	"sfx_volume": 0.8,
 	"high_contrast": false,
 	"quest_markers": true,
+	"minimap": true,
 	"touch_controls": "auto",   # "auto" | "on" | "off"
 	"visual_preset": "standard",# "standard" | "low"
+	"character_style": "3d",     # "3d" | "pixel"
 	"pause_on_focus_loss": true,
 	"show_fps": false,
 	"bindings": {},             # action -> Array of serialized events
@@ -59,6 +61,8 @@ func _clamp_values() -> void:
 		values.touch_controls = "auto"
 	if not values.visual_preset in ["standard", "low"]:
 		values.visual_preset = "standard"
+	if not values.character_style in ["3d", "pixel"]:
+		values.character_style = "3d"
 
 
 func save_settings() -> void:

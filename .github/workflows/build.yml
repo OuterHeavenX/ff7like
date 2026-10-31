@@ -76,3 +76,42 @@ jobs:
           fi
           git commit -m "Deploy web build from ${GITHUB_SHA::7}"
           git push origin gh-pages
+
+  # Publishes the tested packages to itch.io with butler once the owner adds a
+  # repository secret BUTLER_API_KEY and a repository variable ITCH_TARGET
+  # (<itch-user>/<game-slug>). Without both it logs a notice and uploads nothing.
+  deploy-itch:
+    needs: build
+    if: github.event_name == 'push' && github.ref_name == 'claude/echoes-of-the-last-dawn'
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: itch-deploy
+      cancel-in-progress: false
+    env:
+      BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+      ITCH_TARGET: ${{ vars.ITCH_TARGET }}
+    steps:
+      - name: Check itch.io configuration
+        id: cfg
+        run: |
+          if [ -z "$BUTLER_API_KEY" ] || [ -z "$ITCH_TARGET" ]; then
+            echo "::notice::itch.io upload skipped: add the BUTLER_API_KEY secret and the ITCH_TARGET variable to enable it (see docs/RELEASE.md)."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/download-artifact@v4
+        if: steps.cfg.outputs.enabled == 'true'
+        with:
+          name: echoes-packages
+          path: packages
+      - name: Push web + Linux builds with butler
+        if: steps.cfg.outputs.enabled == 'true'
+        run: |
+          set -e
+          curl -sSL -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          unzip -q butler.zip -d butler && chmod +x butler/butler
+          WEB=$(ls packages/echoes-of-the-last-dawn-*-web.zip)
+          V=$(basename "$WEB" | sed -E 's/^echoes-of-the-last-dawn-(.*)-web\.zip$/\1/')
+          ./butler/butler push "$WEB" "$ITCH_TARGET:html5" --userversion "$V"
+          ./butler/butler push "packages/echoes-of-the-last-dawn-$V-linux-x86_64.zip" "$ITCH_TARGET:linux" --userversion "$V"

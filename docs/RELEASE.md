@@ -24,11 +24,15 @@ CI (`.github/workflows/build.yml`) installs Godot 4.4.1 + templates, validates, 
 - Automatic: every push to `claude/echoes-of-the-last-dawn` runs `.github/workflows/build.yml`. If validation, tests, exports and the traversal harness pass, the `deploy-pages` job copies `dist/web` onto `gh-pages` as a normal commit (never forced) and Pages republishes. Pull requests and other branches build but do not deploy.
 - Players may need a hard refresh after a deploy; the title screen shows the version.
 
-## itch.io (not performed — needs your account)
-1. Create the project page (Kind: HTML). Upload the web ZIP and tick "This file will be played in the browser".
-2. Embed settings tested in development: **viewport 1280×720**, "Mobile friendly" on, orientation **landscape**, "Automatically start on page load" off (needs a click for audio), fullscreen button on. `SharedArrayBuffer` support **not** required.
-3. Upload the Linux tar.gz, tag it Linux.
-4. Or use butler (separate channels): `ITCH_USER=<you> BUTLER_API_KEY=<key> tools/butler_upload.sh` → `<you>/echoes-of-the-last-dawn:html5` and `:linux`.
+## itch.io (not yet published — needs your account)
+Nothing has been uploaded to itch.io. To publish:
+1. On itch.io create the project page (Kind of project: **HTML**). Upload any web ZIP once and tick "This file will be played in the browser" (itch needs that tick on the html5 upload; butler keeps it on later pushes).
+2. Embed settings tested in development: **viewport 1280×720**, "Mobile friendly" on, orientation **landscape**, "Automatically start on page load" off (a click is needed for audio), fullscreen button on. `SharedArrayBuffer` support **not** required.
+3. **Automatic uploads from CI:** in the GitHub repo, Settings → Secrets and variables → Actions:
+   - New repository **secret** `BUTLER_API_KEY` = an API key from https://itch.io/user/settings/api-keys
+   - New repository **variable** `ITCH_TARGET` = `<your-itch-username>/<game-slug>` (e.g. `yourname/echoes-of-the-last-dawn`)
+   After that, every push to `claude/echoes-of-the-last-dawn` that passes CI pushes the web ZIP to the `html5` channel and the Linux ZIP to the `linux` channel (job `deploy-itch`). Until both are set, the job logs a notice and uploads nothing.
+4. Manual alternative: `ITCH_TARGET=<you>/<game> BUTLER_API_KEY=<key> tools/butler_upload.sh`.
 
 ### Suggested page copy
 **Echoes of the Last Dawn** — *What the bells forget, we carry.*

@@ -7,7 +7,7 @@ config_version=5
 
 config/name="Echoes of the Last Dawn"
 config/description="An original story-driven 2.5D JRPG."
-config/version="0.4.1"
+config/version="0.5.0"
 run/main_scene="res://scenes/boot.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/ui/icon.png"

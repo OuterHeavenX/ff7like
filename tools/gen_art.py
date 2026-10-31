@@ -12,6 +12,7 @@ Spec (see docs/GAME_DESIGN.md "Art spec"):
   * Battle sheet: 8 cols (idle, ready, windup, strike, cast, hurt, ko, victory), 32x32 frames, facing left.
   * Portraits: 64x64, expressions neutral / happy / sad / angry / surprised.
   * Tile atlas: 8x8 grid of 24x24 tiles.
+  * 3D model faces: 2 frames (open, blink) of 16x16; appearance.json feeds char_model.gd.
 """
 import json
 import math
@@ -1576,17 +1577,76 @@ def app_icon():
     return img
 
 
+# --------------------------------------------------------------------------- 3D character faces
+
+def face_sheet(p):
+    """16x16 front face decal for the 3D field/battle models; frame 0 eyes open,
+    frame 1 blink. Transparent where the head's own skin colour shows through."""
+    img = Image.new("RGBA", (32, 16), CLEAR)
+    d = ImageDraw.Draw(img)
+    skin = rgb(p["skin"])
+    hair = rgb(p["hair"])
+    eye = rgb("#2a1a2a")
+    white = rgb("#f8f4ec")
+    brow = shade(hair, 0.7) if p["hair_style"] not in ("bald_beard",) else shade(skin, 0.6)
+    blush = mix(skin, rgb("#e8707a"), 0.35)
+    mouth = mix(shade(skin, 0.6), rgb("#a03a3a"), 0.4)
+    bearded = p["hair_style"] in ("bald_beard", "cropped_beard")
+    for f in range(2):
+        o = f * 16
+        rect(d, o + 3, 5, o + 5, 5, brow)
+        rect(d, o + 10, 5, o + 12, 5, brow)
+        if f == 0:
+            rect(d, o + 3, 7, o + 4, 9, eye)
+            rect(d, o + 11, 7, o + 12, 9, eye)
+            px(d, o + 3, 7, white)
+            px(d, o + 12, 7, white)
+        else:
+            rect(d, o + 3, 9, o + 4, 9, eye)
+            rect(d, o + 11, 9, o + 12, 9, eye)
+        if not bearded and p.get("acc") != "bandana":
+            px(d, o + 2, 10, blush)
+            px(d, o + 13, 10, blush)
+            rect(d, o + 7, 12, o + 8, 12, mouth)
+        if p.get("acc") == "glasses":
+            g = rgb("#e6c86e")
+            for x0 in (2, 10):
+                rect(d, o + x0, 6, o + x0 + 3, 6, g)
+                rect(d, o + x0, 10, o + x0 + 3, 10, g)
+                rect(d, o + x0, 6, o + x0, 10, g)
+                rect(d, o + x0 + 3, 6, o + x0 + 3, 10, g)
+            rect(d, o + 6, 7, o + 9, 7, g)
+        if p.get("acc") == "bandana":
+            b = rgb(p["accent"])
+            rect(d, o + 0, 11, o + 15, 15, b)
+            rect(d, o + 0, 11, o + 15, 11, shade(b, 0.8))
+        if p["hair_style"] == "bald_beard":
+            rect(d, o + 1, 11, o + 14, 15, hair)
+            rect(d, o + 4, 10, o + 11, 10, hair)
+            rect(d, o + 6, 12, o + 9, 12, shade(skin, 0.55))
+        elif p["hair_style"] == "cropped_beard":
+            rect(d, o + 1, 12, o + 14, 15, shade(hair, 0.9))
+            rect(d, o + 5, 11, o + 10, 11, shade(hair, 0.9))
+            rect(d, o + 6, 13, o + 9, 13, mouth)
+    return img
+
+
 def main():
     os.makedirs(os.path.join(OUT, "sprites", "chars"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "sprites", "enemies"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "portraits"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "textures"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "ui"), exist_ok=True)
+    os.makedirs(os.path.join(OUT, "models", "faces"), exist_ok=True)
     for cid, p in CHARACTERS.items():
         field_sheet(p).save(os.path.join(OUT, "sprites", "chars", f"{cid}_field.png"))
         battle_sheet(p).save(os.path.join(OUT, "sprites", "chars", f"{cid}_battle.png"))
         for expr in ("neutral", "happy", "sad", "angry", "surprised"):
             portrait(p, expr).save(os.path.join(OUT, "portraits", f"{cid}_{expr}.png"))
+        face_sheet(p).save(os.path.join(OUT, "models", "faces", f"{cid}.png"))
+    # Appearance specs drive the procedural 3D models (scripts/world/char_model.gd).
+    with open(os.path.join(OUT, "models", "appearance.json"), "w") as f:
+        json.dump({"characters": CHARACTERS, "builds": BUILD}, f, indent=1, sort_keys=True)
     meta = {}
     for eid, fn in ENEMIES.items():
         sh = enemy_sheet(fn)

@@ -15,6 +15,7 @@ python3 tools/validate_content.py
 godot --headless --import            # refresh class cache after adding class_name scripts
 godot --headless -s res://tools/check_scripts.gd
 godot --headless res://tests/test_runner.tscn
-godot --headless -- --smoke          # full Prologue + Chapter One traversal (~1 min)
+godot --headless -- --smoke          # full Prologue → Chapter Three traversal (~1 min)
+godot --headless -- --padtest        # gamepad-only drive of every screen (Steam Deck layout)
 ```
 Exports: `tools/build.sh` (runs all of the above, exports Web + Linux, packages).

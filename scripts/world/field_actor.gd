@@ -1,6 +1,7 @@
 class_name FieldActor
 extends Node3D
-## A grid-bound pixel-art character in the field. Uses an upright Y-billboard
+## A grid-bound character in the field. Drawn as a procedural 3D model
+## (CharModel) by default; the classic pixel sprite is an upright Y-billboard
 ## whose height is stretched by 1/cos(camera pitch) so pixels keep their
 ## authored proportions under the tilted camera (no backward lean, no clipping).
 
@@ -17,6 +18,7 @@ var facing: int = Facing.DOWN
 var moving: bool = false
 var data: Dictionary = {}
 var sprite: Sprite3D
+var model: CharModel
 var shadow: MeshInstance3D
 var emote: Label3D
 var _anim_t: float = 0.0
@@ -52,22 +54,12 @@ func setup(id: String, spr: String) -> void:
 	actor_id = id
 	sprite_id = spr
 	name = id
-	sprite = Sprite3D.new()
-	var path := "res://assets/sprites/chars/%s_field.png" % spr
-	if ResourceLoader.exists(path):
-		sprite.texture = load(path)
-	sprite.hframes = 3
-	sprite.vframes = 4
-	sprite.pixel_size = 1.0 / PPU
-	sprite.centered = true
-	sprite.offset = Vector2(0, 16)
-	sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
-	sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
-	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
-	sprite.shaded = false
-	sprite.double_sided = true
-	sprite.scale = Vector3(1.0, 1.0 / cos(deg_to_rad(CAMERA_PITCH_DEG)), 1.0)
-	add_child(sprite)
+	if str(Settings.get_value("character_style")) == "3d" and CharModel.has_spec(spr):
+		model = CharModel.new()
+		model.build(spr)
+		add_child(model)
+	else:
+		_setup_sprite(spr)
 	shadow = MeshInstance3D.new()
 	var q := QuadMesh.new()
 	q.size = Vector2(0.62, 0.36)
@@ -86,14 +78,52 @@ func setup(id: String, spr: String) -> void:
 	_update_frame()
 
 
+func _setup_sprite(spr: String) -> void:
+	sprite = Sprite3D.new()
+	var path := "res://assets/sprites/chars/%s_field.png" % spr
+	if ResourceLoader.exists(path):
+		sprite.texture = load(path)
+	sprite.hframes = 3
+	sprite.vframes = 4
+	sprite.pixel_size = 1.0 / PPU
+	sprite.centered = true
+	sprite.offset = Vector2(0, 16)
+	sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+	sprite.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	sprite.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	sprite.shaded = false
+	sprite.double_sided = true
+	sprite.scale = Vector3(1.0, 1.0 / cos(deg_to_rad(CAMERA_PITCH_DEG)), 1.0)
+	add_child(sprite)
+
+
 func set_tint(c: Color) -> void:
 	if sprite:
 		sprite.modulate = c
+	if model:
+		model.modulate = c
+
+
+## Local map light (ambient + nearby lamps) for 3D models; sprites stay unlit.
+func set_light(c: Color) -> void:
+	if model:
+		# Keep characters readable on the darkest maps.
+		model.set_light(Color(maxf(c.r, 0.62), maxf(c.g, 0.62), maxf(c.b, 0.68)))
 
 
 func place(p: Vector2i, height: float) -> void:
 	grid_pos = p
 	position = Vector3(p.x + 0.5, height, p.y + 0.5)
+	if model:
+		model.set_facing_yaw(facing_yaw(facing), true)
+
+
+static func facing_yaw(f: int) -> float:
+	match f:
+		Facing.UP: return PI
+		Facing.LEFT: return -PI * 0.5
+		Facing.RIGHT: return PI * 0.5
+	return 0.0
 
 
 func face(f: int) -> void:
@@ -129,6 +159,10 @@ func _on_arrived() -> void:
 
 func _process(delta: float) -> void:
 	delta = minf(delta, 0.1)
+	if model:
+		model.walking = moving
+		model.walk_speed = _move_speed
+		return
 	if moving:
 		_anim_t += delta * _move_speed * 1.0
 		if _anim_t >= 0.5:
@@ -141,6 +175,9 @@ func _process(delta: float) -> void:
 
 
 func _update_frame() -> void:
+	if model:
+		model.set_facing_yaw(facing_yaw(facing))
+		return
 	if sprite == null:
 		return
 	var col := 0

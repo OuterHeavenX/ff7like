@@ -9,6 +9,7 @@ const CAMERA_FOV := 30.0
 var map_id: String = ""
 var map_data: Dictionary = {}
 var grid: MapGrid
+var light_src: MapBuilder          # keeps the map's lamp list for lighting 3D actors
 var geometry: Node3D
 var actors_root: Node3D
 var player: FieldActor
@@ -23,6 +24,7 @@ var dialogue: Node
 var touch: Node
 var menu_layer: CanvasLayer
 var events: EventRunner
+var wayfinder: Wayfinder
 var steps_since_battle: int = 0
 var encounter_rng := RandomNumberGenerator.new()
 var _wander_t: float = 0.0
@@ -59,6 +61,10 @@ func _ready() -> void:
 	menu_layer = CanvasLayer.new()
 	menu_layer.layer = 40
 	add_child(menu_layer)
+	wayfinder = Wayfinder.new()
+	wayfinder.name = "Wayfinder"
+	add_child(wayfinder)
+	wayfinder.setup(self)
 	events = EventRunner.new()
 	events.world = self
 	events.dialogue = dialogue
@@ -104,6 +110,7 @@ func load_map(id: String, spawn: String = "", pos: Vector2i = Vector2i(-1, -1), 
 	built_map["rows"] = apply_patches(map_data)
 	geometry = builder.build(built_map)
 	grid = builder.grid
+	light_src = builder
 	add_child(geometry)
 	var bg: Array = map_data.get("background", [0.03, 0.03, 0.06])
 	env.environment.background_color = Color(bg[0], bg[1], bg[2])
@@ -139,6 +146,7 @@ func load_map(id: String, spawn: String = "", pos: Vector2i = Vector2i(-1, -1), 
 	GameState.map_id = id
 	GameState.map_pos = start
 	_spawn_npcs()
+	wayfinder.rebuild()
 	cam_target = player.position
 	_snap_camera()
 	steps_since_battle = 0
@@ -237,6 +245,7 @@ func on_map_entered() -> void:
 	# Autosave only on maps marked safe and once a real game has begun.
 	if map_data.get("autosave", false):
 		Saves.autosave()
+	wayfinder.refresh()
 	for t: Dictionary in map_data.get("auto_events", []):
 		var eid: String = t.event
 		if GameState.check(t.get("cond", "")) and not (t.get("once", true) and GameState.granted.has("event:" + eid)):
@@ -274,6 +283,14 @@ func _update_camera(delta: float) -> void:
 	_snap_camera()
 
 
+func _light_actors() -> void:
+	if light_src == null:
+		return
+	for a: Node in actors_root.get_children():
+		if a is FieldActor and (a as FieldActor).model != null:
+			(a as FieldActor).set_light(light_src.light_at((a as FieldActor).position + Vector3(0, 0.9, 0)))
+
+
 # ------------------------------------------------------------------ input & movement
 
 func can_control() -> bool:
@@ -286,6 +303,7 @@ func _process(delta: float) -> void:
 	_update_camera(delta)
 	if player == null:
 		return
+	_light_actors()
 	_wander(delta)
 	_update_prompt()
 	if not can_control() or player.moving:
@@ -519,6 +537,7 @@ func run_event(eid: String) -> void:
 	hud.set_prompt("")
 	await events.run(eid)
 	refresh_npcs()
+	wayfinder.refresh()
 	hud.refresh()
 	_input_block_until = Time.get_ticks_msec() + 200
 

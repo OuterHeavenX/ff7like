@@ -16,9 +16,10 @@ func _ready() -> void:
 		_install_web_audio_unlock()
 	await get_tree().process_frame
 	# Development harnesses (tests/ is excluded from release exports).
-	for arg: String in ["--smoke", "--shots"]:
+	var harnesses := {"--smoke": "smoke_route", "--shots": "shots", "--padtest": "padtest"}
+	for arg: String in harnesses.keys():
 		if arg in OS.get_cmdline_user_args():
-			var path := "res://tests/%s.gd" % ("smoke_route" if arg == "--smoke" else "shots")
+			var path := "res://tests/%s.gd" % harnesses[arg]
 			if ResourceLoader.exists(path):
 				get_tree().root.add_child(load(path).new())
 				return

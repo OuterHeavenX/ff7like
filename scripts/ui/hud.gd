@@ -1,5 +1,6 @@
 extends CanvasLayer
-## Field HUD: location banner, tracked objective, interaction prompt, gold.
+## Field HUD: location banner, tracked objective (with where to go next),
+## minimap, off-screen objective arrow, interaction prompt.
 ## Also hosts modal shop / save screens requested by events.
 
 var root: Control
@@ -9,6 +10,25 @@ var objective: Label
 var prompt_panel: PanelContainer
 var prompt_label: Label
 var fps_label: Label
+var next_label: Label
+var minimap: Minimap
+var goal_arrow: Control
+
+
+## Edge-of-screen pointer toward an off-screen objective.
+class GoalArrow extends Control:
+	var dir: Vector2 = Vector2.RIGHT
+	var t: float = 0.0
+
+	func _draw() -> void:
+		var c := size * 0.5
+		var s := 1.0 + 0.1 * sin(t * 6.0)
+		var f := dir * 22.0 * s
+		var side := Vector2(-dir.y, dir.x) * 15.0 * s
+		var pts := PackedVector2Array([c + f, c - f * 0.5 + side, c - f * 0.15, c - f * 0.5 - side])
+		draw_colored_polygon(pts, Color(1.0, 0.8, 0.3, 0.95))
+		pts.append(pts[0])
+		draw_polyline(pts, Color(0.2, 0.1, 0.0), 2.0)
 
 
 func _ready() -> void:
@@ -30,6 +50,18 @@ func _ready() -> void:
 	objective.add_theme_color_override("font_outline_color", Color(0, 0, 0))
 	objective.add_theme_constant_override("outline_size", 6)
 	root.add_child(objective)
+	next_label = UITheme.label("", 16, Color(1.0, 0.82, 0.45))
+	next_label.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	next_label.add_theme_constant_override("outline_size", 6)
+	root.add_child(next_label)
+	minimap = Minimap.new()
+	minimap.world = get_parent()
+	root.add_child(minimap)
+	goal_arrow = GoalArrow.new()
+	goal_arrow.size = Vector2(64, 64)
+	goal_arrow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	goal_arrow.visible = false
+	root.add_child(goal_arrow)
 	prompt_panel = PanelContainer.new()
 	prompt_panel.anchor_left = 0.5
 	prompt_panel.anchor_right = 0.5
@@ -60,10 +92,48 @@ func _ready() -> void:
 	refresh()
 
 
-func _process(_d: float) -> void:
+func _process(d: float) -> void:
 	fps_label.visible = bool(Settings.get_value("show_fps"))
 	if fps_label.visible:
 		fps_label.text = "%d FPS" % Engine.get_frames_per_second()
+	var vp := root.get_global_rect().size
+	minimap.visible = bool(Settings.get_value("minimap"))
+	var touch_top := 104.0 if InputHub.touch_controls_visible() else 0.0
+	minimap.position = Vector2(vp.x - minimap.size.x - 14, 14 + touch_top + (24 if fps_label.visible else 0))
+	_update_goal_arrow(d, vp)
+
+
+func _update_goal_arrow(d: float, vp: Vector2) -> void:
+	var w: Node = get_parent()
+	var wf: Wayfinder = w.get("wayfinder")
+	var gp: Variant = wf.goal_position() if wf else null
+	var cam: Camera3D = w.get("camera")
+	if gp == null or cam == null or not w.call("can_control"):
+		goal_arrow.visible = false
+		return
+	var vsize := get_viewport().get_visible_rect().size
+	var behind := cam.is_position_behind(gp)
+	var sp := cam.unproject_position(gp)
+	var margin := 12.0
+	if not behind and Rect2(Vector2(margin, margin), vsize - Vector2(margin, margin) * 2.0).has_point(sp):
+		goal_arrow.visible = false
+		return
+	# Viewport pixels -> HUD canvas units (canvas_items stretch).
+	var k := vp / vsize
+	var centre := vsize * 0.5
+	var dir := (sp - centre).normalized() if not behind else (centre - sp).normalized()
+	if dir == Vector2.ZERO:
+		dir = Vector2.DOWN
+	var half := centre - Vector2(70, 70)
+	var tx := absf(half.x / dir.x) if absf(dir.x) > 0.001 else INF
+	var ty := absf(half.y / dir.y) if absf(dir.y) > 0.001 else INF
+	var edge := centre + dir * minf(tx, ty)
+	var ga := goal_arrow as GoalArrow
+	ga.dir = dir
+	ga.t += d
+	ga.position = edge * k - ga.size * 0.5
+	ga.visible = true
+	ga.queue_redraw()
 
 
 func refresh() -> void:
@@ -77,6 +147,23 @@ func refresh() -> void:
 	else:
 		objective.text = ""
 	objective.position.y = 20 if banner.modulate.a < 0.1 else 74
+	next_label.text = _next_hint() if objective.text != "" else ""
+	next_label.position = Vector2(30, objective.position.y + 26)
+
+
+## "Go to: <map>" when the objective lies beyond an exit.
+func _next_hint() -> String:
+	var wf: Wayfinder = get_parent().get("wayfinder")
+	if wf == null or wf.target.is_empty():
+		return ""
+	if bool(wf.target.here):
+		return "Objective is in this area (follow the gold marker)."
+	var e: Dictionary = wf.target.exit
+	var via := Nav.map_name(str(e.to))
+	var dest := Nav.map_name(str(wf.target.map))
+	if via == dest:
+		return "Head to %s (gold exit)." % dest
+	return "Head to %s, toward %s (gold exit)." % [via, dest]
 
 
 func show_location(map_name: String, region: String) -> void:

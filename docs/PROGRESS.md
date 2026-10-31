@@ -1,6 +1,6 @@
 # Progress
 
-_Last updated: 2026-10-30 (session 1, after Chapter Three)._
+_Last updated: 2026-10-31 (v0.5.0: 3D characters, wayfinding, gamepad harness)._
 
 ## Milestone status
 | Milestone | Status |
@@ -15,9 +15,12 @@ _Last updated: 2026-10-30 (session 1, after Chapter Three)._
 ## Tested (see QA.md for commands and results)
 Content validator, script compile check, 45 headless tests, full slice traversal, Web export (Chromium/SwiftShader: play, save, reload, continue; mobile touch emulation), Linux export run.
 
+## Since Chapter Three (v0.5.0)
+3D character models (field + battle party), minimap / exit signs / objective marker / edge arrow / Map page, gamepad harness (62 checks, Steam Deck layout), main-menu focus fix, optional itch.io CI upload.
+
 ## Blockers / needs owner
 - Real-device checks (iPhone, iPad, Android, Steam Deck) — no devices available here.
-- Publishing (GitHub remote, itch.io page, butler key) — needs owner's accounts and explicit go-ahead.
+- itch.io: create the page, then add repo secret `BUTLER_API_KEY` + variable `ITCH_TARGET` (docs/RELEASE.md); CI then uploads every build.
 - License choice for original assets (DECISIONS #17).
 
 ## Exact next task

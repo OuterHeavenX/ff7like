@@ -2,6 +2,19 @@
 
 All results below were actually run in the development container (Linux x86_64, 4 vCPU, no GPU) on 2026-10-30 unless marked otherwise.
 
+## v0.5.0 checks (2026-10-31)
+| Check | Command | Result |
+|---|---|---|
+| Content validator | `python3 tools/validate_content.py` | OK — 8 characters, 203 skills, 74 items, 30 enemies, 16 quests, 167 events, 24 maps |
+| Script compile | `godot --headless -s res://tools/check_scripts.gd` | 0 failures |
+| Unit/integration tests | `godot --headless res://tests/test_runner.tscn` | 54 passed, 0 failed (new: every stage of all 16 quests resolves to an objective location; prologue route; hatch passage routing; every appearance spec builds a 3D model and runs every pose) |
+| Traversal harness | `godot --headless -- --smoke` | ROUTE OK (Prologue → Chapter Three with 3D characters and wayfinding active) |
+| **Gamepad harness (Steam Deck layout)** | `godot --headless -- --padtest` and under Xvfb at **1280×800** with `--out=` screenshots | **PADTEST OK, 62 checks**: title (any button, D-pad, stick, Settings tabs L1/R1, B back), New Game, dialogue (A), field (stick + D-pad in 4 directions, hold B to run, X party talk, A talk to NPC), Y menu (L1/R1 sections, D-pad, A in, B out/close), View journal, Menu pause, shop (focus, D-pad, R1 Buy/Sell, B), save screen, crafting, bounty board, battle (D-pad cursor, A attack → target, D-pad target, B cancel, A A submit, Y auto on, any button off, finish, A dismiss results). L2/R2, L3/R3, right stick verified inert. Events are injected through Godot's input pipeline (`Input.parse_input_event`), not a physical pad. |
+| Bug found by the gamepad harness | — | Main menu opened with nothing focused (D-pad/arrows dead until L1/R1 or mouse). Fixed. |
+| Exports | `bash tools/build.sh` | OK — `echoes-of-the-last-dawn-0.5.0-{web.zip, linux-x86_64.tar.gz, linux-x86_64.zip}` + SHA256SUMS; test harness code not in either PCK (only the engine's UID index lists the paths) |
+| Linux binary | Xvfb 1280×800, OpenGL 3 | Runs 25 s to title with no script errors |
+| Browser (Playwright, Chromium + SwiftShader) | mobile 844×390, touch, DPR 2 | New Game → walk with the virtual stick: 3D characters render, minimap sits under the Pause/Log buttons, objective hint + gold edge arrow shown, all touch buttons visible, no page errors |
+
 ## Automated (pass)
 | Check | Command | Result |
 |---|---|---|
@@ -39,11 +52,13 @@ Chapter Three estimate: 60–80 min (not measured). Chapter Two estimate: 60–8
 - [ ] iPad Safari
 - [ ] Android Chrome
 - [ ] Desktop Firefox / Safari / Chrome on real GPUs; itch.io iframe embed persistence
-- [ ] Steam Deck: Desktop Mode launch, Gaming Mode as non-Steam game, controller prompts, 1280×800 60 FPS measurement, suspend/resume
+- [ ] Steam Deck hardware: Desktop Mode launch, Gaming Mode as non-Steam game, physical buttons (the harness covers the mapping, not the device), 1280×800 frame rate with 3D characters, suspend/resume
 - [ ] Physical gamepad hotplug on desktop
 - [ ] Human full playthrough of Prologue + Chapter One with timing
 
 ## Known issues
-- Chapters 2–8 not built; the Map screen lists only Bellweather locations.
+- Chapters 4–8 not built.
+- Enemies are still 2D pixel sprites beside the 3D party; the classic pixel party is available in Settings.
+- 3D character frame rate on low-end phones is unmeasured (Settings > Visual preset: Low drops the outline and bevel detail).
 - Battle animations are functional but simple (tweens + frame swaps).
 - Some legend tiles (rail, glass, salt) exist for future regions only.

@@ -45,6 +45,7 @@ var _fx_tex: Texture2D
 var _status_tex: Texture2D
 var _taught_resonance := false
 var _cam_pitch_comp := 1.0
+var _arena_builder: MapBuilder
 var _list_back_state := "root"
 
 
@@ -80,6 +81,7 @@ func _build_arena() -> void:
 	var arena_id: String = encounter.get("arena", "arena_town")
 	var b := MapBuilder.new()
 	add_child(b.build(Content.map(arena_id)))
+	_arena_builder = b
 	camera = Camera3D.new()
 	camera.fov = 36
 	add_child(camera)
@@ -151,6 +153,9 @@ func _enemy_slot(u: BattleUnit) -> Vector3:
 func _make_visual(u: BattleUnit) -> void:
 	var root := Node3D.new()
 	add_child(root)
+	if u.side == 0 and str(Settings.get_value("character_style")) == "3d" and CharModel.has_spec(u.sprite):
+		_make_model_visual(u, root)
+		return
 	var spr := Sprite3D.new()
 	spr.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	spr.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
@@ -197,6 +202,39 @@ func _make_visual(u: BattleUnit) -> void:
 	var home := _party_slot(u) if u.side == 0 else _enemy_slot(u)
 	root.position = home
 	visuals[u.uid] = {"root": root, "sprite": spr, "home": home, "w": w, "h": h, "t": randf() * 2.0}
+
+
+## Party member drawn as a 3D model facing the enemy line. The model exposes
+## Sprite3D-like `frame` (pose index matching the battle sheet) and `modulate`.
+func _make_model_visual(u: BattleUnit, root: Node3D) -> void:
+	var model := CharModel.new()
+	model.build(u.sprite, true)
+	# Three-quarter turn toward the camera so faces read while facing the enemies.
+	model.set_facing_yaw(-PI * 0.5 + 0.55, true)
+	model.scale = Vector3.ONE * 0.92
+	model.frame = CharModel.Pose.IDLE if u.alive() else CharModel.Pose.KO
+	root.add_child(model)
+	var shadow := MeshInstance3D.new()
+	var q := QuadMesh.new()
+	q.size = Vector2(0.8, 0.45)
+	q.orientation = PlaneMesh.FACE_Y
+	shadow.mesh = q
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.albedo_texture = _fx_tex
+	m.uv1_scale = Vector3(1.0 / 8.0, 0.5, 1)
+	m.uv1_offset = Vector3(4.0 / 8.0, 0.5, 0)
+	m.albedo_color = Color(0, 0, 0, 0.55)
+	shadow.material_override = m
+	shadow.position.y = 0.02
+	root.add_child(shadow)
+	var home := _party_slot(u)
+	root.position = home
+	if _arena_builder:
+		var c := _arena_builder.light_at(home + Vector3(0, 0.9, 0))
+		model.set_light(Color(maxf(c.r, 0.7), maxf(c.g, 0.7), maxf(c.b, 0.75)))
+	visuals[u.uid] = {"root": root, "sprite": model, "home": home, "w": 32, "h": 30, "t": randf() * 2.0}
 
 
 # ------------------------------------------------------------------ UI
@@ -438,7 +476,7 @@ func _animate_idle(delta: float) -> void:
 		var v: Dictionary = visuals[uid]
 		v.t = float(v.t) + delta
 		var u := sim.unit(uid)
-		var spr: Sprite3D = v.sprite
+		var spr: Variant = v.sprite
 		if u == null or spr == null:
 			continue
 		if u.side == 1 and u.alive():
@@ -556,7 +594,7 @@ func _anim_start(ev: Dictionary, spd: float) -> void:
 		_show_banner(str(ev.name), Color(1, 1, 1) if actor.side == 0 else Color(1.0, 0.7, 0.6))
 	var v: Dictionary = visuals[actor.uid]
 	var root: Node3D = v.root
-	var spr: Sprite3D = v.sprite
+	var spr: Variant = v.sprite
 	var anim: String = ev.get("anim", "strike")
 	var targets: Array = ev.get("targets", [])
 	v.busy = true
@@ -628,7 +666,7 @@ func _popup_damage(ev: Dictionary) -> void:
 	if u and visuals.has(tid):
 		var v: Dictionary = visuals[tid]
 		if u.side == 0 and u.alive():
-			(v.sprite as Sprite3D).frame = 5
+			(v.sprite as Node).set("frame", 5)
 		_flash_unit(tid, Color(1.8, 0.7, 0.7))
 		var root: Node3D = v.root
 		var tw := create_tween()
@@ -686,7 +724,7 @@ func _spawn_fx(uid: String, fx: String) -> void:
 func _flash_unit(uid: String, c: Color) -> void:
 	if not visuals.has(uid) or bool(Settings.get_value("reduce_flashing")):
 		return
-	var spr: Sprite3D = visuals[uid].sprite
+	var spr: Variant = visuals[uid].sprite
 	spr.modulate = c
 	var tw := create_tween()
 	tw.tween_property(spr, "modulate", Color(1, 1, 1, spr.modulate.a), 0.25)
@@ -718,7 +756,7 @@ func _anim_ko(uid: String) -> void:
 	var v: Dictionary = visuals[uid]
 	Audio.sfx("ko")
 	if u.side == 0:
-		(v.sprite as Sprite3D).frame = 6
+		(v.sprite as Node).set("frame", 6)
 		if uid == _active_uid:
 			_close_menu()
 	else:
@@ -915,7 +953,7 @@ func _update_target_highlight() -> void:
 	else:
 		names.append(sim.unit(_target_ids[_target_idx]).name)
 	for uid: String in visuals.keys():
-		var spr: Sprite3D = visuals[uid].sprite
+		var spr: Variant = visuals[uid].sprite
 		var on: bool = uid in _target_ids and (_target_multi or uid == _target_ids[_target_idx])
 		spr.modulate = Color(1.25, 1.2, 1.0, spr.modulate.a) if on else Color(1, 1, 1, spr.modulate.a)
 	_show_help("Target: " + ", ".join(names) + "   (%s confirm, %s back%s)" % [InputHub.prompt("confirm"), InputHub.prompt("cancel"),
@@ -927,7 +965,7 @@ func _confirm_target() -> void:
 	var cmd := _pending_cmd.duplicate()
 	cmd["targets"] = targets
 	for uid: String in visuals.keys():
-		var spr: Sprite3D = visuals[uid].sprite
+		var spr: Variant = visuals[uid].sprite
 		spr.modulate = Color(1, 1, 1, spr.modulate.a)
 	_submit(cmd)
 
@@ -1020,7 +1058,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Audio.sfx("cancel")
 				_cursor.visible = false
 				for uid: String in visuals.keys():
-					var spr: Sprite3D = visuals[uid].sprite
+					var spr: Variant = visuals[uid].sprite
 					spr.modulate = Color(1, 1, 1, spr.modulate.a)
 				_build_root_menu()
 			elif not _target_multi and (event.is_action_pressed("move_left") or event.is_action_pressed("move_up")):
@@ -1094,7 +1132,7 @@ func _end_battle(outcome: String) -> void:
 			for iid: String in rw.get("drops", {}).keys():
 				GameState.add_item(iid, int(rw.drops[iid]))
 			for u2: BattleUnit in sim.side_units(0):
-				(visuals[u2.uid].sprite as Sprite3D).frame = 7
+				(visuals[u2.uid].sprite as Node).set("frame", 7)
 			Audio.play_music("victory", 0.3)
 			await _victory_screen(rw, report)
 			finished.emit({"outcome": "victory", "rewards": rw})

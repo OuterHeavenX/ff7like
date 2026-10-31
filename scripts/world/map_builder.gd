@@ -159,6 +159,11 @@ func _tile_center(x: int, y: int, above: float = 0.0) -> Vector3:
 	return Vector3(x + 0.5, lv * MapGrid.LEVEL + above, y + 0.5)
 
 
+## Light reaching a point (ambient + lamps); used to tint 3D characters.
+func light_at(p: Vector3) -> Color:
+	return _light_at(p, 1.0)
+
+
 ## Baked lighting: ambient + lamp falloff, times face shading.
 func _light_at(p: Vector3, face: float) -> Color:
 	var c := ambient

@@ -61,6 +61,9 @@ func _ready() -> void:
 		"pause": section_idx = sections.find("Settings")
 	_build_nav()
 	_show_section(start_tab in ["journal", "jobs"])
+	if not _in_content:
+		# Give the D-pad / arrow keys something to move from straight away.
+		_focus_nav()
 	Audio.sfx("confirm")
 
 
@@ -122,6 +125,8 @@ func handle_input(event: InputEvent) -> void:
 			section_idx = (section_idx + 1) % sections.size()
 			_restyle_nav()
 		_show_section(member_screen)
+		if not member_screen:
+			_focus_nav()
 	elif event.is_action_pressed("tab_prev"):
 		get_viewport().set_input_as_handled()
 		if member_screen:
@@ -130,6 +135,8 @@ func handle_input(event: InputEvent) -> void:
 			section_idx = (section_idx - 1 + sections.size()) % sections.size()
 			_restyle_nav()
 		_show_section(member_screen)
+		if not member_screen:
+			_focus_nav()
 	elif event.is_action_pressed("journal"):
 		get_viewport().set_input_as_handled()
 		section_idx = sections.find("Journal")
@@ -675,8 +682,27 @@ func _bestiary() -> void:
 # ------------------------------------------------------------------ Map
 
 func _map() -> void:
-	_header("Map — Bellweather")
 	var here: Dictionary = Content.map(GameState.map_id)
+	_header("Map — %s" % str(here.get("region", "")) if str(here.get("region", "")) != "" else "Map")
+	if world != null and world.get("grid") != null:
+		var mm := Minimap.new()
+		mm.world = world
+		mm.show_title = true
+		mm.max_size = Vector2(560, 300)
+		mm.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		content.add_child(mm)
+		mm.rebuild()
+		_note("You: white arrow   Objective: gold diamond   Exits: blue (gold = toward objective)   People: dots", 15, UITheme.C_DIM)
+		var wf: Wayfinder = world.get("wayfinder")
+		if wf and not wf.target.is_empty():
+			var e: Dictionary = wf.target.exit
+			_note("Objective is in this area." if bool(wf.target.here) else "Objective: %s — leave via the exit to %s." % [Nav.map_name(str(wf.target.map)), Nav.map_name(str(e.to))], 17, Color(1.0, 0.82, 0.45))
+	var exits_txt: PackedStringArray = []
+	for e2: Dictionary in Nav.exits(GameState.map_id):
+		if GameState.check(e2.cond) and not bool(e2.get("event", false)) and not Nav.map_name(str(e2.to)) in exits_txt:
+			exits_txt.append(Nav.map_name(str(e2.to)))
+	if not exits_txt.is_empty():
+		_note("Exits from here: " + ", ".join(exits_txt), 16, UITheme.C_TEXT)
 	var can_travel: bool = here.get("destination", false) and not here.has("encounters")
 	_note("Fast travel is available between discovered places while in town." if can_travel else "Fast travel is unavailable here (dungeon or interior).", 17, UITheme.C_DIM)
 	for mid: String in GameState.discovered:
@@ -690,7 +716,6 @@ func _map() -> void:
 			Router.enter_world(mid, "default"), "Travel to %s." % md.get("name", mid))
 		if not can_travel:
 			b.add_theme_color_override("font_color", Color(0.6, 0.6, 0.66))
-	_note("The wider world map (the Rainward Line and beyond) opens in Chapter Two — not yet built.", 16, UITheme.C_DIM)
 
 
 # ------------------------------------------------------------------ Settings / Save / Title

@@ -5,7 +5,7 @@ extends Node
 ## Exits with code 0 on success, 1 on any failure.
 
 const SUITES := ["res://tests/test_battle.gd", "res://tests/test_progression.gd", "res://tests/test_saves.gd",
-	"res://tests/test_content.gd", "res://tests/test_balance.gd"]
+	"res://tests/test_content.gd", "res://tests/test_balance.gd", "res://tests/test_world_aids.gd"]
 
 var failures: Array = []
 var passes := 0
