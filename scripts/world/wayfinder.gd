@@ -102,10 +102,10 @@ func _make_exit(e: Dictionary, grid: MapGrid) -> Dictionary:
 	var text_w := label.font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, label.font_size).x
 	if lp.x < 4.0:
 		label.offset.x = text_w * 0.5
-		lp.x = maxf(at.x, 1.2)
+		lp.x = maxf(at.x, 2.8)
 	elif lp.x > grid.w - 4.0:
 		label.offset.x = -text_w * 0.5
-		lp.x = minf(at.x + w, grid.w - 1.2)
+		lp.x = minf(at.x + w, grid.w - 2.8)
 	lp.z = clampf(lp.z, 0.8, grid.h - 0.4)
 	label.position = lp
 	add_child(label)
