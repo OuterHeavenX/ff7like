@@ -1,6 +1,6 @@
 # Progress
 
-_Last updated: 2026-10-31 (v0.5.0: 3D characters, wayfinding, gamepad harness)._
+_Last updated: 2026-11-01 (v0.6.0: difficulty, play report, installable app)._
 
 ## Milestone status
 | Milestone | Status |
@@ -17,6 +17,9 @@ Content validator, script compile check, 45 headless tests, full slice traversal
 
 ## Since Chapter Three (v0.5.0)
 3D character models (field + battle party), minimap / exit signs / objective marker / edge arrow / Map page, gamepad harness (62 checks, Steam Deck layout), main-menu focus fix, optional itch.io CI upload.
+
+## v0.6.0
+Story/Normal/Hard + Fewer random battles, Normal retune (no grinding by estimate), local play report, installable PWA with update button, lighter 3D characters + browser auto-quality.
 
 ## Blockers / needs owner
 - Real-device checks (iPhone, iPad, Android, Steam Deck) — no devices available here.

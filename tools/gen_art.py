@@ -1564,16 +1564,22 @@ def element_icons():
     return img
 
 
-def app_icon():
-    img = Image.new("RGBA", (128, 128), (14, 16, 32, 255))
+def app_icon(size=128):
+    """App / home-screen icon, drawn natively at any size (128 is the project icon)."""
+    k = size / 128.0
+    img = Image.new("RGBA", (size, size), (14, 16, 32, 255))
     d = ImageDraw.Draw(img)
+
+    def P(pts):
+        return [(x * k, y * k) for x, y in pts]
+
     for r in range(60, 0, -2):
         a = int(160 * (1 - r / 60))
-        d.ellipse([64 - r, 70 - r, 64 + r, 70 + r], fill=(255, 170, 80, a))
-    d.polygon([(64, 18), (42, 30), (38, 78), (28, 94), (100, 94), (90, 78), (86, 30)], fill=(196, 140, 64, 255))
-    d.polygon([(64, 18), (54, 24), (50, 78), (44, 94), (52, 94), (58, 78), (62, 26)], fill=(240, 200, 120, 255))
-    d.rectangle([26, 92, 102, 98], fill=(120, 80, 36, 255))
-    d.ellipse([56, 98, 72, 112], fill=(120, 80, 36, 255))
+        d.ellipse([(64 - r) * k, (70 - r) * k, (64 + r) * k, (70 + r) * k], fill=(255, 170, 80, a))
+    d.polygon(P([(64, 18), (42, 30), (38, 78), (28, 94), (100, 94), (90, 78), (86, 30)]), fill=(196, 140, 64, 255))
+    d.polygon(P([(64, 18), (54, 24), (50, 78), (44, 94), (52, 94), (58, 78), (62, 26)]), fill=(240, 200, 120, 255))
+    d.rectangle([26 * k, 92 * k, 102 * k, 98 * k], fill=(120, 80, 36, 255))
+    d.ellipse([56 * k, 98 * k, 72 * k, 112 * k], fill=(120, 80, 36, 255))
     return img
 
 
@@ -1662,6 +1668,8 @@ def main():
     status_icons().save(os.path.join(OUT, "ui", "status_icons.png"))
     element_icons().save(os.path.join(OUT, "ui", "element_icons.png"))
     app_icon().save(os.path.join(OUT, "ui", "icon.png"))
+    for sz in (144, 180, 512):   # installable web app (PWA) icons
+        app_icon(sz).save(os.path.join(OUT, "ui", f"icon_{sz}.png"))
     print("generated", len(CHARACTERS), "characters,", len(ENEMIES), "enemies,", len(TILE_NAMES), "tiles")
 
 

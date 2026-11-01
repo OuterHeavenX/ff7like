@@ -71,6 +71,10 @@ func _build() -> void:
 	MenuScreen.clear(body)
 	match tab_idx:
 		0:
+			_choice("Difficulty", "difficulty", Difficulty.LEVELS, Difficulty.LABELS,
+				"Story: enemies have 35% less HP, hit 30% softer, +25% XP.  Normal: intended balance.  Hard: enemies +30% HP, hit 15% harder. Change any time.")
+			_choice("Random battles", "encounters", ["normal", "fewer"], ["Normal", "Fewer (double rewards each)"],
+				"Fewer: half as many random battles, each worth double XP, JP and crowns, so you keep pace with less fighting.")
 			_choice("Battle mode", "battle_mode", ["wait", "active"], ["Wait (time pauses in menus)", "Active (time keeps flowing)"],
 				"Wait pauses the battle timeline whenever you are choosing a command or target.")
 			_choice("Battle speed", "battle_speed", [1, 2, 3, 4, 5], ["1 (slowest)", "2", "3 (default)", "4", "5 (fastest)"], "Scales how fast time gauges fill.")
@@ -79,10 +83,12 @@ func _build() -> void:
 			_toggle("Objective markers", "quest_markers", "Shows the tracked objective, a gold marker over where to go, gold exits toward it, and an edge arrow when it is off screen.")
 			_toggle("Minimap", "minimap", "Shows a small map of the current area with exits, people and the objective.")
 			_toggle("Pause when window loses focus", "pause_on_focus_loss", "Recommended for browser and Steam Deck suspend.")
+			_toggle("Record play report", "play_report", "Keeps a local log of time per area/objective and battle results that you can export from Menu > Settings > Play report. It stays on this device and is never sent anywhere.")
 		1:
 			_slider("Music volume", "music_volume")
 			_slider("Sound effects volume", "sfx_volume")
-			_choice("Visual preset", "visual_preset", ["standard", "low"], ["Standard", "Low / mobile"], "Low reduces particles and ambient effects. Takes effect on next map load.")
+			_choice("Visual preset", "visual_preset", ["standard", "low"], ["Standard", "Low / mobile"], "Low reduces particles, ambient effects and 3D character detail (no outlines) for older phones. Takes effect on next map load.")
+			_toggle("Auto-lower quality if slow", "auto_quality", "Browser only: if the game runs below 40 FPS for a few seconds, it switches to the Low preset once and tells you.")
 			_choice("Characters", "character_style", ["3d", "pixel"], ["3D models", "Classic pixel sprites"], "How people are drawn in the field and in battle. Takes effect on next map load.")
 			_choice("UI scale", "ui_scale", [0.85, 1.0, 1.15, 1.3, 1.5], ["85%", "100%", "115%", "130%", "150%"], "Scales menus and text independently of the world view.")
 			_choice("Touch controls", "touch_controls", ["auto", "on", "off"], ["Auto", "Always on", "Off"], "Auto shows them after the first touch.")

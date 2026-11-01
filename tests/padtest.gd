@@ -24,6 +24,8 @@ func _ready() -> void:
 	Settings.values["fast_animations"] = true
 	Settings.values["battle_speed"] = 5
 	Settings.values["touch_controls"] = "off"
+	Settings.values["difficulty"] = "normal"
+	Settings.values["encounters"] = "normal"
 	Input.joy_connection_changed.emit(DEV, true)
 	await _title()
 	await _field()
@@ -182,7 +184,16 @@ func _title() -> void:
 	_check("title: L3/R3/L2/R2/right stick are inert", _focus_text() == before and title.get("_sub") == null)
 	_check("title: reached New Game", await _focus_button("New Game"))
 	await _press(JOY_BUTTON_A)
-	_check("title: A on New Game starts the game", await _until(func() -> bool: return Router.world != null and GameState.active, 10.0))
+	await _wait(0.3)
+	_check("title: New Game asks for difficulty (Normal focused)", _focus_text() == "Normal")
+	await _press(JOY_BUTTON_B)
+	await _wait(0.3)
+	_check("difficulty: B goes back to the title menu", _focus_text() != "" and _focus_text() != "Normal")
+	await _focus_button("New Game")
+	await _press(JOY_BUTTON_A)
+	await _wait(0.3)
+	await _press(JOY_BUTTON_A)
+	_check("difficulty: A on Normal starts the game", await _until(func() -> bool: return Router.world != null and GameState.active, 10.0))
 
 
 # ------------------------------------------------------------------ field
@@ -310,6 +321,21 @@ func _menus() -> void:
 	m = w.menu_layer.get_child(w.menu_layer.get_child_count() - 1) if w.menu_open else null
 	_check("field: Menu (Start) opens pause/settings", m != null and str(m.sections[int(m.section_idx)]) == "Settings")
 	if m:
+		await _press(JOY_BUTTON_A)
+		await _wait(0.3)
+		var found := await _focus_button("Play report…")
+		_check("pause: Play report entry reachable with D-pad", found)
+		if found:
+			await _press(JOY_BUTTON_A)
+			await _wait(0.4)
+			var rep: Node = m.get_child(m.get_child_count() - 1)
+			_check("play report: opens with Export focused", _focus_text() == "Export file")
+			await _shot("pad_play_report")
+			await _press(JOY_BUTTON_DPAD_RIGHT)
+			_check("play report: D-pad right moves to Copy", _focus_text() == "Copy text")
+			await _press(JOY_BUTTON_B)
+			await _wait(0.3)
+			_check("play report: B closes", not is_instance_valid(rep) or not rep.is_inside_tree())
 		await _press(JOY_BUTTON_B)
 		await _press(JOY_BUTTON_B)
 		await _wait(0.4)

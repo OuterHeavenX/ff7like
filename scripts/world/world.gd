@@ -32,6 +32,9 @@ var _active: bool = true
 var _input_block_until: int = 0
 var menu_open: bool = false
 var _last_prompt_key: String = ""
+var _perf_settle: float = 0.0
+var _perf_frames: int = 0
+var _perf_time: float = 0.0
 
 
 func _ready() -> void:
@@ -150,8 +153,12 @@ func load_map(id: String, spawn: String = "", pos: Vector2i = Vector2i(-1, -1), 
 	cam_target = player.position
 	_snap_camera()
 	steps_since_battle = 0
+	_perf_settle = 0.0
+	_perf_frames = 0
+	_perf_time = 0.0
 	Audio.play_music(str(map_data.get("music", "")))
 	hud.show_location(str(map_data.get("name", id)), str(map_data.get("region", "")))
+	PlayLog.note_map_entered(id)
 	if not id in GameState.discovered and map_data.get("destination", false):
 		GameState.discovered.append(id)
 
@@ -283,6 +290,29 @@ func _update_camera(delta: float) -> void:
 	_snap_camera()
 
 
+## Browser safety net: if the field stays under 40 FPS for 8 s (after a short
+## settle), drop to the Low visual preset once and tell the player.
+func _perf_watch(delta: float) -> void:
+	if not OS.has_feature("web") or not bool(Settings.get_value("auto_quality")) \
+			or str(Settings.get_value("visual_preset")) == "low" or not can_control():
+		return
+	_perf_settle += delta
+	if _perf_settle < 5.0:
+		return
+	_perf_frames += 1
+	_perf_time += delta
+	if _perf_time < 8.0:
+		return
+	var fps := float(_perf_frames) / _perf_time
+	_perf_frames = 0
+	_perf_time = 0.0
+	if fps < 40.0:
+		Settings.set_value("visual_preset", "low")
+		Settings.set_value("auto_quality", false)
+		Router.toast("Running slowly (%d FPS), so the Low visual preset is now on. Change it in Settings > Audio & Display." % int(fps))
+		load_map_keep_player()
+
+
 func _light_actors() -> void:
 	if light_src == null:
 		return
@@ -299,6 +329,7 @@ func can_control() -> bool:
 
 
 func _process(delta: float) -> void:
+	_perf_watch(delta)
 	delta = minf(delta, 0.1)
 	_update_camera(delta)
 	if player == null:
@@ -376,7 +407,7 @@ func _check_encounter(p: Vector2i) -> void:
 	var min_steps := int(enc.get("min_steps", 12))
 	if steps_since_battle < min_steps:
 		return
-	var chance := minf(0.5, float(steps_since_battle - min_steps + 1) * 0.035 * float(enc.get("rate", 1.0)))
+	var chance := minf(0.5, float(steps_since_battle - min_steps + 1) * 0.035 * float(enc.get("rate", 1.0)) * Difficulty.encounter_rate())
 	for cid: String in GameState.party:
 		if "p_trail_sense" in GameState.members[cid].passives:
 			chance *= 0.75
@@ -399,7 +430,7 @@ func _check_encounter(p: Vector2i) -> void:
 			chosen = e.enc
 			break
 	steps_since_battle = 0
-	await start_battle(chosen, {"can_escape": true})
+	await start_battle(chosen, {"can_escape": true, "random": true})
 
 
 func start_battle(enc_id: String, opts: Dictionary = {}) -> Dictionary:

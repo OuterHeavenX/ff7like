@@ -727,6 +727,11 @@ func _settings() -> void:
 		add_child(s)
 		await s.closed
 		_show_section(true), "Gameplay, battle mode & speed, audio, accessibility and controls.")
+	_btn("Play report…", func() -> void:
+		var r: Control = preload("res://scripts/ui/play_report_ui.gd").new()
+		add_child(r)
+		await r.closed
+		_show_section(true), "See where your time went (areas, objectives, battles) and export or copy it to send as feedback. Stored only on this device.")
 	_btn("Resume", close, "Return to the game.")
 
 

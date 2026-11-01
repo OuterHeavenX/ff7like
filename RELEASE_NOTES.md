@@ -1,5 +1,13 @@
 # Release Notes
 
+## 0.6.0 — Difficulty, play report, installable app
+- **Difficulty (Story / Normal / Hard)**, picked when you start a New Game and changeable any time in Settings > Gameplay. Story: enemies have 35% less HP and hit 30% softer, +25% XP. Hard: enemies +30% HP and hit 15% harder.
+- **Random battles: Normal / Fewer.** Fewer means half as many random battles, each worth double XP, JP and crowns, so you keep pace with less fighting.
+- **Normal rebalanced so you shouldn't need to grind:** enemy XP +35%, Chapter One boss HP -10%. Expected level from fighting what you meet: about 6 / 11 / 15 at the three bosses, where simulated wins are 9/10, 6/8 and 8/8 (estimates, tested; not yet confirmed by a human playthrough).
+- **Play report** (Menu > Settings > Play report): a local log of time per area and per objective (long ones flagged as "possibly stuck"), battles, defeats, frame rate and settings changes. Export it as a file or copy the text to send as feedback. It never leaves your device, and it can be turned off in Settings.
+- **Install as an app.** The browser version can now be added to the home screen. It opens fullscreen, works offline after two visits, and offers a one-tap update on the title screen when a new version is out. iPhone/Android show a short tip on the title screen. Note: the installed app keeps its own saves (move one over with Load Game > Export / Import).
+- **Lighter on phones.** 3D characters use about 40% fewer triangles at the same look. In the browser, if the field runs under 40 FPS for a few seconds, the game switches to the Low preset once and tells you (Settings > Audio & Display > Auto-lower quality).
+
 ## 0.5.0 — 3D characters, wayfinding, Steam Deck controls pass
 - **3D characters.** Party members and townsfolk are now low-poly 3D models (rounded-box chibi style with an outline, pixel faces that blink, walk cycles, smooth turning, lit by nearby lamps). Party members in battle use the same models with weapons and poses for attack, cast, hurt, KO and victory. Settings > Audio & Display > Characters switches back to the classic pixel sprites. Enemies are still pixel art.
 - **Wayfinding so you don't get lost.**

@@ -10,6 +10,8 @@ const PATH := "user://settings.cfg"
 const DEFAULTS := {
 	"text_speed": 2,            # 0 slow, 1 normal, 2 fast, 3 instant
 	"ui_scale": 1.0,            # 0.85 .. 1.5
+	"difficulty": "normal",     # "story" | "normal" | "hard" (see Difficulty)
+	"encounters": "normal",     # "normal" | "fewer"
 	"battle_mode": "wait",      # "wait" | "active"
 	"battle_speed": 3,          # 1 (slowest) .. 5 (fastest)
 	"fast_animations": false,
@@ -24,8 +26,10 @@ const DEFAULTS := {
 	"touch_controls": "auto",   # "auto" | "on" | "off"
 	"visual_preset": "standard",# "standard" | "low"
 	"character_style": "3d",     # "3d" | "pixel"
+	"auto_quality": true,       # browser: drop to Low once if the field runs < 40 FPS
 	"pause_on_focus_loss": true,
 	"show_fps": false,
+	"play_report": true,        # local-only play log (PlayLog); never sent anywhere
 	"bindings": {},             # action -> Array of serialized events
 }
 
@@ -55,6 +59,10 @@ func _clamp_values() -> void:
 	values.battle_speed = clampi(int(values.battle_speed), 1, 5)
 	values.music_volume = clampf(float(values.music_volume), 0.0, 1.0)
 	values.sfx_volume = clampf(float(values.sfx_volume), 0.0, 1.0)
+	if not values.difficulty in ["story", "normal", "hard"]:
+		values.difficulty = "normal"
+	if not values.encounters in ["normal", "fewer"]:
+		values.encounters = "normal"
 	if not values.battle_mode in ["wait", "active"]:
 		values.battle_mode = "wait"
 	if not values.touch_controls in ["auto", "on", "off"]:

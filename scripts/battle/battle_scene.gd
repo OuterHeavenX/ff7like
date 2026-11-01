@@ -124,7 +124,8 @@ func _build_units() -> void:
 		GameState.record_enemy(eid, false)
 		j += 1
 	sim.setup(party_units, enemy_units, int(GameState.rng_seed) + GameState.steps * 7919 + int(GameState.playtime),
-		{"can_escape": bool(encounter.get("can_escape", true)) and bool(opts.get("can_escape", true))}, GameState.inventory)
+		{"can_escape": bool(encounter.get("can_escape", true)) and bool(opts.get("can_escape", true)),
+			"enemy_mods": Difficulty.enemy_mods()}, GameState.inventory)
 	for u: BattleUnit in sim.units:
 		_make_visual(u)
 
@@ -1122,6 +1123,10 @@ func _end_battle(outcome: String) -> void:
 				if not u.summoned:
 					GameState.record_enemy(u.source_id, true)
 			var rw := sim.take_rewards()
+			var mult := Difficulty.reward_mults(bool(opts.get("random", false)))
+			rw["xp"] = int(round(float(rw.get("xp", 0)) * float(mult.xp)))
+			rw["jp"] = int(round(float(rw.get("jp", 0)) * float(mult.jp)))
+			rw["gold"] = int(round(float(rw.get("gold", 0)) * float(mult.gold)))
 			GameState.battles_won += 1
 			_write_back(true)
 			var alive: Array = []

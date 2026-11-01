@@ -2,6 +2,7 @@ extends Node
 ## Scene transitions and top-level flow: title, world, battle overlay, game over.
 ## Owns the fade layer and the focus-loss pause overlay.
 
+signal battle_started(encounter_id: String, opts: Dictionary)
 signal battle_finished(result: Dictionary)
 
 const TITLE_SCENE := "res://scenes/ui/title.tscn"
@@ -124,6 +125,7 @@ func enter_world(map_id: String, spawn: String = "", pos: Vector2i = Vector2i(-1
 ## {outcome: "victory"|"defeat"|"escape", ...}.
 func run_battle(encounter_id: String, opts: Dictionary = {}) -> Dictionary:
 	busy = true
+	battle_started.emit(encounter_id, opts)
 	InputHub.release_all()
 	Audio.sfx("encounter")
 	await _battle_transition_out()

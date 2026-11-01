@@ -44,7 +44,7 @@ var modulate: Color = Color(1, 1, 1, 1):
 		modulate = v
 		if mat:
 			mat.set_shader_parameter("mod_color", Color(v.r, v.g, v.b, 1.0))
-var segments: int = 3
+var segments: int = 2
 var _dims: Dictionary = {}
 var _walk: float = 0.0
 var _walk_amt: float = 0.0

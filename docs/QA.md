@@ -2,6 +2,17 @@
 
 All results below were actually run in the development container (Linux x86_64, 4 vCPU, no GPU) on 2026-10-30 unless marked otherwise.
 
+## v0.6.0 checks (2026-11-01)
+| Check | Command | Result |
+|---|---|---|
+| Unit/integration tests | `godot --headless res://tests/test_runner.tscn` | 64 passed, 0 failed (new: difficulty scaling incl. summons, reward multipliers, setting fallbacks, Story/Hard boss sims, natural-progression levels; play report objectives/battles/areas/export/off switch/clear) |
+| Natural progression estimate (Normal) | `test_difficulty.gd` | Story battles + 10 random battles per chapter → **Lv6 / Lv11 / Lv15** before the three bosses (393 / 2207 / 5843 XP). **Estimate, not measured by a person.** |
+| Chapter One boss sims (human-like policy, 10 seeds) | scratch harness | After −10% HP: Lv5 4/10, **Lv6 9/10**, Lv7 10/10, ~91 actions. Story Lv4–5: 10/10. Hard Lv8: about 4/10 before the HP change. |
+| Traversal | `godot --headless -- --smoke` | ROUTE OK |
+| Gamepad harness | `godot --headless -- --padtest` | PADTEST OK, 68 checks (new: New Game difficulty picker with A/B, Play report screen focus, D-pad, B) |
+| Installable app (PWA) in Chromium/Playwright | scratch `pwatest.js`, `pwaupdate.js` | Manifest (fullscreen, landscape, icons 144/180/512) and service worker active; iPhone user agent shows the Add to Home Screen tip; **loads with the network off** after one online reload; after a new export, the title shows "A new version is ready", and one tap installs it and reloads. |
+| Render cost with 3D characters (Xvfb, OpenGL 3) | scratch harness | Per-frame triangles (standard): Lantern Square 74.7k → **44.2k**, Rainward Junction 121k → **69.9k** after halving bevel segments; Low preset 12–20k; pixel sprites 4–6k. Draw calls 60–101 (standard), 39–64 (Low), 25–35 (pixel). Real phone frame rate still **unmeasured**. |
+
 ## v0.5.0 checks (2026-10-31)
 | Check | Command | Result |
 |---|---|---|
@@ -59,6 +70,8 @@ Chapter Three estimate: 60–80 min (not measured). Chapter Two estimate: 60–8
 ## Known issues
 - Chapters 4–8 not built.
 - Enemies are still 2D pixel sprites beside the 3D party; the classic pixel party is available in Settings.
-- 3D character frame rate on low-end phones is unmeasured (Settings > Visual preset: Low drops the outline and bevel detail).
+- 3D character frame rate on real phones is unmeasured. The browser build switches to Low once if it drops below 40 FPS.
+- Difficulty and random-battle settings are stored per device, not per save.
+- iPhone home-screen app storage is separate from Safari: saves must be moved with Export / Import.
 - Battle animations are functional but simple (tweens + frame swaps).
 - Some legend tiles (rail, glass, salt) exist for future regions only.

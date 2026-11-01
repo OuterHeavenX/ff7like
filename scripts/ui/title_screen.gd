@@ -11,6 +11,7 @@ var logo: Control
 var _t: float = 0.0
 var _gate_open: bool = false
 var _sub: Control = null
+var _picking: bool = false
 
 
 func _ready() -> void:
@@ -66,6 +67,8 @@ func _ready() -> void:
 	credit.size = Vector2(600, 24)
 	ui.add_child(credit)
 	Audio.play_music("title", 1.5)
+	if OS.has_feature("web"):
+		_web_install_and_update()
 
 
 func _build_logo() -> void:
@@ -123,6 +126,8 @@ func _input(event: InputEvent) -> void:
 		or (event is InputEventJoypadButton and event.is_pressed()) \
 		or (event is InputEventScreenTouch and event.is_pressed()) \
 		or (event is InputEventMouseButton and event.is_pressed())
+	if pressed and _over_update_button(event):
+		return   # let the update button receive the tap
 	if pressed:
 		get_viewport().set_input_as_handled()
 		_gate_open = true
@@ -133,6 +138,7 @@ func _input(event: InputEvent) -> void:
 
 func _show_menu() -> void:
 	for c in menu_box.get_children():
+		menu_box.remove_child(c)
 		c.queue_free()
 	menu_box.visible = true
 	var first: Button = null
@@ -168,9 +174,53 @@ func _continue() -> void:
 func _new_game() -> void:
 	if Router.busy:
 		return
+	_show_difficulty()
+
+
+## New Game first asks for a difficulty (also changeable later in Settings).
+func _show_difficulty() -> void:
+	_picking = true
+	for c in menu_box.get_children():
+		menu_box.remove_child(c)
+		c.queue_free()
+	menu_box.add_child(UITheme.title_label("Choose difficulty", 24))
+	var blurb := UITheme.label("", 16, UITheme.C_DIM)
+	blurb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	blurb.custom_minimum_size = Vector2(300, 64)
+	var focus_me: Button = null
+	for i in Difficulty.LEVELS.size():
+		var lvl: String = Difficulty.LEVELS[i]
+		var b := UITheme.button(Difficulty.LABELS[i], func() -> void: _start_with(lvl), 50)
+		b.alignment = HORIZONTAL_ALIGNMENT_CENTER
+		b.focus_entered.connect(func() -> void: blurb.text = Difficulty.BLURBS[lvl])
+		menu_box.add_child(b)
+		if lvl == Difficulty.level():
+			focus_me = b
+	menu_box.add_child(blurb)
+	var back := UITheme.button("Back", func() -> void:
+		_picking = false
+		_show_menu(), 44)
+	back.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	menu_box.add_child(back)
+	focus_me.call_deferred("grab_focus")
+
+
+func _start_with(lvl: String) -> void:
+	if Router.busy:
+		return
+	_picking = false
+	Settings.set_value("difficulty", lvl)
 	menu_box.visible = false
 	Audio.stop_music(1.0)
 	Router.start_new_game()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _picking and event.is_action_pressed("cancel"):
+		get_viewport().set_input_as_handled()
+		Audio.sfx("cancel")
+		_picking = false
+		_show_menu()
 
 
 func _open_sub(node: Control) -> void:
@@ -193,3 +243,68 @@ func _load() -> void:
 func _settings() -> void:
 	var s: Control = preload("res://scripts/ui/settings_ui.gd").new()
 	_open_sub(s)
+
+
+# ------------------------------------------------------------------ installable web app
+
+## Browser builds: suggest installing to the home screen (fullscreen, offline)
+## when not already installed, and offer a restart when a newer build has been
+## downloaded by the service worker. Only on the title screen, never mid-game.
+func _web_install_and_update() -> void:
+	var kind: Variant = JavaScriptBridge.eval("""
+		(function () {
+			var mm = function (q) { return window.matchMedia && window.matchMedia(q).matches; };
+			if (window.navigator.standalone === true || mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)')) { return ''; }
+			var ua = navigator.userAgent || '';
+			if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) { return 'ios'; }
+			if (/Android/.test(ua)) { return 'android'; }
+			return '';
+		})()
+	""", true)
+	var tip := ""
+	match str(kind):
+		"ios": tip = "Tip: tap Share, then \"Add to Home Screen\" to install the game and play fullscreen."
+		"android": tip = "Tip: open the browser menu and choose \"Install app\" (or \"Add to Home screen\") to play fullscreen."
+	if tip != "":
+		var l := UITheme.label(tip + "\nThe installed app keeps its own saves: use Load Game > Export / Import to move one across.", 17, Color(0.85, 0.9, 1.0))
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		l.set_anchors_preset(Control.PRESET_CENTER_TOP)
+		l.position = Vector2(-450, 300)
+		l.size = Vector2(900, 60)
+		l.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+		l.add_theme_constant_override("outline_size", 6)
+		ui.add_child(l)
+	if JavaScriptBridge.pwa_needs_update():
+		_show_update_button()
+	else:
+		JavaScriptBridge.pwa_update_available.connect(_show_update_button)
+
+
+func _over_update_button(event: InputEvent) -> bool:
+	var b := ui.get_node_or_null("UpdateButton") as Control
+	if b == null:
+		return false
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		return b.get_global_rect().has_point(event.position)
+	return false
+
+
+func _show_update_button() -> void:
+	if ui.has_node("UpdateButton"):
+		return
+	var b := UITheme.button("A new version is ready - tap to update", func() -> void: JavaScriptBridge.pwa_update(), 46)
+	b.name = "UpdateButton"
+	b.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.20, 0.13, 0.05, 0.92)
+	sb.border_color = UITheme.C_ACCENT
+	sb.set_border_width_all(2)
+	sb.set_corner_radius_all(6)
+	for st: String in ["normal", "hover", "pressed", "focus"]:
+		b.add_theme_stylebox_override(st, sb)
+	b.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	b.position = Vector2(-260, 16)
+	b.size = Vector2(520, 46)
+	ui.add_child(b)
+

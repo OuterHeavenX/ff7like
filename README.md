@@ -23,6 +23,12 @@ An original, story-driven 2.5D JRPG built in **Godot 4.4.1** (Compatibility rend
 
 Battle: Wait mode is default — time pauses while you choose. Tap enemies or party rows directly to target.
 
+Difficulty: choose Story / Normal / Hard on New Game (change any time in Settings), and "Fewer" random battles if you prefer less fighting with bigger rewards.
+
+Install: in the browser version, use Share > Add to Home Screen (iPhone) or the browser's Install app option (Android/desktop) to play fullscreen and offline.
+
+Feedback: Menu > Settings > Play report exports a local summary of where your time went. Nothing is ever sent automatically.
+
 Finding your way: a minimap (top right), signs naming each exit's destination, a gold marker over the next objective (or a gold exit toward it) and an edge-of-screen arrow when it's off screen. The pause menu's Map page shows the whole area.
 
 ## Build, test, release

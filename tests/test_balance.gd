@@ -50,7 +50,7 @@ func _policy(s: BattleSim, u: BattleUnit) -> Dictionary:
 	return {"kind": "skill", "id": sid, "targets": [tgt.uid]}
 
 
-func _simulate(enc: String, level: int, seeds: int, use_auto: bool = false, extra: Array = []) -> Dictionary:
+func _simulate(enc: String, level: int, seeds: int, use_auto: bool = false, extra: Array = [], mods: Dictionary = {}) -> Dictionary:
 	var wins := 0
 	var total_time := 0.0
 	var total_actions := 0
@@ -68,7 +68,7 @@ func _simulate(enc: String, level: int, seeds: int, use_auto: bool = false, extr
 			j += 1
 		var s := BattleSim.new()
 		s.auto_ack = true
-		s.setup(party, enemies, 1000 + sd, {"can_escape": false}, GameState.inventory)
+		s.setup(party, enemies, 1000 + sd, {"can_escape": false, "enemy_mods": mods}, GameState.inventory)
 		var steps := 0
 		while s.state == "running" and steps < 40000:
 			s.step(0.05)

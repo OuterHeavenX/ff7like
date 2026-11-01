@@ -31,6 +31,7 @@ var elapsed: float = 0.0
 var action_count: int = 0
 var rewards_taken: bool = false
 var log_lines: Array = []
+var enemy_mods: Dictionary = {}       # difficulty scaling for enemies (incl. summons)
 var _pending_status_events: Array = []
 
 
@@ -43,6 +44,9 @@ func setup(party: Array, enemies: Array, seed_value: int, opts: Dictionary = {},
 		units.append(e)
 		enemy_index = maxi(enemy_index, int(e.uid.substr(1)) + 1)
 	can_escape = bool(opts.get("can_escape", true))
+	enemy_mods = opts.get("enemy_mods", {})
+	for e: BattleUnit in enemies:
+		Difficulty.apply(e, enemy_mods)
 	inventory = inv
 	for u: BattleUnit in units:
 		# Staggered openings; preemptive passives start fuller.
@@ -591,6 +595,7 @@ func _perform(actor: BattleUnit, def: Dictionary, wanted: Array, evs: Array, cmd
 						if current >= int(op.get("max", MAX_SUMMONS)):
 							break
 						var nu := BattleUnit.from_enemy(str(op.enemy), enemy_index)
+						Difficulty.apply(nu, enemy_mods)
 						enemy_index += 1
 						nu.summoned = true   # summons never grant rewards
 						nu.rewards = {}
@@ -697,6 +702,7 @@ func _check_phases(evs: Array) -> void:
 				var cnt := int(ph.get("summon_count", 1))
 				for k in cnt:
 					var nu := BattleUnit.from_enemy(str(ph.summon), enemy_index)
+					Difficulty.apply(nu, enemy_mods)
 					enemy_index += 1
 					nu.summoned = true
 					nu.rewards = {}
